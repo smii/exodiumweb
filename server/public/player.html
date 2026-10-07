@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player</title>
+<link rel="stylesheet" href="/vendor/js-dos/dist/js-dos.css">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #000; color: #ddd; font: 13px/1.4 system-ui, sans-serif; overflow: hidden; }
+  #dos { position: absolute; inset: 0; }
+  #status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: #aaa; pointer-events: none; }
+  #status.error { color: #f19b8c; pointer-events: auto; }
+  #status .t { font-size: 16px; color: #eee; margin-bottom: 6px; }
+  #close { position: absolute; top: 10px; right: 12px; z-index: 10; border: 0; border-radius: 6px; padding: 6px 12px;
+           background: rgba(30, 30, 34, 0.85); color: #eee; font: inherit; cursor: pointer; }
+  #close:hover { background: rgba(60, 60, 68, 0.95); }
+</style>
+</head>
+<body>
+<div id="dos"></div>
+<div id="status"><div><div class="t" id="title">Loading…</div><div id="detail"></div></div></div>
+<button id="close" type="button" title="Close (returns to the library)">✕ Close</button>
+<script src="/vendor/js-dos/dist/js-dos.js"></script>
+<script type="module">
+  const id = Number(new URLSearchParams(location.search).get("id"));
+  const statusEl = document.getElementById("status");
+  const say = (title, detail = "") => {
+    document.getElementById("title").textContent = title;
+    document.getElementById("detail").textContent = detail;
+  };
+  const done = () => parent.postMessage({ type: "notexoweb:player-closed", id }, location.origin);
+  let dosProps = null;
+  document.getElementById("close").onclick = async () => {
+    try { await dosProps?.stop?.(); } catch {}
+    done();
+  };
+  window.__player = { ready: false, error: null, events: [] };
+
+  try {
+    const res = await fetch(`/api/play/${id}`);
+    const info = await res.json();
+    if (!res.ok) throw new Error(info.error ?? `HTTP ${res.status}`);
+    document.title = info.game.title;
+    say(info.game.title, "Fetching game files…");
+
+    const initFs = [];
+    for (const f of info.files) {
+      const r = await fetch(f.url);
+      if (!r.ok) throw new Error(`Couldn't load ${f.url} (${r.status})`);
+      const buf = new Uint8Array(await r.arrayBuffer());
+      initFs.push(f.kind === "zip" ? buf : { path: f.path, contents: buf });
+    }
+    say(info.game.title, "Starting…");
+
+    const voodoo = info.info.voodoo && info.backend === "dosboxX";
+    dosProps = Dos(document.getElementById("dos"), {
+      pathPrefix: "/vendor/js-dos/dist/emulators/",
+      backend: info.backend,
+      backendLocked: true,
+      dosboxConf: info.conf,
+      initFs,
+      autoStart: true,
+      noCloud: true,
+      thinSidebar: true,
+      theme: "dark",
+      ...(voodoo ? { renderBackend: "webgl", offscreenCanvas: true, workerThread: true } : {}),
+      onEvent: (event, ci) => {
+        window.__player.events.push(event);
+        if (event === "ci-ready") {
+          window.__player.ready = true;
+          window.__player.ci = ci;
+          statusEl.style.display = "none"; // the `hidden` attribute loses to #status's display:grid
+        }
+        if (event === "exit") done();
+      },
+    });
+  } catch (e) {
+    window.__player.error = String(e?.message ?? e);
+    statusEl.classList.add("error");
+    say("Couldn't start this game", window.__player.error);
+  }
+</script>
+</body>
+</html>

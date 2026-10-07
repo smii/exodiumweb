@@ -1,0 +1,10 @@
+{
+  "name": "notexoweb-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Headless browser checks, UI screenshots and screen recordings for notexoweb",
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0"
+  }
+}

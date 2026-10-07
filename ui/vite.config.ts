@@ -54,6 +54,22 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(async () => ({
   plugins: [rawPdfjsRuntime(), solid()],
 
+  // ── notexoweb: the only change to upstream ─────────────────────────────
+  // Swap the Tauri modules for browser shims (ui/web-shims). The dev server
+  // proxies the API to the notexoweb server; a build is served by it.
+  resolve: {
+    alias: {
+      "@tauri-apps/api/core": resolve("web-shims/core.ts"),
+      "@tauri-apps/api/event": resolve("web-shims/event.ts"),
+      "@tauri-apps/api/window": resolve("web-shims/window.ts"),
+      "@tauri-apps/plugin-dialog": resolve("web-shims/plugins.ts"),
+      "@tauri-apps/plugin-opener": resolve("web-shims/plugins.ts"),
+      "@tauri-apps/plugin-process": resolve("web-shims/plugins.ts"),
+      "@tauri-apps/plugin-updater": resolve("web-shims/plugins.ts"),
+    },
+  },
+  // ── end notexoweb ──────────────────────────────────────────────────────
+
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
   // 1. prevent Vite from obscuring rust errors
