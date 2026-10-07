@@ -11,14 +11,17 @@
 //   USER_HEADER          header naming the user (default Remote-User, set by Authelia)
 //   DEV_USER             user when the header is absent (development only)
 import { createServer } from "node:http";
-import { createReadStream, existsSync, statSync } from "node:fs";
-import { join, normalize, extname, resolve } from "node:path";
+import { createReadStream, existsSync, statSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
+import { join, normalize, extname, resolve, dirname } from "node:path";
+import { createHash } from "node:crypto";
+import { ZipReader, writeBundle } from "./zip.mjs";
 import { fileURLToPath } from "node:url";
 import { ensureCatalog, userDb } from "./db.mjs";
 import { runCommand } from "./commands.mjs";
 import { gameById, gameConfig } from "./queries.mjs";
 import { Collection, zipNameFor } from "./collection.mjs";
 import { translate } from "./translate.mjs";
+import { buildImageIndex, GameData, typeOf } from "./media.mjs";
 
 const SERVER = fileURLToPath(new URL("..", import.meta.url));
 const ROOT = resolve(SERVER, "..");
@@ -34,7 +37,62 @@ const VENDOR = join(SERVER, "vendor");
 
 const catalogPath = ensureCatalog(join(SERVER, "data"));
 const collection = new Collection(env);
-const app = { previewRoot: PREVIEW_ROOT };
+const t0 = Date.now();
+const imageIndex = buildImageIndex(collection.metadata("XODOSMetadata.zip"));
+console.log(`image index: ${imageIndex.size} titles in ${Date.now() - t0} ms`);
+const app = { previewRoot: PREVIEW_ROOT, imageIndex, gameData: new GameData(collection) };
+
+/** Send a whole zip entry (already in memory), honouring Range for <video>/<audio>. */
+function sendBuffer(req, res, buf, type, cache) {
+  const h = headers(type, { "Accept-Ranges": "bytes", "Cache-Control": cache });
+  const m = req.headers.range?.match(/bytes=(\d*)-(\d*)/);
+  if (m) {
+    const start = m[1] ? Number(m[1]) : 0;
+    const end = m[2] ? Math.min(Number(m[2]), buf.length - 1) : buf.length - 1;
+    res.writeHead(206, { ...h, "Content-Range": `bytes ${start}-${end}/${buf.length}`, "Content-Length": end - start + 1 });
+    return res.end(buf.subarray(start, end + 1));
+  }
+  res.writeHead(200, { ...h, "Content-Length": buf.length });
+  res.end(buf);
+}
+
+// Small LRU of decoded entries so a <video> doing range requests doesn't re-inflate.
+const entryCache = new Map();
+function cachedEntry(key, load) {
+  if (entryCache.has(key)) { const v = entryCache.get(key); entryCache.delete(key); entryCache.set(key, v); return v; }
+  const v = load();
+  if (v) {
+    entryCache.set(key, v);
+    let total = 0;
+    for (const b of entryCache.values()) total += b.length;
+    for (const k of entryCache.keys()) { if (total < 256 * 2 ** 20) break; total -= entryCache.get(k).length; entryCache.delete(k); }
+  }
+  return v;
+}
+
+/** Virtual asset paths: media:<entry in XODOSMetadata.zip>, gamedata:<gameId>/<entry>. */
+async function serveVirtual(req, res, p, user) {
+  if (p.startsWith("media:")) {
+    const name = p.slice(6);
+    if (!name.startsWith("Images/")) return false;
+    const buf = cachedEntry(p, () => collection.metadata("XODOSMetadata.zip")?.read(name));
+    if (!buf) return false;
+    sendBuffer(req, res, buf, typeOf(name), "public, max-age=604800");
+    return true;
+  }
+  const m = p.match(/^gamedata:(\d+)\/(.+)$/);
+  if (m) {
+    const game = gameById(userDb(STATE_DIR, catalogPath, user), Number(m[1]));
+    const zip = game && zipNameFor(game);
+    if (!zip) return false;
+    const reader = await app.gameData.load(zip);
+    const buf = reader && cachedEntry(p, () => reader.read(m[2]));
+    if (!buf) return false;
+    sendBuffer(req, res, buf, typeOf(m[2]), "private, max-age=86400");
+    return true;
+  }
+  return false;
+}
 
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".mjs": "text/javascript", ".css": "text/css",
@@ -105,15 +163,56 @@ function launchInfo(db, id) {
   let dosboxConf = t.conf;
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
   if (settings.custom_conf) dosboxConf = `${settings.custom_conf.trim()}\n${dosboxConf}`;
-  const files = [{ kind: "zip", url: `/api/play/${id}/game.zip` }];
-  if (t.needs.mt32 && MT32_DIR) {
-    for (const rom of ["MT32_CONTROL.ROM", "MT32_PCM.ROM"]) files.push({ kind: "file", path: `mt32/rev0/${rom}`, url: `/mt32/${rom}` });
-  }
+  // The bundle is keyed on the exact config, so a settings change builds a new one.
+  const confHash = createHash("sha1").update(dosboxConf).update(String(t.needs.mt32)).digest("hex").slice(0, 12);
   return {
     game: { id: game.id, title: game.title, year: game.year, shortcode: game.shortcode },
-    backend: t.backend, conf: dosboxConf, info: t.info, files,
+    backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs,
+    bundleUrl: `/api/play/${id}/bundle.jsdos?c=${confHash}`,
+    confHash,
     shader: settings.glshader ?? null,
   };
+}
+
+/**
+ * A js-dos bundle for one game: the collection's zip (entries copied as-is)
+ * + .jsdos/dosbox.conf + MT-32 ROMs when needed. Cached on disk per config.
+ */
+const bundleBuilds = new Map();
+async function bundleFor(game, info) {
+  const dir = join(env.CACHE_DIR ?? join(SERVER, "cache"), "bundles");
+  mkdirSync(dir, { recursive: true });
+  const out = join(dir, `${game.shortcode}-${info.confHash}.jsdos`);
+  if (existsSync(out)) return out;
+  if (!bundleBuilds.has(out)) {
+    bundleBuilds.set(out, (async () => {
+      const src = new ZipReader(await collection.gameZip(zipNameFor(game)));
+      const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
+      if (info.needs.mt32 && MT32_DIR) {
+        for (const rom of ["MT32_CONTROL.ROM", "MT32_PCM.ROM"]) extra.push({ name: `mt32/rev0/${rom}`, data: readFileSync(join(MT32_DIR, rom)) });
+      }
+      const tmp = `${out}.${process.pid}.tmp`;
+      try { writeBundle(src, extra, tmp); renameSync(tmp, out); } finally { src.close(); }
+      return out;
+    })().finally(() => bundleBuilds.delete(out)));
+  }
+  return bundleBuilds.get(out);
+}
+
+/** Per-user js-dos save changes, one file per game. */
+function savePath(user, game) {
+  const u = user.replace(/[^a-zA-Z0-9_.-]/g, "_");
+  return join(STATE_DIR, "saves", u, `${game.shortcode}.changes`);
+}
+
+function readRaw(req, limit) {
+  return new Promise((ok, fail) => {
+    const chunks = [];
+    let n = 0;
+    req.on("data", (d) => { n += d.length; if (n > limit) { req.destroy(); fail(new Error("too large")); } else chunks.push(d); });
+    req.on("end", () => ok(Buffer.concat(chunks)));
+    req.on("error", fail);
+  });
 }
 
 const sseClients = new Set();
@@ -154,17 +253,42 @@ createServer(async (req, res) => {
       const info = launchInfo(userDb(STATE_DIR, catalogPath, user), Number(m[1]));
       return info ? json(res, info.error ? 422 : 200, info) : json(res, 404, { error: "unknown game" });
     }
-    m = path.match(/^\/api\/play\/(\d+)\/game\.zip$/);
+    m = path.match(/^\/api\/play\/(\d+)\/bundle\.jsdos$/);
+    if (m) {
+      const db = userDb(STATE_DIR, catalogPath, user);
+      const game = gameById(db, Number(m[1]));
+      const info = game && launchInfo(db, game.id);
+      if (!info || info.error) return json(res, 404, { error: info?.error ?? "unknown game" });
+      // Immutable per ?c=<conf hash>, so browsers can cache it hard.
+      return sendFile(req, res, await bundleFor(game, info), "private, max-age=31536000, immutable");
+    }
+
+    m = path.match(/^\/api\/saves\/(\d+)$/);
     if (m) {
       const game = gameById(userDb(STATE_DIR, catalogPath, user), Number(m[1]));
-      const zip = game && zipNameFor(game);
-      if (!zip) return json(res, 404, { error: "unknown game" });
-      return sendFile(req, res, await collection.gameZip(zip), "private, max-age=86400");
+      if (!game?.shortcode) return json(res, 404, { error: "unknown game" });
+      const file = savePath(user, game);
+      if (req.method === "GET") {
+        if (!existsSync(file)) { res.writeHead(204, headers("text/plain")); return res.end(); }
+        return sendFile(req, res, file, "no-store");
+      }
+      if (req.method === "PUT") {
+        const data = await readRaw(req, 512 * 2 ** 20);
+        mkdirSync(dirname(file), { recursive: true });
+        writeFileSync(`${file}.tmp`, data);
+        renameSync(`${file}.tmp`, file);
+        return json(res, 200, { saved: data.length });
+      }
+      if (req.method === "DELETE") {
+        rmSync(file, { force: true });
+        return json(res, 200, { deleted: true });
+      }
     }
 
     if (path === "/asset") {
       // Only the bundled cover previews are reachable this way.
       const p = url.searchParams.get("path") ?? "";
+      if (user && (await serveVirtual(req, res, p, user))) return;
       if (p.startsWith(PREVIEW_ROOT + "/") && serveFrom(req, res, PREVIEW_ROOT, p.slice(PREVIEW_ROOT.length), "public, max-age=604800")) return;
       res.writeHead(404, headers("text/plain")); return res.end("not found");
     }

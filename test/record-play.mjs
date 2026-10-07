@@ -18,12 +18,20 @@ page.on("pageerror", (e) => problems.push(`pageerror: ${e.message}`));
 const t0 = Date.now();
 await page.goto(base);
 await page.waitForTimeout(2500);
+// Once a user has played something the app opens on My Library; search the whole collection.
+await page.getByText(/^\s*Browse/).first().click();
+await page.waitForTimeout(800);
 await page.getByPlaceholder(/search games/i).click();
 await page.keyboard.type(search, { delay: 90 });
 await page.waitForTimeout(1800);
 // Open the card's detail panel, then press its Play button.
 const card = page.getByText(title, { exact: true }).first();
-await card.click();
+try {
+  await card.click({ timeout: 15000 });
+} catch (e) {
+  await page.screenshot({ path: new URL(`./shots/${slug}-search-failed.png`, import.meta.url).pathname });
+  throw e;
+}
 await page.waitForTimeout(1800);
 await page.screenshot({ path: new URL(`./shots/${slug}-detail.png`, import.meta.url).pathname });
 await page.locator(".game-detail-panel button", { hasText: "Play" }).first().click();

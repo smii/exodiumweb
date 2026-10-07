@@ -61,6 +61,30 @@ export class Collection {
     return cached;
   }
 
+  /** Local path of a game's extras zip (Content/GameData/eXoDOS/<name>.zip), or null if it has none. */
+  async gameDataZip(zipName) {
+    if (zipName.includes("/") || zipName.includes("\\") || zipName.startsWith(".")) throw new Error("bad zip name");
+    if (this.root) {
+      const p = join(this.root, "Content", "GameData", "eXoDOS", zipName);
+      return existsSync(p) ? p : null;
+    }
+    const dir = join(this.cacheDir, "gamedata");
+    mkdirSync(dir, { recursive: true });
+    const cached = join(dir, zipName);
+    if (existsSync(cached)) return cached;
+    const key = `gamedata/${zipName}`;
+    if (!this.inflight.has(key)) {
+      this.inflight.set(key, this.#fetchOverSsh(`Content/GameData/eXoDOS/${zipName}`, cached).finally(() => this.inflight.delete(key)));
+    }
+    try {
+      await this.inflight.get(key);
+    } catch (e) {
+      if (/No such file/i.test(String(e.message))) return null; // game has no extras
+      throw e;
+    }
+    return cached;
+  }
+
   #fetchOverSsh(rel, dest) {
     const [host, base] = this.ssh.split(/:(.*)/s);
     const args = ["-n", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10"];
@@ -86,7 +110,8 @@ export class Collection {
 
   #evict() {
     const files = readdirSync(this.cacheDir).filter((f) => !f.endsWith(".part"))
-      .map((f) => { const s = statSync(join(this.cacheDir, f)); return { f, size: s.size, t: s.mtimeMs }; })
+      .map((f) => { const s = statSync(join(this.cacheDir, f)); return s.isFile() ? { f, size: s.size, t: s.mtimeMs } : null; })
+      .filter(Boolean)
       .sort((a, b) => a.t - b.t);
     let total = files.reduce((s, x) => s + x.size, 0);
     for (const x of files) {

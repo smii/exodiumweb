@@ -31,9 +31,33 @@
   };
   const done = () => parent.postMessage({ type: "notexoweb:player-closed", id }, location.origin);
   let dosProps = null;
+  let closing = false;
   document.getElementById("close").onclick = async () => {
+    if (closing) return;
+    closing = true;
+    say("Saving…");
+    // Saves go to the server (per user) through fsChanges.push below.
+    try { if (window.__player.ready) await dosProps?.save?.(); } catch (e) { console.error("save failed", e); }
     try { await dosProps?.stop?.(); } catch {}
     done();
+  };
+
+  // js-dos keeps a game's changed files as one "changes" blob; it lives on the
+  // server per user, so progress follows the user to any browser.
+  const saveUrl = `/api/saves/${id}`;
+  const fsChanges = {
+    pull: async () => {
+      const r = await fetch(saveUrl, { cache: "no-store" });
+      if (r.status === 204 || !r.ok) return null;
+      window.__player.restored = true;
+      return new Uint8Array(await r.arrayBuffer());
+    },
+    push: async (_key, data) => {
+      const r = await fetch(saveUrl, { method: "PUT", headers: { "Content-Type": "application/octet-stream" }, body: data });
+      if (!r.ok) throw new Error(`save failed (${r.status})`);
+      window.__player.saved = (window.__player.saved ?? 0) + 1;
+    },
+    delete: async () => { await fetch(saveUrl, { method: "DELETE" }); },
   };
   window.__player = { ready: false, error: null, events: [] };
 
@@ -42,24 +66,16 @@
     const info = await res.json();
     if (!res.ok) throw new Error(info.error ?? `HTTP ${res.status}`);
     document.title = info.game.title;
-    say(info.game.title, "Fetching game files…");
-
-    const initFs = [];
-    for (const f of info.files) {
-      const r = await fetch(f.url);
-      if (!r.ok) throw new Error(`Couldn't load ${f.url} (${r.status})`);
-      const buf = new Uint8Array(await r.arrayBuffer());
-      initFs.push(f.kind === "zip" ? buf : { path: f.path, contents: buf });
-    }
-    say(info.game.title, "Starting…");
+    say(info.game.title, "Loading…");
 
     const voodoo = info.info.voodoo && info.backend === "dosboxX";
     dosProps = Dos(document.getElementById("dos"), {
       pathPrefix: "/vendor/js-dos/dist/emulators/",
       backend: info.backend,
       backendLocked: true,
-      dosboxConf: info.conf,
-      initFs,
+      url: info.bundleUrl,
+      fsChanges,
+      autoSave: true,
       autoStart: true,
       noCloud: true,
       thinSidebar: true,

@@ -4,6 +4,7 @@
 // string too, so the UI's catch blocks keep working unchanged).
 
 import { emit } from "./event";
+import "./web.css";
 
 // The desktop app spawns DOSBox on launch_game and emits `game-exited` when
 // it quits. Here the server records the launch and the game runs in an

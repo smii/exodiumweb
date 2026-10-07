@@ -3,6 +3,8 @@
 // setup wizard) answer with harmless "nothing to do" values.
 import * as q from "./queries.mjs";
 import { ENABLED_COLLECTIONS } from "./db.mjs";
+import { imagesFor, GameData } from "./media.mjs";
+import { zipNameFor } from "./collection.mjs";
 
 const COLLECTION_NAMES = { eXoDOS: "eXoDOS", eXoWin3x: "eXoWin3x", eXoWin9x: "eXoWin9x", eXoScummVM: "eXoScummVM" };
 
@@ -110,13 +112,56 @@ export const commands = {
   scummvm_engine_info: noop,
   scummvm_variants: noop,
 
-  // ── Music / media / reading: later milestones ───────────────────────────
-  music_playback_supported: () => ({ supported: false, reason: "not yet available in notexoweb" }),
-  music_shuffle_candidates: emptyList,
-  get_music_status: noop,
-  start_game_music: noop,
+  // ── Media: gallery, manual, video preview, theme music ──────────────────
+  get_game_metadata: ({ db, app }, { title, shortcode, manualPath }) => {
+    const images = imagesFor(app.imageIndex, title);
+    let manual_path = null;
+    let manual_kind = null;
+    const game = shortcode ? db.prepare("SELECT id FROM games WHERE shortcode = ? ORDER BY CASE language WHEN 'EN' THEN 0 ELSE 1 END LIMIT 1").get(shortcode) : null;
+    if (manualPath && game) {
+      manual_path = `gamedata:${game.id}/${manualPath.replace(/\\/g, "/")}`;
+      const ext = manualPath.split(".").pop().toLowerCase();
+      manual_kind = ext === "pdf" ? "pdf" : ext === "txt" ? "txt" : ext.startsWith("htm") ? "html" : null;
+    }
+    return { manual_path, manual_kind, images, thumbnails: images };
+  },
+  game_articles: emptyList,
+  list_content_packs: emptyList,
+  video_playback_supported: () => true,
+  video_mirror_needed: () => false,
+  media_url: noop,
+  start_game_video: (ctx, { id }) => mediaStatus(ctx, id, "Videos/MS-DOS/", [".mp4", ".webm"], true),
+  get_video_status: (ctx, { id }) => mediaStatus(ctx, id, "Videos/MS-DOS/", [".mp4", ".webm"], false),
+  cancel_game_video: noop,
+  music_playback_supported: () => ({ mp3: true, ogg: true }),
+  music_cache_index: () => ({ cached: [], none: [] }),
+  start_game_music: (ctx, { id }) => mediaStatus(ctx, id, "Music/MS-DOS/", [".ogg", ".mp3"], true),
+  get_music_status: (ctx, { id }) => mediaStatus(ctx, id, "Music/MS-DOS/", [".ogg", ".mp3"], false),
   cancel_game_music: noop,
+  music_shuffle_candidates: ({ db }, { count }) =>
+    db.prepare(`SELECT id, title, torrent_source, thumbnail_key, music_file FROM games
+      WHERE music_file IS NOT NULL AND gamedata_torrent_index IS NOT NULL AND (lower(music_file) LIKE '%.ogg' OR lower(music_file) LIKE '%.mp3')
+      ORDER BY random() LIMIT ?`).all(Math.min(Number(count) || 20, 100)),
 };
+
+/**
+ * Video/music status for a game (Exodium's VideoStatus shape). `start` kicks
+ * off fetching the game's GameData zip; the UI polls the get_* variant.
+ */
+function mediaStatus({ db, app }, id, dir, exts, start) {
+  const game = q.gameById(db, id);
+  const zip = game && zipNameFor(game);
+  const none = { phase: "none", progress: 0, total_bytes: 0, path: null, error: null };
+  if (!zip || game.gamedata_torrent_index == null) return none;
+  if (start) app.gameData.load(zip);
+  const s = app.gameData.status(zip);
+  if (!s) return start ? { ...none, phase: "fetching" } : null;
+  if (s.phase === "fetching") return { phase: "fetching", progress: 0, total_bytes: 0, path: null, error: null };
+  if (s.phase === "error") return { phase: "error", progress: 0, total_bytes: 0, path: null, error: s.error };
+  const entry = GameData.find(s.reader, dir, exts);
+  if (!entry) return none;
+  return { phase: "ready", progress: 1, total_bytes: s.reader.entries.get(entry).usize, path: `gamedata:${id}/${entry}`, error: null };
+}
 
 /** Unknown commands are logged once and answered with null. */
 const warned = new Set();

@@ -1,0 +1,7 @@
+/* notexoweb: browser-only adjustments on top of Exodium's unchanged styles. */
+
+/* The custom desktop title bar (app name + minimise/maximise/close) has no
+   job in a browser tab; the browser owns the window. */
+.window-frame {
+  display: none !important;
+}
