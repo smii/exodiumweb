@@ -4,7 +4,29 @@ A self-hosted web app for the eXo collections (eXoDOS first) that looks like
 [Exodium](https://github.com/tvollstaedt/exodium) but boots games **in the
 browser** with [js-dos 8](https://js-dos.com) instead of native emulators.
 
-Status: **proof of concept** (`poc/`). No UI fork yet.
+Status: **MVP in progress.** Screenshots and recordings per milestone:
+[docs/progress](docs/progress/README.md).
+
+## Layout
+
+| Folder | What |
+|---|---|
+| `ui/` | Exodium v0.15.2 frontend, unchanged, plus `web-shims/` for the 7 Tauri modules it imports (see `ui/UPSTREAM.md`) |
+| `server/` | Node server (no deps): Exodium's commands over HTTP, per-user catalogue copies, game zips from the collection, the js-dos player page |
+| `test/` | Playwright screenshots, screen recordings (`record-play.mjs`) and GIF conversion |
+| `poc/` | The original proof of concept |
+
+## Run (development)
+
+```bash
+cd ui && npx pnpm@9 install && npx pnpm@9 build && cd ..
+cd server && npm run fetch-data && npm run fetch-jsdos
+npm run dev          # uses server/dev.env: collection over ssh, metadata copies in dev-data/
+```
+
+In production the server reads the collection from a read-only mount
+(`COLLECTION_ROOT` = the eXoDOS folder holding `eXo/` and `Content/`) and takes
+the user from Authelia's `Remote-User` header; see `server/src/index.mjs`.
 
 ## Proof of concept (2026-10-07)
 

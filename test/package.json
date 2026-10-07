@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Headless browser checks, UI screenshots and screen recordings for notexoweb",
   "dependencies": {
+    "gifenc": "^1.0.3",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0"
   }
