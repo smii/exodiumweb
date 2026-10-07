@@ -1,0 +1,10 @@
+GuilTell|Guillermo Tell (1989).zip|plain-ega|0.5|Guillermo Tell
+KidsonKe|Kids on Keys (1984).zip|cd-imgmount|0.9|Kids on Keys
+BumpWarr|Bumping Warrior (1994).zip|mt32|0.9|Bumping Warrior
+hankques|Hank's Quest - Victim of Society (2002).zip|gus|0.5|Hank's Quest: Victim of Society
+CyberStr|CyberStrike (1994).zip|ipx|4.5|CyberStrike
+Friendly|FriendlyWare P.C. Arcade (1983).zip|boot-disk|0.8|FriendlyWare P.C. Arcade
+SilMasBl|Silly Master Blaster (1985).zip|pcjr-tandy|0.7|Silly Master Blaster
+Furcol|Furcol (1997).zip|3dfx|38.2|Furcol
+CKeen5|Commander Keen 5 - The Armageddon Machine (1991).zip|known|14.0|Commander Keen 5: The Armageddon Machine
+WC|Wing Commander (1990).zip|known|241.5|Wing Commander

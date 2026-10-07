@@ -1,0 +1,102 @@
+[
+ {
+  "short": "GuilTell",
+  "title": "Guillermo Tell",
+  "year": 1989,
+  "genre": "Action",
+  "developer": "Comix",
+  "description": "Guillermo Tell is a shooting game made exclusively for use with a Spanish lightgun called Gunstick.\r\n\r\nThe game is similar to Crossbow. Like in that title, the main character walks automatically (he must rescue his beloved) and the player has the mission (more or less in the role of a gunman bodyguard) to protect Guillermo from the attacks of archers, trolls, birds and also from the impact of obje",
+  "variant": "staging0.81.1",
+  "feature": "plain-ega"
+ },
+ {
+  "short": "KidsonKe",
+  "title": "Kids on Keys",
+  "year": 1984,
+  "genre": "Action; Education",
+  "developer": "Spinnaker Software Corporation",
+  "description": "This is a collection of three mini-games designed to drill in some basic reading and typing skills to the young microcomputer user of the early '80s. The first of the three games (each with four skill levels, demanding faster reflexes) presents the player with falling letters which must be typed correctly before hitting the bottom of the screen... and eventually the game's mascot floats down defyi",
+  "variant": "dosbox",
+  "feature": "cd-imgmount"
+ },
+ {
+  "short": "BumpWarr",
+  "title": "Bumping Warrior",
+  "year": 1994,
+  "genre": "Action",
+  "developer": "GameOne",
+  "description": "Description from old-games.ru:\r\nTaiwanese arcade with a monotonous and simple in its essence, but extremely entertaining gameplay. There is no text in the game itself, but the menu is in English; the game is clearly focused on the children's audience. The frames of the introductory video, where we are shown an attack on the beautiful world of some villain riding on a dragon, are connected with the",
+  "variant": "ece4230",
+  "feature": "mt32"
+ },
+ {
+  "short": "hankques",
+  "title": "Hank's Quest: Victim of Society",
+  "year": 2002,
+  "genre": "Adventure",
+  "developer": "Femo Duo Entertainment",
+  "description": "Hank's Quest is a fun fanmade graphical adventure game based on Sierra's AGI interpreter, similar to Police Quest 1, King's Quest III, etc. Depicting a teenager's life (typically the designer's) seems to be a popular topic for amateur adventure games, and Hank's Quest is no exception. You play a geeky, lanky teenager named Hank who must organize a party in his house to please his mother, who's acc",
+  "variant": "dosbox",
+  "feature": "gus"
+ },
+ {
+  "short": "CyberStr",
+  "title": "CyberStrike",
+  "year": 1994,
+  "genre": "Action; Vehicle Simulation",
+  "developer": "Simutronics Corporation",
+  "description": "\"I'ts kill or be killed. Move or die. Match wits against real players in CyberCity. Collect Power up modules to boost performance on your own personal Cyberpod. The longer you stay alive, the more powerful you become.\r\n\r\nFour teams of four players each compete for control of precious city squares. Work together or play head-to-head as you strive to blast your enemies out of their pods. Talk to you",
+  "variant": "ece4230",
+  "feature": "ipx"
+ },
+ {
+  "short": "Friendly",
+  "title": "FriendlyWare P.C. Arcade",
+  "year": 1983,
+  "genre": "Action",
+  "developer": "FriendlySoft Inc.",
+  "description": "A set of 8 games that are designed to be played on the original IBM PC computer of the time. Everything uses ASCII graphics, so it even works on the MDA adapter. An easy-to-access Boss Key is included, which pops up a histogram with Friendlysoft-related data.\r\n\r\nMost games are replicas of other popular games from the early 80s. There are variants of Pac-Man, Breakout, Frogger, Lunar Lander and Ber",
+  "variant": "dosbox",
+  "feature": "boot-disk"
+ },
+ {
+  "short": "SilMasBl",
+  "title": "Silly Master Blaster",
+  "year": 1985,
+  "genre": "Pinball",
+  "developer": "Unknown",
+  "description": "Another primitive CGA pinball game of unknown origin and with very little value.",
+  "variant": "ece4230",
+  "feature": "pcjr-tandy"
+ },
+ {
+  "short": "Furcol",
+  "title": "Furcol",
+  "year": 1997,
+  "genre": "Sports / Soccer",
+  "developer": "Parallel Entertainment",
+  "description": "An odd soccer game with teams composed of characters such as construction workers, cowboys, grannies, insects, and even scientists (one of which resembles the Hulk).",
+  "variant": "staging0.82.0",
+  "feature": "3dfx"
+ },
+ {
+  "short": "CKeen5",
+  "title": "Commander Keen 5: The Armageddon Machine",
+  "year": 1991,
+  "genre": "Action; Platform",
+  "developer": "id Software, Inc.",
+  "description": "Commander Keen 5: The Armageddon Machine is a platform game, the fifth in the Commander Keen series as a whole, and the second in the second series Goodbye, Galaxy.Eight-year-old genius Billy \"Commander Keen\" Blaze, having learnt about the alien Shikadi's plans to destroy the galaxy, arrives on board of their ship, the Omegamatic, in order to destroy it and prevent the evil deed. The objective is ",
+  "variant": "dosbox",
+  "feature": "known"
+ },
+ {
+  "short": "WC",
+  "title": "Wing Commander",
+  "year": 1990,
+  "genre": "Action; Flight Simulator; Vehicle Simulation",
+  "developer": "ORIGIN Systems, Inc.",
+  "description": "The Confederation have been at war with the Kilrathi for the past 20 years, and you're just now joining the Vega campaign. You're a 2nd Lieutenant just out of the Academy, with some good work under your belt. You're posted to Tiger's Claw, the flagship of the Confederation Fleet. Will you help the Confederation to victory, or go down in infamy?\r\n\r\nWing Commander is a space combat simulator intersp",
+  "variant": "ece4230",
+  "feature": "known"
+ }
+]

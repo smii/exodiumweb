@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>notexoweb player</title>
+<link rel="stylesheet" href="/vendor/js-dos/dist/js-dos.css">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #000; color: #ddd; font: 13px/1.4 system-ui, sans-serif; }
+  #bar { display: flex; gap: 12px; align-items: center; padding: 6px 10px; background: #18181b; }
+  #bar a { color: #d4a24c; text-decoration: none; }
+  #dos { width: 100%; height: calc(100% - 34px - 120px); }
+  #log { height: 120px; overflow: auto; margin: 0; padding: 6px 10px; background: #0d0d0f; font: 12px/1.35 ui-monospace, monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div id="bar"><a href="/">← games</a><span id="title">loading…</span><span id="backend"></span></div>
+<div id="dos"></div>
+<pre id="log"></pre>
+<script src="/vendor/js-dos/dist/js-dos.js"></script>
+<script type="module">
+  const logEl = document.getElementById("log");
+  const log = (...a) => { logEl.textContent += a.join(" ") + "\n"; logEl.scrollTop = 1e9; console.log(...a); };
+  window.__poc = { events: [], ready: false, error: null };
+
+  const qs = new URLSearchParams(location.search);
+  const short = qs.get("g");
+  const pass = new URLSearchParams();
+  for (const k of ["backend", "cmd"]) if (qs.get(k)) pass.set(k, qs.get(k));
+  const backendParam = pass.size ? `?${pass}` : "";
+
+  try {
+    const info = await (await fetch(`/api/games/${encodeURIComponent(short)}/launch${backendParam}`)).json();
+    document.getElementById("title").textContent = `${info.game.title} (${info.game.year ?? "?"})`;
+    document.getElementById("backend").textContent = `backend: ${info.backend}`;
+    log("features:", JSON.stringify(info.info));
+    log("--- translated dosbox.conf ---\n" + info.conf);
+
+    const initFs = [];
+    for (const f of info.files) {
+      const buf = new Uint8Array(await (await fetch(f.url)).arrayBuffer());
+      log(`fetched ${f.url} (${(buf.length / 1024).toFixed(0)} KiB)`);
+      initFs.push(f.kind === "zip" ? buf : { path: f.path, contents: buf });
+    }
+
+    const voodoo = info.info.voodoo && info.backend === "dosboxX";
+    Dos(document.getElementById("dos"), {
+      pathPrefix: "/vendor/js-dos/dist/emulators/",
+      backend: info.backend,
+      backendLocked: true,
+      dosboxConf: info.conf,
+      initFs,
+      autoStart: true,
+      noCloud: true,
+      kiosk: false,
+      // DOSBox-X's Voodoo is drawn through WebGL from the worker's OffscreenCanvas.
+      ...(voodoo ? { renderBackend: "webgl", offscreenCanvas: true, workerThread: true } : {}),
+      onEvent: (event, ci) => {
+        window.__poc.events.push(event);
+        log("event:", event);
+        if (event === "ci-ready") { window.__poc.ready = true; window.__poc.ci = ci; }
+      },
+    });
+  } catch (e) {
+    window.__poc.error = String(e);
+    log("ERROR:", e?.stack ?? e);
+  }
+</script>
+</body>
+</html>
