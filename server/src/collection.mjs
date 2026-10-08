@@ -15,6 +15,7 @@ export class Collection {
     this.root = env.COLLECTION_ROOT || null;
     this.ssh = env.COLLECTION_SSH || null;
     this.sshKey = env.COLLECTION_SSH_KEY || null;
+    this.sshKnownHosts = env.COLLECTION_SSH_KNOWN_HOSTS || null;
     this.cacheDir = env.CACHE_DIR || "/tmp/notexoweb-cache";
     this.cacheMax = Number(env.CACHE_MAX_BYTES || 20 * 2 ** 30);
     this.devMetadata = env.DEV_METADATA_DIR || null;
@@ -89,6 +90,9 @@ export class Collection {
     const [host, base] = this.ssh.split(/:(.*)/s);
     const args = ["-n", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10"];
     if (this.sshKey) args.push("-i", this.sshKey, "-o", "IdentitiesOnly=yes");
+    // ssh reads known_hosts from the *process user's* home, which isn't the
+    // key owner's when the dev server runs in a container.
+    if (this.sshKnownHosts) args.push("-o", `UserKnownHostsFile=${this.sshKnownHosts}`);
     // Single-quote for the remote shell; eXo names contain spaces, commas, $ and '.
     const remote = `${base}/${rel}`.replace(/'/g, "'\\''");
     args.push(host, `cat '${remote}'`);

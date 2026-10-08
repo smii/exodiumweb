@@ -43,9 +43,9 @@ restores them. Another user starts with a clean copy. Tested automatically
 **Compatibility sweep, first batch (10 random games, seed 1)**
 
 Each game is started straight in the player, given `1` and Enter for eXo's
-launcher menu, then photographed 12 s later. 9 of 10 reach a title screen,
-menu or prompt; Poker Relay stays black (to investigate). Larger batches are
-next.
+launcher menu, then photographed 12 s later. **All 10 boot.** Poker Relay
+(black in the sheet) just starts slower than the 12 s wait; given 25 s it
+shows its graphics-card menu. Larger batches are next.
 
 ![Ten small screenshots from the sweep: nine games showing menus, title screens or gameplay, one black](02-sweep.png)
 

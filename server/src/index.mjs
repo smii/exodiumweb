@@ -3,7 +3,7 @@
 // Env:
 //   PORT                 default 8080
 //   COLLECTION_ROOT      eXoDOS folder (holds eXo/ and Content/), read-only     (production)
-//   COLLECTION_SSH       user@host:/path/to/eXoDOS + COLLECTION_SSH_KEY         (development)
+//   COLLECTION_SSH       user@host:/path/to/eXoDOS + COLLECTION_SSH_KEY [+ _KNOWN_HOSTS] (development)
 //   DEV_METADATA_DIR     local copies of Content/*.zip when using COLLECTION_SSH
 //   MT32_DIR             folder with MT32_CONTROL.ROM + MT32_PCM.ROM
 //   STATE_DIR            per-user databases (default server/state)
@@ -279,8 +279,15 @@ createServer(async (req, res) => {
 
     let m = path.match(/^\/api\/play\/(\d+)$/);
     if (m) {
-      const info = launchInfo(userDb(STATE_DIR, catalogPath, user), Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"));
-      return info ? json(res, info.error ? 422 : 200, info) : json(res, 404, { error: "unknown game" });
+      const db = userDb(STATE_DIR, catalogPath, user);
+      const info = launchInfo(db, Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"));
+      if (!info) return json(res, 404, { error: "unknown game" });
+      if (info.error) return json(res, 422, info);
+      // Build (or fetch) the bundle now: js-dos only says "500" on a failed
+      // bundle download, and never tells the page, so report it from here.
+      try { await bundleFor(gameById(db, info.game.id), info); }
+      catch (e) { console.error(`GET ${path}: ${e.message}`); return json(res, 502, { error: e.message }); }
+      return json(res, 200, info);
     }
     m = path.match(/^\/api\/play\/(\d+)\/bundle\.jsdos$/);
     if (m) {
