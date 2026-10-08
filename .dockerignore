@@ -1,0 +1,13 @@
+.git
+**/node_modules
+ui/dist
+dev-data
+poc
+test
+docs
+server/data
+server/assets/previews
+server/vendor
+server/state
+server/cache
+server/dev.env

@@ -10,6 +10,7 @@
 //   CACHE_DIR            ssh-mode game zip cache
 //   USER_HEADER          header naming the user (default Remote-User, set by Authelia)
 //   DEV_USER             user when the header is absent (development only)
+//   MAX_BUNDLE_MB        refuse games whose zip is larger (default 500)
 import { createServer } from "node:http";
 import { createReadStream, existsSync, statSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
 import { join, normalize, extname, resolve, dirname } from "node:path";
@@ -30,6 +31,7 @@ const env = process.env;
 const PORT = Number(env.PORT ?? 8080);
 const STATE_DIR = env.STATE_DIR ?? join(SERVER, "state");
 const MT32_DIR = env.MT32_DIR ?? null;
+const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 500);
 const USER_HEADER = (env.USER_HEADER ?? "Remote-User").toLowerCase();
 const PREVIEW_ROOT = join(SERVER, "assets", "previews");
 const UI_DIST = env.UI_DIST ?? join(ROOT, "ui", "dist");
@@ -196,7 +198,12 @@ async function bundleFor(game, info) {
   if (existsSync(out)) return out;
   if (!bundleBuilds.has(out)) {
     bundleBuilds.set(out, (async () => {
-      const src = new ZipReader(await collection.gameZip(zipNameFor(game)));
+      const zip = await collection.gameZip(zipNameFor(game));
+      // js-dos loads a whole bundle into browser memory (several copies while
+      // unpacking, 4 GB WASM ceiling); ~9% of eXoDOS is over 300 MB.
+      const mb = Math.round(statSync(zip).size / 1e6);
+      if (mb > MAX_BUNDLE_MB) throw Object.assign(new Error(`${game.title} is ${mb} MB, too large to load in a browser yet (limit ${MAX_BUNDLE_MB} MB).`), { status: 413 });
+      const src = new ZipReader(zip);
       const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
       extra.push(...patchBatchFiles(src, info.backend));
       if (info.needs.mt32 && MT32_DIR) {
@@ -247,6 +254,8 @@ createServer(async (req, res) => {
   const url = new URL(req.url, "http://x");
   const path = decodeURIComponent(url.pathname);
   try {
+    // Liveness for the container/kubelet: no login, no collection access.
+    if (path === "/healthz") return json(res, 200, { ok: true });
     const user = userOf(req);
     if (path.startsWith("/api/") && !user) return json(res, 401, { error: "not signed in" });
 
@@ -279,7 +288,7 @@ createServer(async (req, res) => {
       // Build (or fetch) the bundle now: js-dos only says "500" on a failed
       // bundle download, and never tells the page, so report it from here.
       try { await bundleFor(gameById(db, info.game.id), info); }
-      catch (e) { console.error(`GET ${path}: ${e.message}`); return json(res, 502, { error: e.message }); }
+      catch (e) { console.error(`GET ${path}: ${e.message}`); return json(res, e.status ?? 502, { error: e.message }); }
       return json(res, 200, info);
     }
     m = path.match(/^\/api\/play\/(\d+)\/bundle\.jsdos$/);
