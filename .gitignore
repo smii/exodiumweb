@@ -27,3 +27,4 @@ test/.debs/
 test/shots/
 test/videos/
 test/last-run.json
+test/server.log

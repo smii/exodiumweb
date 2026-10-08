@@ -83,8 +83,12 @@ export function analyse(text) {
   };
 }
 
+// DOSBox-X only where nothing else will do. js-dos 8.4.1's DOSBox-X build
+// traps (WASM `unreachable`) on batch commands eXo launchers use everywhere
+// (`IF %VAR%==x prog`, `CONFIG -set ...`; found on Wing Commander), so MT-32
+// games run on plain DOSBox with Sound Blaster/AdLib music instead.
 export function chooseBackend(info, variant) {
-  if (info.voodoo || info.mt32) return "dosboxX";
+  if (info.voodoo) return "dosboxX";
   if (variant === "x" || variant === "x2") return "dosboxX";
   return "dosbox";
 }

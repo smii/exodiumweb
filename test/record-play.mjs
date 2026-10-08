@@ -44,8 +44,12 @@ const err = await f.evaluate(() => window.__player.error);
 console.log(`player ${err ? "ERROR " + err : "ready"} after ${Date.now() - t0} ms`);
 await page.waitForTimeout(5000);
 if (menuKey) {
+  // Comma-separated keys, pressed a few seconds apart (eXo menus, then the game's own prompts).
   await frame.locator("#dos").click({ position: { x: 600, y: 400 } }).catch(() => {});
-  await page.keyboard.press(menuKey);
+  for (const key of menuKey.split(",")) {
+    await page.keyboard.press(key);
+    await page.waitForTimeout(4000);
+  }
 }
 await page.waitForTimeout(Number(secs) * 1000);
 await page.screenshot({ path: new URL(`./shots/${slug}-playing.png`, import.meta.url).pathname });

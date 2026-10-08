@@ -153,14 +153,23 @@ function userOf(req) {
 }
 
 /** Everything the player needs to boot one game for this user. */
-function launchInfo(db, id) {
+function launchInfo(db, id, backendOverride, cmdOverride) {
   const game = gameById(db, id);
   if (!game) return null;
   const conf = collection.dosboxConf(game.shortcode);
   if (!conf) return { error: `No launch config for ${game.title} in this collection` };
   const settings = gameConfig(db, id);
-  const t = translate(conf, { variant: game.dosbox_variant });
+  // Per-game "engine" setting or ?backend= (testing) can force a js-dos backend.
+  const forced = [backendOverride, settings.backend].find((b) => b === "dosbox" || b === "dosboxX");
+  const t = translate(conf, { variant: game.dosbox_variant, backend: forced });
   let dosboxConf = t.conf;
+  // Testing hook: ?cmd=line|line replaces the autoexec's `call run` and drops
+  // `exit`, so a launcher's hidden error stays on screen.
+  if (cmdOverride) {
+    const [head, auto] = dosboxConf.split("[autoexec]\n");
+    const kept = auto.split("\n").filter((l) => l.trim() && !/^\s*@?(call\s+run|exit)\b/i.test(l));
+    dosboxConf = `${head}[autoexec]\n${[...kept, ...cmdOverride.split("|")].join("\n")}\n`;
+  }
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
   if (settings.custom_conf) dosboxConf = `${settings.custom_conf.trim()}\n${dosboxConf}`;
   // The bundle is keyed on the exact config, so a settings change builds a new one.
@@ -168,7 +177,7 @@ function launchInfo(db, id) {
   return {
     game: { id: game.id, title: game.title, year: game.year, shortcode: game.shortcode },
     backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs,
-    bundleUrl: `/api/play/${id}/bundle.jsdos?c=${confHash}`,
+    bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}) })}`,
     confHash,
     shader: settings.glshader ?? null,
   };
@@ -188,6 +197,7 @@ async function bundleFor(game, info) {
     bundleBuilds.set(out, (async () => {
       const src = new ZipReader(await collection.gameZip(zipNameFor(game)));
       const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
+      if (info.backend === "dosboxX") extra.push(...patchMidiSwitches(src));
       if (info.needs.mt32 && MT32_DIR) {
         for (const rom of ["MT32_CONTROL.ROM", "MT32_PCM.ROM"]) extra.push({ name: `mt32/rev0/${rom}`, data: readFileSync(join(MT32_DIR, rom)) });
       }
@@ -197,6 +207,25 @@ async function bundleFor(game, info) {
     })().finally(() => bundleBuilds.delete(out)));
   }
   return bundleBuilds.get(out);
+}
+
+/**
+ * eXo launchers switch MIDI with `CONFIG -set "mididevice=..."`; js-dos's
+ * DOSBox-X build crashes on that (WASM `unreachable`, Wing Commander). The
+ * translated config already picks the device, so those lines become REMs.
+ * Returns replacement entries for the bundle.
+ */
+const MIDI_SWITCH = /^(\s*@?)(config\s+-set\s+"?mididevice=[^"\r\n]*"?)/gim;
+function patchMidiSwitches(src) {
+  const out = [];
+  for (const [name, e] of src.entries) {
+    if (!/\.bat$/i.test(name) || e.usize > 256 * 1024) continue;
+    const text = src.read(name).toString("latin1");
+    if (!MIDI_SWITCH.test(text)) continue;
+    MIDI_SWITCH.lastIndex = 0;
+    out.push({ name, data: Buffer.from(text.replace(MIDI_SWITCH, "$1REM notexoweb: $2"), "latin1") });
+  }
+  return out;
 }
 
 /** Per-user js-dos save changes, one file per game. */
@@ -250,14 +279,14 @@ createServer(async (req, res) => {
 
     let m = path.match(/^\/api\/play\/(\d+)$/);
     if (m) {
-      const info = launchInfo(userDb(STATE_DIR, catalogPath, user), Number(m[1]));
+      const info = launchInfo(userDb(STATE_DIR, catalogPath, user), Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"));
       return info ? json(res, info.error ? 422 : 200, info) : json(res, 404, { error: "unknown game" });
     }
     m = path.match(/^\/api\/play\/(\d+)\/bundle\.jsdos$/);
     if (m) {
       const db = userDb(STATE_DIR, catalogPath, user);
       const game = gameById(db, Number(m[1]));
-      const info = game && launchInfo(db, game.id);
+      const info = game && launchInfo(db, game.id, url.searchParams.get("backend"), url.searchParams.get("cmd"));
       if (!info || info.error) return json(res, 404, { error: info?.error ?? "unknown game" });
       // Immutable per ?c=<conf hash>, so browsers can cache it hard.
       return sendFile(req, res, await bundleFor(game, info), "private, max-age=31536000, immutable");
