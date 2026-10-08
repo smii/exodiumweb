@@ -23,9 +23,35 @@ left of the library) lists the stored games with their sizes, with
 
 ![EcoQuest I downloading, 14 MB of 350 MB, with a progress bar](03-large-downloading.png)
 
-Not shown yet: the game itself running after the download. The test browser
-runs inside the 4 GB CloudCLI pod, and a 350 MB game plus Chromium and the
-recorder goes over that; a real desktop browser has far more room.
+**Recording: EcoQuest I (350 MB), first start** — library → Play → the
+question → download → eXo's launcher menu; ready 43 s after pressing Play
+([full video](03-ecoquest-first-start.webm))
+
+![EcoQuest I: pressing Play, confirming the 350 MB download, progress bar, then eXo's sound card menu](03-ecoquest-first-start.gif)
+
+**Recording: EcoQuest I, second start — from this device's storage** — no
+question, no download, ready in 26 s, then 1 (Sound Blaster) and the
+intro plays ([full video](03-ecoquest-from-storage.webm))
+
+![EcoQuest I starting from browser storage and playing its intro](03-ecoquest-from-storage.gif)
+
+![EcoQuest I intro: "Directed by William D. Skirvin" over the ocean](03-ecoquest-intro.png)
+
+**Recording: Master Levels for DOOM II (333 MB), first start** — download,
+then eXo's launcher; ready 60 s after pressing Play
+([full video](03-doom2-master-first-start.webm))
+
+![Master Levels for DOOM II downloading and reaching its launcher menu](03-doom2-master-first-start.gif)
+
+![Master Levels for DOOM II launcher: 1 for Master Levels, 2 for Maximum DOOM](03-doom2-master-menu.png)
+
+Notes:
+- Recorded in the headless test browser (software rendering, no GPU), so a
+  real browser starts faster. The test pod's memory limit was raised to
+  10 GiB for this; each run peaked around 4.3 GiB for the whole pod.
+- Master Levels' launcher goes on to a sound-card question and a level
+  picker; the scripted key presses didn't get through the whole sequence yet
+  (timing), so the game itself isn't in the recording.
 
 ---
 
