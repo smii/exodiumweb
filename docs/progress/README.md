@@ -6,6 +6,29 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 3 (in progress) — large games: download once, keep on the device
+
+About 700 eXoDOS games are over 300 MB (mostly CD games; Monkey Island is
+1.6 GB). Instead of loading those on every start, the player now asks once,
+downloads the game with a progress bar into the browser's own storage, and
+starts it from there the next time. A **Downloads** page (link at the top
+left of the library) lists the stored games with their sizes, with
+**Remove** per game and **Remove all**. Saves stay on the server either way.
+
+**The question before a large game downloads**
+
+![EcoQuest I: "This game is 350 MB. It is downloaded once and kept on this device" with Download 350 MB and Cancel buttons](03-large-ask.png)
+
+**Downloading**
+
+![EcoQuest I downloading, 14 MB of 350 MB, with a progress bar](03-large-downloading.png)
+
+Not shown yet: the game itself running after the download. The test browser
+runs inside the 4 GB CloudCLI pod, and a 350 MB game plus Chromium and the
+recorder goes over that; a real desktop browser has far more room.
+
+---
+
 ## Milestone 2 — media, manuals, per-user saves, first compatibility sweep (2026-10-08)
 
 Everything Exodium shows next to a game now comes straight from the NAS's
