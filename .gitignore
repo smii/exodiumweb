@@ -31,3 +31,4 @@ test/server.log
 test/runs/
 tools/.bin/
 tools/.debs/
+test/profiles/

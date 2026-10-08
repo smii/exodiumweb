@@ -9,8 +9,13 @@ const dir = new URL("./videos/", import.meta.url).pathname;
 mkdirSync(dir, { recursive: true });
 const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--autoplay-policy=no-user-gesture-required"] });
-const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, recordVideo: { dir, size: { width: 1280, height: 800 } } });
+const args = ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--autoplay-policy=no-user-gesture-required"];
+const opts = { viewport: { width: 1280, height: 800 }, recordVideo: { dir, size: { width: 1280, height: 800 } } };
+// PROFILE=<dir>: a persistent browser profile, so storage quota and kept
+// downloads behave like a real browser (the default context is incognito-like).
+const launched = process.env.PROFILE ? null : await chromium.launch({ args });
+const context = launched ? await launched.newContext(opts) : await chromium.launchPersistentContext(process.env.PROFILE, { ...opts, args });
+const browser = { close: async () => { await launched?.close(); } };
 const page = await context.newPage();
 const problems = [];
 page.on("pageerror", (e) => problems.push(`pageerror: ${e.message}`));
@@ -39,7 +44,20 @@ await page.locator(".game-detail-panel button", { hasText: "Play" }).first().cli
 const frame = page.frameLocator("#notexoweb-player");
 const handle = await page.waitForSelector("#notexoweb-player", { timeout: 15000 });
 const f = await handle.contentFrame();
-await f.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 120000 });
+// Large games ask before downloading: capture the question and the progress.
+const ask = frame.getByRole("button", { name: /^Download/ });
+const asked = await Promise.race([
+  ask.waitFor({ timeout: 600000 }).then(() => true),
+  f.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 600000 }).then(() => false),
+]);
+if (asked) {
+  await page.waitForTimeout(2500);
+  await page.screenshot({ path: new URL(`./shots/${slug}-ask.png`, import.meta.url).pathname });
+  await ask.click();
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: new URL(`./shots/${slug}-downloading.png`, import.meta.url).pathname });
+}
+await f.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 600000 });
 const err = await f.evaluate(() => window.__player.error);
 console.log(`player ${err ? "ERROR " + err : "ready"} after ${Date.now() - t0} ms`);
 await page.waitForTimeout(5000);

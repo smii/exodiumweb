@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Downloaded games</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0b0b10; color: #ddd; font: 14px/1.5 system-ui, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 28px 20px; }
+  h1 { font-size: 22px; margin: 0 0 4px; color: #fff; }
+  .muted { color: #8a8a96; }
+  table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid #22222c; }
+  th { color: #8a8a96; font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  td.num { text-align: right; white-space: nowrap; }
+  button { border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; background: #2a2a34; color: #eee; }
+  button:hover { background: #3a3a46; }
+  button.danger { background: #6b2630; }
+  button.danger:hover { background: #8a2f3c; }
+  .bar { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin-top: 18px; }
+  meter { width: 220px; height: 10px; }
+  a { color: #8fb0ff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Downloaded games</h1>
+  <div class="muted">Large games (CD images and the like) are kept in this browser after the first download, so they start without downloading again. Removing one frees the space; it is downloaded again the next time you play it. Your saves are kept on the server and are not affected.</div>
+  <div class="bar">
+    <div><span id="usage" class="muted">…</span> <meter id="meter" min="0" max="1" value="0"></meter></div>
+    <button class="danger" id="clear" hidden>Remove all</button>
+  </div>
+  <table id="list" hidden>
+    <thead><tr><th>Game</th><th class="num">Size</th><th>Downloaded</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <p id="empty" class="muted" hidden>No large games are stored in this browser.</p>
+  <p><a href="/">← Back to the library</a></p>
+</main>
+<script type="module">
+  import { list, remove, clear, fmtBytes } from "/downloads.js";
+
+  async function render() {
+    const items = await list();
+    const tbody = document.querySelector("#list tbody");
+    tbody.replaceChildren(...items.map((e) => {
+      const tr = document.createElement("tr");
+      const del = Object.assign(document.createElement("button"), { textContent: "Remove" });
+      del.onclick = async () => { del.disabled = true; await remove(e.url); render(); };
+      tr.append(
+        Object.assign(document.createElement("td"), { textContent: e.title }),
+        Object.assign(document.createElement("td"), { className: "num", textContent: fmtBytes(e.bytes) }),
+        Object.assign(document.createElement("td"), { textContent: e.date ? new Date(e.date).toLocaleDateString() : "" }),
+        Object.assign(document.createElement("td"), { className: "num" }),
+      );
+      tr.lastChild.append(del);
+      return tr;
+    }));
+    const total = items.reduce((n, e) => n + e.bytes, 0);
+    document.getElementById("list").hidden = items.length === 0;
+    document.getElementById("empty").hidden = items.length > 0;
+    document.getElementById("clear").hidden = items.length === 0;
+    const est = await navigator.storage?.estimate?.();
+    const persisted = await navigator.storage?.persisted?.();
+    document.getElementById("usage").textContent =
+      `${items.length} game${items.length === 1 ? "" : "s"}, ${fmtBytes(total)}` +
+      (est?.quota ? ` · browser storage ${fmtBytes(est.usage)} of ${fmtBytes(est.quota)}` : "") +
+      (persisted ? " · kept" : "");
+    if (est?.quota) document.getElementById("meter").value = est.usage / est.quota;
+  }
+
+  document.getElementById("clear").onclick = async () => {
+    if (!confirm("Remove all downloaded games from this browser?")) return;
+    await clear();
+    render();
+  };
+  window.__downloads = { render, list };
+  render();
+</script>
+</body>
+</html>

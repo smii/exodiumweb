@@ -10,10 +10,13 @@
 //   CACHE_DIR            ssh-mode game zip cache
 //   USER_HEADER          header naming the user (default Remote-User, set by Authelia)
 //   DEV_USER             user when the header is absent (development only)
-//   MAX_BUNDLE_MB        refuse games whose zip is larger (default 500)
+//   MAX_BUNDLE_MB        refuse games whose zip is larger (default 4000, browser limit)
+//   LARGE_BUNDLE_MB      above this the player asks before downloading and keeps
+//                        the game in browser storage (default 300)
+//   BUNDLE_CACHE_MB      server-side cap for built bundles, oldest go first (default 30000)
 //   LOG_REQUESTS         log every request (debugging)
 import { createServer } from "node:http";
-import { createReadStream, existsSync, statSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
+import { createReadStream, existsSync, statSync, mkdirSync, readFileSync, readdirSync, writeFileSync, renameSync, rmSync, utimesSync } from "node:fs";
 import { join, normalize, extname, resolve, dirname } from "node:path";
 import { createHash } from "node:crypto";
 import { ZipReader, writeBundle } from "./zip.mjs";
@@ -32,7 +35,9 @@ const env = process.env;
 const PORT = Number(env.PORT ?? 8080);
 const STATE_DIR = env.STATE_DIR ?? join(SERVER, "state");
 const MT32_DIR = env.MT32_DIR ?? null;
-const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 500);
+const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 4000);
+const LARGE_BUNDLE_MB = Number(env.LARGE_BUNDLE_MB ?? 300);
+const BUNDLE_CACHE_MB = Number(env.BUNDLE_CACHE_MB ?? 30000);
 const SOCKDRIVE_DIR = join(env.CACHE_DIR ?? join(SERVER, "cache"), "sockdrive");
 const USER_HEADER = (env.USER_HEADER ?? "Remote-User").toLowerCase();
 const PREVIEW_ROOT = join(SERVER, "assets", "previews");
@@ -198,14 +203,18 @@ async function bundleFor(game, info) {
   const dir = join(env.CACHE_DIR ?? join(SERVER, "cache"), "bundles");
   mkdirSync(dir, { recursive: true });
   const out = join(dir, `${game.shortcode}-${info.confHash}.jsdos`);
-  if (existsSync(out)) return out;
+  if (existsSync(out)) {
+    const now = new Date();
+    utimesSync(out, now, now); // LRU mark for pruneBundles
+    return out;
+  }
   if (!bundleBuilds.has(out)) {
     bundleBuilds.set(out, (async () => {
       const zip = await collection.gameZip(zipNameFor(game));
       // js-dos loads a whole bundle into browser memory (several copies while
       // unpacking, 4 GB WASM ceiling); ~9% of eXoDOS is over 300 MB.
       const mb = Math.round(statSync(zip).size / 1e6);
-      if (mb > MAX_BUNDLE_MB) throw Object.assign(new Error(`${game.title} is ${mb} MB, too large to load in a browser yet (limit ${MAX_BUNDLE_MB} MB).`), { status: 413 });
+      if (mb > MAX_BUNDLE_MB) throw Object.assign(new Error(`${game.title} is ${mb} MB, too large to run in a browser (limit ${MAX_BUNDLE_MB} MB).`), { status: 413 });
       const src = new ZipReader(zip);
       const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
       extra.push(...patchBatchFiles(src, info.backend));
@@ -214,10 +223,30 @@ async function bundleFor(game, info) {
       }
       const tmp = `${out}.${process.pid}.tmp`;
       try { writeBundle(src, extra, tmp); renameSync(tmp, out); } finally { src.close(); }
+      pruneBundles(dir, out);
       return out;
     })().finally(() => bundleBuilds.delete(out)));
   }
   return bundleBuilds.get(out);
+}
+
+/**
+ * Keep built bundles under BUNDLE_CACHE_MB: drop the least recently used
+ * (sendFile doesn't touch atime reliably, so mtime is bumped on every hit in
+ * bundleFor) — big CD games are rebuilt from the collection on demand.
+ */
+function pruneBundles(dir, keep) {
+  const files = readdirSync(dir).filter((f) => f.endsWith(".jsdos"))
+    .map((f) => { const p = join(dir, f); const s = statSync(p); return { p, size: s.size, t: s.mtimeMs }; })
+    .sort((a, b) => a.t - b.t);
+  let total = files.reduce((n, f) => n + f.size, 0);
+  for (const f of files) {
+    if (total <= BUNDLE_CACHE_MB * 1e6) break;
+    if (f.p === keep) continue;
+    rmSync(f.p, { force: true });
+    total -= f.size;
+    console.log(`bundle cache: removed ${f.p} (${Math.round(f.size / 1e6)} MB)`);
+  }
 }
 
 /** Replacement entries for batch files js-dos can't run as-is (batpatch.mjs). */
@@ -291,8 +320,13 @@ createServer(async (req, res) => {
       if (info.error) return json(res, 422, info);
       // Build (or fetch) the bundle now: js-dos only says "500" on a failed
       // bundle download, and never tells the page, so report it from here.
-      try { await bundleFor(gameById(db, info.game.id), info); }
+      let bundle;
+      try { bundle = await bundleFor(gameById(db, info.game.id), info); }
       catch (e) { console.error(`GET ${path}: ${e.message}`); return json(res, e.status ?? 502, { error: e.message }); }
+      // The player asks before downloading a large game and keeps it in
+      // browser storage (Cache API), keyed by bundleUrl.
+      info.bundleBytes = statSync(bundle).size;
+      info.large = info.bundleBytes > LARGE_BUNDLE_MB * 1e6;
       return json(res, 200, info);
     }
     m = path.match(/^\/api\/play\/(\d+)\/bundle\.jsdos$/);
@@ -341,7 +375,7 @@ createServer(async (req, res) => {
     }
     if (path.startsWith("/mt32/") && MT32_DIR && serveFrom(req, res, MT32_DIR, path.slice(6), "public, max-age=604800")) return;
     if (path.startsWith("/vendor/") && serveFrom(req, res, VENDOR, path.slice(8), "public, max-age=86400")) return;
-    if (path === "/player.html" && serveFrom(req, res, PUBLIC, "player.html")) return;
+    if (["/player.html", "/downloads.html", "/downloads.js"].includes(path) && serveFrom(req, res, PUBLIC, path.slice(1))) return;
 
     // The UI build (single-page app).
     if (serveFrom(req, res, UI_DIST, path === "/" ? "index.html" : path.slice(1), path.startsWith("/assets/") ? "public, max-age=31536000, immutable" : "no-cache")) return;

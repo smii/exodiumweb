@@ -6,6 +6,19 @@
 import { emit } from "./event";
 import "./web.css";
 
+// Entry point to the downloaded-games page (server/public/downloads.html).
+function addDownloadsLink() {
+  if (document.getElementById("notexoweb-downloads")) return;
+  const a = document.createElement("a");
+  a.id = "notexoweb-downloads";
+  a.href = "/downloads.html";
+  a.textContent = "⤓ Downloads";
+  a.title = "Large games stored in this browser";
+  document.body.append(a);
+}
+if (document.body) addDownloadsLink();
+else addEventListener("DOMContentLoaded", addDownloadsLink);
+
 // The desktop app spawns DOSBox on launch_game and emits `game-exited` when
 // it quits. Here the server records the launch and the game runs in an
 // overlay <iframe> (server/public/player.html); closing it emits the event.

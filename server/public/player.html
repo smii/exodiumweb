@@ -15,6 +15,12 @@
   #close { position: absolute; top: 10px; right: 12px; z-index: 10; border: 0; border-radius: 6px; padding: 6px 12px;
            background: rgba(30, 30, 34, 0.85); color: #eee; font: inherit; cursor: pointer; }
   #close:hover { background: rgba(60, 60, 68, 0.95); }
+  #status.ask { pointer-events: auto; }
+  .ask-buttons { margin-top: 14px; display: flex; gap: 8px; justify-content: center; }
+  .ask-buttons button { border: 0; border-radius: 6px; padding: 8px 16px; font: inherit; cursor: pointer; background: #333; color: #eee; }
+  .ask-buttons button.primary { background: #3f6fd8; color: #fff; }
+  progress { width: min(420px, 80vw); height: 10px; margin-top: 12px; accent-color: #3f6fd8; }
+  #status a { color: #8fb0ff; }
 </style>
 </head>
 <body>
@@ -23,7 +29,8 @@
 <button id="close" type="button" title="Close (returns to the library)">✕ Close</button>
 <script src="/vendor/js-dos/dist/js-dos.js"></script>
 <script type="module">
-  const id = Number(new URLSearchParams(location.search).get("id"));
+  import { cached, download, fmtBytes } from "/downloads.js";
+  const id =Number(new URLSearchParams(location.search).get("id"));
   const statusEl = document.getElementById("status");
   const say = (title, detail = "") => {
     document.getElementById("title").textContent = title;
@@ -60,6 +67,51 @@
     delete: async () => { await fetch(saveUrl, { method: "DELETE" }); },
   };
   window.__player = { ready: false, error: null, events: [] };
+  const CANCELLED = Symbol("cancelled");
+
+  /** Object URL for a large game's bundle: from browser storage, or downloaded after asking. Null = cancelled. */
+  async function largeBundle(info) {
+    const key = new URL(info.bundleUrl, location.href).href;
+    const hit = await cached(key);
+    if (hit) {
+      window.__player.fromStorage = true;
+      say(info.game.title, "Starting from this device's storage…");
+      return URL.createObjectURL(await hit.blob());
+    }
+    const autodownload = new URLSearchParams(location.search).get("autodownload") === "1"; // tests
+    if (!autodownload && !(await ask(info))) return null;
+    statusEl.classList.remove("ask");
+    const bar = document.createElement("progress");
+    say(info.game.title, `Downloading ${fmtBytes(info.bundleBytes)}…`);
+    document.getElementById("detail").after(bar);
+    const blob = await download(key, { id: info.game.id, title: info.game.title, bytes: info.bundleBytes }, (got, total) => {
+      bar.max = total; bar.value = got;
+      document.getElementById("detail").textContent = `Downloading ${fmtBytes(got)} of ${fmtBytes(total)}`;
+    });
+    bar.remove();
+    window.__player.downloaded = true;
+    window.__player.stored = blob.stored;
+    if (!blob.stored) say(info.game.title, "Starting… (couldn't keep it on this device, so it will download again next time)");
+    return URL.createObjectURL(blob);
+  }
+
+  function ask(info) {
+    statusEl.classList.add("ask");
+    say(info.game.title, "");
+    const detail = document.getElementById("detail");
+    detail.innerHTML = "";
+    detail.append(
+      `This game is ${fmtBytes(info.bundleBytes)}. It is downloaded once and kept on this device, so it starts straight away next time.`,
+      document.createElement("br"),
+    );
+    const manage = Object.assign(document.createElement("a"), { href: "/downloads.html", target: "_blank", textContent: "Manage downloaded games" });
+    const buttons = Object.assign(document.createElement("div"), { className: "ask-buttons" });
+    const go = Object.assign(document.createElement("button"), { className: "primary", textContent: `Download ${fmtBytes(info.bundleBytes)}` });
+    const no = Object.assign(document.createElement("button"), { textContent: "Cancel" });
+    buttons.append(go, no);
+    detail.append(manage, buttons);
+    return new Promise((resolve) => { go.onclick = () => resolve(true); no.onclick = () => resolve(false); });
+  }
 
   try {
     // Testing overrides pass through to the launch API (backend, cmd).
@@ -71,12 +123,17 @@
     document.title = info.game.title;
     say(info.game.title, "Loading…");
 
+    // Large games (CD images etc.) are downloaded once, after asking, and then
+    // start from this browser's storage. Small ones load straight from the server.
+    const bundleUrl = info.large ? await largeBundle(info) : info.bundleUrl;
+    if (!bundleUrl) throw CANCELLED;
+
     const voodoo = info.info.voodoo && info.backend === "dosboxX";
     dosProps = Dos(document.getElementById("dos"), {
       pathPrefix: "/vendor/js-dos/dist/emulators/",
       backend: info.backend,
       backendLocked: true,
-      url: info.bundleUrl,
+      url: bundleUrl,
       fsChanges,
       autoSave: true,
       autoStart: true,
@@ -95,9 +152,14 @@
       },
     });
   } catch (e) {
-    window.__player.error = String(e?.message ?? e);
-    statusEl.classList.add("error");
-    say("Couldn't start this game", window.__player.error);
+    if (e === CANCELLED) {
+      done();
+    } else {
+      window.__player.error = String(e?.message ?? e);
+      statusEl.classList.remove("ask");
+      statusEl.classList.add("error");
+      say("Couldn't start this game", window.__player.error);
+    }
   }
 </script>
 </body>

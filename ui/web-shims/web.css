@@ -5,3 +5,21 @@
 .window-frame {
   display: none !important;
 }
+
+/* Link to the downloaded-games page (large games kept in this browser). */
+#notexoweb-downloads {
+  position: fixed;
+  top: 9px;
+  left: 16px;
+  z-index: 50;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font: 12px/1.4 system-ui, sans-serif;
+  color: #c9c9d4;
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+#notexoweb-downloads:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
