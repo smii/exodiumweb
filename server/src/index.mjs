@@ -11,6 +11,7 @@
 //   USER_HEADER          header naming the user (default Remote-User, set by Authelia)
 //   DEV_USER             user when the header is absent (development only)
 //   MAX_BUNDLE_MB        refuse games whose zip is larger (default 500)
+//   LOG_REQUESTS         log every request (debugging)
 import { createServer } from "node:http";
 import { createReadStream, existsSync, statSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
 import { join, normalize, extname, resolve, dirname } from "node:path";
@@ -32,6 +33,7 @@ const PORT = Number(env.PORT ?? 8080);
 const STATE_DIR = env.STATE_DIR ?? join(SERVER, "state");
 const MT32_DIR = env.MT32_DIR ?? null;
 const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 500);
+const SOCKDRIVE_DIR = join(env.CACHE_DIR ?? join(SERVER, "cache"), "sockdrive");
 const USER_HEADER = (env.USER_HEADER ?? "Remote-User").toLowerCase();
 const PREVIEW_ROOT = join(SERVER, "assets", "previews");
 const UI_DIST = env.UI_DIST ?? join(ROOT, "ui", "dist");
@@ -166,11 +168,12 @@ function launchInfo(db, id, backendOverride, cmdOverride) {
   const forced = [backendOverride, settings.backend].find((b) => b === "dosbox" || b === "dosboxX");
   const t = translate(conf, { variant: game.dosbox_variant, backend: forced });
   let dosboxConf = t.conf;
-  // Testing hook: ?cmd=line|line replaces the autoexec's `call run` and drops
-  // `exit`, so a launcher's hidden error stays on screen.
+  // Testing hook: ?cmd=line|line replaces the autoexec's commands (only its
+  // mounts and drive switches stay), with no `exit`, so whatever the lines
+  // print stays on screen.
   if (cmdOverride) {
     const [head, auto] = dosboxConf.split("[autoexec]\n");
-    const kept = auto.split("\n").filter((l) => l.trim() && !/^\s*@?(call\s+run|exit)\b/i.test(l));
+    const kept = auto.split("\n").filter((l) => /^\s*@?((img)?mount\s|[a-z]:\s*$)/i.test(l));
     dosboxConf = `${head}[autoexec]\n${[...kept, ...cmdOverride.split("|")].join("\n")}\n`;
   }
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
@@ -254,6 +257,7 @@ createServer(async (req, res) => {
   const url = new URL(req.url, "http://x");
   const path = decodeURIComponent(url.pathname);
   try {
+    if (env.LOG_REQUESTS) console.log(`${req.method} ${path}`);
     // Liveness for the container/kubelet: no login, no collection access.
     if (path === "/healthz") return json(res, 200, { ok: true });
     const user = userOf(req);
@@ -329,6 +333,11 @@ createServer(async (req, res) => {
       if (user && (await serveVirtual(req, res, p, user))) return;
       if (p.startsWith(PREVIEW_ROOT + "/") && serveFrom(req, res, PREVIEW_ROOT, p.slice(PREVIEW_ROOT.length), "public, max-age=604800")) return;
       res.writeHead(404, headers("text/plain")); return res.end("not found");
+    }
+    // Streamed game drives (sockdrive.mjs). A miss must be a real 404: the
+    // SPA fallback below would hand js-dos index.html as disk data.
+    if (path.startsWith("/sockdrive/")) {
+      return serveFrom(req, res, SOCKDRIVE_DIR, path.slice(11), "public, max-age=86400") || json(res, 404, { error: "no such range" });
     }
     if (path.startsWith("/mt32/") && MT32_DIR && serveFrom(req, res, MT32_DIR, path.slice(6), "public, max-age=604800")) return;
     if (path.startsWith("/vendor/") && serveFrom(req, res, VENDOR, path.slice(8), "public, max-age=86400")) return;

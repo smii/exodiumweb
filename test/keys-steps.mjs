@@ -11,6 +11,11 @@ const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--ena
 const page = await browser.newPage({ viewport: { width: 1024, height: 700 } });
 const all = process.env.ALL_CONSOLE === "1";
 page.on("console", (m) => { if (all || /error|exit/i.test(m.text())) console.log(`console ${m.type()}: ${m.text().slice(0, 240)}`); });
+// LOG_NET=1: every request the page or its workers make, and every failure.
+if (process.env.LOG_NET === "1") {
+  page.context().on("request", (r) => console.log(`net ${r.method()} ${r.url().slice(0, 160)}`));
+  page.context().on("requestfailed", (r) => console.log(`netfail ${r.url().slice(0, 160)} ${r.failure()?.errorText}`));
+}
 page.on("pageerror", (e) => console.log(`pageerror: ${e.message}\n${(e.stack ?? "").split("\n").slice(0, 6).join("\n")}`));
 const extra = new URLSearchParams();
 if (process.env.BACKEND) extra.set("backend", process.env.BACKEND);

@@ -1,0 +1,6 @@
+imgmount e sockdrive http://localhost:8090/sockdrive/spike
+dir e:
+type e:\hello.txt
+imgmount f e:\test.iso -t iso
+dir f:
+type f:\cdtest.txt

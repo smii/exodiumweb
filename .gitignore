@@ -29,3 +29,5 @@ test/videos/
 test/last-run.json
 test/server.log
 test/runs/
+tools/.bin/
+tools/.debs/
