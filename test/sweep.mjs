@@ -4,7 +4,7 @@
 import { chromium } from "playwright";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
-import { PNG } from "pngjs";
+import { classify } from "./classify.mjs";
 
 const [base = "http://localhost:8090", count = "25", seed = "1", secs = "20"] = process.argv.slice(2);
 const out = new URL(`./shots/sweep-${seed}/`, import.meta.url).pathname;
@@ -48,15 +48,12 @@ for (const g of picks) {
   }
   const file = `${out}${g.id}.png`;
   const buf = await page.screenshot({ path: file });
-  const png = PNG.sync.read(buf);
-  // Rough "graphics vs text" signal: number of distinct colours on screen.
-  const colours = new Set();
-  for (let i = 0; i < png.data.length; i += 4 * 7) colours.add((png.data[i] << 16) | (png.data[i + 1] << 8) | png.data[i + 2]);
+  const shot = classify(buf);
   const crashed = errs.some((m) => /unreachable|RuntimeError|abort/i.test(m));
-  const verdict = !ready ? "FAIL" : crashed ? "CRASH" : colours.size > 24 ? "GRAPHICS" : "TEXT";
-  const r = { id: g.id, title: g.title, year: g.year, variant: g.dosbox_variant, verdict, bootMs, colours: colours.size, err, errs: errs.slice(0, 3) };
+  const verdict = !ready ? "FAIL" : crashed ? "CRASH" : shot.verdict;
+  const r = { id: g.id, title: g.title, year: g.year, variant: g.dosbox_variant, verdict, bootMs, colours: shot.colours, litPct: shot.litPct, err, errs: errs.slice(0, 3) };
   results.push(r);
-  console.log(`${verdict.padEnd(8)} ${String(g.id).padStart(5)} ${g.title.slice(0, 50).padEnd(50)} boot=${bootMs}ms colours=${colours.size} ${err ?? ""} ${errs[0] ?? ""}`);
+  console.log(`${verdict.padEnd(8)} ${String(g.id).padStart(5)} ${g.title.slice(0, 50).padEnd(50)} boot=${bootMs}ms colours=${shot.colours} lit=${shot.litPct}% ${err ?? ""} ${errs[0] ?? ""}`);
   await page.close();
 }
 await browser.close();
