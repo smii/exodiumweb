@@ -19,6 +19,7 @@ import { fileURLToPath } from "node:url";
 import { ensureCatalog, userDb } from "./db.mjs";
 import { runCommand } from "./commands.mjs";
 import { gameById, gameConfig } from "./queries.mjs";
+import { patchBatch, BATPATCH_VERSION } from "./batpatch.mjs";
 import { Collection, zipNameFor } from "./collection.mjs";
 import { translate } from "./translate.mjs";
 import { buildImageIndex, GameData, typeOf } from "./media.mjs";
@@ -173,7 +174,7 @@ function launchInfo(db, id, backendOverride, cmdOverride) {
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
   if (settings.custom_conf) dosboxConf = `${settings.custom_conf.trim()}\n${dosboxConf}`;
   // The bundle is keyed on the exact config, so a settings change builds a new one.
-  const confHash = createHash("sha1").update(dosboxConf).update(String(t.needs.mt32)).digest("hex").slice(0, 12);
+  const confHash = createHash("sha1").update(dosboxConf).update(String(t.needs.mt32)).update(`bat${BATPATCH_VERSION}`).digest("hex").slice(0, 12);
   return {
     game: { id: game.id, title: game.title, year: game.year, shortcode: game.shortcode },
     backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs,
@@ -197,7 +198,7 @@ async function bundleFor(game, info) {
     bundleBuilds.set(out, (async () => {
       const src = new ZipReader(await collection.gameZip(zipNameFor(game)));
       const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
-      if (info.backend === "dosboxX") extra.push(...patchMidiSwitches(src));
+      extra.push(...patchBatchFiles(src, info.backend));
       if (info.needs.mt32 && MT32_DIR) {
         for (const rom of ["MT32_CONTROL.ROM", "MT32_PCM.ROM"]) extra.push({ name: `mt32/rev0/${rom}`, data: readFileSync(join(MT32_DIR, rom)) });
       }
@@ -209,21 +210,13 @@ async function bundleFor(game, info) {
   return bundleBuilds.get(out);
 }
 
-/**
- * eXo launchers switch MIDI with `CONFIG -set "mididevice=..."`; js-dos's
- * DOSBox-X build crashes on that (WASM `unreachable`, Wing Commander). The
- * translated config already picks the device, so those lines become REMs.
- * Returns replacement entries for the bundle.
- */
-const MIDI_SWITCH = /^(\s*@?)(config\s+-set\s+"?mididevice=[^"\r\n]*"?)/gim;
-function patchMidiSwitches(src) {
+/** Replacement entries for batch files js-dos can't run as-is (batpatch.mjs). */
+function patchBatchFiles(src, backend) {
   const out = [];
   for (const [name, e] of src.entries) {
     if (!/\.bat$/i.test(name) || e.usize > 256 * 1024) continue;
-    const text = src.read(name).toString("latin1");
-    if (!MIDI_SWITCH.test(text)) continue;
-    MIDI_SWITCH.lastIndex = 0;
-    out.push({ name, data: Buffer.from(text.replace(MIDI_SWITCH, "$1REM notexoweb: $2"), "latin1") });
+    const patched = patchBatch(src.read(name).toString("latin1"), { backend });
+    if (patched !== null) out.push({ name, data: Buffer.from(patched, "latin1") });
   }
   return out;
 }

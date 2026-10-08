@@ -49,9 +49,25 @@ shows its graphics-card menu. Larger batches are next.
 
 ![Ten small screenshots from the sweep: nine games showing menus, title screens or gameplay, one black](02-sweep.png)
 
+Batches 2 and 3 (seeds 2 and 3, 10 more games): all boot — Lemmings 2,
+Carmen Sandiego Deluxe, RedCat, Many Faces of Go, Miramar and others.
+**20 of 20 sampled games start so far.**
+
+![Six more sweep screenshots: Lemmings 2 title menu, Monopoly kit, Many Faces of Go setup, Miramar name prompt, cRiMe, H-Tron](02-sweep-3.png)
+
+**Wing Commander through eXo's own launcher**
+
+js-dos freezes when a batch file runs a program from an `IF` line
+(`IF %CHEAT%==N wc`), which eXo launchers do all the time. Bundles now
+rewrite those lines into an equivalent `IF … GOTO` form
+(`server/src/batpatch.mjs`). With that, the normal launcher works: answer
+N (no cheats), then 1, and the game's intro and menu come up.
+
+![Wing Commander's space intro running in the player](02-wc-intro.png)
+
+![Wing Commander's main menu: Start Vega Campaign, Continue Campaign, Start Secret Missions](02-wc-menu.png)
+
 Known issues:
-- Wing Commander starts fine from its own folder but not yet through eXo's
-  `run.bat` launcher on plain DOSBox.
 - js-dos's DOSBox-X build crashes on some eXo launcher batch commands, so
   DOSBox-X is only used for 3dfx games; MT-32 music falls back to Sound
   Blaster/AdLib for now.
