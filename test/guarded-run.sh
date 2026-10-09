@@ -1,6 +1,6 @@
 #!/bin/bash
 # The detached half of run-detached.sh (started via setsid; don't call by hand).
-# Runs with-server.sh <command...> under a time limit and the memory guard.
+# Runs with-server.sh <command...> (or $RUN_WRAPPER, e.g. no-server.sh for a deployed instance) under a time limit and the memory guard.
 #   guarded-run.sh <run-dir> <max-seconds> <lock-file> <mem-limit-MiB> <command...>
 dir="$1"; max="$2"; lock="$3"; limit="$4"; shift 4
 here="$(cd "$(dirname "$0")" && pwd)"
@@ -11,7 +11,7 @@ echo running > "$dir/status"
 
 # timeout(1) moves itself and the test into a process group of its own
 # (pgid = its pid), so that group is what has to be killed, Chromium included.
-timeout --kill-after=15 "$max" bash "$here/with-server.sh" "$@" > "$dir/log" 2>&1 &
+timeout --kill-after=15 "$max" bash "$here/${RUN_WRAPPER:-with-server.sh}" "$@" > "$dir/log" 2>&1 &
 job=$!
 echo "$job" > "$dir/test_pgid"
 

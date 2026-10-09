@@ -11,6 +11,9 @@ const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "
 
 const args = ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--autoplay-policy=no-user-gesture-required"];
 const opts = { viewport: { width: 1280, height: 800 }, recordVideo: { dir, size: { width: 1280, height: 800 } } };
+// REMOTE_USER=<name>: send the header Authelia adds, to test a deployed
+// instance through its in-cluster Service (bypassing the login).
+if (process.env.REMOTE_USER) opts.extraHTTPHeaders = { "Remote-User": process.env.REMOTE_USER };
 // PROFILE=<dir>: a persistent browser profile, so storage quota and kept
 // downloads behave like a real browser (the default context is incognito-like).
 const launched = process.env.PROFILE ? null : await chromium.launch({ args });
