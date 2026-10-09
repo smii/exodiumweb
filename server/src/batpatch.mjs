@@ -12,7 +12,7 @@
 // Labels stay within 8 characters, the part DOS compares.
 
 // Bump when a rewrite changes, so cached bundles are rebuilt.
-export const BATPATCH_VERSION = 5;
+export const BATPATCH_VERSION = 6;
 
 const IF_LINE = /^(\s*)(@?)if\s+(not\s+)?(errorlevel\s*=?\s*\d+|exist\s+(?:"[^"]*"|\S+)|(?:"[^"]*"|[^\s=]+)?==(?:"[^"]*"|\S+))\s+(\S.*)$/i;
 

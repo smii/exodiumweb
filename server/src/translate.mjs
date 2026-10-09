@@ -103,6 +103,8 @@ export function chooseBackend(info, variant) {
  * @param {{variant?: string, backend?: "dosbox"|"dosboxX"}} opts
  * @returns {{backend: string, conf: string, info: object, needs: {mt32: boolean}}}
  */
+const CYCLES_CAP = 100000;
+
 export function translate(text, opts = {}) {
   const info = analyse(text);
   const backend = opts.backend ?? chooseBackend(info, opts.variant);
@@ -129,6 +131,9 @@ export function translate(text, opts = {}) {
       if (sec.name === "dosbox" && key === "memsize" && Number(value) > 63) value = "63";
       if (key === "cpu_cycles") key = "cycles"; // Staging 0.82 spelling
       if (key === "mt32.romdir" || key === "midiconfig") continue; // re-added below
+      // Fixed cycles tuned for native DOSBox (200000+) outrun the WASM core:
+      // the emulation lags and the audio queue starves (crackle). Cap them.
+      if (key === "cycles" && /^\d+$/.test(value) && Number(value) > CYCLES_CAP) value = String(CYCLES_CAP);
       if (key === "cycles" && /^\d+$/.test(value) === false && !/^(auto|max|fixed)/i.test(value)) continue;
       // js-dos plays through an AudioWorklet fixed at 44100 Hz (secure pages)
       // and doesn't resample: a 48000/49716 Hz mixer overfills its queue, so
@@ -142,6 +147,12 @@ export function translate(text, opts = {}) {
       lines.push(`${key}=${value}`);
     }
     if (sec.name === "mixer" && !lines.some((l) => l.startsWith("rate="))) lines.push(`rate=${AUDIO_RATE}`);
+    if (sec.name === "mixer" && backend === "dosboxX") {
+      for (const [k, v] of [["blocksize", "2048"], ["prebuffer", "100"]]) {
+        const i = lines.findIndex((l) => l.startsWith(k + "="));
+        if (i >= 0) lines[i] = `${k}=${v}`; else lines.push(`${k}=${v}`);
+      }
+    }
     if (sec.name === "midi" && info.mt32 && backend === "dosboxX") {
       lines.push("mt32.romdir=./mt32/rev0");
     }
