@@ -72,9 +72,15 @@ self-hosted, using each game's own eXo `dosbox.conf` translated on the fly.
 ### Not yet tested
 
 - IPX multiplayer between two browsers (js-dos WebRTC-NET).
-- CRT shader overlay (js-dos has none built in).
-- Real 3D gameplay in a 3dfx title (only the intro was reached headless).
+- CRT shader overlay (js-dos has none built in); scanlines are a CSS overlay aligned to the canvas by `alignScan` in `player.html`.
+- Real 3D gameplay in a 3dfx title (Furcol and Tomb Raider Gold render; Blood, Descent II, Shadow Warrior reach menus via `test/dfx-probe.mjs`; Shadow Warrior 3DFX hits a wasm `unreachable` headless, unverified). Quake's zip has no GLQuake/Glide build, so no 3dfx.
 - Aspect ratio: js-dos stretches to the container; needs `renderAspect`.
+
+### Recent behaviour notes
+
+- Downloads fetch 8 MB `Range` pieces (4 retries) then `caches.put` (single requests cut off at ~14 MB via Traefik HTTP/2).
+- Translator: `svga_s3` → `vesa_nolfb`, `memsize` capped at 63 for dosbox; Duke3D `duke3d.cfg` forced to `ScreenMode=0` (`BATPATCH_VERSION=5`).
+- Player `close()` timeouts: save 8 s, stop 3 s, 15 s backstop. Testing hook: `?tune=section.key=value|...`.
 
 ## Run the PoC
 

@@ -6,6 +6,28 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 7 — scanlines, downloads, DOS tuning, 3dfx probes (2026-10-09)
+
+- **Scanlines** now line up with the game canvas: `alignScan` in `player.html`
+  sizes the overlay to the canvas by JS instead of the whole container.
+- **Downloads** (`downloads.js`): game zips are fetched in 8 MB `Range`
+  pieces (4 retries each) and then stored with `caches.put`. A single
+  request was cut off at ~14 MB through Traefik over HTTP/2.
+- **Duke Nukem 3D**: `duke3d.cfg` is rewritten to `ScreenMode=0` (320x200)
+  by `patchBatchFiles`; `BATPATCH_VERSION=5` so cached patches refresh.
+- **Translator** (`translate.mjs`): machine `svga_s3` maps to `vesa_nolfb`,
+  and `memsize` is capped at 63 for the dosbox backend.
+- **Player `close()`** has timeouts: save 8 s, stop 3 s, 15 s backstop.
+- **Testing hook**: `?tune=section.key=value|...` overrides conf values.
+- **Quake**: the eXo zip has no GLQuake/Glide build, so it cannot run in
+  3dfx mode (CD music works).
+- **Probes**: `test/cv-probe.mjs` and `test/dfx-probe.mjs`. 3dfx check:
+  Furcol and Tomb Raider Gold render; Blood, Descent II and Shadow Warrior
+  reach their menus. Shadow Warrior 3DFX hit a wasm `unreachable` in
+  headless (unverified in a real browser).
+
+---
+
 ## Milestone 6 — sound fixed, 3dfx list completed (2026-10-09)
 
 **Sound.** On the live site (https) js-dos plays audio through a worklet
