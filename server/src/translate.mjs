@@ -148,7 +148,7 @@ export function translate(text, opts = {}) {
     }
     if (sec.name === "mixer" && !lines.some((l) => l.startsWith("rate="))) lines.push(`rate=${AUDIO_RATE}`);
     if (sec.name === "mixer") {
-      for (const [k, v] of [["blocksize", "2048"], ["prebuffer", "100"]]) {
+      for (const [k, v] of [["blocksize", "1024"], ["prebuffer", "20"]]) {
         const i = lines.findIndex((l) => l.startsWith(k + "="));
         if (i >= 0) lines[i] = `${k}=${v}`; else lines.push(`${k}=${v}`);
       }

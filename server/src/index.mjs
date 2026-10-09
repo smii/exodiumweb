@@ -300,8 +300,8 @@ function pruneBundles(dir, keep) {
 function patchBatchFiles(src, backend) {
   const out = [];
   for (const [name, e] of src.entries) {
-    if (/(^|\/)duke3d\.cfg$/i.test(name) && e.usize < 64 * 1024) {
-      // eXo ships Duke at VESA 1024x768, which this emulator can't show (black screen); plain chained 320x200 works.
+    if (/(^|\/)(duke3d|blood|sw)\.cfg$/i.test(name) && e.usize < 64 * 1024) {
+      // eXo ships Duke/Blood/Shadow Warrior (Build engine) at VESA 1024x768, which this emulator can't show (black screen); plain chained 320x200 works.
       const cfg = src.read(name).toString("latin1")
         .replace(/^ScreenMode\s*=.*$/m, "ScreenMode = 0").replace(/^ScreenWidth\s*=.*$/m, "ScreenWidth = 320").replace(/^ScreenHeight\s*=.*$/m, "ScreenHeight = 200");
       out.push({ name, data: Buffer.from(cfg, "latin1") });
