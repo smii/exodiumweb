@@ -122,6 +122,8 @@ export function translate(text, opts = {}) {
       // Any other setting pointing at a Windows host path (fluidsynth fonts,
       // capture dirs, ...) can't resolve inside js-dos.
       if (/^\.?\\|^[a-z]:\\/i.test(value) && !(sec.name === "gus" && key === "ultradir")) continue;
+      // eXo's Shadow Warrior conf misspells it; DOSBox-X then falls back to svga_s3.
+      if (sec.name === "dosbox" && key === "machine" && value.toLowerCase() === "vesa_noflb") value = "vesa_nolfb";
       // svga_s3 shows black in js-dos's DOSBox (Quake); vesa_nolfb renders.
       if (sec.name === "dosbox" && key === "machine" && backend !== "dosboxX" && value.toLowerCase() === "svga_s3") value = "vesa_nolfb";
       if (sec.name === "dosbox" && key === "memsize" && Number(value) > 63) value = "63";
