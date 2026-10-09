@@ -29,6 +29,7 @@ function snap(): Snap {
 let seq = 0;
 let cur: Snap = { tab: null, layers: 0 };
 let ignorePops = 0; // popstates caused by our own history.back()/go()
+let tabClicked = false; // the next tab change comes from a click on a tab
 let applying = false; // popstate is moving the UI; don't record what changes
 
 const entry = (s: Snap): Entry => ({ ...s, exw: ++seq });
@@ -50,8 +51,12 @@ function record() {
     const own = here?.exw !== undefined ? here.layers - next.layers : 0;
     if (own > 0) { ignorePops++; history.go(-own); }
   } else if (next.tab !== cur.tab && next.tab !== null) {
-    history.pushState(entry(next), "");
+    // Only a tab the user picked is a step back; the app also switches by
+    // itself on start (to My Library when there are recent games).
+    if (tabClicked) history.pushState(entry(next), "");
+    else history.replaceState(entry(next), "");
   }
+  tabClicked = false;
   cur = next;
 }
 
@@ -87,6 +92,10 @@ addEventListener("popstate", async (e) => {
     if (cur.layers !== want.layers || cur.tab !== want.tab) history.replaceState(entry(cur), "");
   }
 });
+
+addEventListener("click", (e) => {
+  if ((e.target as HTMLElement).closest?.(".lib-tab")) tabClicked = true;
+}, true);
 
 function start() {
   cur = snap();

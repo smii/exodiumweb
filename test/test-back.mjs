@@ -13,6 +13,7 @@ const check = (ok, what) => { console.log(`${ok ? "ok  " : "FAIL"} ${what}`); if
 await page.goto(`${base}/healthz`); // stands in for the page before the app (Authelia's login)
 await page.goto(base);
 await page.waitForTimeout(2500);
+const startTab = await page.evaluate(() => document.querySelector(".lib-tab.active")?.dataset.testid);
 await page.getByText(/^\s*Browse/).first().click();
 await page.getByPlaceholder(/search games/i).fill(search);
 await page.waitForTimeout(1500);
@@ -38,9 +39,23 @@ await page.waitForTimeout(3000);
 await f2.locator("#close").click();
 await page.waitForSelector("#exodiumweb-player", { state: "detached", timeout: 20000 }).catch(() => {});
 check(await page.locator("#exodiumweb-player").count() === 0, "Close button closed the player");
+// The game was started from its details panel: Back closes that first,
+// then the next Back leaves the app as usual.
+check(await page.locator(".game-detail-panel").count() === 1, "details still open after Close");
 await page.goBack();
 await page.waitForTimeout(1500);
-check(page.url().endsWith("/healthz"), `one Back after Close leaves the app as usual (${page.url()})`);
+check(await page.locator(".game-detail-panel").count() === 0 && !page.url().endsWith("/healthz"), `Back closed the details, still in the app (${page.url()})`);
+if (startTab !== "tab-browse") {
+  // The app opened on another tab (My Library when there are recent games)
+  // and the test switched to Browse: Back returns to that tab first.
+  await page.goBack();
+  await page.waitForTimeout(1500);
+  const tab = await page.evaluate(() => document.querySelector(".lib-tab.active")?.dataset.testid);
+  check(tab === startTab, `Back returned to the starting tab ${startTab} (now ${tab})`);
+}
+await page.goBack();
+await page.waitForTimeout(1500);
+check(page.url().endsWith("/healthz"), `next Back leaves the app as usual (${page.url()})`);
 
 await browser.close();
 console.log(failed ? "RESULT FAIL" : "RESULT PASS");
