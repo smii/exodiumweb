@@ -6,6 +6,31 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 4 — library look, hover info, Reading Room, CRT scanlines (2026-10-09)
+
+More room between games, framed cards with a soft glow on hover, and a
+background with some depth. Resting the pointer on a game slides out a panel
+with its description, credits, rating and "more like this" picks.
+
+![Library grid with wider spacing and framed cards](04-1-library.png)
+
+![Hover panel beside a game card: cover, credits, genre tags, rating stars, description and four similar games](04-2-hover.png)
+
+**Reading Room** now works: 44 publications and 2,195 magazines, books and
+catalogs from eXo's index, browsable by publication and language with their
+covers. Issues open from eXo's Media Pack once it's in the collection (it isn't
+yet); until then the reader says so. Game details also list magazine coverage
+("covered in ASM 12/1990, page 32").
+
+![Reading Room: ACE magazine issues with covers, filters and a publication list](04-3-reading-room.png)
+
+**Player toolbar**: CRT scanlines on/off, fullscreen, and keyboard lock
+(Chromium: Esc, Ctrl+W and friends go to the game; hold Esc to leave).
+
+![Commander Keen 5 with scanlines on and the player toolbar at the top right](04-4-scanlines.png)
+
+---
+
 ## Milestone 3 (in progress) — large games: download once, keep on the device
 
 About 700 eXoDOS games are over 300 MB (mostly CD games; Monkey Island is
