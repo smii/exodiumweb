@@ -32,7 +32,7 @@ export function patchBatch(text, { backend }) {
   const out = [];
   for (const line of text.split(/\r?\n/)) {
     if (backend === "dosboxX" && MIDI_SWITCH.test(line)) {
-      out.push(line.replace(MIDI_SWITCH, "$1REM notexoweb: $2"));
+      out.push(line.replace(MIDI_SWITCH, "$1REM exodiumweb: $2"));
       changed = true;
       continue;
     }

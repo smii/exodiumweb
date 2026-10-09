@@ -104,4 +104,4 @@ createServer((req, res) => {
   }
   res.writeHead(404, baseHeaders("text/plain"));
   res.end("not found");
-}).listen(PORT, () => console.log(`notexoweb PoC on http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`exodiumweb PoC on http://localhost:${PORT}`));

@@ -1,8 +1,11 @@
-# notexoweb
+# (Unofficial) ExodiumWeb
 
 A self-hosted web app for the eXo collections (eXoDOS first) that looks like
 [Exodium](https://github.com/tvollstaedt/exodium) but boots games **in the
 browser** with [js-dos 8](https://js-dos.com) instead of native emulators.
+
+*Unofficial: not affiliated with the Exodium project or the eXo team. The
+Exodium UI is used under its MIT licence (`ui/UPSTREAM-LICENSE`).*
 
 Status: **MVP in progress.** Screenshots and recordings per milestone:
 [docs/progress](docs/progress/README.md).

@@ -1,5 +1,5 @@
 {
-  "name": "notexoweb-server",
+  "name": "exodiumweb-server",
   "private": true,
   "type": "module",
   "description": "Serves Exodium's UI over HTTP and boots eXo games in the browser with js-dos",

@@ -54,9 +54,9 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(async () => ({
   plugins: [rawPdfjsRuntime(), solid()],
 
-  // ── notexoweb: the only change to upstream ─────────────────────────────
+  // ── exodiumweb: the only change to upstream ─────────────────────────────
   // Swap the Tauri modules for browser shims (ui/web-shims). The dev server
-  // proxies the API to the notexoweb server; a build is served by it.
+  // proxies the API to the exodiumweb server; a build is served by it.
   resolve: {
     alias: {
       "@tauri-apps/api/core": resolve("web-shims/core.ts"),
@@ -68,7 +68,7 @@ export default defineConfig(async () => ({
       "@tauri-apps/plugin-updater": resolve("web-shims/plugins.ts"),
     },
   },
-  // ── end notexoweb ──────────────────────────────────────────────────────
+  // ── end exodiumweb ──────────────────────────────────────────────────────
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //

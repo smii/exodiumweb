@@ -56,7 +56,7 @@ await page.close();
 page = await ctx.newPage();
 await page.goto(base);
 await page.waitForTimeout(3000);
-console.log("library link:", await page.locator("#notexoweb-downloads").count() === 1 ? "present" : "missing");
+console.log("library link:", await page.locator("#exodiumweb-downloads").count() === 1 ? "present" : "missing");
 await page.screenshot({ path: `${out}4-library.png` });
 await browser.close();
 console.log(process.exitCode ? "RESULT FAIL" : "RESULT PASS");

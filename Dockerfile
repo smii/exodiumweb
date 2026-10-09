@@ -1,4 +1,4 @@
-# notexoweb: Exodium's UI + js-dos, served by a dependency-free Node server.
+# exodiumweb: Exodium's UI + js-dos, served by a dependency-free Node server.
 #
 # Runtime mounts (nothing from the eXo collection is baked in):
 #   /collection  eXoDOS folder (holds eXo/ and Content/), read-only

@@ -16,7 +16,7 @@ export class Collection {
     this.ssh = env.COLLECTION_SSH || null;
     this.sshKey = env.COLLECTION_SSH_KEY || null;
     this.sshKnownHosts = env.COLLECTION_SSH_KNOWN_HOSTS || null;
-    this.cacheDir = env.CACHE_DIR || "/tmp/notexoweb-cache";
+    this.cacheDir = env.CACHE_DIR || "/tmp/exodiumweb-cache";
     this.cacheMax = Number(env.CACHE_MAX_BYTES || 20 * 2 ** 30);
     this.devMetadata = env.DEV_METADATA_DIR || null;
     if (!this.root && !this.ssh) throw new Error("set COLLECTION_ROOT or COLLECTION_SSH");

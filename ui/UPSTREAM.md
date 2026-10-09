@@ -12,4 +12,4 @@ dropped in: copy upstream `src/`, `public/`, `index.html`, `package.json`,
 `web-shims/` replaces the seven Tauri modules the UI imports
 (`@tauri-apps/api/{core,event,window}`, `plugin-{dialog,opener,process,updater}`)
 with browser versions; `invoke()` becomes `POST /api/invoke/<command>` on the
-notexoweb server.
+exodiumweb server.

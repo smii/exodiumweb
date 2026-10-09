@@ -44,8 +44,8 @@ await page.waitForTimeout(1800);
 await page.screenshot({ path: new URL(`./shots/${slug}-detail.png`, import.meta.url).pathname });
 await page.locator(".game-detail-panel button", { hasText: "Play" }).first().click();
 
-const frame = page.frameLocator("#notexoweb-player");
-const handle = await page.waitForSelector("#notexoweb-player", { timeout: 15000 });
+const frame = page.frameLocator("#exodiumweb-player");
+const handle = await page.waitForSelector("#exodiumweb-player", { timeout: 15000 });
 const f = await handle.contentFrame();
 // Large games ask before downloading: capture the question and the progress.
 const ask = frame.getByRole("button", { name: /^Download/ });

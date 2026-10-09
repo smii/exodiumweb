@@ -8,9 +8,9 @@ import "./web.css";
 
 // Entry point to the downloaded-games page (server/public/downloads.html).
 function addDownloadsLink() {
-  if (document.getElementById("notexoweb-downloads")) return;
+  if (document.getElementById("exodiumweb-downloads")) return;
   const a = document.createElement("a");
-  a.id = "notexoweb-downloads";
+  a.id = "exodiumweb-downloads";
   a.href = "/downloads.html";
   a.textContent = "⤓ Downloads";
   a.title = "Large games stored in this browser";
@@ -27,27 +27,27 @@ else addEventListener("DOMContentLoaded", addDownloadsLink);
 // the game (the player saves first) instead of leaving the app -- which went
 // back to the Authelia login page that preceded it.
 function openPlayer(id: number) {
-  document.getElementById("notexoweb-player")?.remove();
+  document.getElementById("exodiumweb-player")?.remove();
   const frame = document.createElement("iframe");
-  frame.id = "notexoweb-player";
+  frame.id = "exodiumweb-player";
   frame.src = `/player.html?id=${id}`;
   frame.allow = "fullscreen; autoplay; gamepad; clipboard-write";
   frame.setAttribute("allowfullscreen", "");
   frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#000";
-  history.pushState({ notexowebPlayer: id }, "");
+  history.pushState({ exodiumwebPlayer: id }, "");
   let poppedByBack = false;
   const onPop = () => {
     // Back pressed while playing: ask the player to save and close.
     poppedByBack = true;
-    frame.contentWindow?.postMessage({ type: "notexoweb:close" }, location.origin);
+    frame.contentWindow?.postMessage({ type: "exodiumweb:close" }, location.origin);
   };
   const onMessage = (e: MessageEvent) => {
-    if (e.origin !== location.origin || e.data?.type !== "notexoweb:player-closed" || e.data.id !== id) return;
+    if (e.origin !== location.origin || e.data?.type !== "exodiumweb:player-closed" || e.data.id !== id) return;
     window.removeEventListener("message", onMessage);
     window.removeEventListener("popstate", onPop);
     frame.remove();
     // Closed with its own button (or the game exited): drop our history entry.
-    if (!poppedByBack && history.state?.notexowebPlayer === id) history.back();
+    if (!poppedByBack && history.state?.exodiumwebPlayer === id) history.back();
     void emit("game-exited", { id });
   };
   window.addEventListener("message", onMessage);

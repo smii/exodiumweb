@@ -36,7 +36,7 @@
     document.getElementById("title").textContent = title;
     document.getElementById("detail").textContent = detail;
   };
-  const done = () => parent.postMessage({ type: "notexoweb:player-closed", id }, location.origin);
+  const done = () => parent.postMessage({ type: "exodiumweb:player-closed", id }, location.origin);
   let dosProps = null;
   let closing = false;
   const close = async () => {
@@ -52,7 +52,7 @@
   document.getElementById("close").onclick = close;
   // The library asks us to close when the browser's Back button is pressed.
   addEventListener("message", (e) => {
-    if (e.origin === location.origin && e.data?.type === "notexoweb:close") close();
+    if (e.origin === location.origin && e.data?.type === "exodiumweb:close") close();
   });
 
   // js-dos keeps a game's changed files as one "changes" blob; it lives on the

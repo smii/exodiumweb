@@ -1,4 +1,4 @@
-# notexoweb progress
+# (Unofficial) ExodiumWeb — progress
 
 Screenshots and screen recordings from each milestone, newest first. Recordings
 are made with the headless test browser (`test/record-play.mjs`, software-only
@@ -125,7 +125,7 @@ Known issues:
 
 ## Milestone 1 — Exodium UI in the browser, games play in-app (2026-10-07)
 
-The unchanged Exodium frontend, served by the notexoweb server against the
+The unchanged Exodium frontend, served by the exodiumweb server against the
 **eXoDOS 6.04** collection on the NAS (7,666 games). Search, open the detail
 panel, press **Play**: the game boots in an in-app js-dos player; **Close**
 returns to the library.

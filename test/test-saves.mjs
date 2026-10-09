@@ -4,7 +4,7 @@
 import { chromium } from "playwright";
 
 const [base = "http://localhost:8090", id = "2305", gameDir = "CKeen5"] = process.argv.slice(2);
-const marker = `notexoweb save test ${new Date().toISOString()}`;
+const marker = `exodiumweb save test ${new Date().toISOString()}`;
 const browser = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
 const page = await browser.newPage();
 const errors = [];

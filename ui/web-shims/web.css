@@ -1,4 +1,4 @@
-/* notexoweb: browser-only adjustments on top of Exodium's unchanged styles. */
+/* exodiumweb: browser-only adjustments on top of Exodium's unchanged styles. */
 
 /* The custom desktop title bar (app name + minimise/maximise/close) has no
    job in a browser tab; the browser owns the window. */
@@ -7,7 +7,7 @@
 }
 
 /* Link to the downloaded-games page (large games kept in this browser). */
-#notexoweb-downloads {
+#exodiumweb-downloads {
   position: fixed;
   top: 9px;
   left: 16px;
@@ -19,7 +19,7 @@
   background: rgba(255, 255, 255, 0.06);
   text-decoration: none;
 }
-#notexoweb-downloads:hover {
+#exodiumweb-downloads:hover {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }

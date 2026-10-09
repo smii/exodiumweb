@@ -1,8 +1,8 @@
 {
-  "name": "notexoweb-e2e",
+  "name": "exodiumweb-e2e",
   "private": true,
   "type": "module",
-  "description": "Headless browser checks, UI screenshots and screen recordings for notexoweb",
+  "description": "Headless browser checks, UI screenshots and screen recordings for exodiumweb",
   "dependencies": {
     "gifenc": "^1.0.3",
     "playwright": "^1.63.0",

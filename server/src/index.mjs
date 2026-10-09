@@ -1,4 +1,4 @@
-// notexoweb server: Exodium's UI over HTTP, games booted in the browser by js-dos.
+// exodiumweb server: Exodium's UI over HTTP, games booted in the browser by js-dos.
 //
 // Env:
 //   PORT                 default 8080
@@ -386,4 +386,4 @@ createServer(async (req, res) => {
     if (!res.headersSent) json(res, 500, { error: String(e?.message ?? e) });
     else res.end();
   }
-}).listen(PORT, () => console.log(`notexoweb on :${PORT} (catalogue ${catalogPath})`));
+}).listen(PORT, () => console.log(`exodiumweb on :${PORT} (catalogue ${catalogPath})`));

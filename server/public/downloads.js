@@ -1,9 +1,9 @@
 // Large games kept in this browser (Cache API), so a 1–2 GB CD game is
 // downloaded once and then starts from local storage. Entries are keyed by the
 // bundle URL (which changes with the game's config); metadata rides along in
-// x-notexoweb-* headers. Used by player.html and downloads.html.
-const CACHE = "notexoweb-games-v1";
-const H = "x-notexoweb-";
+// x-exodiumweb-* headers. Used by player.html and downloads.html.
+const CACHE = "exodiumweb-games-v1";
+const H = "x-exodiumweb-";
 
 export async function cached(url) {
   const c = await caches.open(CACHE);
@@ -42,7 +42,7 @@ export async function download(url, { id, title, bytes }, onProgress = () => {})
   } catch (e) {
     // Storing can fail (quota, private window, full disk); the game still
     // runs, it is just downloaded again next time.
-    console.warn("notexoweb: could not keep the download", e);
+    console.warn("exodiumweb: could not keep the download", e);
     await c.delete(url).catch(() => {});
     const again = await fetch(url);
     if (!again.ok) throw new Error(`download failed (HTTP ${again.status})`);

@@ -19,25 +19,25 @@ await page.waitForTimeout(1500);
 await page.getByText(title, { exact: true }).first().click();
 await page.waitForTimeout(1200);
 await page.locator(".game-detail-panel button", { hasText: "Play" }).first().click();
-const f = await (await page.waitForSelector("#notexoweb-player")).contentFrame();
+const f = await (await page.waitForSelector("#exodiumweb-player")).contentFrame();
 await f.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 120000 });
 check(await f.evaluate(() => window.__player.ready), "game started");
 await page.waitForTimeout(4000);
 
 await page.goBack();
-await page.waitForSelector("#notexoweb-player", { state: "detached", timeout: 20000 }).catch(() => {});
-check(await page.locator("#notexoweb-player").count() === 0, "Back closed the player");
+await page.waitForSelector("#exodiumweb-player", { state: "detached", timeout: 20000 }).catch(() => {});
+check(await page.locator("#exodiumweb-player").count() === 0, "Back closed the player");
 check(new URL(page.url()).pathname === "/", `still in the app (${page.url()})`);
 check(await page.getByPlaceholder(/search games/i).count() === 1, "library visible");
 
 // The Close button path must not leave a stale history entry behind.
 await page.locator(".game-detail-panel button", { hasText: "Play" }).first().click();
-const f2 = await (await page.waitForSelector("#notexoweb-player")).contentFrame();
+const f2 = await (await page.waitForSelector("#exodiumweb-player")).contentFrame();
 await f2.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 120000 });
 await page.waitForTimeout(3000);
 await f2.locator("#close").click();
-await page.waitForSelector("#notexoweb-player", { state: "detached", timeout: 20000 }).catch(() => {});
-check(await page.locator("#notexoweb-player").count() === 0, "Close button closed the player");
+await page.waitForSelector("#exodiumweb-player", { state: "detached", timeout: 20000 }).catch(() => {});
+check(await page.locator("#exodiumweb-player").count() === 0, "Close button closed the player");
 await page.goBack();
 await page.waitForTimeout(1500);
 check(page.url().endsWith("/healthz"), `one Back after Close leaves the app as usual (${page.url()})`);
