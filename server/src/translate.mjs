@@ -122,6 +122,9 @@ export function translate(text, opts = {}) {
       // Any other setting pointing at a Windows host path (fluidsynth fonts,
       // capture dirs, ...) can't resolve inside js-dos.
       if (/^\.?\\|^[a-z]:\\/i.test(value) && !(sec.name === "gus" && key === "ultradir")) continue;
+      // svga_s3 shows black in js-dos's DOSBox (Quake); vesa_nolfb renders.
+      if (sec.name === "dosbox" && key === "machine" && backend !== "dosboxX" && value.toLowerCase() === "svga_s3") value = "vesa_nolfb";
+      if (sec.name === "dosbox" && key === "memsize" && Number(value) > 63) value = "63";
       if (key === "cpu_cycles") key = "cycles"; // Staging 0.82 spelling
       if (key === "mt32.romdir" || key === "midiconfig") continue; // re-added below
       if (key === "cycles" && /^\d+$/.test(value) === false && !/^(auto|max|fixed)/i.test(value)) continue;
