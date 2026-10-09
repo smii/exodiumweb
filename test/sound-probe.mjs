@@ -166,6 +166,8 @@ for (const g of plan) {
   try {
     await doc.waitForFunction(() => window.__player?.ready || window.__player?.error, null, { timeout: 600000 });
   } catch { errs.push("player not ready in time"); }
+  // THROTTLE=n: CDP CPU throttling (n-times slower) once the player is ready.
+  if (process.env.THROTTLE) await (await context.newCDPSession(page)).send("Emulation.setCPUThrottlingRate", { rate: Number(process.env.THROTTLE) });
   const t0 = await doc.evaluate(() => performance.now());
   // Worker mode: the emulator posts sample chunks to the worklet's port from
   // its worker. Count them there, per second (loudness + samples per second).
