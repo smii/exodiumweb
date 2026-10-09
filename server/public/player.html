@@ -39,15 +39,21 @@
   const done = () => parent.postMessage({ type: "notexoweb:player-closed", id }, location.origin);
   let dosProps = null;
   let closing = false;
-  document.getElementById("close").onclick = async () => {
+  const close = async () => {
     if (closing) return;
     closing = true;
+    statusEl.style.display = "";
     say("Saving…");
     // Saves go to the server (per user) through fsChanges.push below.
     try { if (window.__player.ready) await dosProps?.save?.(); } catch (e) { console.error("save failed", e); }
     try { await dosProps?.stop?.(); } catch {}
     done();
   };
+  document.getElementById("close").onclick = close;
+  // The library asks us to close when the browser's Back button is pressed.
+  addEventListener("message", (e) => {
+    if (e.origin === location.origin && e.data?.type === "notexoweb:close") close();
+  });
 
   // js-dos keeps a game's changed files as one "changes" blob; it lives on the
   // server per user, so progress follows the user to any browser.

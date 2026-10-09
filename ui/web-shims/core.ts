@@ -22,6 +22,10 @@ else addEventListener("DOMContentLoaded", addDownloadsLink);
 // The desktop app spawns DOSBox on launch_game and emits `game-exited` when
 // it quits. Here the server records the launch and the game runs in an
 // overlay <iframe> (server/public/player.html); closing it emits the event.
+//
+// The overlay gets its own history entry, so the browser's Back button closes
+// the game (the player saves first) instead of leaving the app -- which went
+// back to the Authelia login page that preceded it.
 function openPlayer(id: number) {
   document.getElementById("notexoweb-player")?.remove();
   const frame = document.createElement("iframe");
@@ -30,13 +34,24 @@ function openPlayer(id: number) {
   frame.allow = "fullscreen; autoplay; gamepad; clipboard-write";
   frame.setAttribute("allowfullscreen", "");
   frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#000";
+  history.pushState({ notexowebPlayer: id }, "");
+  let poppedByBack = false;
+  const onPop = () => {
+    // Back pressed while playing: ask the player to save and close.
+    poppedByBack = true;
+    frame.contentWindow?.postMessage({ type: "notexoweb:close" }, location.origin);
+  };
   const onMessage = (e: MessageEvent) => {
     if (e.origin !== location.origin || e.data?.type !== "notexoweb:player-closed" || e.data.id !== id) return;
     window.removeEventListener("message", onMessage);
+    window.removeEventListener("popstate", onPop);
     frame.remove();
+    // Closed with its own button (or the game exited): drop our history entry.
+    if (!poppedByBack && history.state?.notexowebPlayer === id) history.back();
     void emit("game-exited", { id });
   };
   window.addEventListener("message", onMessage);
+  window.addEventListener("popstate", onPop);
   document.body.append(frame);
   frame.focus();
 }
