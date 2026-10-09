@@ -21,7 +21,8 @@ import { join, normalize, extname, resolve, dirname } from "node:path";
 import { createHash } from "node:crypto";
 import { ZipReader, writeBundle } from "./zip.mjs";
 import { fileURLToPath } from "node:url";
-import { ensureCatalog, userDb } from "./db.mjs";
+import { ensureCatalog, userDb, onUserDbOpen } from "./db.mjs";
+import { voodooShortcodes, syncThreedfx } from "./curated.mjs";
 import { runCommand } from "./commands.mjs";
 import { gameById, gameConfig } from "./queries.mjs";
 import { patchBatch, BATPATCH_VERSION } from "./batpatch.mjs";
@@ -52,6 +53,11 @@ const collection = new Collection(env);
 const t0 = Date.now();
 const imageIndex = buildImageIndex(collection.metadata("XODOSMetadata.zip"));
 console.log(`image index: ${imageIndex.size} titles in ${Date.now() - t0} ms`);
+const voodoo = voodooShortcodes(collection.metadata("!DOSmetadata.zip"));
+onUserDbOpen((db, user) => {
+  const n = syncThreedfx(db, voodoo);
+  if (n) console.log(`${user}: added ${n} games to 3dfx Games`);
+});
 const CACHE_ROOT = env.CACHE_DIR ?? join(SERVER, "cache");
 const app = {
   previewRoot: PREVIEW_ROOT,

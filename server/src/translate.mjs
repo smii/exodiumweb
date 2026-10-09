@@ -23,6 +23,10 @@ const DROP_KEYS = new Set([
   "voodoo_multithreading", "voodoo_perf", "voodoomem", "glide", "romdir", "soundfont",
 ]);
 
+// The only sample rate js-dos's audio output plays correctly.
+const AUDIO_RATE = 44100;
+const SOUND_SECTIONS = new Set(["mixer", "sblaster", "gus", "speaker"]);
+
 export function parseConf(text) {
   const sections = [];
   let cur = { name: "", lines: [] };
@@ -86,7 +90,8 @@ export function analyse(text) {
 // DOSBox-X only where nothing else will do. js-dos 8.4.1's DOSBox-X build
 // traps (WASM `unreachable`) on batch commands eXo launchers use everywhere
 // (`IF %VAR%==x prog`, `CONFIG -set ...`; found on Wing Commander), so MT-32
-// games run on plain DOSBox with Sound Blaster/AdLib music instead.
+// games run on plain DOSBox with Sound Blaster/AdLib music instead. Neither
+// build has a MIDI synth anyway (no munt, no FluidSynth; checked 2026-10-09).
 export function chooseBackend(info, variant) {
   if (info.voodoo) return "dosboxX";
   if (variant === "x" || variant === "x2") return "dosboxX";
@@ -120,6 +125,10 @@ export function translate(text, opts = {}) {
       if (key === "cpu_cycles") key = "cycles"; // Staging 0.82 spelling
       if (key === "mt32.romdir" || key === "midiconfig") continue; // re-added below
       if (key === "cycles" && /^\d+$/.test(value) === false && !/^(auto|max|fixed)/i.test(value)) continue;
+      // js-dos plays through an AudioWorklet fixed at 44100 Hz (secure pages)
+      // and doesn't resample: a 48000/49716 Hz mixer overfills its queue, so
+      // sound came out low-pitched and choppy (dropped chunks).
+      if (SOUND_SECTIONS.has(sec.name) && /rate$/.test(key) && /^\d+$/.test(value)) value = String(AUDIO_RATE);
       if (sec.name === "midi" && key === "mididevice") {
         haveMidi = true;
         if (value.toLowerCase() === "mt32" && backend !== "dosboxX") value = "default";
@@ -127,11 +136,13 @@ export function translate(text, opts = {}) {
       }
       lines.push(`${key}=${value}`);
     }
+    if (sec.name === "mixer" && !lines.some((l) => l.startsWith("rate="))) lines.push(`rate=${AUDIO_RATE}`);
     if (sec.name === "midi" && info.mt32 && backend === "dosboxX") {
       lines.push("mt32.romdir=./mt32/rev0");
     }
     if (lines.length) out.push(`[${sec.name}]`, ...lines, "");
   }
+  if (!parseConf(text).some((sec) => sec.name === "mixer")) out.push("[mixer]", `rate=${AUDIO_RATE}`, "");
   if (info.mt32 && backend === "dosboxX" && !haveMidi) {
     out.push("[midi]", "mididevice=mt32", "mt32.romdir=./mt32/rev0", "");
   }

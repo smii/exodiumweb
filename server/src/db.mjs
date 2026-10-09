@@ -38,6 +38,12 @@ export function ensureCatalog(dataDir) {
 }
 
 const userDbs = new Map();
+let onOpen = null;
+
+/** Run fn(db) on every user database when it is first opened by this process. */
+export function onUserDbOpen(fn) {
+  onOpen = fn;
+}
 
 /** Open (creating on first use) a user's own database. */
 export function userDb(stateDir, catalogPath, user) {
@@ -56,6 +62,7 @@ export function userDb(stateDir, catalogPath, user) {
   }
   const db = new DatabaseSync(path);
   db.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;");
+  onOpen?.(db, safe);
   userDbs.set(safe, db);
   return db;
 }

@@ -6,6 +6,55 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 6 — sound fixed, 3dfx list completed (2026-10-09)
+
+**Sound.** On the live site (https) js-dos plays audio through a worklet
+that runs at a fixed 44,100 samples per second and doesn't resample. About
+1,250 eXo configs set DOSBox's mixer to 48,000 or 49,716 Hz (eXo targets
+DOSBox Staging/ECE), so the emulator produced audio faster than the browser
+played it: lower pitch, and the overflowing queue dropped chunks. Every
+config now runs the mixer and the sound chips at 44,100 Hz
+(`server/src/translate.mjs`).
+
+Measured with `test/sound-probe.mjs`, which counts the samples the emulator
+sends and how loud they are, nine games across three eras (all now ~44,100
+samples/s, matching the browser, and sound in every one):
+
+| Era | Game | Mixer rate in eXo's config | Samples/s now |
+|---|---|---|---|
+| 1980–1990 | Space Quest III · Prince of Persia · Ultima VI | 48,000 · 48,000 · 48,000 | 44,083 · 44,100 · 43,845 |
+| 1990–1994 | Commander Keen 4 · Commander Keen 5 · DOOM | 48,000 · default · 49,716 | 44,097 · 44,094 · 44,077 |
+| 1995–2000 | Duke Nukem 3D · Tyrian 2000 · Rise of the Triad | default · 49,716 · default | 44,107 · 44,065 · 44,098 |
+
+Before the fix Keen 4 measured 47,923 and DOOM 49,563 samples/s going into
+the 44,100 worklet.
+
+Keen 4 and 5 detect the Sound Blaster/AdLib and play AdLib music in the
+levels (the title screen and menus have none, as on real hardware).
+
+![Commander Keen 5 in the first level, with music](06-2-keen5-music.png)
+
+The player also keeps retrying to start the audio on every click, tap or
+key while the browser holds it back (js-dos tried once only), and shows
+"Click or press a key for sound" until it plays.
+
+**MT-32 and Sound Canvas: no music.** Neither js-dos build contains a MIDI
+synthesizer (no munt, no FluidSynth), so eXo's "w/ MT-32" / "w/ Sound
+Canvas" launcher choices start the game without music. Launchers now mark
+those entries, so the Sound Blaster entry is the obvious pick:
+
+![Wing Commander's launcher with the MT-32 entries marked "(no music)"](06-1-midi-menu.png)
+
+**3dfx Games: 29 → 36.** The list is eXo's own curated LaunchBox
+playlist. Seven more games ship with a 3dfx card turned on in eXo's own
+configs but were never added to it: Descent: eXoHOG, Flying Corps: Gold,
+NBA Live 97, NIRA: Intense Import Drag Racing, System Shock, The Varginha
+Incident, Quake II (Q2DOS). They are now added to every user's 3dfx
+playlist (`server/src/curated.mjs`). Most 3dfx titles were Windows 9x
+games, which aren't part of eXoDOS.
+
+---
+
 ## Milestone 5 — sharp covers, Back inside the app, phones (2026-10-09)
 
 **Sharp covers.** The library used Exodium's bundled 75×120 thumbnails, so

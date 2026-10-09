@@ -37,6 +37,10 @@
   .ask-buttons button.primary { background: #3f6fd8; color: #fff; }
   progress { width: min(420px, 80vw); height: 10px; margin-top: 12px; accent-color: #3f6fd8; }
   #status a { color: #8fb0ff; }
+  /* Shown while the browser keeps the game's audio blocked (no click/key yet). */
+  #sound-hint { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10; display: none;
+                padding: 6px 14px; border-radius: 999px; background: rgba(30, 30, 34, 0.9); color: #eee; pointer-events: none; }
+  body.audio-blocked #sound-hint { display: block; }
 </style>
 </head>
 <body>
@@ -49,6 +53,33 @@
   <button id="full" type="button" title="Fullscreen (F11-free)">⛶<span class="l"> Fullscreen</span></button>
   <button id="close" type="button" title="Close (returns to the library)">✕<span class="l"> Close</span></button>
 </div>
+<div id="sound-hint">🔇 Click or press a key for sound</div>
+<script>
+  // Browsers start a page's audio "suspended" until the user clicks, taps or
+  // types on it. js-dos resumes only on the first pointerdown/keydown, once;
+  // if that event didn't count as a user gesture (Escape, Safari's
+  // pointerdown, ...) the game stayed silent for the whole session. Track every
+  // AudioContext and retry on each gesture until it runs.
+  (() => {
+    const Orig = window.AudioContext;
+    if (!Orig) return;
+    const contexts = new Set();
+    const update = () => {
+      for (const c of contexts) if (c.state === "closed") contexts.delete(c);
+      document.body?.classList.toggle("audio-blocked", [...contexts].some((c) => c.state === "suspended"));
+    };
+    window.AudioContext = class extends Orig {
+      constructor(...args) {
+        super(...args);
+        contexts.add(this);
+        this.addEventListener("statechange", update);
+        setTimeout(update, 1500);
+      }
+    };
+    const resume = () => { for (const c of contexts) if (c.state === "suspended") c.resume().then(update, () => {}); };
+    for (const type of ["pointerdown", "pointerup", "click", "touchend", "keydown", "keyup"]) addEventListener(type, resume, { capture: true });
+  })();
+</script>
 <script src="/vendor/js-dos/dist/js-dos.js"></script>
 <script type="module">
   import { cached, download, fmtBytes } from "/downloads.js";

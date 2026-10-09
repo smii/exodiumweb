@@ -12,13 +12,20 @@
 // Labels stay within 8 characters, the part DOS compares.
 
 // Bump when a rewrite changes, so cached bundles are rebuilt.
-export const BATPATCH_VERSION = 2;
+export const BATPATCH_VERSION = 3;
 
 const IF_LINE = /^(\s*)(@?)if\s+(not\s+)?(errorlevel\s*=?\s*\d+|exist\s+(?:"[^"]*"|\S+)|(?:"[^"]*"|[^\s=]+)?==(?:"[^"]*"|\S+))\s+(\S.*)$/i;
 
 // eXo switches MIDI with `CONFIG -set "mididevice=..."`; js-dos's DOSBox-X
 // build traps on that too. The translated config already picks the device.
 const MIDI_SWITCH = /^(\s*@?)(config\s+-set\s+"?mididevice=[^"\r\n]*"?)/i;
+
+// js-dos 8.4.1 has no MIDI synth in either DOSBox build (no munt, no
+// FluidSynth; only an OSS output that goes nowhere), so a launcher choice
+// "w/ MT-32" or "w/ Sound Canvas" starts the game without music. Say so in
+// the menu, so players pick the Sound Blaster / AdLib entry instead.
+const MIDI_CHOICE = /^(\s*@?echo\b.*\bpress\b.*\b(?:w\/|with)\s*(?:mt-?32|sound ?canvas|general midi|gm|roland)\b.*?)\s*$/i;
+const NO_MUSIC = " (no music)";
 
 /**
  * @param {string} text  batch file contents (latin1)
@@ -33,6 +40,11 @@ export function patchBatch(text, { backend }) {
   for (const line of text.split(/\r?\n/)) {
     if (backend === "dosboxX" && MIDI_SWITCH.test(line)) {
       out.push(line.replace(MIDI_SWITCH, "$1REM exodiumweb: $2"));
+      changed = true;
+      continue;
+    }
+    if (MIDI_CHOICE.test(line) && !line.includes(NO_MUSIC)) {
+      out.push(line.replace(MIDI_CHOICE, `$1${NO_MUSIC}`));
       changed = true;
       continue;
     }
