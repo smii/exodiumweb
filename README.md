@@ -31,6 +31,9 @@ In production the server reads the collection from a read-only mount
 (`COLLECTION_ROOT` = the eXoDOS folder holding `eXo/` and `Content/`) and takes
 the user from Authelia's `Remote-User` header; see `server/src/index.mjs`.
 
+Deploying elsewhere (Docker, compose, Kubernetes): [docs/DEPLOY.md](docs/DEPLOY.md).
+More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
+
 ## Proof of concept (2026-10-07)
 
 `poc/` boots original eXoDOS game zips from the NAS with js-dos 8.4.1,
