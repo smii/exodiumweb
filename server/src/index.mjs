@@ -192,8 +192,23 @@ function userOf(req) {
   return String(req.headers[USER_HEADER] ?? env.DEV_USER ?? "").trim() || null;
 }
 
+function tuneConf(conf, item) {
+  const m = item.match(/^(\w+)\.(\w+)=(.*)$/);
+  if (!m) return conf;
+  const [, sec, key, val] = m;
+  const lines = conf.split("\n");
+  const start = lines.indexOf(`[${sec}]`);
+  if (start < 0) return `${conf.replace(/\n*$/, "\n")}\n[${sec}]\n${key}=${val}\n`;
+  let end = start + 1;
+  while (end < lines.length && !lines[end].startsWith("[")) end++;
+  const at = lines.slice(start + 1, end).findIndex((l) => l.startsWith(`${key}=`));
+  if (at >= 0) lines[start + 1 + at] = `${key}=${val}`;
+  else lines.splice(start + 1, 0, `${key}=${val}`);
+  return lines.join("\n");
+}
+
 /** Everything the player needs to boot one game for this user. */
-function launchInfo(db, id, backendOverride, cmdOverride) {
+function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride) {
   const game = gameById(db, id);
   if (!game) return null;
   const conf = collection.dosboxConf(game.shortcode);
@@ -211,6 +226,8 @@ function launchInfo(db, id, backendOverride, cmdOverride) {
     const kept = auto.split("\n").filter((l) => /^\s*@?((img)?mount\s|[a-z]:\s*$)/i.test(l));
     dosboxConf = `${head}[autoexec]\n${[...kept, ...cmdOverride.split("|")].join("\n")}\n`;
   }
+  // Testing hook: ?tune=section.key=value|... sets/replaces config keys.
+  if (tuneOverride) for (const item of tuneOverride.split("|")) dosboxConf = tuneConf(dosboxConf, item);
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
   if (settings.custom_conf) dosboxConf = `${settings.custom_conf.trim()}\n${dosboxConf}`;
   // The bundle is keyed on the exact config, so a settings change builds a new one.
@@ -218,7 +235,7 @@ function launchInfo(db, id, backendOverride, cmdOverride) {
   return {
     game: { id: game.id, title: game.title, year: game.year, shortcode: game.shortcode },
     backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs,
-    bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}) })}`,
+    bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}), ...(tuneOverride ? { tune: tuneOverride } : {}) })}`,
     confHash,
     shader: settings.glshader ?? null,
   };
@@ -283,6 +300,13 @@ function pruneBundles(dir, keep) {
 function patchBatchFiles(src, backend) {
   const out = [];
   for (const [name, e] of src.entries) {
+    if (/(^|\/)duke3d\.cfg$/i.test(name) && e.usize < 64 * 1024) {
+      // eXo ships Duke at VESA 1024x768, which this emulator can't show (black screen); plain chained 320x200 works.
+      const cfg = src.read(name).toString("latin1")
+        .replace(/^ScreenMode\s*=.*$/m, "ScreenMode = 0").replace(/^ScreenWidth\s*=.*$/m, "ScreenWidth = 320").replace(/^ScreenHeight\s*=.*$/m, "ScreenHeight = 200");
+      out.push({ name, data: Buffer.from(cfg, "latin1") });
+      continue;
+    }
     if (!/\.bat$/i.test(name) || e.usize > 256 * 1024) continue;
     const patched = patchBatch(src.read(name).toString("latin1"), { backend });
     if (patched !== null) out.push({ name, data: Buffer.from(patched, "latin1") });
@@ -345,7 +369,7 @@ createServer(async (req, res) => {
     let m = path.match(/^\/api\/play\/(\d+)$/);
     if (m) {
       const db = userDb(STATE_DIR, catalogPath, user);
-      const info = launchInfo(db, Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"));
+      const info = launchInfo(db, Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"));
       if (!info) return json(res, 404, { error: "unknown game" });
       if (info.error) return json(res, 422, info);
       // Build (or fetch) the bundle now: js-dos only says "500" on a failed
@@ -363,7 +387,7 @@ createServer(async (req, res) => {
     if (m) {
       const db = userDb(STATE_DIR, catalogPath, user);
       const game = gameById(db, Number(m[1]));
-      const info = game && launchInfo(db, game.id, url.searchParams.get("backend"), url.searchParams.get("cmd"));
+      const info = game && launchInfo(db, game.id, url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"));
       if (!info || info.error) return json(res, 404, { error: info?.error ?? "unknown game" });
       // Immutable per ?c=<conf hash>, so browsers can cache it hard.
       return sendFile(req, res, await bundleFor(game, info), "private, max-age=31536000, immutable");

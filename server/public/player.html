@@ -220,7 +220,7 @@
   try {
     // Testing overrides pass through to the launch API (backend, cmd).
     const pass = new URLSearchParams();
-    for (const k of ["backend", "cmd"]) { const v = new URLSearchParams(location.search).get(k); if (v) pass.set(k, v); }
+    for (const k of ["backend", "cmd", "tune"]) { const v = new URLSearchParams(location.search).get(k); if (v) pass.set(k, v); }
     const res = await fetch(`/api/play/${id}${pass.size ? `?${pass}` : ""}`);
     const info = await res.json();
     if (!res.ok) throw new Error(info.error ?? `HTTP ${res.status}`);
