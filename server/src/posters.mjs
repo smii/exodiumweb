@@ -6,7 +6,6 @@
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { DatabaseSync } from "node:sqlite";
 import { normalizeAlnum } from "./media.mjs";
 
 // Best cover first; the gallery order puts "Box - 3D" first, which crops badly.
@@ -35,8 +34,8 @@ const run = (cmd, args) => new Promise((resolve, reject) => {
 });
 
 export class Posters {
-  /** @param {{ catalogPath: string, cacheDir: string, imageIndex: Map, metadata: () => any }} o */
-  constructor({ catalogPath, cacheDir, imageIndex, metadata }) {
+  /** @param {{ cacheDir: string, imageIndex: Map, metadata: () => any }} o */
+  constructor({ cacheDir, imageIndex, metadata }) {
     this.dir = join(cacheDir, "posters");
     this.imageIndex = imageIndex;
     this.metadata = metadata;
@@ -44,15 +43,11 @@ export class Posters {
     this.pending = new Map(); // key -> Promise<path|null>
     this.queue = [];
     this.active = 0;
-    const db = new DatabaseSync(catalogPath, { readOnly: true });
-    this.titles = new Map(db.prepare("SELECT thumbnail_key AS k, title FROM games WHERE thumbnail_key IS NOT NULL").all().map((r) => [r.k, r.title]));
-    db.close();
-    console.log(`posters: ${this.titles.size} covers, resizer ${this.resize ? this.resize("in", "out")[0] : "none (full-size images)"}`);
+    console.log(`posters: resizer ${this.resize ? this.resize("in", "out")[0] : "none (full-size images)"}`);
   }
 
-  /** Box art entry in XODOSMetadata.zip for a cover key, or null. */
-  entryFor(key) {
-    const title = this.titles.get(key);
+  /** Box art entry in XODOSMetadata.zip for a game title, or null. */
+  entryFor(title) {
     const images = title && this.imageIndex.get(normalizeAlnum(title));
     if (!images?.length) return null;
     for (const category of PREFERRED) {
@@ -62,13 +57,17 @@ export class Posters {
     return null;
   }
 
-  /** Path of the cached poster for a cover key, made on first use; null when the game has no art. */
-  get(key) {
+  /**
+   * Path of the cached poster for a cover key, made on first use; null when
+   * the game has no art. `db` is any catalogue database (the user's own copy:
+   * the shared catalogue is read-only and in WAL mode, which sqlite can't open).
+   */
+  get(key, db) {
     if (!/^[0-9a-f]{16}$/.test(key)) return Promise.resolve(null);
     const file = join(this.dir, `${key}.jpg`);
     if (existsSync(file)) return Promise.resolve(file);
     if (!this.pending.has(key)) {
-      const p = new Promise((resolve) => this.queue.push(() => this.#make(key, file).then(resolve, (e) => {
+      const p = new Promise((resolve) => this.queue.push(() => this.#make(db, key, file).then(resolve, (e) => {
         console.error(`poster ${key}:`, e.message);
         resolve(null);
       })));
@@ -86,8 +85,9 @@ export class Posters {
     }
   }
 
-  async #make(key, file) {
-    const name = this.entryFor(key);
+  async #make(db, key, file) {
+    const title = db.prepare("SELECT title FROM games WHERE thumbnail_key = ? LIMIT 1").get(key)?.title;
+    const name = title && this.entryFor(title);
     const buf = name && this.metadata()?.read(name);
     if (!buf) return null;
     mkdirSync(this.dir, { recursive: true });

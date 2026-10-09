@@ -58,7 +58,7 @@ const app = {
   imageIndex,
   gameData: new GameData(collection),
   reading: new ReadingCache(CACHE_ROOT, collection),
-  posters: new Posters({ catalogPath, cacheDir: CACHE_ROOT, imageIndex, metadata: () => collection.metadata("XODOSMetadata.zip") }),
+  posters: new Posters({ cacheDir: CACHE_ROOT, imageIndex, metadata: () => collection.metadata("XODOSMetadata.zip") }),
 };
 
 /** Send a whole zip entry (already in memory), honouring Range for <video>/<audio>. */
@@ -113,7 +113,7 @@ async function serveVirtual(req, res, p, user) {
   // Sharp library covers (posters.mjs): poster:eXoDOS/<cover key>.jpg.
   const pm = p.match(/^poster:eXoDOS\/([0-9a-f]{16})\.jpg$/);
   if (pm) {
-    const file = await app.posters.get(pm[1]);
+    const file = await app.posters.get(pm[1], userDb(STATE_DIR, catalogPath, user));
     if (!file) return false;
     sendFile(req, res, file, "public, max-age=2592000");
     return true;
