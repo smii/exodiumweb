@@ -99,8 +99,11 @@
     statusEl.style.display = "";
     say("Saving…");
     // Saves go to the server (per user) through fsChanges.push below.
-    try { if (window.__player.ready) await dosProps?.save?.(); } catch (e) { console.error("save failed", e); }
-    try { await dosProps?.stop?.(); } catch {}
+    // A hung save/stop (large games) must never leave the player stuck open.
+    const within = (p, ms) => Promise.race([Promise.resolve(p), new Promise((r) => setTimeout(r, ms))]);
+    setTimeout(done, 15000);
+    try { if (window.__player.ready) await within(dosProps?.save?.(), 8000); } catch (e) { console.error("save failed", e); }
+    try { await within(dosProps?.stop?.(), 3000); } catch {}
     done();
   };
   document.getElementById("close").onclick = close;
