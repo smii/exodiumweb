@@ -15,17 +15,36 @@ function read(fd, pos, len) {
 }
 
 export class ZipReader {
-  constructor(path) {
+  /**
+   * @param {string} path
+   * @param {{base?: number, length?: number}} [window] read a zip that sits as
+   *   a STORED entry inside another file (eXo nests archives): offsets inside
+   *   are relative to `base`. See ZipReader.nested().
+   */
+  constructor(path, window = {}) {
     this.path = path;
     this.fd = openSync(path, "r");
-    this.size = fstatSync(this.fd).size;
+    this.base = window.base ?? 0;
+    this.size = window.length ?? fstatSync(this.fd).size - this.base;
     this.entries = new Map(); // name -> { offset, csize, usize, method }
     this.#readDirectory();
   }
 
+  /** A zip stored (uncompressed) inside this one, read in place. */
+  nested(name) {
+    const e = this.entries.get(name);
+    if (!e) return null;
+    if (e.method !== 0) throw new Error(`${this.path}: ${name} is compressed, can't read it in place`);
+    return new ZipReader(this.path, { base: this.base + this.dataOffset(name), length: e.csize });
+  }
+
+  #read(pos, len) {
+    return read(this.fd, this.base + pos, len);
+  }
+
   #readDirectory() {
     const tailLen = Math.min(this.size, 65557 + 20);
-    const tail = read(this.fd, this.size - tailLen, tailLen);
+    const tail = this.#read(this.size - tailLen, tailLen);
     const eocd = tail.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
     if (eocd < 0) throw new Error(`${this.path}: no end of central directory`);
     let count = tail.readUInt16LE(eocd + 10);
@@ -35,12 +54,12 @@ export class ZipReader {
       // ZIP64: the locator sits right before the EOCD and points at the real record.
       const loc = eocd - 20;
       if (tail.readUInt32LE(loc) !== 0x07064b50) throw new Error(`${this.path}: bad zip64 locator`);
-      const rec = read(this.fd, Number(tail.readBigUInt64LE(loc + 8)), 56);
+      const rec = this.#read(Number(tail.readBigUInt64LE(loc + 8)), 56);
       count = Number(rec.readBigUInt64LE(32));
       cdSize = Number(rec.readBigUInt64LE(40));
       cdOffset = Number(rec.readBigUInt64LE(48));
     }
-    const cd = read(this.fd, cdOffset, cdSize);
+    const cd = this.#read(cdOffset, cdSize);
     let p = 0;
     for (let i = 0; i < count; i++) {
       if (cd.readUInt32LE(p) !== 0x02014b50) throw new Error(`${this.path}: bad central directory`);
@@ -88,7 +107,7 @@ export class ZipReader {
   /** File offset where an entry's (compressed) data starts. */
   dataOffset(name) {
     const e = this.entries.get(name);
-    const local = read(this.fd, e.offset, 30);
+    const local = this.#read(e.offset, 30);
     if (local.readUInt32LE(0) !== 0x04034b50) throw new Error(`${this.path}: bad local header for ${name}`);
     return e.offset + 30 + local.readUInt16LE(26) + local.readUInt16LE(28);
   }
@@ -97,7 +116,7 @@ export class ZipReader {
   read(name) {
     const e = this.entries.get(name);
     if (!e) return null;
-    const raw = read(this.fd, this.dataOffset(name), e.csize);
+    const raw = this.#read(this.dataOffset(name), e.csize);
     if (e.method === 0) return raw;
     if (e.method === 8) return inflateRawSync(raw);
     throw new Error(`${this.path}: unsupported compression ${e.method} for ${name}`);
@@ -167,7 +186,7 @@ export function writeBundle(src, extra, outPath) {
     if (replaced.has(name) || name.endsWith("/")) continue;
     addEntry(name, e, () => {
       // Stream the compressed bytes across in 4 MiB chunks.
-      let from = src.dataOffset(name);
+      let from = src.base + src.dataOffset(name);
       let left = e.csize;
       while (left > 0) {
         const n = Math.min(left, 4 * 2 ** 20);

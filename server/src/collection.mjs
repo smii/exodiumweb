@@ -33,6 +33,21 @@ export class Collection {
     return this._zips.get(name);
   }
 
+  /**
+   * A content pack archive by its collection-relative path (e.g.
+   * "Content/DOSMagazines.zip" from eXo's Media Pack), opened once; null when
+   * the pack isn't part of this collection. Packs are tens of GB, so in ssh
+   * (dev) mode only a local copy in DEV_METADATA_DIR counts, never a stream.
+   */
+  contentPack(rel) {
+    const key = `pack:${rel}`;
+    if (!this._zips.has(key)) {
+      const path = this.root ? join(this.root, rel) : this.devMetadata && join(this.devMetadata, basename(rel));
+      this._zips.set(key, path && existsSync(path) ? new ZipReader(path) : null);
+    }
+    return this._zips.get(key);
+  }
+
   /** The launch config for a game, from the collection's own !DOSmetadata.zip. */
   dosboxConf(shortcode) {
     const buf = this.metadata("!DOSmetadata.zip")?.read(`eXo/eXoDOS/!dos/${shortcode}/dosbox.conf`);

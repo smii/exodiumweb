@@ -5,6 +5,7 @@
 
 import { emit } from "./event";
 import "./web.css";
+import "./hovercard";
 
 // Entry point to the downloaded-games page (server/public/downloads.html).
 function addDownloadsLink() {
@@ -18,6 +19,36 @@ function addDownloadsLink() {
 }
 if (document.body) addDownloadsLink();
 else addEventListener("DOMContentLoaded", addDownloadsLink);
+
+// Fullscreen and keyboard lock for the player. Both must be requested by the
+// top-level page: browsers refuse navigator.keyboard.lock() inside an iframe,
+// so the player asks over postMessage (its click's user activation carries
+// to this frame). Keyboard lock (Chromium) passes Esc, Alt+Tab-like and
+// Ctrl+W shortcuts to the game; hold Esc to leave fullscreen.
+type KeyboardLock = { lock?: (keys?: string[]) => Promise<void>; unlock?: () => void };
+async function toggleFullscreen(frame: HTMLIFrameElement, lockKeys: boolean) {
+  const kb = (navigator as Navigator & { keyboard?: KeyboardLock }).keyboard;
+  if (document.fullscreenElement) {
+    kb?.unlock?.();
+    await document.exitFullscreen().catch(() => {});
+    return;
+  }
+  try {
+    await frame.requestFullscreen({ navigationUI: "hide" });
+    if (lockKeys) await kb?.lock?.().catch(() => {});
+  } catch (e) {
+    console.warn("exodiumweb: fullscreen refused", e);
+  }
+}
+document.addEventListener("fullscreenchange", () => {
+  const frame = document.getElementById("exodiumweb-player") as HTMLIFrameElement | null;
+  const kb = (navigator as Navigator & { keyboard?: { lock?: unknown } }).keyboard;
+  frame?.contentWindow?.postMessage({
+    type: "exodiumweb:fullscreen-state",
+    fullscreen: document.fullscreenElement === frame,
+    lockSupported: typeof kb?.lock === "function",
+  }, location.origin);
+});
 
 // The desktop app spawns DOSBox on launch_game and emits `game-exited` when
 // it quits. Here the server records the launch and the game runs in an
@@ -42,7 +73,12 @@ function openPlayer(id: number) {
     frame.contentWindow?.postMessage({ type: "exodiumweb:close" }, location.origin);
   };
   const onMessage = (e: MessageEvent) => {
+    if (e.origin === location.origin && e.data?.type === "exodiumweb:fullscreen") {
+      void toggleFullscreen(frame, !!e.data.lockKeys);
+      return;
+    }
     if (e.origin !== location.origin || e.data?.type !== "exodiumweb:player-closed" || e.data.id !== id) return;
+    if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     window.removeEventListener("message", onMessage);
     window.removeEventListener("popstate", onPop);
     frame.remove();

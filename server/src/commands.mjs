@@ -2,6 +2,7 @@
 // Commands for desktop-only features (torrents, seeding, storage, updater,
 // setup wizard) answer with harmless "nothing to do" values.
 import * as q from "./queries.mjs";
+import * as r from "./reading.mjs";
 import { ENABLED_COLLECTIONS } from "./db.mjs";
 import { imagesFor, GameData } from "./media.mjs";
 import { zipNameFor } from "./collection.mjs";
@@ -125,7 +126,25 @@ export const commands = {
     }
     return { manual_path, manual_kind, images, thumbnails: images };
   },
-  game_articles: emptyList,
+  game_articles: ({ db }, { id }) => r.gameArticles(db, id),
+
+  // Reading Room (reading.mjs): catalogue always, documents when the pack is there.
+  list_publications: ({ db }, { kind }) => r.listPublications(db, kind),
+  list_issues: ({ db }, { kind, publicationId, query }) => r.listIssues(db, { kind, publicationId, query }),
+  get_issue: ({ db }, { key }) => r.getIssue(db, key),
+  set_issue_favorited: ({ db }, { key, favorited }) => { r.setIssueFavorited(db, key, favorited); return null; },
+  set_issue_page: ({ db }, { key, page }) => { r.setIssuePage(db, key, page); return null; },
+  open_issue: ({ db, app }, { key }) => {
+    const issue = r.getIssue(db, key);
+    if (!issue) throw `unknown issue ${key}`;
+    return app.reading.open(issue);
+  },
+  get_issue_status: ({ app }, { key }) => app.reading.get(key),
+  reading_cache_index: ({ db, app }) => app.reading.index(db),
+  remove_issue: ({ db, app }, { key }) => { const i = r.getIssue(db, key); if (i) app.reading.remove(i); return null; },
+  cancel_issue_fetch: noop,
+  install_issue: () => { throw "Disk magazines (DOS programs) are not supported in the browser version yet."; },
+  launch_issue: () => { throw "Disk magazines (DOS programs) are not supported in the browser version yet."; },
   list_content_packs: emptyList,
   video_playback_supported: () => true,
   video_mirror_needed: () => false,

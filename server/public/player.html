@@ -12,9 +12,23 @@
   #status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: #aaa; pointer-events: none; }
   #status.error { color: #f19b8c; pointer-events: auto; }
   #status .t { font-size: 16px; color: #eee; margin-bottom: 6px; }
-  #close { position: absolute; top: 10px; right: 12px; z-index: 10; border: 0; border-radius: 6px; padding: 6px 12px;
-           background: rgba(30, 30, 34, 0.85); color: #eee; font: inherit; cursor: pointer; }
-  #close:hover { background: rgba(60, 60, 68, 0.95); }
+  /* Toolbar (top right): scanlines, keyboard lock, fullscreen, close. Fades
+     back while playing so it doesn't sit on the game. */
+  #toolbar { position: absolute; top: 10px; right: 12px; z-index: 10; display: flex; gap: 6px;
+             opacity: 0.45; transition: opacity 0.2s ease; }
+  #toolbar:hover, #toolbar:focus-within, body.show-toolbar #toolbar { opacity: 1; }
+  #toolbar button { border: 0; border-radius: 6px; padding: 6px 11px; background: rgba(30, 30, 34, 0.88);
+                    color: #eee; font: inherit; cursor: pointer; }
+  #toolbar button:hover { background: rgba(60, 60, 68, 0.95); }
+  #toolbar button[aria-pressed="true"] { background: rgba(84, 70, 170, 0.92); color: #fff; }
+  #toolbar button[hidden] { display: none; }
+  /* CRT scanlines over the game: thin dark lines plus a soft vignette. */
+  #scanlines { position: absolute; inset: 0; z-index: 5; pointer-events: none; display: none;
+    background:
+      repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.32) 0, rgba(0, 0, 0, 0.32) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.45) 100%);
+    mix-blend-mode: multiply; }
+  body.scanlines #scanlines { display: block; }
   #status.ask { pointer-events: auto; }
   .ask-buttons { margin-top: 14px; display: flex; gap: 8px; justify-content: center; }
   .ask-buttons button { border: 0; border-radius: 6px; padding: 8px 16px; font: inherit; cursor: pointer; background: #333; color: #eee; }
@@ -26,7 +40,13 @@
 <body>
 <div id="dos"></div>
 <div id="status"><div><div class="t" id="title">Loading…</div><div id="detail"></div></div></div>
-<button id="close" type="button" title="Close (returns to the library)">✕ Close</button>
+<div id="scanlines"></div>
+<div id="toolbar">
+  <button id="scan" type="button" aria-pressed="false" title="CRT scanlines on/off">▤ Scanlines</button>
+  <button id="lock" type="button" aria-pressed="false" title="In fullscreen, send all keys (Esc, Ctrl+W, …) to the game. Hold Esc to leave fullscreen." hidden>⌨ Lock keys</button>
+  <button id="full" type="button" title="Fullscreen (F11-free)">⛶ Fullscreen</button>
+  <button id="close" type="button" title="Close (returns to the library)">✕ Close</button>
+</div>
 <script src="/vendor/js-dos/dist/js-dos.js"></script>
 <script type="module">
   import { cached, download, fmtBytes } from "/downloads.js";
@@ -50,9 +70,37 @@
     done();
   };
   document.getElementById("close").onclick = close;
-  // The library asks us to close when the browser's Back button is pressed.
+  // The library asks us to close when the browser's Back button is pressed,
+  // and reports fullscreen changes (it owns fullscreen + keyboard lock).
   addEventListener("message", (e) => {
-    if (e.origin === location.origin && e.data?.type === "exodiumweb:close") close();
+    if (e.origin !== location.origin) return;
+    if (e.data?.type === "exodiumweb:close") close();
+    if (e.data?.type === "exodiumweb:fullscreen-state") {
+      fullBtn.setAttribute("aria-pressed", String(e.data.fullscreen));
+      fullBtn.textContent = e.data.fullscreen ? "⛶ Exit fullscreen" : "⛶ Fullscreen";
+    }
+  });
+
+  // Scanlines and keyboard lock are remembered per browser.
+  const pref = (k, v) => (v === undefined ? localStorage.getItem(`exodiumweb:${k}`) === "on" : localStorage.setItem(`exodiumweb:${k}`, v ? "on" : "off"));
+  const scanBtn = document.getElementById("scan");
+  const lockBtn = document.getElementById("lock");
+  const fullBtn = document.getElementById("full");
+  const setScan = (on) => { document.body.classList.toggle("scanlines", on); scanBtn.setAttribute("aria-pressed", String(on)); pref("scanlines", on); };
+  const setLock = (on) => { lockBtn.setAttribute("aria-pressed", String(on)); pref("lockKeys", on); };
+  setScan(pref("scanlines"));
+  setLock(pref("lockKeys"));
+  scanBtn.onclick = () => setScan(!document.body.classList.contains("scanlines"));
+  // Keyboard lock is a Chromium feature; only offer it where it exists.
+  if (typeof navigator.keyboard?.lock === "function") lockBtn.hidden = false;
+  lockBtn.onclick = () => setLock(lockBtn.getAttribute("aria-pressed") !== "true");
+  fullBtn.onclick = () => parent.postMessage({ type: "exodiumweb:fullscreen", lockKeys: pref("lockKeys") }, location.origin);
+  // Keep the toolbar readable for a few seconds after the mouse moves.
+  let toolbarTimer;
+  addEventListener("pointermove", () => {
+    document.body.classList.add("show-toolbar");
+    clearTimeout(toolbarTimer);
+    toolbarTimer = setTimeout(() => document.body.classList.remove("show-toolbar"), 2500);
   });
 
   // js-dos keeps a game's changed files as one "changes" blob; it lives on the

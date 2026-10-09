@@ -25,6 +25,7 @@ import { ensureCatalog, userDb } from "./db.mjs";
 import { runCommand } from "./commands.mjs";
 import { gameById, gameConfig } from "./queries.mjs";
 import { patchBatch, BATPATCH_VERSION } from "./batpatch.mjs";
+import { ReadingCache } from "./reading.mjs";
 import { Collection, zipNameFor } from "./collection.mjs";
 import { translate } from "./translate.mjs";
 import { buildImageIndex, GameData, typeOf } from "./media.mjs";
@@ -50,7 +51,7 @@ const collection = new Collection(env);
 const t0 = Date.now();
 const imageIndex = buildImageIndex(collection.metadata("XODOSMetadata.zip"));
 console.log(`image index: ${imageIndex.size} titles in ${Date.now() - t0} ms`);
-const app = { previewRoot: PREVIEW_ROOT, imageIndex, gameData: new GameData(collection) };
+const app = { previewRoot: PREVIEW_ROOT, imageIndex, gameData: new GameData(collection), reading: new ReadingCache(env.CACHE_DIR ?? join(SERVER, "cache"), collection) };
 
 /** Send a whole zip entry (already in memory), honouring Range for <video>/<audio>. */
 function sendBuffer(req, res, buf, type, cache) {
@@ -99,6 +100,13 @@ async function serveVirtual(req, res, p, user) {
     const buf = reader && cachedEntry(p, () => reader.read(m[2]));
     if (!buf) return false;
     sendBuffer(req, res, buf, typeOf(m[2]), "private, max-age=86400");
+    return true;
+  }
+  // Reading Room documents, extracted from their pack into the cache (reading.mjs).
+  if (p.startsWith("reading:")) {
+    const file = app.reading.resolve(p.slice(8));
+    if (!file) return false;
+    sendFile(req, res, file, "private, max-age=86400");
     return true;
   }
   return false;
