@@ -25,6 +25,10 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
   Furcol and Tomb Raider Gold render; Blood, Descent II and Shadow Warrior
   reach their menus. Shadow Warrior 3DFX hit a wasm `unreachable` in
   headless (unverified in a real browser).
+  **Correction (2026-10-10):** rendering a frame was insufficient evidence
+  for Tomb Raider compatibility: its accelerated path has a white intro
+  and missing menu lettering. See [the reproduction and non-3dfx
+  fallback](../TROUBLESHOOTING.md).
 
 ---
 
