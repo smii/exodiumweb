@@ -22,6 +22,8 @@
   #toolbar button:hover { background: rgba(60, 60, 68, 0.95); }
   #toolbar button[aria-pressed="true"] { background: rgba(84, 70, 170, 0.92); color: #fff; }
   #toolbar button[hidden] { display: none; }
+  /* Phones: icons only, bigger touch targets. */
+  @media (max-width: 600px) { #toolbar .l { display: none; } #toolbar button { padding: 8px 12px; font-size: 16px; } }
   /* CRT scanlines over the game: thin dark lines plus a soft vignette. */
   #scanlines { position: absolute; inset: 0; z-index: 5; pointer-events: none; display: none;
     background:
@@ -42,10 +44,10 @@
 <div id="status"><div><div class="t" id="title">Loading…</div><div id="detail"></div></div></div>
 <div id="scanlines"></div>
 <div id="toolbar">
-  <button id="scan" type="button" aria-pressed="false" title="CRT scanlines on/off">▤ Scanlines</button>
-  <button id="lock" type="button" aria-pressed="false" title="In fullscreen, send all keys (Esc, Ctrl+W, …) to the game. Hold Esc to leave fullscreen." hidden>⌨ Lock keys</button>
-  <button id="full" type="button" title="Fullscreen (F11-free)">⛶ Fullscreen</button>
-  <button id="close" type="button" title="Close (returns to the library)">✕ Close</button>
+  <button id="scan" type="button" aria-pressed="false" title="CRT scanlines on/off">▤<span class="l"> Scanlines</span></button>
+  <button id="lock" type="button" aria-pressed="false" title="In fullscreen, send all keys (Esc, Ctrl+W, …) to the game. Hold Esc to leave fullscreen." hidden>⌨<span class="l"> Lock keys</span></button>
+  <button id="full" type="button" title="Fullscreen (F11-free)">⛶<span class="l"> Fullscreen</span></button>
+  <button id="close" type="button" title="Close (returns to the library)">✕<span class="l"> Close</span></button>
 </div>
 <script src="/vendor/js-dos/dist/js-dos.js"></script>
 <script type="module">
@@ -77,7 +79,7 @@
     if (e.data?.type === "exodiumweb:close") close();
     if (e.data?.type === "exodiumweb:fullscreen-state") {
       fullBtn.setAttribute("aria-pressed", String(e.data.fullscreen));
-      fullBtn.textContent = e.data.fullscreen ? "⛶ Exit fullscreen" : "⛶ Fullscreen";
+      fullBtn.querySelector(".l").textContent = e.data.fullscreen ? " Exit fullscreen" : " Fullscreen";
     }
   });
 

@@ -122,7 +122,7 @@ document.addEventListener("pointerover", (e) => {
   const card = (e.target as HTMLElement).closest?.<HTMLElement>(".game-card[data-game-id]");
   if (card === current) return;
   hide();
-  if (!card || !enabled() || document.getElementById("exodiumweb-player")) return;
+  if (!card || e.pointerType !== "mouse" || !enabled() || document.getElementById("exodiumweb-player")) return;
   current = card;
   timer = window.setTimeout(() => void show(card), DELAY_MS);
 });

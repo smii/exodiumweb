@@ -6,6 +6,7 @@
 import { emit } from "./event";
 import "./web.css";
 import "./hovercard";
+import "./history";
 
 // Entry point to the downloaded-games page (server/public/downloads.html).
 function addDownloadsLink() {

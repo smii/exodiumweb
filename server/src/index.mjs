@@ -29,6 +29,7 @@ import { ReadingCache } from "./reading.mjs";
 import { Collection, zipNameFor } from "./collection.mjs";
 import { translate } from "./translate.mjs";
 import { buildImageIndex, GameData, typeOf } from "./media.mjs";
+import { Posters } from "./posters.mjs";
 
 const SERVER = fileURLToPath(new URL("..", import.meta.url));
 const ROOT = resolve(SERVER, "..");
@@ -51,7 +52,14 @@ const collection = new Collection(env);
 const t0 = Date.now();
 const imageIndex = buildImageIndex(collection.metadata("XODOSMetadata.zip"));
 console.log(`image index: ${imageIndex.size} titles in ${Date.now() - t0} ms`);
-const app = { previewRoot: PREVIEW_ROOT, imageIndex, gameData: new GameData(collection), reading: new ReadingCache(env.CACHE_DIR ?? join(SERVER, "cache"), collection) };
+const CACHE_ROOT = env.CACHE_DIR ?? join(SERVER, "cache");
+const app = {
+  previewRoot: PREVIEW_ROOT,
+  imageIndex,
+  gameData: new GameData(collection),
+  reading: new ReadingCache(CACHE_ROOT, collection),
+  posters: new Posters({ catalogPath, cacheDir: CACHE_ROOT, imageIndex, metadata: () => collection.metadata("XODOSMetadata.zip") }),
+};
 
 /** Send a whole zip entry (already in memory), honouring Range for <video>/<audio>. */
 function sendBuffer(req, res, buf, type, cache) {
@@ -100,6 +108,14 @@ async function serveVirtual(req, res, p, user) {
     const buf = reader && cachedEntry(p, () => reader.read(m[2]));
     if (!buf) return false;
     sendBuffer(req, res, buf, typeOf(m[2]), "private, max-age=86400");
+    return true;
+  }
+  // Sharp library covers (posters.mjs): poster:eXoDOS/<cover key>.jpg.
+  const pm = p.match(/^poster:eXoDOS\/([0-9a-f]{16})\.jpg$/);
+  if (pm) {
+    const file = await app.posters.get(pm[1]);
+    if (!file) return false;
+    sendFile(req, res, file, "public, max-age=2592000");
     return true;
   }
   // Reading Room documents, extracted from their pack into the cache (reading.mjs).
@@ -370,7 +386,7 @@ createServer(async (req, res) => {
     }
 
     if (path === "/asset") {
-      // Only the bundled cover previews are reachable this way.
+      // Bundled cover previews, plus the virtual paths in serveVirtual.
       const p = url.searchParams.get("path") ?? "";
       if (user && (await serveVirtual(req, res, p, user))) return;
       if (p.startsWith(PREVIEW_ROOT + "/") && serveFrom(req, res, PREVIEW_ROOT, p.slice(PREVIEW_ROOT.length), "public, max-age=604800")) return;

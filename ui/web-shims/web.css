@@ -95,3 +95,40 @@
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
+
+/* ── Phones and narrow windows ────────────────────────────────────────────
+   Exodium is laid out for a desktop window; below 700px the grid became one
+   huge column, the A–Z bar and the Reading Room's publication list took a
+   third of the width, and the details panel left a strip of library showing. */
+@media (max-width: 700px) {
+  .top-bar { gap: 6px; padding: 0 8px; }
+  .top-bar-center { flex: 1; min-width: 0; }
+  .library { padding: 0 10px 16px; }
+  .lib-tabs { overflow-x: auto; scrollbar-width: none; }
+  .lib-tab { padding: 7px 10px 9px; white-space: nowrap; flex: none; }
+  .lib-tab-count { display: none; }
+  .library-toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 0; }
+  .library-toolbar > * { min-width: 0; max-width: 100%; }
+  .reading-kinds { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+  .reading-kinds > * { flex: none; }
+
+  /* Three covers across instead of one. */
+  .library .game-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px 10px; }
+  .library .game-card { border-radius: 10px; }
+  .library .game-card-art { border-radius: 9px; }
+  .library .game-card-body { padding: 6px 7px 7px; }
+  .library .game-card-title { font-size: 12px; line-height: 1.25; }
+  .library .game-card-meta { font-size: 10.5px; }
+  .library .game-card:hover { transform: none; }
+
+  /* A–Z stays, slim; the Reading Room's publication list is the filter above. */
+  .jump-bar { margin: 10px 2px 10px 0; max-width: 24px; }
+  .jump-bar .jump-bar-item { font-size: 10px; padding: 1px 2px; min-height: 0; }
+  .jump-bar.wide { display: none; }
+
+  /* Details take the whole screen. */
+  .game-detail-panel.game-detail-panel { width: 100vw; left: 0; border-left: 0; }
+
+  /* Downloads moves out of the search box's way, bottom left. */
+  #exodiumweb-downloads { top: auto; bottom: calc(var(--player-h, 0px) + 12px); left: 10px; padding: 6px 12px; background: rgba(30, 30, 40, 0.92); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
+}

@@ -26,6 +26,9 @@ RUN bash scripts/fetch-upstream-data.sh v0.15.2 && npm run fetch-jsdos
 
 # ── Runtime ───────────────────────────────────────────────────────────────
 FROM node:22.20.0-bookworm-slim
+# vipsthumbnail scales box art into library covers (posters.mjs).
+RUN apt-get update && apt-get install -y --no-install-recommends libvips-tools \
+ && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production \
     PORT=8080 \
     COLLECTION_ROOT=/collection \

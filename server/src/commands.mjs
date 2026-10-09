@@ -34,7 +34,8 @@ export const commands = {
       game_count: db.prepare("SELECT COUNT(*) AS n FROM games WHERE torrent_source = ?").get(id).n,
     })),
   get_preview_dir: ({ app }, { collection }) => `${app.previewRoot}/${collection === "eXoMedia" ? "eXoMedia" : collection ?? "eXoDOS"}`,
-  get_poster_dir: () => null,
+  // Sharp covers made from the box art on demand (posters.mjs, served by /asset).
+  get_poster_dir: (_ctx, { collection }) => ((collection ?? "eXoDOS") === "eXoDOS" ? "poster:eXoDOS" : null),
   get_log_dir: () => "/server/logs",
   get_default_data_dir: () => "/collection",
 
