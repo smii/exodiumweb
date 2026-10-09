@@ -6,6 +6,37 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 5 — sharp covers, Back inside the app, phones (2026-10-09)
+
+**Sharp covers.** The library used Exodium's bundled 75×120 thumbnails, so
+covers looked blurry next to the full-size gallery. Covers now come from
+each game's box art in eXo's metadata, scaled to 480 px wide the first time
+they're shown and then cached on the server
+(`server/src/posters.mjs`). Games without box art fall back to a title
+screenshot, or else to the old thumbnail.
+
+![Library with sharp box art covers](05-4-sharp-covers.png)
+
+**Back stays in the app.** Switching tabs and opening game details, the
+gallery, a manual, a dialog or a magazine each add a browser history step.
+Back closes them one at a time, then returns to the previous tab, and only
+then leaves the site. Closing something with its own ✕ removes its step,
+so Back never lands on something already closed.
+
+**Phones.** Two covers across, a slim A–Z bar, tabs and filters that fit
+the screen, game details that fill the screen, and the Downloads link moved
+out of the search box's way. The Reading Room uses its publication drop-down
+instead of the side list. The hover panel stays off on touch screens, and
+the player toolbar shows icons only.
+
+<p>
+<img src="05-1-phone-library.png" width="260" alt="Library on a phone: two covers across, A–Z bar on the right">
+<img src="05-2-phone-detail.png" width="260" alt="Game details filling a phone screen">
+<img src="05-3-phone-reading-room.png" width="260" alt="Reading Room on a phone: three magazine covers across">
+</p>
+
+---
+
 ## Milestone 4 — library look, hover info, Reading Room, CRT scanlines (2026-10-09)
 
 More room between games, framed cards with a soft glow on hover, and a
