@@ -13,8 +13,11 @@ Status: **MVP in progress.** Screenshots and recordings per milestone:
 
 ## Where it comes from
 
+I just wanted something selfhosted rather then running an desktop app ;)
+
+
 ExodiumWeb is based on [**Exodium**](https://github.com/tvollstaedt/exodium)
-by tvollstaedt, a desktop launcher for the eXo collections built with Tauri
+by tvollstaedt(Kudoes to you!!!), a desktop launcher for the eXo collections built with Tauri
 (SolidJS frontend, Rust backend) that starts games in native emulators such as
 DOSBox.
 
