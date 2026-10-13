@@ -1,0 +1,134 @@
+/* exodiumweb: browser-only adjustments on top of Exodium's unchanged styles. */
+
+/* The custom desktop title bar (app name + minimise/maximise/close) has no
+   job in a browser tab; the browser owns the window. */
+.window-frame {
+  display: none !important;
+}
+
+/* ── Library look ─────────────────────────────────────────────────────────
+   More room between games, framed cards, and a background with some depth
+   instead of flat near-black, so the cover art stands out. */
+.library {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(120, 90, 220, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(40, 140, 220, 0.08), transparent 60%),
+    linear-gradient(180deg, #11111a 0%, #0c0c13 100%);
+}
+.library .game-grid {
+  gap: 22px 20px;
+  padding-top: 6px;
+}
+.library .game-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.library .game-card:hover {
+  border-color: rgba(150, 125, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(150, 125, 255, 0.25), 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(120, 90, 220, 0.18);
+  transform: translateY(-3px);
+}
+.library .game-card-art {
+  border-radius: 13px;
+}
+
+/* ── Hover info panel (hovercard.ts) ──────────────────────────────────── */
+.exw-hover {
+  position: fixed;
+  z-index: 1000;
+  width: 340px;
+  max-height: min(70vh, 520px);
+  overflow: hidden;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(150, 125, 255, 0.35);
+  background: rgba(20, 20, 30, 0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+  color: #d8d8e4;
+  font: 13px/1.45 system-ui, sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+.exw-hover.from-left { transform: translateX(10px); }
+.exw-hover.is-open { opacity: 1; transform: none; }
+.exw-hover-head { display: flex; gap: 12px; }
+.exw-hover-cover { width: 74px; height: 96px; object-fit: cover; border-radius: 8px; flex: none; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); }
+.exw-hover-title { font-size: 15px; font-weight: 650; color: #fff; line-height: 1.25; }
+.exw-hover-credits { margin-top: 3px; color: #a9a9bb; font-size: 12px; }
+.exw-hover-facts { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.exw-hover-facts span { padding: 1px 7px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); font-size: 11px; color: #c4c4d4; }
+.exw-stars { display: block; margin-top: 6px; color: #f3c14b; letter-spacing: 1px; font-size: 13px; }
+.exw-hover-desc {
+  margin: 10px 0 0;
+  color: #c2c2d0;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.exw-hover-more { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.exw-hover-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #8f8fa6; margin-bottom: 4px; }
+.exw-hover-similar { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; color: #d6d6e4; }
+.exw-hover-similar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.exw-hover-similar em { color: #8f8fa6; font-style: normal; flex: none; }
+.exw-hover-hint { margin-top: 10px; font-size: 11px; color: #7d7d94; }
+
+/* Link to the downloaded-games page (large games kept in this browser). */
+#exodiumweb-downloads {
+  position: fixed;
+  top: 9px;
+  left: 16px;
+  z-index: 50;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font: 12px/1.4 system-ui, sans-serif;
+  color: #c9c9d4;
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+#exodiumweb-downloads:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* ── Phones and narrow windows ────────────────────────────────────────────
+   Exodium is laid out for a desktop window; below 700px the grid became one
+   huge column, the A–Z bar and the Reading Room's publication list took a
+   third of the width, and the details panel left a strip of library showing. */
+@media (max-width: 700px) {
+  .top-bar { gap: 6px; padding: 0 8px; }
+  .top-bar-center { flex: 1; min-width: 0; }
+  .library { padding: 0 10px 16px; }
+  .lib-tabs { overflow-x: auto; scrollbar-width: none; }
+  .lib-tab { padding: 7px 10px 9px; white-space: nowrap; flex: none; }
+  .lib-tab-count { display: none; }
+  .library-toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 0; }
+  .library-toolbar > * { min-width: 0; max-width: 100%; }
+  .reading-kinds { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+  .reading-kinds > * { flex: none; }
+
+  /* Three covers across instead of one. */
+  .library .game-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px 10px; }
+  .library .game-card { border-radius: 10px; }
+  .library .game-card-art { border-radius: 9px; }
+  .library .game-card-body { padding: 6px 7px 7px; }
+  .library .game-card-title { font-size: 12px; line-height: 1.25; }
+  .library .game-card-meta { font-size: 10.5px; }
+  .library .game-card:hover { transform: none; }
+
+  /* A–Z stays, slim; the Reading Room's publication list is the filter above. */
+  .jump-bar { margin: 10px 2px 10px 0; max-width: 24px; }
+  .jump-bar .jump-bar-item { font-size: 10px; padding: 1px 2px; min-height: 0; }
+  .jump-bar.wide { display: none; }
+
+  /* Details take the whole screen. */
+  .game-detail-panel.game-detail-panel { width: 100vw; left: 0; border-left: 0; }
+
+  /* Downloads moves out of the search box's way, bottom left. */
+  #exodiumweb-downloads { top: auto; bottom: calc(var(--player-h, 0px) + 12px); left: 10px; padding: 6px 12px; background: rgba(30, 30, 40, 0.92); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
+}

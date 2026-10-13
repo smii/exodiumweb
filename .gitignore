@@ -1,0 +1,36 @@
+# game data, ROMs and NAS copies never go in git
+dev-data/
+poc/games/
+poc/data/confs/
+poc/data/eXoDOS_configs.zip
+poc/data/exodium.db
+poc/data/nas_exodos_zips.txt
+# Exodium's bundled catalogue, configs and thumbnails (MIT, ~100 MB):
+# fetched by server/scripts/fetch-upstream-data.sh, not committed
+server/data/
+server/assets/previews/
+# per-user state, local dev settings
+server/state/
+server/dev.env
+# vendored js-dos is re-downloadable (npm pack js-dos@8.4.1)
+poc/vendor/
+server/vendor/
+# build + tooling output
+node_modules/
+ui/dist/
+ui/public/pdfjs/
+poc/test/.libs/
+poc/test/.debs/
+poc/test/shots/
+poc/test/last-run.json
+test/.libs/
+test/.debs/
+test/shots/
+test/videos/
+test/last-run.json
+test/server.log
+test/runs/
+tools/.bin/
+tools/.debs/
+test/profiles/
+.env

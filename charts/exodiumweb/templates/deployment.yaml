@@ -1,0 +1,100 @@
+{{- $fullname := include "exodiumweb.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullname }}
+  labels: {{- include "exodiumweb.labels" . | nindent 4 }}
+spec:
+  replicas: 1                  # per-user SQLite files: never more than one
+  strategy: { type: Recreate } # RWO volumes
+  selector:
+    matchLabels: {{- include "exodiumweb.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{- include "exodiumweb.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+      annotations: {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      enableServiceLinks: false
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.collection.check.enabled }}
+      initContainers:
+        - name: check-collection
+          image: {{ .Values.collection.check.image }}
+          securityContext: {{- toYaml .Values.securityContext | nindent 12 }}
+          command:
+            - sh
+            - -c
+            - |
+              n=$(ls /collection/eXo/eXoDOS 2>/dev/null | grep -c '\.zip$')
+              [ "$n" -ge {{ int .Values.collection.check.minZips }} ] || { echo "only $n game zips in /collection/eXo/eXoDOS (need {{ int .Values.collection.check.minZips }})"; exit 1; }
+              [ -f '/collection/Content/!DOSmetadata.zip' ] || { echo "missing Content/!DOSmetadata.zip"; exit 1; }
+          volumeMounts:
+            - { name: collection, mountPath: /collection, readOnly: true }
+      {{- end }}
+      containers:
+        - name: exodiumweb
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext: {{- toYaml .Values.securityContext | nindent 12 }}
+          ports:
+            - { name: http, containerPort: 8080 }
+          env:
+            - { name: USER_HEADER, value: {{ .Values.auth.userHeader | quote }} }
+            {{- with .Values.auth.singleUser }}
+            - { name: SINGLE_USER, value: {{ . | quote }} }
+            {{- end }}
+            - { name: BUNDLE_CACHE_MB, value: {{ .Values.config.bundleCacheMB | quote }} }
+            - { name: MAX_BUNDLE_MB, value: {{ .Values.config.maxBundleMB | quote }} }
+            - { name: LARGE_BUNDLE_MB, value: {{ .Values.config.largeBundleMB | quote }} }
+            {{- if .Values.config.logRequests }}
+            - { name: LOG_REQUESTS, value: "1" }
+            {{- end }}
+            {{- with .Values.extraEnv }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          readinessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - { name: collection, mountPath: /collection, readOnly: true }
+            - { name: state, mountPath: /state }
+            - { name: cache, mountPath: /cache }
+            {{- if .Values.mt32.hostPath }}
+            - { name: mt32, mountPath: /mt32, readOnly: true }
+            {{- end }}
+      volumes:
+        - name: collection
+          {{- include "exodiumweb.collectionVolume" . | nindent 10 }}
+        {{- range $name := list "state" "cache" }}
+        {{- $p := index $.Values.persistence $name }}
+        - name: {{ $name }}
+          {{- if $p.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ $p.existingClaim | default (printf "%s-%s" $fullname $name) }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- end }}
+        {{- if .Values.mt32.hostPath }}
+        - name: mt32
+          hostPath: { path: {{ .Values.mt32.hostPath }}, type: Directory }
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations: {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity: {{- toYaml . | nindent 8 }}
+      {{- end }}

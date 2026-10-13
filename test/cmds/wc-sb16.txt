@@ -1,0 +1,6 @@
+SET CHEAT=N
+CONFIG -set "mididevice=default"
+cd wing
+copy .\sb16\*.* .\
+cls
+IF %CHEAT%==N wc

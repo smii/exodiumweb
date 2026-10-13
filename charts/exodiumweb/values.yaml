@@ -1,0 +1,83 @@
+# Image: build it yourself (`docker build -t <registry>/exodiumweb:<tag> .`
+# in the repo root) and push it to a registry your cluster can pull from.
+image:
+  repository: exodiumweb
+  tag: ""            # defaults to the chart appVersion
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+
+# Who is the user? Pick one.
+auth:
+  # Header set by your login proxy (Authelia, oauth2-proxy, Authentik, ...).
+  # The proxy MUST overwrite any client-sent value: the app trusts it blindly.
+  userHeader: Remote-User
+  # Single-user mode: every request is this user, header ignored. Only for a
+  # one-person setup that nobody else can reach. Leave empty with a proxy.
+  singleUser: ""
+
+# The eXoDOS collection (folder holding eXo/ and Content/), mounted read-only.
+# Exactly one of hostPath / nfs / existingClaim.
+collection:
+  hostPath: ""                 # e.g. /mnt/exodos (node must have it mounted)
+  nfs: {}                      # e.g. { server: nas.example.lan, path: /exports/eXoDOS }
+  existingClaim: ""            # a PVC you created (RWX/ROX for an NFS/SMB share)
+  # Init container that refuses to start on an empty or dropped mount.
+  check:
+    enabled: true
+    minZips: 1000              # lower it for a partial collection
+    image: busybox:1.37
+
+# Optional MT-32 ROMs (MT32_CONTROL.ROM + MT32_PCM.ROM) from a hostPath.
+mt32:
+  hostPath: ""
+
+persistence:
+  # Per-user databases and saves. Back this up.
+  state:
+    enabled: true
+    size: 2Gi
+    storageClass: ""
+    existingClaim: ""
+  # Built game bundles, posters. Disposable; keep size above bundleCacheMB.
+  cache:
+    enabled: true
+    size: 25Gi
+    storageClass: ""
+    existingClaim: ""
+
+config:
+  bundleCacheMB: 20000
+  maxBundleMB: 4000
+  largeBundleMB: 300
+  logRequests: false
+extraEnv: []
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  # Put your login layer here (forward-auth / auth-url annotations). It must
+  # set the user header. The player also needs HTTPS (SharedArrayBuffer).
+  annotations: {}
+  labels: {}
+  host: exo.example.com
+  tls:
+    enabled: true
+    secretName: ""             # defaults to <release>-tls
+
+resources:
+  requests: { cpu: 50m, memory: 128Mi }
+  limits: { cpu: "2", memory: 1Gi }
+
+podSecurityContext: { runAsUser: 1000, runAsGroup: 1000, fsGroup: 1000, runAsNonRoot: true }
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities: { drop: [ALL] }
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+podAnnotations: {}

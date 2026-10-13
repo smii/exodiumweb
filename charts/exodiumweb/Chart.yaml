@@ -1,0 +1,10 @@
+apiVersion: v2
+name: exodiumweb
+description: eXoDOS in the browser — Exodium's UI with games booted by js-dos
+type: application
+version: 0.1.0
+appVersion: "0.1"
+home: https://github.com/smii/exodiumweb
+sources:
+  - https://github.com/smii/exodiumweb
+keywords: [exodos, dos, js-dos, retro, emulation]

@@ -1,0 +1,34 @@
+# exodiumweb with docker compose.
+#
+#   cp .env.example .env      # set EXODOS_PATH (and SINGLE_USER or a proxy)
+#   docker compose up -d --build
+#   open http://localhost:8080
+#
+# Default: single-user mode on 127.0.0.1 only (a browser on localhost is a
+# secure context, so the player works over plain HTTP). For several users,
+# unset SINGLE_USER and put a login proxy that sets Remote-User in front;
+# see docs/DEPLOY.md.
+services:
+  exodiumweb:
+    build: .
+    image: ${IMAGE:-exodiumweb:local}
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8080}:8080"
+    environment:
+      SINGLE_USER: ${SINGLE_USER:-}
+      USER_HEADER: ${USER_HEADER:-Remote-User}
+      BUNDLE_CACHE_MB: ${BUNDLE_CACHE_MB:-20000}
+      MAX_BUNDLE_MB: ${MAX_BUNDLE_MB:-4000}
+      LARGE_BUNDLE_MB: ${LARGE_BUNDLE_MB:-300}
+    volumes:
+      - ${EXODOS_PATH:?set EXODOS_PATH in .env to your eXoDOS folder}:/collection:ro
+      - state:/state
+      - cache:/cache
+      # Optional MT-32 ROMs (MT32_CONTROL.ROM + MT32_PCM.ROM):
+      # - /path/to/mt32:/mt32:ro
+    mem_limit: ${MEM_LIMIT:-1g}
+
+volumes:
+  state:
+  cache:

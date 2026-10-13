@@ -1,0 +1,23 @@
+{{- range $name := list "state" "cache" }}
+{{- $p := index $.Values.persistence $name }}
+{{- if and $p.enabled (not $p.existingClaim) }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "exodiumweb.fullname" $ }}-{{ $name }}
+  labels: {{- include "exodiumweb.labels" $ | nindent 4 }}
+  {{- if eq $name "state" }}
+  annotations:
+    helm.sh/resource-policy: keep   # saves survive `helm uninstall`
+  {{- end }}
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- with $p.storageClass }}
+  storageClassName: {{ . }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ $p.size }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,55 @@
+# One-off image build on the homelab node: kaniko reads the checkout at
+# /srv/exodiumweb (hostPath, read-only) and pushes to Harbor's internal
+# registry with a copy of the Tekton push credentials (Secret harbor-push).
+# Runs in the exodiumweb namespace: tekton-pipelines enforces PodSecurity
+# "baseline", which forbids the hostPath source mount.
+#
+#   TAG=$(git -C /srv/exodiumweb rev-parse --short HEAD)
+#   sed "s/__TAG__/$TAG/" deploy/build-job.yaml | kubectl create -f -
+#   kubectl -n exodiumweb logs -f job/exodiumweb-build-$TAG
+#
+# Build the committed state: the Job sees the working tree as it is on disk.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: exodiumweb-build-__TAG__
+  namespace: exodiumweb
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 86400
+  template:
+    spec:
+      restartPolicy: Never
+      nodeSelector:
+        kubernetes.io/hostname: rtm
+      containers:
+        - name: kaniko
+          image: gcr.io/kaniko-project/executor:latest
+          args:
+            - --dockerfile=Dockerfile
+            - --context=dir:///workspace
+            - --destination=harbor-core.harbor/homelab/exodiumweb:__TAG__
+            - --destination=harbor-core.harbor/homelab/exodiumweb:latest
+            - --insecure
+            - --skip-tls-verify
+            - --snapshot-mode=redo
+          resources:
+            requests: { cpu: 500m, memory: 512Mi }
+            limits: { cpu: "2", memory: 4Gi }
+          volumeMounts:
+            - name: source
+              mountPath: /workspace
+              readOnly: true
+            - name: docker-config
+              mountPath: /kaniko/.docker
+      volumes:
+        - name: source
+          hostPath:
+            path: /srv/exodiumweb
+            type: Directory
+        - name: docker-config
+          secret:
+            secretName: harbor-push
+            items:
+              - key: .dockerconfigjson
+                path: config.json
