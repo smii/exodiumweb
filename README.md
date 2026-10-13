@@ -1,14 +1,50 @@
 # (Unofficial) ExodiumWeb
 
-A self-hosted web app for the eXo collections (eXoDOS first) that looks like
-[Exodium](https://github.com/tvollstaedt/exodium) but boots games **in the
-browser** with [js-dos 8](https://js-dos.com) instead of native emulators.
+A self-hosted web app for the eXo collections (eXoDOS first): browse the whole
+eXoDOS library and play the games **in your browser**, no emulator to install.
+
+![Library: 7,666 games, with the hover info panel open](docs/screenshots/library.png)
 
 *Unofficial: not affiliated with the Exodium project or the eXo team. The
 Exodium UI is used under its MIT licence (`ui/UPSTREAM-LICENSE`).*
 
 Status: **MVP in progress.** Screenshots and recordings per milestone:
 [docs/progress](docs/progress/README.md).
+
+## Where it comes from
+
+ExodiumWeb is based on [**Exodium**](https://github.com/tvollstaedt/exodium)
+by tvollstaedt, a desktop launcher for the eXo collections built with Tauri
+(SolidJS frontend, Rust backend) that starts games in native emulators such as
+DOSBox.
+
+This project took Exodium and refactored it into a **web app**, with AI coding
+assistants (Claude Code and GitHub Copilot) doing most of the
+refactoring under human direction:
+
+| Exodium (desktop) | ExodiumWeb (browser) |
+|---|---|
+| Tauri app, installed per machine | One server, any browser on the network |
+| Rust backend (~100 Tauri commands) | Dependency-free Node server answering the same commands over HTTP |
+| Native DOSBox / DOSBox-X | [js-dos 8](https://js-dos.com) (DOSBox compiled to WebAssembly) in the browser; each game's own eXo `dosbox.conf` translated on the fly |
+| Single user, local files | Per-user libraries, favourites and saves |
+
+The Exodium UI itself is kept almost unchanged; small `web-shims/` stand in
+for the Tauri modules it imports. Hence the name: Exodium, as a web app,
+**ExodiumWeb**.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Game detail with box art, video and gallery](docs/screenshots/detail.png) | ![Commander Keen 5 running in the browser](docs/screenshots/playing.png) |
+| Game detail: description, box art, video, gallery, manual | Commander Keen 5 running in the browser with js-dos |
+
+![Reading Room with eXo's magazines](docs/screenshots/reading-room.png)
+
+Reading Room: eXo's magazines, books and catalogues, read in the browser.
+
+Retake them with `test/readme-shots.mjs` (Playwright; see the header comment).
 
 ## Quick start
 
@@ -79,7 +115,7 @@ Internals: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 | `charts/exodiumweb/` | Helm chart |
 | `compose.yaml`, `.env.example` | docker compose setup |
 | `deploy/` | The author's own homelab build Job (kaniko → Harbor); an example, not needed elsewhere |
-| `test/` | Playwright screenshots, screen recordings (`record-play.mjs`) and GIF conversion |
+| `test/` | Playwright screenshots (`readme-shots.mjs` for the README), screen recordings (`record-play.mjs`) and GIF conversion |
 | `poc/` | The original proof of concept |
 
 ## Run (development)
