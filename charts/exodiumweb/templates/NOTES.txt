@@ -1,0 +1,15 @@
+exodiumweb is starting (the first request per user copies the catalogue; the
+first launch of each game builds its bundle).
+
+{{- if .Values.ingress.enabled }}
+Open: https://{{ .Values.ingress.host }}
+{{- else }}
+Try it locally (localhost is a secure context, so the player works over HTTP):
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ include "exodiumweb.fullname" . }} 8080:{{ .Values.service.port }}
+  open http://localhost:8080
+{{- end }}
+{{- if not .Values.auth.singleUser }}
+
+No single user is set: requests need the {{ .Values.auth.userHeader }} header from your
+login proxy, otherwise the API answers 401 "not signed in".
+{{- end }}

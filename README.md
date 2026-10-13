@@ -10,29 +10,88 @@ Exodium UI is used under its MIT licence (`ui/UPSTREAM-LICENSE`).*
 Status: **MVP in progress.** Screenshots and recordings per milestone:
 [docs/progress](docs/progress/README.md).
 
+## Quick start
+
+You need your own copy of the **eXoDOS collection** (6.04 layout: the folder
+holding `eXo/` and `Content/`). Nothing from it is in this repo or the image.
+The browser must reach the app over **HTTPS or `localhost`** (the player needs
+`SharedArrayBuffer`).
+
+### Docker
+
+```bash
+docker build -t exodiumweb .
+docker run -d --name exodiumweb -p 127.0.0.1:8080:8080 \
+  -v /path/to/eXoDOS:/collection:ro \
+  -v exodiumweb-state:/state -v exodiumweb-cache:/cache \
+  -e SINGLE_USER=player \
+  exodiumweb
+```
+
+Open <http://localhost:8080>.
+
+### docker compose
+
+```bash
+cp .env.example .env          # set EXODOS_PATH; SINGLE_USER=player by default
+docker compose up -d --build
+```
+
+[`compose.yaml`](compose.yaml) binds to `127.0.0.1:8080` and keeps per-user
+state and the bundle cache in named volumes.
+
+### Helm (Kubernetes)
+
+Build and push the image to a registry your cluster can pull from, then:
+
+```bash
+helm install exodiumweb charts/exodiumweb -n exodiumweb --create-namespace \
+  --set image.repository=registry.example.com/exodiumweb --set image.tag=0.1 \
+  --set collection.hostPath=/mnt/exodos \
+  --set ingress.enabled=true --set ingress.host=exo.example.com
+```
+
+The collection can be a `hostPath`, an `nfs` share or an existing PVC. For
+users, set either `auth.singleUser` or a login proxy in `ingress.annotations`.
+All options are in [`charts/exodiumweb/values.yaml`](charts/exodiumweb/values.yaml).
+
+### Users and login
+
+The app has no login of its own. Pick one:
+
+- **Single user** (`SINGLE_USER=<name>`): everyone who reaches the app is that
+  user. Fine on `localhost` or a trusted LAN, never on the internet.
+- **Login proxy** (several users, each with their own library and saves):
+  leave `SINGLE_USER` empty and put Authelia, oauth2-proxy, Authentik or any
+  forward-auth proxy in front. It must set the `Remote-User` header
+  (`USER_HEADER` to rename it) and overwrite any value the client sends.
+
+Details, sizing, backup and upgrades: [docs/DEPLOY.md](docs/DEPLOY.md).
+Every setting: [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
+Internals: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Layout
 
 | Folder | What |
 |---|---|
 | `ui/` | Exodium v0.15.2 frontend, unchanged, plus `web-shims/` for the 7 Tauri modules it imports (see `ui/UPSTREAM.md`) |
 | `server/` | Node server (no deps): Exodium's commands over HTTP, per-user catalogue copies, game zips from the collection, the js-dos player page |
+| `charts/exodiumweb/` | Helm chart |
+| `compose.yaml`, `.env.example` | docker compose setup |
+| `deploy/` | The author's own homelab build Job (kaniko → Harbor); an example, not needed elsewhere |
 | `test/` | Playwright screenshots, screen recordings (`record-play.mjs`) and GIF conversion |
 | `poc/` | The original proof of concept |
 
 ## Run (development)
 
+Needs Node >= 22.13.
+
 ```bash
 cd ui && npx pnpm@9 install && npx pnpm@9 build && cd ..
 cd server && npm run fetch-data && npm run fetch-jsdos
-npm run dev          # uses server/dev.env: collection over ssh, metadata copies in dev-data/
+cp dev.env.example dev.env    # point COLLECTION_ROOT (or COLLECTION_SSH) at your collection
+npm run dev                   # http://localhost:8090
 ```
-
-In production the server reads the collection from a read-only mount
-(`COLLECTION_ROOT` = the eXoDOS folder holding `eXo/` and `Content/`) and takes
-the user from Authelia's `Remote-User` header; see `server/src/index.mjs`.
-
-Deploying elsewhere (Docker, compose, Kubernetes): [docs/DEPLOY.md](docs/DEPLOY.md).
-More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
 
 Game graphics, launch configuration and isolated browser diagnostics:
 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md). Includes the Tomb Raider

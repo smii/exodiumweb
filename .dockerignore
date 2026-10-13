@@ -11,3 +11,9 @@ server/vendor
 server/state
 server/cache
 server/dev.env
+charts
+compose.yaml
+.env
+.env.example
+runs
+.GitHubBoard

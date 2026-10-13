@@ -9,8 +9,9 @@ poc/data/nas_exodos_zips.txt
 # fetched by server/scripts/fetch-upstream-data.sh, not committed
 server/data/
 server/assets/previews/
-# per-user state
+# per-user state, local dev settings
 server/state/
+server/dev.env
 # vendored js-dos is re-downloadable (npm pack js-dos@8.4.1)
 poc/vendor/
 server/vendor/
@@ -32,3 +33,4 @@ test/runs/
 tools/.bin/
 tools/.debs/
 test/profiles/
+.env

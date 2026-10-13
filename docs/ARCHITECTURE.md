@@ -51,7 +51,8 @@ isolation for `SharedArrayBuffer`); all assets are same-origin.
 
 - **Identity** is the `Remote-User` header (configurable) set by the login
   proxy. The server does no authentication of its own and trusts the header
-  as-is. `DEV_USER` fills in when the header is missing (development).
+  as-is. `SINGLE_USER` replaces it outright (one-person setups without a
+  proxy); `DEV_USER` fills in when the header is missing (development).
 - **Catalogue**: at startup (or image build) `db.mjs:ensureCatalog` turns
   `data/exodium.db` into `data/catalog.db`: only eXoDOS rows
   (`ENABLED_COLLECTIONS`), every game marked installed (so the UI shows

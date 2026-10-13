@@ -2,7 +2,10 @@
 
 The server is configured only through environment variables (read in
 `server/src/index.mjs` and `server/src/collection.mjs`). There is no config
-file. `npm run dev` loads `server/dev.env` with `node --env-file`.
+file. `npm run dev` loads `server/dev.env` (git-ignored; copy
+`server/dev.env.example`) with `node --env-file-if-exists`. docker compose
+reads `.env` (copy `.env.example`); the Helm chart maps its values to these
+variables (`charts/exodiumweb/values.yaml`).
 
 ## Environment variables
 
@@ -18,7 +21,8 @@ file. `npm run dev` loads `server/dev.env` with `node --env-file`.
 | `CACHE_MAX_BYTES` | `21474836480` (20 GiB) | — | ssh mode only: LRU cap for game zips fetched into `CACHE_DIR`. |
 | `STATE_DIR` | `server/state` | `/state` | Per-user databases and saves. **Persistent; back it up.** |
 | `MT32_DIR` | unset | `/mt32` | Folder with `MT32_CONTROL.ROM` + `MT32_PCM.ROM`. Only used for MT-32 games on the `dosboxX` backend, which the translator does not normally pick (see Troubleshooting: no MIDI synth). If set but the files are missing, a bundle build that needs them fails. |
-| `USER_HEADER` | `Remote-User` | — | Request header naming the user (case-insensitive). Set by the login proxy. |
+| `USER_HEADER` | `Remote-User` | — | Request header naming the user (case-insensitive). Set by the login proxy. Ignored with `SINGLE_USER`. |
+| `SINGLE_USER` | — | — | Single-user mode: every request is this user and `USER_HEADER` is ignored. For one person on localhost or a trusted LAN, with no login proxy. Anyone who reaches the port is this user. |
 | `DEV_USER` | — | — | User when the header is absent. **Development only**: in production it would let anyone in as that user. |
 | `MAX_BUNDLE_MB` | `4000` | — | Refuse games whose source zip is larger (HTTP 413 with a message). Browser/WASM limit. |
 | `LARGE_BUNDLE_MB` | `300` | — | Above this the player asks before downloading and keeps the game in browser storage. |
@@ -77,8 +81,9 @@ Each of these changes the config hash, so it builds a separate bundle.
   `exodium.db`, not from the collection. A game in the catalogue whose zip is
   missing fails at launch (`missing <Game>.zip`). The eXo configs in the
   collection always win over Exodium's bundled ones.
-- The Kubernetes example's init check expects ≥ 1,000 zips in `eXo/eXoDOS/`
-  and both metadata zips; adjust for a partial collection.
+- The Helm chart's init check expects ≥ `collection.check.minZips` (1,000)
+  zips in `eXo/eXoDOS/` and `Content/!DOSmetadata.zip`; lower it or disable it
+  for a partial collection.
 
 ## Build-time inputs
 

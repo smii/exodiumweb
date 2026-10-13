@@ -1,7 +1,8 @@
 # Deploying exodiumweb elsewhere
 
 How to run exodiumweb on another machine or cluster: plain Docker, docker
-compose, generic Kubernetes, plus a note on this homelab's own flow. Variable
+compose (`compose.yaml`), Kubernetes with the Helm chart
+(`charts/exodiumweb/`), plus a note on the author's own homelab flow. Variable
 reference: [CONFIGURATION.md](CONFIGURATION.md). Internals:
 [ARCHITECTURE.md](ARCHITECTURE.md).
 
@@ -12,7 +13,7 @@ reference: [CONFIGURATION.md](CONFIGURATION.md). Internals:
 | eXoDOS collection (6.04 layout) | Mounted **read-only** at `/collection`. Must hold `eXo/eXoDOS/*.zip`, `Content/!DOSmetadata.zip` (required to launch anything) and `Content/XODOSMetadata.zip` (box art; ~5 GB, optional but recommended). Optional: `Content/GameData/eXoDOS/*.zip`, Media Pack zips. You supply it; the image contains none of it. |
 | `/state` volume | Per-user databases and saves. Persistent, **back it up**. A few GB at most (~20 MB per user + saves). |
 | `/cache` volume | Built game bundles, posters, reading-room extracts. Disposable; bounded by `BUNDLE_CACHE_MB` (default 30000 = ~30 GB). |
-| Login proxy | Authenticates users and sets the `Remote-User` header (Authelia, oauth2-proxy, Authentik, Caddy/Traefik/nginx forward-auth, ...). |
+| Login proxy *or* single-user mode | Several users: a proxy that authenticates them and sets the `Remote-User` header (Authelia, oauth2-proxy, Authentik, Caddy/Traefik/nginx forward-auth, ...). One person on localhost or a trusted LAN: `SINGLE_USER=<name>` instead, no proxy. |
 | HTTPS | The browser must reach the app in a **secure context** (HTTPS or `localhost`). The player needs `SharedArrayBuffer` (the server sends COOP/COEP headers; do not strip them), AudioWorklet and the Cache API (large games are kept in browser storage). Over plain HTTP on a LAN hostname the player breaks. |
 | Optional `/mt32` | `MT32_CONTROL.ROM` + `MT32_PCM.ROM`, only for MT-32 games on the dosboxX backend. Skip it normally. |
 
@@ -21,7 +22,10 @@ no outbound network at runtime and no root.
 
 ## Security: the Remote-User header
 
-The server does **no authentication**. It trusts the `Remote-User` header
+The server does **no authentication**. With `SINGLE_USER` set it ignores the
+header and treats every request as that user, so anyone who can reach the port
+*is* that user: keep it on `127.0.0.1` or a network you trust. Without
+`SINGLE_USER`: it trusts the `Remote-User` header
 (`USER_HEADER` to rename) as the identity: anyone who can reach port 8080
 directly can send `Remote-User: someone` and read or overwrite that user's
 saves and library.
@@ -62,151 +66,89 @@ docker run -d --name exodiumweb --restart unless-stopped \
   -v exodiumweb-state:/state \
   -v exodiumweb-cache:/cache \
   -e BUNDLE_CACHE_MB=20000 \
+  -e SINGLE_USER=player \
   --memory 1g \
   exodiumweb:latest
 ```
 
 Named volumes are created owned by uid 1000 on first use. If you bind-mount
 host directories for `/state` and `/cache`, `chown 1000:1000` them first.
-Put your TLS + login proxy in front of `127.0.0.1:8080`.
+Open <http://localhost:8080>. For several users drop `SINGLE_USER` and put your
+TLS + login proxy in front of `127.0.0.1:8080`.
 
 ## docker compose
 
-```yaml
-services:
-  exodiumweb:
-    image: exodiumweb:latest          # or registry.example.com/exodiumweb:<tag>
-    restart: unless-stopped
-    environment:
-      BUNDLE_CACHE_MB: "20000"
-      # USER_HEADER: Remote-User
-    volumes:
-      - /path/to/eXoDOS:/collection:ro
-      - state:/state
-      - cache:/cache
-    mem_limit: 1g
-    expose: ["8080"]                  # reachable by the proxy only, no "ports:"
-    networks: [proxy]
+The repo ships [`compose.yaml`](../compose.yaml), driven by a `.env` file:
 
-  # Example login proxy: replace with your own (Authelia/oauth2-proxy/...).
-  # It must terminate TLS and set Remote-User from the authenticated user.
-  # proxy:
-  #   image: <your reverse proxy>
-  #   ports: ["443:443"]
-  #   networks: [proxy]
-
-volumes:
-  state:
-  cache:
-networks:
-  proxy:
+```bash
+cp .env.example .env      # EXODOS_PATH=/path/to/eXoDOS, SINGLE_USER=player
+docker compose up -d --build
 ```
 
-## Kubernetes (generic)
+| `.env` key | Default | Meaning |
+|---|---|---|
+| `EXODOS_PATH` | (required) | Host path of the eXoDOS folder, mounted read-only at `/collection`. |
+| `SINGLE_USER` | empty | Single-user mode; leave empty behind a login proxy. |
+| `BIND_ADDRESS` / `PORT` | `127.0.0.1` / `8080` | Host address and port to publish on. |
+| `BUNDLE_CACHE_MB`, `MAX_BUNDLE_MB`, `LARGE_BUNDLE_MB`, `USER_HEADER` | see CONFIGURATION.md | Passed through to the server. |
+| `MEM_LIMIT` | `1g` | Container memory limit. |
+| `IMAGE` | `exodiumweb:local` | Image name to build/tag (or a prebuilt one from your registry). |
 
-Minimal manifests. Adjust the image, storage class, collection source (an
-NFS/SMB volume or a hostPath on a node that has it mounted) and the Ingress
-class/auth annotations of your cluster. All values are placeholders.
+State and cache live in the named volumes `state` and `cache`. To put a
+login proxy in front, add it as a service on the same compose network, leave
+`SINGLE_USER` empty and have the proxy forward to `exodiumweb:8080` with
+`Remote-User` set (and remove the `ports:` mapping so only the proxy can
+reach the app).
+
+## Kubernetes (Helm chart)
+
+[`charts/exodiumweb/`](../charts/exodiumweb) deploys a single-replica
+Deployment (`Recreate`, per-user SQLite files), a ClusterIP Service, PVCs for
+`/state` and `/cache`, an optional Ingress and an init container that refuses
+to start on an empty collection mount. The pod runs as uid/gid 1000 with all
+capabilities dropped.
+
+```bash
+docker build -t registry.example.com/exodiumweb:0.1 . && docker push registry.example.com/exodiumweb:0.1
+
+helm install exodiumweb charts/exodiumweb -n exodiumweb --create-namespace -f my-values.yaml
+```
 
 ```yaml
-apiVersion: v1
-kind: Namespace
-metadata: { name: exodiumweb }
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata: { name: exodiumweb-state, namespace: exodiumweb }
-spec:
-  accessModes: [ReadWriteOnce]
-  resources: { requests: { storage: 2Gi } }
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata: { name: exodiumweb-cache, namespace: exodiumweb }
-spec:
-  accessModes: [ReadWriteOnce]
-  resources: { requests: { storage: 25Gi } }
----
-apiVersion: apps/v1
-kind: Deployment
-metadata: { name: exodiumweb, namespace: exodiumweb }
-spec:
-  replicas: 1                      # per-user SQLite files: never more than 1
-  strategy: { type: Recreate }     # RWO volumes
-  selector: { matchLabels: { app: exodiumweb } }
-  template:
-    metadata: { labels: { app: exodiumweb } }
-    spec:
-      enableServiceLinks: false
-      securityContext: { runAsUser: 1000, runAsGroup: 1000, fsGroup: 1000 }
-      # imagePullSecrets: [{ name: registry-credentials }]
-      initContainers:
-        # Refuse to start on an empty/dropped collection mount.
-        - name: check-collection
-          image: busybox:1.36
-          command:
-            - sh
-            - -c
-            - |
-              n=$(ls /collection/eXo/eXoDOS 2>/dev/null | grep -c '\.zip$')
-              [ "$n" -ge 1000 ] || { echo "collection missing at /collection"; exit 1; }
-              for f in '!DOSmetadata.zip' XODOSMetadata.zip; do
-                [ -f "/collection/Content/$f" ] || { echo "missing Content/$f"; exit 1; }
-              done
-          volumeMounts:
-            - { name: collection, mountPath: /collection, readOnly: true }
-      containers:
-        - name: exodiumweb
-          image: registry.example.com/exodiumweb:TAG
-          ports: [{ name: http, containerPort: 8080 }]
-          env:
-            - { name: BUNDLE_CACHE_MB, value: "20000" }
-          resources:
-            requests: { cpu: 50m, memory: 128Mi }
-            limits: { cpu: "2", memory: 1Gi }
-          readinessProbe: { httpGet: { path: /healthz, port: http }, periodSeconds: 10 }
-          livenessProbe: { httpGet: { path: /healthz, port: http }, initialDelaySeconds: 30, periodSeconds: 30 }
-          volumeMounts:
-            - { name: collection, mountPath: /collection, readOnly: true }
-            - { name: state, mountPath: /state }
-            - { name: cache, mountPath: /cache }
-      volumes:
-        - name: collection
-          nfs: { server: nas.example.lan, path: /exports/eXoDOS, readOnly: true }
-          # or: hostPath: { path: /mnt/exodos, type: Directory }
-        - name: state
-          persistentVolumeClaim: { claimName: exodiumweb-state }
-        - name: cache
-          persistentVolumeClaim: { claimName: exodiumweb-cache }
----
-apiVersion: v1
-kind: Service
-metadata: { name: exodiumweb, namespace: exodiumweb }
-spec:
-  selector: { app: exodiumweb }
-  ports: [{ name: http, port: 8080, targetPort: http }]
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: exodiumweb
-  namespace: exodiumweb
+# my-values.yaml
+image:
+  repository: registry.example.com/exodiumweb
+  tag: "0.1"
+# imagePullSecrets: [{ name: registry-credentials }]
+collection:
+  nfs: { server: nas.example.lan, path: /exports/eXoDOS }
+  # or hostPath: /mnt/exodos   (the node must have it mounted)
+  # or existingClaim: exodos   (a PVC for an NFS/SMB share)
+  check:
+    minZips: 1000              # lower for a partial collection, or enabled: false
+auth:
+  userHeader: Remote-User      # set by the proxy configured below
+  # singleUser: player         # instead of a proxy, one-person setups only
+persistence:
+  state: { size: 2Gi }         # kept on `helm uninstall` (resource-policy: keep)
+  cache: { size: 25Gi }        # keep above config.bundleCacheMB
+config:
+  bundleCacheMB: 20000
+ingress:
+  enabled: true
+  className: nginx
+  host: exo.example.com
   annotations:
-    # Your login layer MUST set Remote-User (forward-auth / auth-url + response
-    # headers) and overwrite any client-sent value. Controller-specific.
     cert-manager.io/cluster-issuer: letsencrypt
-spec:
-  ingressClassName: nginx
-  tls: [{ hosts: [exo.example.com], secretName: exodiumweb-tls }]
-  rules:
-    - host: exo.example.com
-      http:
-        paths:
-          - { path: /, pathType: Prefix, backend: { service: { name: exodiumweb, port: { name: http } } } }
+    # Your login layer MUST set Remote-User (forward-auth / auth-url +
+    # response headers) and overwrite any client-sent value. Controller-specific.
 ```
 
-Do not add a NetworkPolicy-free path to the Service from untrusted
-namespaces; the header trust applies to every in-cluster caller too.
+Without an Ingress, try it with
+`kubectl -n exodiumweb port-forward svc/exodiumweb 8080:8080` and
+<http://localhost:8080> (needs `auth.singleUser`, or every API call answers
+401). Do not open a path to the Service from untrusted namespaces; the header
+trust applies to every in-cluster caller too.
 
 ## First run
 
@@ -274,7 +216,7 @@ Restore by extracting into an empty `/state` (owner uid 1000) before starting.
 4. The Exodium catalogue is pinned in the image (`v0.15.2`), so catalogue
    changes only come with a new build.
 
-## This homelab (k3s + ArgoCD + kaniko)
+## The author's homelab (k3s + ArgoCD + kaniko)
 
 For reference only; do not copy the specifics.
 
@@ -300,7 +242,7 @@ For reference only; do not copy the specifics.
 | Library empty / `No launch config for ...` | `Content/!DOSmetadata.zip` missing, or the collection mount is empty/wrong path (mount the folder that holds `eXo/` and `Content/`). |
 | `missing <Game>.zip` at launch | Partial collection: game is in the catalogue but not in `eXo/eXoDOS/`. |
 | No box art / gallery, only tiny covers | `Content/XODOSMetadata.zip` missing. |
-| Pod `Init:CrashLoopBackOff` (check-collection) | Collection volume not mounted or < 1000 zips; adjust the check for partial collections. |
+| Pod `Init:CrashLoopBackOff` (check-collection) | Collection volume not mounted, `Content/!DOSmetadata.zip` missing or fewer zips than `collection.check.minZips`; lower it for a partial collection. |
 | Everyone is the same user / `401`-style behaviour | Proxy not setting `Remote-User` (or `USER_HEADER` mismatch); check what header reaches the app with `LOG_REQUESTS=1` and the proxy config. |
 | Anyone can impersonate users | Port 8080 reachable without the proxy, or proxy forwards client-sent `Remote-User`. See Security. |
 | Player stuck / `SharedArrayBuffer is not defined`, no audio, large games don't persist | Not a secure context (plain HTTP on a non-localhost name), or a proxy strips `Cross-Origin-*` headers. Use HTTPS. |

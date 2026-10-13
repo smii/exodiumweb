@@ -8,7 +8,9 @@
 //   MT32_DIR             folder with MT32_CONTROL.ROM + MT32_PCM.ROM
 //   STATE_DIR            per-user databases (default server/state)
 //   CACHE_DIR            ssh-mode game zip cache
-//   USER_HEADER          header naming the user (default Remote-User, set by Authelia)
+//   USER_HEADER          header naming the user (default Remote-User, set by the login proxy)
+//   SINGLE_USER          every request is this user, header ignored (no login proxy;
+//                        only for a single-person setup on localhost or a trusted LAN)
 //   DEV_USER             user when the header is absent (development only)
 //   MAX_BUNDLE_MB        refuse games whose zip is larger (default 4000, browser limit)
 //   LARGE_BUNDLE_MB      above this the player asks before downloading and keeps
@@ -43,6 +45,8 @@ const LARGE_BUNDLE_MB = Number(env.LARGE_BUNDLE_MB ?? 300);
 const BUNDLE_CACHE_MB = Number(env.BUNDLE_CACHE_MB ?? 30000);
 const SOCKDRIVE_DIR = join(env.CACHE_DIR ?? join(SERVER, "cache"), "sockdrive");
 const USER_HEADER = (env.USER_HEADER ?? "Remote-User").toLowerCase();
+const SINGLE_USER = env.SINGLE_USER?.trim() || null;
+if (SINGLE_USER) console.log(`single-user mode: every request is "${SINGLE_USER}", ${USER_HEADER} ignored`);
 const PREVIEW_ROOT = join(SERVER, "assets", "previews");
 const UI_DIST = env.UI_DIST ?? join(ROOT, "ui", "dist");
 const PUBLIC = join(SERVER, "public");
@@ -189,6 +193,7 @@ function readBody(req) {
 }
 
 function userOf(req) {
+  if (SINGLE_USER) return SINGLE_USER;
   return String(req.headers[USER_HEADER] ?? env.DEV_USER ?? "").trim() || null;
 }
 
