@@ -207,10 +207,19 @@ function tuneConf(conf, item) {
   return lines.join("\n");
 }
 
+const SOFTWARE_DEFAULTS = {
+  tombraig: { backend: "dosbox", cmd: "echo C:\\TOMBRAID > TOMBPATH.TXT|cd tombraid|tomb" },
+};
+
 /** Everything the player needs to boot one game for this user. */
 function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride) {
   const game = gameById(db, id);
   if (!game) return null;
+  // Tomb Raider Gold: the 3dfx (Voodoo/WebGL) path renders white intros and
+  // coloured-block textures (docs/TROUBLESHOOTING.md). Default to the original
+  // software-rendered game; ?backend= / ?cmd= and the per-game engine setting still win.
+  const sw = SOFTWARE_DEFAULTS[game.shortcode?.toLowerCase()];
+  if (sw && !backendOverride && !cmdOverride && !gameConfig(db, id).backend) { backendOverride = sw.backend; cmdOverride = sw.cmd; }
   const conf = collection.dosboxConf(game.shortcode);
   if (!conf) return { error: `No launch config for ${game.title} in this collection` };
   const settings = gameConfig(db, id);

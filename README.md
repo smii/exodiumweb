@@ -34,6 +34,10 @@ the user from Authelia's `Remote-User` header; see `server/src/index.mjs`.
 Deploying elsewhere (Docker, compose, Kubernetes): [docs/DEPLOY.md](docs/DEPLOY.md).
 More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
 
+Game graphics, launch configuration and isolated browser diagnostics:
+[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md). Includes the Tomb Raider
+white-intro/missing-text diagnosis and a non-3dfx fallback.
+
 ## Proof of concept (2026-10-07)
 
 `poc/` boots original eXoDOS game zips from the NAS with js-dos 8.4.1,
@@ -76,7 +80,7 @@ self-hosted, using each game's own eXo `dosbox.conf` translated on the fly.
 
 - IPX multiplayer between two browsers (js-dos WebRTC-NET).
 - CRT shader overlay (js-dos has none built in); scanlines are a CSS overlay aligned to the canvas by `alignScan` in `player.html`.
-- Real 3D gameplay in a 3dfx title (Furcol and Tomb Raider Gold render; Blood, Descent II, Shadow Warrior reach menus via `test/dfx-probe.mjs`; Shadow Warrior 3DFX hits a wasm `unreachable` headless, unverified). Quake's zip has no GLQuake/Glide build, so no 3dfx.
+- Real 3D gameplay in a 3dfx title (Furcol renders; Tomb Raider Gold's accelerated path has a white intro and missing menu text, despite rendering some demo scenes; Blood, Descent II, Shadow Warrior reach menus via `test/dfx-probe.mjs`; Shadow Warrior 3DFX hits a wasm `unreachable` headless, unverified). Quake's zip has no GLQuake/Glide build, so no 3dfx.
 - Aspect ratio: js-dos stretches to the container; needs `renderAspect`.
 
 ### Recent behaviour notes

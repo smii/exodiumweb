@@ -139,7 +139,7 @@ for (const g of plan) {
     const w = t.match(/^\[probe\] in=(\d+) out=(\d+) rms=([\d.]+) peak=([\d.]+)/);
     if (w) wl.push(w.slice(1).map(Number));
   });
-  const extra = (g.backend ? `&backend=${g.backend}` : "") + (g.tune ? `&tune=${encodeURIComponent(g.tune)}` : "");
+  const extra = (g.backend ? `&backend=${g.backend}` : "") + (g.tune ? `&tune=${encodeURIComponent(g.tune)}` : "") + (g.cmd ? `&cmd=${encodeURIComponent(g.cmd)}` : "");
   const src = `/player.html?id=${g.id}&autodownload=1${extra}`;
   let doc = page;
   if (viaFrame) {
