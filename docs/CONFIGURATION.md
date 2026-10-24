@@ -58,6 +58,7 @@ On `player.html?id=<id>` (passed through to `/api/play/<id>`):
 | `cmd=line\|line` | Replace the autoexec's commands (mounts and drive switches stay), no `exit`. |
 | `tune=section.key=value\|…` | Set or replace config keys, e.g. `tune=cpu.cycles=max`. |
 | `autodownload=1` | Skip the large-game question (tests). |
+| `disc=<key>` | For multi-disc launchers (C&C, Red Alert): bundle only that menu choice's disc and start it directly. Without it the player asks. Ignored with `cmd=`. |
 
 Each of these changes the config hash, so it builds a separate bundle.
 

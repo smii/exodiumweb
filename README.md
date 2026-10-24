@@ -1,84 +1,77 @@
 # (Unofficial) ExodiumWeb
 
-A self-hosted web app for the eXo collections (eXoDOS first): browse the whole
-eXoDOS library and play the games **in your browser**, no emulator to install.
+## The No-AI Generated Introduction Section
+
+Hi All,
+
+As a big fan of the [eXoDOS](https://www.retro-exo.com/exodos.html) community and the [Exodium](https://github.com/tvollstaedt/exodium) launcher, I wanted to bring these projects along on my self-hosted journey. I also wanted to see how I could utilize the capabilities of Claude (Opus 5.5), which ultimately resulted in this project. I honestly didn't expect transforming Exodium into a self-hosted (Cloud Native) service to be this functional so quickly.
+
+Current features:
+*   Many games are working already, though I can't guarantee everything. I'm currently compiling a compatibility list through automated and manual playtesting,
+*   There is a functional UI, including support for save games.
+*   Ingame settings bar ingame to adjust Graphical, HiD, Cycle settings. 
+*  'CRT Overlay'  (Sorry couldn't hold myself ;). It's just an visual layer on top of the picture: no blur etc.
+*   Large games will be entirely downloaded before running. For some (like Command & Conquer), I've added campaign options at launch to minimize the download size.  Downloads are per game removable in the UI.
+*   I've started doing automated testing using Claude, including several approaches to try and fix games on the fly, with the results being pushed back to the compatibility list.
+*   For games that needed fixes, don't worry: your local library remains untouched. The fixes are included directly in the commits.
+*   I did not yet included networking, due to my very limited time.
+
+
+Additionally  I tried to make the whole process from idea -> building as extensivly  which can be found in the docs.  In case this project enables others to contribute, re-use or build an even better platform! Last but not lease fingers crossed that the future brings better DOS support to the browser. 
+
+A big thanks to @tvollstaedt for his work and suggestions to make this better! And of course, I can't forget the entire eXoDOS community for all their effort!
+
+
+## What it is
+
+**Browse the whole eXoDOS library and play the games in your browser.**
+Self-hosted, multi-user, nothing to install on the client.
 
 ![Library: 7,666 games, with the hover info panel open](docs/screenshots/library.png)
 
-*Unofficial: not affiliated with the Exodium project or the eXo team. The
-Exodium UI is used under its MIT licence (`ui/UPSTREAM-LICENSE`).*
+| ![Game detail with box art, video and gallery](docs/screenshots/detail.png) | ![Commander Keen 5 running in the browser](docs/screenshots/playing.png) | ![Reading Room with eXo's magazines](docs/screenshots/reading-room.png) |
+|---|---|---|
+| Game detail: box art, video, gallery, manual | Commander Keen 5 in js-dos | Reading Room: eXo's magazines and books |
 
-Status: **MVP in progress.** Screenshots and recordings per milestone:
-[docs/progress](docs/progress/README.md).
+- **The whole eXoDOS 6.04 catalogue**, with search, genres, playlists, box art, videos and manuals.
+- **Games run in the browser** with [js-dos 8](https://js-dos.com) (DOSBox in WebAssembly). The server translates each game's own eXo `dosbox.conf` and launcher on the fly.
+- **Per-user** libraries, favourites and saves behind your login proxy, or a single user on a trusted LAN.
+- **Your collection stays untouched.** It is mounted read-only, and every fix is applied to a cached copy.
+- Big games download in pieces and stay in the browser. For multi-disc launchers, such as C&C and Red Alert, you pick one campaign and only that disc is downloaded.
 
-## Where it comes from
+Status: **MVP in progress.** Milestones with screenshots: [docs/progress](docs/progress/README.md).
 
-ExodiumWeb is based on [**Exodium**](https://github.com/tvollstaedt/exodium)
-by tvollstaedt, a desktop launcher for the eXo collections built with Tauri
-(SolidJS frontend, Rust backend) that starts games in native emulators such as
-DOSBox.
+## Tested games
 
-This project took Exodium and refactored it into a **web app**, with AI coding
-assistants (Claude Code and GitHub Copilot) doing most of the
-refactoring under human direction:
+The headless test plays each game up to a menu or into the game. Every tested game has its own page with the fixes made for it.
+Overview, global fixes and how to add a game: **[docs/compatibility](docs/compatibility/README.md)**.
 
-| Exodium (desktop) | ExodiumWeb (browser) |
-|---|---|
-| Tauri app, installed per machine | One server, any browser on the network |
-| Rust backend (~100 Tauri commands) | Dependency-free Node server answering the same commands over HTTP |
-| Native DOSBox / DOSBox-X | [js-dos 8](https://js-dos.com) (DOSBox compiled to WebAssembly) in the browser; each game's own eXo `dosbox.conf` translated on the fly |
-| Single user, local files | Per-user libraries, favourites and saves |
+<!-- generated:tested (node tools/compat-index.mjs) -->
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 **34 of 7,666 games tested:** 🟢 17 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported. [All tested games](docs/compatibility/GAMES.md) · [searchable table](docs/compatibility/games.csv)
+<!-- /generated:tested -->
 
-The Exodium UI itself is kept almost unchanged; small `web-shims/` stand in
-for the Tauri modules it imports. Hence the name: Exodium, as a web app,
-**ExodiumWeb**.
-
-## Screenshots
-
-| | |
-|---|---|
-| ![Game detail with box art, video and gallery](docs/screenshots/detail.png) | ![Commander Keen 5 running in the browser](docs/screenshots/playing.png) |
-| Game detail: description, box art, video, gallery, manual | Commander Keen 5 running in the browser with js-dos |
-
-![Reading Room with eXo's magazines](docs/screenshots/reading-room.png)
-
-Reading Room: eXo's magazines, books and catalogues, read in the browser.
-
-Retake them with `test/readme-shots.mjs` (Playwright; see the header comment).
+A game misbehaving? [Open an issue](https://github.com/smii/exodiumweb/issues/new/choose) with the game's name. The app's bug button and **Settings → About** link to the same place.
 
 ## Quick start
 
-You need your own copy of the **eXoDOS collection** (6.04 layout: the folder
-holding `eXo/` and `Content/`). Nothing from it is in this repo or the image.
-The browser must reach the app over **HTTPS or `localhost`** (the player needs
-`SharedArrayBuffer`).
-
-### Docker
+You need your own **eXoDOS 6.04 collection**: the folder that holds `eXo/` and `Content/`. None of it ships with this repo or the image.
+The browser must reach the app over **HTTPS or `localhost`**, because the player needs `SharedArrayBuffer`.
 
 ```bash
 docker build -t exodiumweb .
 docker run -d --name exodiumweb -p 127.0.0.1:8080:8080 \
   -v /path/to/eXoDOS:/collection:ro \
   -v exodiumweb-state:/state -v exodiumweb-cache:/cache \
-  -e SINGLE_USER=player \
-  exodiumweb
+  -e SINGLE_USER=player exodiumweb          # → http://localhost:8080
 ```
 
-Open <http://localhost:8080>.
-
-### docker compose
+<details>
+<summary><b>docker compose</b> and <b>Helm</b></summary>
 
 ```bash
-cp .env.example .env          # set EXODOS_PATH; SINGLE_USER=player by default
-docker compose up -d --build
+cp .env.example .env          # set EXODOS_PATH
+docker compose up -d --build  # binds 127.0.0.1:8080, named volumes for state + cache
 ```
-
-[`compose.yaml`](compose.yaml) binds to `127.0.0.1:8080` and keeps per-user
-state and the bundle cache in named volumes.
-
-### Helm (Kubernetes)
-
-Build and push the image to a registry your cluster can pull from, then:
 
 ```bash
 helm install exodiumweb charts/exodiumweb -n exodiumweb --create-namespace \
@@ -87,40 +80,30 @@ helm install exodiumweb charts/exodiumweb -n exodiumweb --create-namespace \
   --set ingress.enabled=true --set ingress.host=exo.example.com
 ```
 
-The collection can be a `hostPath`, an `nfs` share or an existing PVC. For
-users, set either `auth.singleUser` or a login proxy in `ingress.annotations`.
-All options are in [`charts/exodiumweb/values.yaml`](charts/exodiumweb/values.yaml).
+The collection can be a `hostPath`, an `nfs` share or an existing PVC. All options are in [`values.yaml`](charts/exodiumweb/values.yaml).
+</details>
 
-### Users and login
+**Users:** the app has no login of its own.
+- `SINGLE_USER=<name>` makes everyone that user. Use it only on `localhost` or a trusted LAN.
+- For several users, leave it empty and put a forward-auth proxy in front (Authelia, oauth2-proxy, Authentik). The proxy must set `Remote-User` (`USER_HEADER` renames it) and overwrite any value the client sends.
 
-The app has no login of its own. Pick one:
+## Docs
 
-- **Single user** (`SINGLE_USER=<name>`): everyone who reaches the app is that
-  user. Fine on `localhost` or a trusted LAN, never on the internet.
-- **Login proxy** (several users, each with their own library and saves):
-  leave `SINGLE_USER` empty and put Authelia, oauth2-proxy, Authentik or any
-  forward-auth proxy in front. It must set the `Remote-User` header
-  (`USER_HEADER` to rename it) and overwrite any value the client sends.
-
-Details, sizing, backup and upgrades: [docs/DEPLOY.md](docs/DEPLOY.md).
-Every setting: [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
-Internals: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
-
-## Layout
-
-| Folder | What |
+| | |
 |---|---|
-| `ui/` | Exodium v0.15.2 frontend, unchanged, plus `web-shims/` for the 7 Tauri modules it imports (see `ui/UPSTREAM.md`) |
-| `server/` | Node server (no deps): Exodium's commands over HTTP, per-user catalogue copies, game zips from the collection, the js-dos player page |
-| `charts/exodiumweb/` | Helm chart |
-| `compose.yaml`, `.env.example` | docker compose setup |
-| `deploy/` | The author's own homelab build Job (kaniko → Harbor); an example, not needed elsewhere |
-| `test/` | Playwright screenshots (`readme-shots.mjs` for the README), screen recordings (`record-play.mjs`) and GIF conversion |
-| `poc/` | The original proof of concept |
+| [MANUAL](docs/MANUAL.md) | Using the app: library, playing, saves, downloads, troubleshooting for players |
+| [DEPLOY](docs/DEPLOY.md) | Sizing, login proxies, backup, upgrades |
+| [CONFIGURATION](docs/CONFIGURATION.md) | Every setting and URL parameter (`?disc=`, `?cmd=`, `?tune=`) |
+| [ARCHITECTURE](docs/ARCHITECTURE.md) | Server, config translation, launcher patching, bundles, downloads |
+| [TROUBLESHOOTING](docs/TROUBLESHOOTING.md) | Black screens, graphics and audio, the headless probe (`test/render-probe.mjs`) |
+| [compatibility](docs/compatibility/README.md) | Overview of tested games, full A–Z list and searchable table, fix per game, global fixes |
+| [progress](docs/progress/README.md) | Milestones with screenshots and recordings |
+| [AI-ASSISTED-DEVELOPMENT](docs/AI-ASSISTED-DEVELOPMENT.md) | How it was built with Claude Code; agent kit, test harness, debugging method, deploy loop, reuse with other agents |
+| [CLAUDE.md](CLAUDE.md) · [skill](.claude/skills/exodiumweb-troubleshooting/SKILL.md) | For AI coding agents (also read via [AGENTS.md](AGENTS.md)): rules, layout, the game-debugging method |
 
-## Run (development)
+## Development
 
-Needs Node >= 22.13.
+Needs Node ≥ 22.13.
 
 ```bash
 cd ui && npx pnpm@9 install && npx pnpm@9 build && cd ..
@@ -129,80 +112,25 @@ cp dev.env.example dev.env    # point COLLECTION_ROOT (or COLLECTION_SSH) at you
 npm run dev                   # http://localhost:8090
 ```
 
-Game graphics, launch configuration and isolated browser diagnostics:
-[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md). Includes the Tomb Raider
-white-intro/missing-text diagnosis and a non-3dfx fallback.
-
-## Proof of concept (2026-10-07)
-
-`poc/` boots original eXoDOS game zips from the NAS with js-dos 8.4.1,
-self-hosted, using each game's own eXo `dosbox.conf` translated on the fly.
-
-| Piece | File |
+| Folder | What |
 |---|---|
-| eXo conf → js-dos translator (pure function) | `poc/server/translate.mjs` |
-| Test server (no deps; COOP/COEP headers, range requests) | `poc/server/server.mjs` |
-| Test list + player pages | `poc/public/index.html`, `poc/public/play.html` |
-| Headless boot test (Playwright) | `poc/test/boot-test.mjs`, `poc/test/test-3dfx.mjs` |
-| Copy test games / confs / MT-32 ROMs from the NAS (read-only) | `poc/tools/fetch_games.sh` |
-| Conf survey, test-game picker, translate-all check | `poc/tools/*.py`, `poc/tools/translate_all.mjs` |
+| `ui/` | Exodium v0.15.2 frontend plus `web-shims/` for the 7 Tauri modules it imports. Local changes are listed in [`ui/UPSTREAM.md`](ui/UPSTREAM.md). |
+| `server/` | Dependency-free Node server: Exodium's commands over HTTP, per-user SQLite, bundles built from the collection, the js-dos player |
+| `charts/exodiumweb/`, `compose.yaml` | Helm chart and docker compose setup |
+| `test/` | Playwright: README screenshots, recordings, the detached render probe (`run-detached.sh`) |
+| `deploy/` | The author's own homelab build Job (kaniko → Harbor); an example only |
+| `poc/` | The original proof of concept and its findings ([poc/README.md](poc/README.md)) |
 
-### Results
+## Where it comes from
 
-- **10/10 test games boot**: plain EGA/CGA, floppy image (`imgmount`), MT-32
-  (DOSBox-X + eXo's ROMs), Gravis Ultrasound, IPX config, booter disk, PCjr/Tandy,
-  Commander Keen 5, Wing Commander (CD image + MT-32), and Furcol in 3dfx mode
-  (`glfx enabled`, intro at ~85 % speed on software WebGL).
-- The translator handles all 7,666 eXoDOS 6.04 configs: 6,919 → `dosbox`,
-  747 → `dosboxX` (MT-32 / Voodoo / DOSBox-X titles), no host path left unconverted.
+ExodiumWeb is [**Exodium**](https://github.com/tvollstaedt/exodium) by tvollstaedt, made into a web app. Exodium is a Tauri desktop launcher for the eXo collections (SolidJS + Rust) that starts games in a native DOSBox. Kudos for the great frontend!
+I wanted something self-hosted instead of a desktop app. AI coding assistants (Claude Code and GitHub Copilot) did most of the refactoring under human direction:
 
-### Findings that shape the real app
+| Exodium (desktop) | ExodiumWeb (browser) |
+|---|---|
+| Tauri app, installed per machine | One server, any browser on the network |
+| Rust backend (~100 Tauri commands) | Node server answering the same commands over HTTP |
+| Native DOSBox / DOSBox-X | js-dos 8 in the browser |
+| Single user, local files | Per-user libraries, favourites and saves |
 
-1. **The NAS has eXoDOS 5.0** (`eXo/Update/ver`), 4,496 of 7,666 game zips
-   (~320 GB). Exodium bundles 6.04 configs that can differ from 5.0 zips
-   (Guillermo Tell: 6.04 calls a `run.bat` only 6.04 zips contain). → Always use
-   the **collection's own** `!dos/<game>/dosbox.conf`; the catalogue should come
-   from the collection's own LaunchBox XML (see exogui's `GameParser.ts`).
-2. eXo's `voodoo=true` is a template default in ~430 configs; real 3dfx titles
-   (30 in 6.04) are the ones with bilinear filtering on / `voodoo=opengl`.
-3. Games with a separate 3dfx executable (Furcol: `FUR3DFX.BAT`) need an
-   "alternate launch" choice in the UI. `?cmd=` on the launch API is the test hook.
-4. `.ba1` files in every zip are eXo leftovers; ignore them.
-5. The NAS's `eXo/util` has no eXo tools (only `GBC`), so nothing may depend on
-   eXo's Windows launch scripts.
-
-### Not yet tested
-
-- IPX multiplayer between two browsers (js-dos WebRTC-NET).
-- CRT shader overlay (js-dos has none built in); scanlines are a CSS overlay aligned to the canvas by `alignScan` in `player.html`.
-- Real 3D gameplay in a 3dfx title (Furcol renders; Tomb Raider Gold's accelerated path has a white intro and missing menu text, despite rendering some demo scenes; Blood, Descent II, Shadow Warrior reach menus via `test/dfx-probe.mjs`; Shadow Warrior 3DFX hits a wasm `unreachable` headless, unverified). Quake's zip has no GLQuake/Glide build, so no 3dfx.
-- Aspect ratio: js-dos stretches to the container; needs `renderAspect`.
-
-### Recent behaviour notes
-
-- Downloads fetch 8 MB `Range` pieces (4 retries) then `caches.put` (single requests cut off at ~14 MB via Traefik HTTP/2).
-- Translator: `svga_s3` → `vesa_nolfb`, `memsize` capped at 63 for dosbox; Duke3D `duke3d.cfg` forced to `ScreenMode=0` (`BATPATCH_VERSION=5`).
-- Player `close()` timeouts: save 8 s, stop 3 s, 15 s backstop. Testing hook: `?tune=section.key=value|...`.
-
-## Run the PoC
-
-```bash
-bash poc/tools/fetch_games.sh poc/data/picks.txt poc/games   # copies ~72 MB from the NAS
-node poc/server/server.mjs 8090                                # http://localhost:8090
-cd poc/test && npm install
-bash fetch-chromium-libs.sh        # only in containers without Chromium's libs
-npx playwright install chromium
-LD_LIBRARY_PATH=$PWD/.libs node boot-test.mjs http://localhost:8090
-```
-
-`poc/data/` holds Exodium's bundled catalogue and configs (MIT,
-`poc/data/EXODIUM-LICENSE`). Game zips, ROMs and NAS configs are not committed.
-
-## Related analysis
-
-- Exodium: Tauri 2 (SolidJS + Rust), MIT; ~100 backend calls isolated in
-  `src/api/tauri.ts`, so it's the UI base.
-- exogui (eXo's own Linux/macOS GUI): Electron + React, MIT, reads LaunchBox XML
-  live; renderer uses Node APIs directly, so it's a poor UI base, but
-  `src/shared/game/GameParser.ts` + media path helpers are worth reusing for
-  catalogue import from the NAS.
+*Unofficial: not affiliated with the Exodium project or the eXo team. The Exodium UI is used under its MIT licence (`ui/UPSTREAM-LICENSE`). Bugs in ExodiumWeb belong in [this repo's issues](https://github.com/smii/exodiumweb/issues), not upstream.*

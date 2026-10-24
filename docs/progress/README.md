@@ -6,6 +6,36 @@ WebGL, so real browsers run smoother). Each GIF has the full `.webm` next to it.
 
 ---
 
+## Milestone 8 — Command & Conquer and Red Alert playable, Westwood sweep (2026-10-23)
+
+- **C&C black screen fixed.** eXo's launcher `run.bat` mounted the CDs
+  with Windows host paths (`.\eXoDOS\comcon\cd\…`). The mount failed
+  silently and the game quit with *UNABLE TO DETECT YOUR CD ROM DRIVE*,
+  leaving a blinking cursor. Launcher lines now get the autoexec's path
+  rewrite (`batpatch.mjs`, `BATPATCH_VERSION=8`).
+- **One disc per campaign** (`discs.mjs`). The full C&C set is 1.3 GB and
+  Red Alert is 2.2 GB, more than a browser tab can unpack. The player now
+  asks which campaign to play and downloads only that disc (363–614 MB).
+  The launcher skips straight to that choice.
+- **Probe**: `click@x@y` and `type@text` steps in `test/render-probe.mjs`.
+- **Compatibility log**: [docs/compatibility](../compatibility/README.md),
+  a per-game status table with a page per game (fixes, commits, verified
+  steps), mirrored to the homelab wiki.
+- **Westwood sweep**: 23 releases. C&C (GDI, NOD, Covert Ops) and Red Alert
+  (Allied, Soviet; expansions boot) reach gameplay. 10 more are playable,
+  the rest reach their title, menu or setup screens. Lands of Lore:
+  Guardians of Destiny (3.9 GB, four CDs at once) is too large.
+
+**C&C GDI and NOD, Red Alert Allied and Soviet, in game**
+
+![Four frames: C&C GDI mission 1, C&C NOD mission 1 with the options menu, Red Alert Allied snow map, Red Alert Soviet mission 1 objective](08-cnc-ra.jpg)
+
+**Westwood sweep: playable titles**
+
+![Ten frames: BlackJack Academy, Donald's Alphabet Chase, BattleTech 2, Eye of the Beholder II, Mickey's Runaway Zoo, Circuit's Edge, Lands of Lore, Kyrandia 3, The Lion King, Goofy's Railway Express](08-westwood-sweep.jpg)
+
+---
+
 ## Milestone 7 — scanlines, downloads, DOS tuning, 3dfx probes (2026-10-09)
 
 - **Scanlines** now line up with the game canvas: `alignScan` in `player.html`

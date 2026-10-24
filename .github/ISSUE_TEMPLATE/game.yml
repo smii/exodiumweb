@@ -1,0 +1,28 @@
+name: Game doesn't run right
+description: A game won't start, shows a black screen, has no sound or crashes.
+title: "[game] <name>: <symptom>"
+labels: [game-compat]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the [compatibility log](https://github.com/smii/exodiumweb/blob/main/docs/compatibility/README.md) first: the same symptom is often already fixed for another game.
+  - type: input
+    id: game
+    attributes:
+      label: Game
+      description: Title as shown in the library (the eXo shortcode helps, e.g. `comcon`).
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: Which launcher option you picked, where it stops, any message on screen. A screenshot helps.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Chrome 140 on Windows, Safari on iPad, ...

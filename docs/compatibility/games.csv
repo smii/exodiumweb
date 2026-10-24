@@ -1,0 +1,35 @@
+title,year,status,backend,group,tested,note,id,code
+A Nightmare on Elm Street,1989,Boots,dosbox,Westwood Studios,2026-10-23,,4446,ANightma
+BattleTech: The Crescent Hawk's Inception,1988,Boots,dosbox,Westwood Studios,2026-10-23,,8999,batltech
+BattleTech: The Crescent Hawk's Revenge,1990,Playable,dosbox,Westwood Studios,2026-10-23,,4687,batltec2
+BlackJack Academy,1987,Playable,dosbox,Westwood Studios,2026-10-23,,6313,bjacad
+Blood,1997,Boots,dosbox,,2026-10-09,Build cfg ScreenMode 0,5729,Blood
+Circuit's Edge,1990,Playable,dosbox,Westwood Studios,2026-10-23,,5190,cedge
+Command & Conquer,1995,Playable,dosbox,Westwood Studios,2026-10-23,Launcher CD mount path; one disc per campaign,8170,comcon
+Command & Conquer: Red Alert,1996,Playable,dosbox,Westwood Studios,2026-10-23,Same as C&C,5645,comconra
+Commander Keen 5,1991,Playable,dosbox,,2026-10-09,"All audio at 44,100 Hz",2305,CKeen5
+Descent II,1996,Boots,dosbox,,2026-10-10,menu,1991,Descent2
+Donald's Alphabet Chase,1988,Playable,dosbox,Westwood Studios,2026-10-23,,2383,DonaldsA
+DragonStrike,1990,Boots,dosbox,Westwood Studios,2026-10-23,,8177,DragonSt
+Duke Nukem 3D,1996,Playable,dosbox,,2026-10-09,ScreenMode=0 (320×200),9008,Duke3D
+Dune II: The Building of a Dynasty,1992,Boots,dosbox,Westwood Studios,2026-10-23,,6650,dune2
+EcoQuest I,1991,Playable,dosbox,,2026-10-09,"Large-game download, kept in browser storage",9059,ecoq1
+Eye of the Beholder,1991,Boots,dosbox,Westwood Studios,2026-10-23,,7338,eob1
+Eye of the Beholder II: The Legend of Darkmoon,1991,Playable,dosbox,Westwood Studios,2026-10-23,,3318,eob2
+Furcol,1997,Boots,dosboxX,,2026-10-10,3dfx renders,1684,Furcol
+Goofy's Railway Express,1991,Playable,dosbox,Westwood Studios,2026-10-23,,8229,GoofysRa
+Hillsfar,1989,Boots,dosbox,Westwood Studios,2026-10-23,,5171,hillsfar
+Lands of Lore: Guardians of Destiny,1997,Not supported,dosboxX,Westwood Studios,2026-10-23,"3.9 GB, four CDs mounted at once",8315,LLGD
+Lands of Lore: The Throne of Chaos,1993,Playable,dosbox,Westwood Studios,2026-10-23,,1646,LLToC
+Master Levels for DOOM II,1995,Boots,dosbox,,2026-10-10,Large-game download; launcher keys open,2847,MasterLe
+Mickey's Runaway Zoo,1991,Playable,dosbox,Westwood Studios,2026-10-23,,3852,MickeysR
+Mines of Titan,1989,Boots,dosbox,Westwood Studios,2026-10-23,,2394,marssaga
+Quake,1996,Playable,dosbox,,2026-10-09,"svga_s3 → vesa_nolfb, memsize 63",2647,Quake
+Questron II,1988,Boots,dosbox,Westwood Studios,2026-10-23,,3988,questrn2
+Shadow Warrior,1997,Boots,dosbox,,2026-10-09,vesa_noflb typo; Build cfg,4806,ShadowWa
+The Legend of Kyrandia: Book One,1992,Boots,dosbox,Westwood Studios,2026-10-23,,9023,kyra1
+The Legend of Kyrandia: Book Three - Malcolm's Revenge,1994,Playable,dosbox,Westwood Studios,2026-10-23,,7309,kyra3
+The Legend of Kyrandia: Book Two - The Hand of Fate,1994,Boots,dosbox,Westwood Studios,2026-10-23,,8355,kyra2
+The Lion King,1994,Playable,dosbox,Westwood Studios,2026-10-23,,8489,TheLionK
+Tomb Raider Gold,1998,Partial,dosbox,,2026-10-10,Software renderer by default (3dfx path broken),4462,TombRaiG
+Wing Commander,1990,Playable,dosbox,,2026-10-08,IF cond program launcher lines → GOTO,7085,WC

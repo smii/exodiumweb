@@ -58,8 +58,23 @@ export function hostPath(p) {
   return /\s/.test(s) ? `"${s}"` : s;
 }
 
+// Quitting a game ends in the launcher's `exit`, which shuts the emulator
+// down; js-dos can't save after that, so whatever the game wrote (its saves)
+// was lost. `exit` instead runs a resident 4-byte program (sti; hlt; jmp hlt)
+// from its own drive; the player sees it running, saves, and closes.
+// X: is a letter no eXo config mounts.
+export const QUIT_DIR = "exoweb";
+export const QUIT_PROGRAM = "EXOQUIT.COM";
+export const QUIT_COM = Buffer.from([0xfb, 0xf4, 0xeb, 0xfd]);
+export const QUIT_MOUNT = `@mount x ./${QUIT_DIR} >nul`;
+const QUIT_LINE = `X:\\${QUIT_PROGRAM}`;
+
 // mount/imgmount: every argument that looks like a host path gets rewritten.
-function rewriteAutoexecLine(line) {
+// `exit` becomes the quit program (above).
+// Also used for launcher batch files (batpatch.mjs), which mount CDs themselves.
+export function rewriteAutoexecLine(line) {
+  const q = line.match(/^(\s*)@?exit\s*$/i);
+  if (q) return `${q[1]}@${QUIT_LINE}`;
   const m = line.match(/^(\s*@?)(mount|imgmount)(\s+)(.*)$/i);
   if (!m) return line;
   const args = m[4].match(/"[^"]*"|\S+/g) ?? [];
@@ -168,7 +183,7 @@ export function translate(text, opts = {}) {
   }
 
   const auto = parseConf(text).find((s) => s.name === "autoexec");
-  out.push("[autoexec]");
+  out.push("[autoexec]", QUIT_MOUNT);
   for (const line of auto?.lines ?? []) {
     if (!line.trim()) continue;
     out.push(rewriteAutoexecLine(line));

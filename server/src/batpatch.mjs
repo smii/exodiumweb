@@ -10,9 +10,20 @@
 //   wc
 //   :nxw1e
 // Labels stay within 8 characters, the part DOS compares.
+//
+// Launchers that mount their own CDs (Command & Conquer's campaign menu:
+// `imgmount d ".\eXoDOS\comcon\cd\CD-1.iso" ...`) use eXo's host layout,
+// which doesn't exist in a bundle; the failed mount is hidden by the next
+// `cls` and the game then can't find its CD. Those paths get the same
+// rewrite as the autoexec's (translate.mjs).
+//
+// `exit` (also as an IF's command) runs the quit program instead, so the
+// player can still save the game's files (translate.mjs).
+
+import { rewriteAutoexecLine } from "./translate.mjs";
 
 // Bump when a rewrite changes, so cached bundles are rebuilt.
-export const BATPATCH_VERSION = 7;
+export const BATPATCH_VERSION = 9;
 
 const IF_LINE = /^(\s*)(@?)if\s+(not\s+)?(errorlevel\s*=?\s*\d+|exist\s+(?:"[^"]*"|\S+)|(?:"[^"]*"|[^\s=]+)?==(?:"[^"]*"|\S+))\s+(\S.*)$/i;
 
@@ -48,6 +59,12 @@ export function patchBatch(text, { backend }) {
       changed = true;
       continue;
     }
+    const mounted = rewriteAutoexecLine(line);
+    if (mounted !== line) {
+      out.push(mounted);
+      changed = true;
+      continue;
+    }
     const m = line.match(IF_LINE);
     if (!m || /^(goto|if)\b/i.test(m[5])) {
       out.push(line);
@@ -55,7 +72,7 @@ export function patchBatch(text, { backend }) {
     }
     const [, ind, at, not = "", cond, cmd] = m;
     const label = `nxw${++n}`;
-    out.push(`${ind}${at}if ${not}${cond} goto ${label}`, `${ind}${at}goto ${label}e`, `:${label}`, `${ind}${cmd}`, `:${label}e`);
+    out.push(`${ind}${at}if ${not}${cond} goto ${label}`, `${ind}${at}goto ${label}e`, `:${label}`, rewriteAutoexecLine(`${ind}${cmd}`), `:${label}e`);
     changed = true;
   }
   return changed ? out.join(eol) : null;

@@ -28,9 +28,10 @@ import { voodooShortcodes, syncThreedfx } from "./curated.mjs";
 import { runCommand } from "./commands.mjs";
 import { gameById, gameConfig } from "./queries.mjs";
 import { patchBatch, BATPATCH_VERSION } from "./batpatch.mjs";
+import { discChoices, discPlan } from "./discs.mjs";
 import { ReadingCache } from "./reading.mjs";
 import { Collection, zipNameFor } from "./collection.mjs";
-import { translate } from "./translate.mjs";
+import { translate, rewriteAutoexecLine, QUIT_DIR, QUIT_PROGRAM, QUIT_COM } from "./translate.mjs";
 import { buildImageIndex, GameData, typeOf } from "./media.mjs";
 import { Posters } from "./posters.mjs";
 
@@ -217,7 +218,7 @@ const SOFTWARE_DEFAULTS = {
 };
 
 /** Everything the player needs to boot one game for this user. */
-function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride) {
+function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride, disc) {
   const game = gameById(db, id);
   if (!game) return null;
   // Tomb Raider Gold: the 3dfx (Voodoo/WebGL) path renders white intros and
@@ -234,22 +235,24 @@ function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride) {
   let dosboxConf = t.conf;
   // Testing hook: ?cmd=line|line replaces the autoexec's commands (only its
   // mounts and drive switches stay), with no `exit`, so whatever the lines
-  // print stays on screen.
+  // print stays on screen. An `exit` given here quits like a game does.
   if (cmdOverride) {
     const [head, auto] = dosboxConf.split("[autoexec]\n");
     const kept = auto.split("\n").filter((l) => /^\s*@?((img)?mount\s|[a-z]:\s*$)/i.test(l));
-    dosboxConf = `${head}[autoexec]\n${[...kept, ...cmdOverride.split("|")].join("\n")}\n`;
+    dosboxConf = `${head}[autoexec]\n${[...kept, ...cmdOverride.split("|").map(rewriteAutoexecLine)].join("\n")}\n`;
   }
   // Testing hook: ?tune=section.key=value|... sets/replaces config keys.
   if (tuneOverride) for (const item of tuneOverride.split("|")) dosboxConf = tuneConf(dosboxConf, item);
   if (settings.cycles) dosboxConf = dosboxConf.replace(/^\[cpu\]\n/m, `[cpu]\ncycles=${settings.cycles}\n`);
   if (settings.custom_conf) dosboxConf = `${settings.custom_conf.trim()}\n${dosboxConf}`;
   // The bundle is keyed on the exact config, so a settings change builds a new one.
-  const confHash = createHash("sha1").update(dosboxConf).update(String(t.needs.mt32)).update(`bat${BATPATCH_VERSION}`).digest("hex").slice(0, 12);
+  // A disc choice (discs.mjs) is a different bundle, so it is part of the key.
+  if (disc && (cmdOverride || !/^[a-z0-9]$/i.test(disc))) disc = null;
+  const confHash = createHash("sha1").update(dosboxConf).update(String(t.needs.mt32)).update(`bat${BATPATCH_VERSION}`).update(disc ? `disc${disc}` : "").digest("hex").slice(0, 12);
   return {
     game: { id: game.id, title: game.title, year: game.year, shortcode: game.shortcode },
-    backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs,
-    bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}), ...(tuneOverride ? { tune: tuneOverride } : {}) })}`,
+    backend: t.backend, conf: dosboxConf, info: t.info, needs: t.needs, disc: disc || null,
+    bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}), ...(tuneOverride ? { tune: tuneOverride } : {}), ...(disc ? { disc } : {}) })}`,
     confHash,
     shader: settings.glshader ?? null,
   };
@@ -277,13 +280,21 @@ async function bundleFor(game, info) {
       const mb = Math.round(statSync(zip).size / 1e6);
       if (mb > MAX_BUNDLE_MB) throw Object.assign(new Error(`${game.title} is ${mb} MB, too large to run in a browser (limit ${MAX_BUNDLE_MB} MB).`), { status: 413 });
       const src = new ZipReader(zip);
-      const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }];
-      extra.push(...patchBatchFiles(src, info.backend));
+      const extra = [{ name: ".jsdos/dosbox.conf", data: info.conf }, { name: `${QUIT_DIR}/${QUIT_PROGRAM}`, data: QUIT_COM }];
+      // One campaign's disc only (discs.mjs): its launcher, minus the other discs.
+      const choices = info.disc && discChoices(src, 0);
+      const plan = choices && discPlan(src, choices.bat, info.disc);
+      if (info.disc && !plan) throw Object.assign(new Error(`${game.title} has no disc choice "${info.disc}".`), { status: 404 });
+      if (plan) {
+        const bat = patchBatch(plan.text, { backend: info.backend }) ?? plan.text;
+        extra.push({ name: plan.bat, data: Buffer.from(bat, "latin1") });
+      }
+      extra.push(...patchBatchFiles(src, info.backend).filter((f) => f.name !== plan?.bat));
       if (info.needs.mt32 && MT32_DIR) {
         for (const rom of ["MT32_CONTROL.ROM", "MT32_PCM.ROM"]) extra.push({ name: `mt32/rev0/${rom}`, data: readFileSync(join(MT32_DIR, rom)) });
       }
       const tmp = `${out}.${process.pid}.tmp`;
-      try { writeBundle(src, extra, tmp); renameSync(tmp, out); } finally { src.close(); }
+      try { writeBundle(src, extra, tmp, plan?.omit); renameSync(tmp, out); } finally { src.close(); }
       pruneBundles(dir, out);
       return out;
     })().finally(() => bundleBuilds.delete(out)));
@@ -308,6 +319,18 @@ function pruneBundles(dir, keep) {
     total -= f.size;
     console.log(`bundle cache: removed ${f.p} (${Math.round(f.size / 1e6)} MB)`);
   }
+}
+
+/** Disc choices for a game (discs.mjs), cached per zip; null for single-bundle games. */
+const discMenus = new Map();
+async function discMenuFor(game) {
+  const name = zipNameFor(game);
+  if (!name) return null;
+  if (!discMenus.has(name)) {
+    const src = new ZipReader(await collection.gameZip(name));
+    try { discMenus.set(name, discChoices(src, LARGE_BUNDLE_MB * 1e6)); } finally { src.close(); }
+  }
+  return discMenus.get(name);
 }
 
 /** Replacement entries for batch files js-dos can't run as-is (batpatch.mjs). */
@@ -383,9 +406,17 @@ createServer(async (req, res) => {
     let m = path.match(/^\/api\/play\/(\d+)$/);
     if (m) {
       const db = userDb(STATE_DIR, catalogPath, user);
-      const info = launchInfo(db, Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"));
+      const info = launchInfo(db, Number(m[1]), url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"), url.searchParams.get("disc"));
       if (!info) return json(res, 404, { error: "unknown game" });
       if (info.error) return json(res, 422, info);
+      // Multi-disc menus (C&C, Red Alert): let the player pick a campaign
+      // first, so only that disc is downloaded (discs.mjs).
+      if (!info.disc && !url.searchParams.get("cmd")) {
+        try {
+          const choices = await discMenuFor(gameById(db, info.game.id));
+          if (choices) return json(res, 200, { ...info, discs: choices.options, bundleUrl: null });
+        } catch (e) { console.error(`GET ${path}: ${e.message}`); return json(res, e.status ?? 502, { error: e.message }); }
+      }
       // Build (or fetch) the bundle now: js-dos only says "500" on a failed
       // bundle download, and never tells the page, so report it from here.
       let bundle;
@@ -401,7 +432,7 @@ createServer(async (req, res) => {
     if (m) {
       const db = userDb(STATE_DIR, catalogPath, user);
       const game = gameById(db, Number(m[1]));
-      const info = game && launchInfo(db, game.id, url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"));
+      const info = game && launchInfo(db, game.id, url.searchParams.get("backend"), url.searchParams.get("cmd"), url.searchParams.get("tune"), url.searchParams.get("disc"));
       if (!info || info.error) return json(res, 404, { error: info?.error ?? "unknown game" });
       // Immutable per ?c=<conf hash>, so browsers can cache it hard.
       return sendFile(req, res, await bundleFor(game, info), "private, max-age=31536000, immutable");

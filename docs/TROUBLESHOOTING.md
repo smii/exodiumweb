@@ -45,6 +45,38 @@ Sampled frames from `Screencast_20261010_000903.webm` showed the library
 window, not the separate player; the white intro was independently reproduced.
 Keep user recordings and game captures local, not in source control.
 
+## Command & Conquer: black screen with a blinking cursor (2026-10-23)
+
+Game `8170`, shortcode `comcon` (Red Alert `5645`/`comconra` behaves the
+same). eXo's launcher asks for a campaign (1 GDI, 2 NOD, 3 Covert
+Operations). Any choice ended at a black DOS screen with a blinking cursor.
+
+**Cause:** the launcher `run.bat` mounts the CDs itself:
+`imgmount d ".\eXoDOS\comcon\cd\Command & Conquer CD-1.iso" ... -t cdrom`.
+That path is eXo's Windows host layout. Inside the bundle the file is
+`./comcon/cd/...`, so the mount failed silently, and the next `cls` wiped the
+error. The game then said *UNABLE TO DETECT YOUR CD ROM DRIVE* (or asked for
+the Covert Operations CD), quit after OK, and left the DOS prompt.
+`translate.mjs` already rewrote these paths in the autoexec, but not in
+batch files.
+
+**Fix (`BATPATCH_VERSION` 8):** `batpatch.mjs` passes every launcher line
+through `rewriteAutoexecLine`, the same rewrite the autoexec gets.
+
+**Second problem, memory:** the full C&C bundle is 1.3 GB (Red Alert
+2.2 GB). Chromium needed about 5× that while unpacking, and the test browser
+was killed at 9.2 GB. Each campaign plays from a single disc, so the player
+now asks for the campaign first and downloads only that disc (`discs.mjs`,
+`?disc=<key>`). The launcher is rewritten to jump straight to the choice
+(`choice` → `goto <label>`) and to mount only that disc. C&C drops to
+363–594 MB per campaign and Red Alert to 519–614 MB. Details:
+[compatibility/games/comcon.md](compatibility/games/comcon.md).
+
+To debug a launcher that "returns to a cursor", run the same steps without
+the `cls`: `?cmd=` the launcher's lines one by one, or read the patched
+`run.bat` in the bundle. Silent `imgmount`/`mount` failures are the usual
+cause.
+
 ## Reproduce without modifying a player's state
 
 Use a separate `STATE_DIR`, test identity, and unused port. Do not start a
@@ -68,7 +100,9 @@ LD_LIBRARY_PATH=/srv/exodiumweb/poc/test/.libs \
 ```
 
 `render-probe.mjs` records screenshots, console/network errors and player
-state. Steps are `key:seconds-to-wait` or `WAIT:seconds`; keys are held for
+state. Steps are `key:seconds-to-wait`, `WAIT:seconds`,
+`click@x@y:seconds` (mouse click at page coordinates; use it for menus
+that ignore arrow keys, as in C&C) or `type@text:seconds`. Keys are held for
 150 ms so the emulator sees them. It hides the CSS scanline overlay without
 changing stored preferences. An intro can contain interlaced scanlines itself.
 It is an **evidence collector**, not an automatic visual-correctness test:

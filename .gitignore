@@ -30,6 +30,7 @@ test/videos/
 test/last-run.json
 test/server.log
 test/runs/
+runs/
 tools/.bin/
 tools/.debs/
 test/profiles/

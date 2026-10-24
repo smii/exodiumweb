@@ -1,5 +1,6 @@
 // One browser/game at a time; keep evidence outside git and use an isolated user.
 // node test/render-probe.mjs <player-url> <output-dir> [key:wait-seconds,...]
+// A step is key:seconds, WAIT:seconds, click@x@y:seconds or type@text:seconds.
 import { chromium } from "playwright";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -29,7 +30,16 @@ try {
   let i = 0;
   for (const step of steps.split(",").filter(Boolean)) {
     const [key, seconds = "5"] = step.split(":");
-    if (key !== "WAIT") {
+    if (key.startsWith("click@")) {
+      // click@x@y: a left click at page coordinates (menus that need the mouse).
+      const [, x, y] = key.split("@").map(Number);
+      await page.mouse.move(x, y, { steps: 5 });
+      await page.mouse.down();
+      await page.waitForTimeout(120);
+      await page.mouse.up();
+    } else if (key.startsWith("type@")) {
+      await page.keyboard.type(key.slice(5), { delay: 150 });
+    } else if (key !== "WAIT") {
       await page.keyboard.down(key);
       await page.waitForTimeout(150);
       await page.keyboard.up(key);

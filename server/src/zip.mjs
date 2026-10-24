@@ -130,10 +130,11 @@ export class ZipReader {
 /**
  * Write a new zip to `outPath`: every entry of `src` copied byte-for-byte
  * (still compressed, no re-deflate), then `extra` files ({ name, data })
- * stored uncompressed. Extra names replace same-named source entries.
- * Uses ZIP64 records whenever a size or offset needs them.
+ * stored uncompressed. Extra names replace same-named source entries;
+ * names in `omit` are left out. Uses ZIP64 records whenever a size or
+ * offset needs them.
  */
-export function writeBundle(src, extra, outPath) {
+export function writeBundle(src, extra, outPath, omit = new Set()) {
   const out = openSync(outPath, "w");
   let pos = 0;
   const write = (buf) => { let o = 0; while (o < buf.length) o += writeSync(out, buf, o, buf.length - o, pos + o); pos += buf.length; };
@@ -171,7 +172,7 @@ export function writeBundle(src, extra, outPath) {
   // js-dos's extractor makes directories one level at a time, so every
   // directory (eXo zips sometimes omit the top one, e.g. "WC/" before
   // "WC/Crack/") is written first, parents before children.
-  const allNames = [...src.entries.keys(), ...extra.map((f) => f.name)];
+  const allNames = [...src.entries.keys()].filter((n) => !omit.has(n)).concat(extra.map((f) => f.name));
   const dirs = new Set();
   for (const n of allNames) {
     const parts = n.split("/");
@@ -183,7 +184,7 @@ export function writeBundle(src, extra, outPath) {
   }
 
   for (const [name, e] of src.entries) {
-    if (replaced.has(name) || name.endsWith("/")) continue;
+    if (replaced.has(name) || omit.has(name) || name.endsWith("/")) continue;
     addEntry(name, e, () => {
       // Stream the compressed bytes across in 4 MiB chunks.
       let from = src.base + src.dataOffset(name);

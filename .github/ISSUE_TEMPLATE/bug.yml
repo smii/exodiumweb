@@ -1,0 +1,17 @@
+name: Bug or idea
+description: Something in the app itself (library, player, saves, login), or a feature request.
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, or what you'd like
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device

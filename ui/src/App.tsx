@@ -43,6 +43,8 @@ import {
   initMusic, currentTrack, wantedTrack, playerHidden, hidePlayer, showPlayer, startShuffle, musicUnsupported,
 } from "./stores/music";
 import { IconMusicNote } from "./components/icons";
+import { Bug } from "lucide-solid";
+import { EXODIUMWEB_ISSUES } from "./links";
 import "./styles/main.css";
 import { trackWindowActivity } from "./windowActivity";
 import { Button } from "./components/Button";
@@ -369,11 +371,11 @@ function App() {
             </Show>
             <Tooltip.Root openDelay={400}>
               <Tooltip.Trigger asChild={(props) =>
-                <button {...props()} class="icon-btn icon-btn-heart" onClick={() => openUrl("https://ko-fi.com/tvollstaedt")}>
-                  &#9829;
+                <button {...props()} class="icon-btn" aria-label="Report an ExodiumWeb issue" onClick={() => openUrl(EXODIUMWEB_ISSUES)}>
+                  <Bug size={16} />
                 </button>
               } />
-              <Portal><Tooltip.Positioner><Tooltip.Content class="ark-tooltip">Support Exodium</Tooltip.Content></Tooltip.Positioner></Portal>
+              <Portal><Tooltip.Positioner><Tooltip.Content class="ark-tooltip">Report an ExodiumWeb issue</Tooltip.Content></Tooltip.Positioner></Portal>
             </Tooltip.Root>
             <Tooltip.Root openDelay={400}>
               <Tooltip.Trigger asChild={(props) =>

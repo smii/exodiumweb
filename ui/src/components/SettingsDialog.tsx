@@ -1,17 +1,18 @@
 import { createSignal, createEffect, on, Show, For, type Component } from "solid-js";
 import {
   SlidersHorizontal, HardDrive, Globe, Package, Info, FolderOpen, Gamepad2, Music, Download,
-  Network, Activity, Heart, TriangleAlert, type LucideProps,
+  Network, Heart, TriangleAlert, Bug, type LucideProps,
 } from "lucide-solid";
 import { Portal } from "solid-js/web";
 import { Dialog } from "@ark-ui/solid/dialog";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { Button } from "./Button";
+import { EXODIUMWEB_ISSUES, EXODIUMWEB_REPO, EXODIUMWEB_COMPAT, EXODIUM_UPSTREAM } from "../links";
 import { ContentPackSettings } from "./ContentPackSettings";
 import { StorageTab } from "./StorageTab";
 import { SettingRow, SettingSwitch, SectionTitle } from "./SettingRow";
 import {
-  getConfig, setConfig, setRateLimits, scanInstalledGames, openLogFolder,
+  getConfig, setConfig, setRateLimits, scanInstalledGames,
   win9xNetworkStatus, enableWin9xNetwork, disableWin9xNetwork, type Win9xNetworkStatus,
 } from "../api/tauri";
 import { applyNetworkMode, isOffline, loadNetworkMode } from "../stores/network";
@@ -58,7 +59,6 @@ export function SettingsDialog(props: Props) {
   const [defaultFullscreen, setDefaultFullscreen] = createSignal(false);
   const [scanning, setScanning] = createSignal(false);
   const [scanResult, setScanResult] = createSignal("");
-  const [logOpenError, setLogOpenError] = createSignal("");
   const [netStatus, setNetStatus] = createSignal<Win9xNetworkStatus | null>(null);
   const [enablingNet, setEnablingNet] = createSignal(false);
   const [switchingMode, setSwitchingMode] = createSignal(false);
@@ -69,7 +69,6 @@ export function SettingsDialog(props: Props) {
   const [limitError, setLimitError] = createSignal("");
 
   const loadAll = async () => {
-    setLogOpenError("");
     setModeError("");
     setScanResult("");
     ensureMusicAutoplayLoaded();
@@ -189,15 +188,6 @@ export function SettingsDialog(props: Props) {
       await setRateLimits(up, down);
     } catch (e) {
       setLimitError(`Could not apply the limits: ${e}`);
-    }
-  };
-
-  const handleOpenLogFolder = async () => {
-    setLogOpenError("");
-    try {
-      await openLogFolder();
-    } catch (e) {
-      setLogOpenError(`Could not open log folder: ${e}`);
     }
   };
 
@@ -364,14 +354,23 @@ export function SettingsDialog(props: Props) {
                   <Show when={props.section === "about"}>
                     <div class="settings-body">
                       <section class="settings-section">
-                        <SectionTitle icon={Activity}>Diagnostics</SectionTitle>
-                        <SettingRow label="Log folder" hint={logOpenError() || "Share exodium.log when a download stalls or the app misbehaves."}>
-                          <Button variant="small" onClick={() => void handleOpenLogFolder()}>Open</Button>
+                        <SectionTitle icon={Bug}>ExodiumWeb</SectionTitle>
+                        <SettingRow label="Report an issue" hint="A game that won't start, a broken screen or a bug: open an issue with the game's name.">
+                          <Button variant="small" onClick={() => openUrl(EXODIUMWEB_ISSUES)}>Open</Button>
+                        </SettingRow>
+                        <SettingRow label="Game compatibility" hint="Which games were tested and what was fixed per game.">
+                          <Button variant="small" onClick={() => openUrl(EXODIUMWEB_COMPAT)}>Open</Button>
+                        </SettingRow>
+                        <SettingRow label="Source code" hint="smii/exodiumweb on GitHub.">
+                          <Button variant="small" onClick={() => openUrl(EXODIUMWEB_REPO)}>Open</Button>
                         </SettingRow>
                       </section>
                       <section class="settings-section">
-                        <SectionTitle icon={Heart}>Support Exodium</SectionTitle>
-                        <p class="settings-section-hint">Free and open source. If it is useful to you, you can support its development.</p>
+                        <SectionTitle icon={Heart}>Support the original Exodium</SectionTitle>
+                        <p class="settings-section-hint">ExodiumWeb is built on Exodium's frontend by tvollstaedt (MIT). If it is useful to you, you can support its development.</p>
+                        <SettingRow label="Exodium" hint="The desktop launcher this app is based on.">
+                          <Button variant="small" onClick={() => openUrl(EXODIUM_UPSTREAM)}>Open</Button>
+                        </SettingRow>
                         <SettingRow label="Ko-fi" hint="One-time donation, no account needed.">
                           <Button variant="small" onClick={() => openUrl("https://ko-fi.com/tvollstaedt")}>Open</Button>
                         </SettingRow>

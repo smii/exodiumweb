@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Game compatibility log
+    url: https://github.com/smii/exodiumweb/blob/main/docs/compatibility/README.md
+    about: Tested games and the fix per game.
+  - name: Upstream Exodium (desktop launcher)
+    url: https://github.com/tvollstaedt/exodium/issues
+    about: Only for bugs in the desktop app itself, not in ExodiumWeb.

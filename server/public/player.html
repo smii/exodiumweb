@@ -36,6 +36,7 @@
   .ask-buttons { margin-top: 14px; display: flex; gap: 8px; justify-content: center; }
   .ask-buttons button { border: 0; border-radius: 6px; padding: 8px 16px; font: inherit; cursor: pointer; background: #333; color: #eee; }
   .ask-buttons button.primary { background: #3f6fd8; color: #fff; }
+  .ask-buttons.discs { flex-direction: column; align-items: stretch; max-width: 460px; margin-left: auto; margin-right: auto; }
   progress { width: min(420px, 80vw); height: 10px; margin-top: 12px; accent-color: #3f6fd8; }
   #status a { color: #8fb0ff; }
   /* Shown while the browser keeps the game's audio blocked (no click/key yet). */
@@ -102,7 +103,8 @@
     // A hung save/stop (large games) must never leave the player stuck open.
     const within = (p, ms) => Promise.race([Promise.resolve(p), new Promise((r) => setTimeout(r, ms))]);
     setTimeout(done, 15000);
-    try { if (window.__player.ready) await within(dosProps?.save?.(), 8000); } catch (e) { console.error("save failed", e); }
+    // An emulator that already stopped can't save (js-dos never answers).
+    try { if (window.__player.ready && !window.__player.ci?.exited) await within(dosProps?.save?.(), 8000); } catch (e) { console.error("save failed", e); }
     try { await within(dosProps?.stop?.(), 3000); } catch {}
     done();
   };
@@ -220,13 +222,45 @@
     return new Promise((resolve) => { go.onclick = () => resolve(true); no.onclick = () => resolve(false); });
   }
 
+  /** Multi-disc games: which campaign (= which disc) to download. Null = cancelled. */
+  function pickDisc(info) {
+    statusEl.classList.add("ask");
+    say(info.game.title, "");
+    const detail = document.getElementById("detail");
+    detail.innerHTML = "";
+    detail.append("Each campaign plays from its own disc. Pick one; only that disc is downloaded.", document.createElement("br"));
+    const buttons = Object.assign(document.createElement("div"), { className: "ask-buttons discs" });
+    return new Promise((resolve) => {
+      for (const d of info.discs) {
+        const b = Object.assign(document.createElement("button"), { className: "primary", textContent: `${d.key} · ${d.label} (${fmtBytes(d.bytes)})` });
+        b.dataset.disc = d.key;
+        b.onclick = () => resolve(d.key);
+        buttons.append(b);
+      }
+      const no = Object.assign(document.createElement("button"), { textContent: "Cancel" });
+      no.onclick = () => resolve(null);
+      buttons.append(no);
+      detail.append(buttons);
+    });
+  }
+
   try {
-    // Testing overrides pass through to the launch API (backend, cmd).
+    // Testing overrides pass through to the launch API (backend, cmd, tune, disc).
     const pass = new URLSearchParams();
-    for (const k of ["backend", "cmd", "tune"]) { const v = new URLSearchParams(location.search).get(k); if (v) pass.set(k, v); }
-    const res = await fetch(`/api/play/${id}${pass.size ? `?${pass}` : ""}`);
-    const info = await res.json();
+    for (const k of ["backend", "cmd", "tune", "disc"]) { const v = new URLSearchParams(location.search).get(k); if (v) pass.set(k, v); }
+    let res = await fetch(`/api/play/${id}${pass.size ? `?${pass}` : ""}`);
+    let info = await res.json();
     if (!res.ok) throw new Error(info.error ?? `HTTP ${res.status}`);
+    if (info.discs) {
+      const disc = await pickDisc(info);
+      if (!disc) throw CANCELLED;
+      statusEl.classList.remove("ask");
+      say(info.game.title, "Preparing the disc…");
+      pass.set("disc", disc);
+      res = await fetch(`/api/play/${id}?${pass}`);
+      info = await res.json();
+      if (!res.ok) throw new Error(info.error ?? `HTTP ${res.status}`);
+    }
     document.title = info.game.title;
     say(info.game.title, "Loading…");
 
@@ -254,6 +288,17 @@
           window.__player.ready = true;
           window.__player.ci = ci;
           statusEl.style.display = "none"; // the `hidden` attribute loses to #status's display:grid
+          // The game quit: the launcher's `exit` now runs the server's quit
+          // program (translate.mjs) instead of stopping the emulator, so the
+          // save below still works. Save and close like the Close button.
+          const watch = setInterval(async () => {
+            if (closing || ci.exited) return clearInterval(watch);
+            if (/^EXOQUIT/i.test(await ci.getRunningProgram().catch(() => ""))) {
+              clearInterval(watch);
+              window.__player.quit = true;
+              close();
+            }
+          }, 1000);
         }
         if (event === "exit") done();
       },

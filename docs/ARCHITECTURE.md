@@ -68,6 +68,12 @@ isolation for `SharedArrayBuffer`); all assets are same-origin.
   pulls it from `/api/saves/<id>` on start and pushes it on close/autosave;
   stored at `$STATE_DIR/saves/<user>/<shortcode>.changes`. Saves follow the
   user to any browser; another user starts clean.
+- **Quitting saves too**: a game quit from its own menu ends in the launcher's
+  `exit`, which would stop the emulator, and js-dos can't save after that.
+  `translate.mjs`/`batpatch.mjs` turn every `exit` into `X:\EXOQUIT.COM`, a
+  4-byte idle program on a drive of its own (`exoweb/` in the bundle); the
+  player polls `ci.getRunningProgram()`, and when it reports `EXOQUIT` it
+  saves and closes as if Close was pressed. Test: `test/test-dos-save.mjs`.
 
 ## Bundles
 
@@ -99,6 +105,16 @@ A js-dos bundle (`.jsdos`) is a zip. For each launch:
    → `IF cond GOTO` + labels; `CONFIG -set mididevice=…` commented out on
    DOSBox-X; menu lines offering MT-32/Sound Canvas get " (no music)". Also
    `duke3d.cfg` is forced to 320×200 (`ScreenMode = 0`).
+   Launcher `imgmount`/`mount` lines get the same `.\eXoDOS\…` path
+   rewrite as the autoexec (`BATPATCH_VERSION` 8; C&C and Red Alert mount
+   their CDs from `run.bat`).
+   **Disc choice** (`discs.mjs`): when a launcher's menu choices start from
+   different CD images and the bundle is over `LARGE_BUNDLE_MB`,
+   `/api/play/<id>` returns `discs: [{key,label,bytes}]` and no bundle URL.
+   The player asks which campaign to play and asks again with `?disc=<key>`.
+   That bundle leaves out every other disc the launcher mounts, and its
+   `run.bat` jumps straight to the choice (`choice` → `goto <label>`) and
+   mounts only that disc. `disc<key>` is part of the config hash.
 6. Concurrent requests for the same bundle share one build. After a build,
    bundles are pruned least-recently-used (mtime bumped on each hit) down to
    `BUNDLE_CACHE_MB`.
