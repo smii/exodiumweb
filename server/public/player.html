@@ -298,7 +298,14 @@
     // renderer kept stale textures (js-dos/emulators issue #440), which gave Tomb
     // Raider's 3dfx exe white/striped FMV and teal blocks for text and walls.
     // Everything else stays on 8.4.1, which all the other fixes were tested on.
-    const jsdos = `/vendor/${voodoo ? "js-dos-3dfx" : "js-dos"}/dist/`;
+    // Blood (970 MB, 3dfx): on 8.5.3 the page crashed at start-up in 4 of 4 runs
+    // (and never got ready on a second host), on 8.4.1 in 3 of 6 (rtm's memory).
+    // So bundles of 700 MB or more stay on 8.4.1; Tomb Raider's 464 MB works on
+    // 8.5.3 (the real limit between the two is untested). ?jsdos=8.4 or 8.5
+    // (testing) forces a build for a 3dfx launch.
+    const force = new URLSearchParams(location.search).get("jsdos");
+    const newJsDos = voodoo && (force ? force === "8.5" : (info.bundleBytes ?? 0) < 700e6);
+    const jsdos = `/vendor/${newJsDos ? "js-dos-3dfx" : "js-dos"}/dist/`;
     await loadJsDos(jsdos);
     const savedMouse = localStorage.getItem(mouseKey());
     mouseBtn.hidden = matchMedia("(pointer: coarse)").matches && !matchMedia("(any-pointer: fine)").matches;

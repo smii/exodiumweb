@@ -10,7 +10,7 @@ cycles: 100000
 tested: 2026-10-25
 note: "3dfx on js-dos 8.5.3 (8.4.1 Voodoo texture cache bug)"
 verified: "3dfx: intro FMV, menu text, passport, Caves level textured, inventory"
-commits: "01ee179"
+commits: "01ee179, 12c8b15"
 ---
 # Tomb Raider Gold (1998)
 
