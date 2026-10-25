@@ -4,6 +4,9 @@ year: 1997
 id: 1684
 status: Boots
 backend: dosboxX
+size: 39.96
+memsize: 63
+cycles: 100000
 tested: 2026-10-10
 note: "3dfx renders"
 ---

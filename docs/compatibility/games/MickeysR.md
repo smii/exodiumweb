@@ -4,6 +4,9 @@ year: 1991
 id: 3852
 status: Playable
 backend: dosbox
+size: 0.14
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Bake-sale scene, numbers to find"

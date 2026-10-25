@@ -4,6 +4,9 @@ year: 1989
 id: 5171
 status: Boots
 backend: dosbox
+size: 0.43
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Title screen (\"no game in progress, press any key\") after the setup questions"

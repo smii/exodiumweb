@@ -12,7 +12,7 @@
   #status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: #aaa; pointer-events: none; }
   #status.error { color: #f19b8c; pointer-events: auto; }
   #status .t { font-size: 16px; color: #eee; margin-bottom: 6px; }
-  /* Toolbar (top right): scanlines, keyboard lock, fullscreen, close. Fades
+  /* Toolbar (top right): scanlines, mouse lock, keyboard lock, fullscreen, close. Fades
      back while playing so it doesn't sit on the game. */
   #toolbar { position: absolute; top: 10px; right: 12px; z-index: 10; display: flex; gap: 6px;
              opacity: 0.45; transition: opacity 0.2s ease; }
@@ -51,6 +51,7 @@
 <div id="scanlines"></div>
 <div id="toolbar">
   <button id="scan" type="button" aria-pressed="false" title="CRT scanlines on/off">▤<span class="l"> Scanlines</span></button>
+  <button id="mouse" type="button" aria-pressed="false" title="Lock mouse: the mouse moves the game's own cursor (click the game to capture it, Esc releases it). Fixes cursors that jump or drift, e.g. on Warcraft II's minimap. Remembered per game." hidden>🖱<span class="l"> Lock mouse</span></button>
   <button id="lock" type="button" aria-pressed="false" title="In fullscreen, send all keys (Esc, Ctrl+W, …) to the game. Hold Esc to leave fullscreen." hidden>⌨<span class="l"> Lock keys</span></button>
   <button id="full" type="button" title="Fullscreen (F11-free)">⛶<span class="l"> Fullscreen</span></button>
   <button id="close" type="button" title="Close (returns to the library)">✕<span class="l"> Close</span></button>
@@ -146,6 +147,21 @@
   setInterval(() => document.body.classList.contains("scanlines") && alignScan(), 250);
   addEventListener("resize", alignScan);
   scanBtn.addEventListener("click", alignScan);
+  // Mouse lock (js-dos mouseCapture = pointer lock, relative movement), per
+  // game; the default comes from the server (MOUSE_CAPTURE_DEFAULTS). Needs a
+  // real pointer: on touch screens js-dos keeps its own touch handling.
+  const mouseBtn = document.getElementById("mouse");
+  let mouseCapture = false;
+  const mouseKey = () => `exodiumweb:mouse:${id}`;
+  const setMouse = (on, remember) => {
+    mouseCapture = on;
+    if (window.__player) window.__player.mouseCapture = on;
+    mouseBtn.setAttribute("aria-pressed", String(on));
+    if (remember) localStorage.setItem(mouseKey(), on ? "on" : "off");
+    dosProps?.setMouseCapture?.(on);
+    if (!on && document.pointerLockElement) document.exitPointerLock();
+  };
+  mouseBtn.onclick = () => setMouse(!mouseCapture, true);
   // Keyboard lock is a Chromium feature; only offer it where it exists.
   if (typeof navigator.keyboard?.lock === "function") lockBtn.hidden = false;
   lockBtn.onclick = () => setLock(lockBtn.getAttribute("aria-pressed") !== "true");
@@ -270,6 +286,9 @@
     if (!bundleUrl) throw CANCELLED;
 
     const voodoo = info.info.voodoo && info.backend === "dosboxX";
+    const savedMouse = localStorage.getItem(mouseKey());
+    mouseBtn.hidden = matchMedia("(pointer: coarse)").matches && !matchMedia("(any-pointer: fine)").matches;
+    setMouse(savedMouse ? savedMouse === "on" : Boolean(info.mouseCapture), false);
     dosProps = Dos(document.getElementById("dos"), {
       pathPrefix: "/vendor/js-dos/dist/emulators/",
       backend: info.backend,
@@ -281,12 +300,16 @@
       noCloud: true,
       thinSidebar: true,
       theme: "dark",
+      mouseCapture,
       ...(voodoo ? { renderBackend: "webgl", offscreenCanvas: true, workerThread: true } : {}),
       onEvent: (event, ci) => {
         window.__player.events.push(event);
         if (event === "ci-ready") {
           window.__player.ready = true;
           window.__player.ci = ci;
+          // js-dos resets capture from the bundle's [sdl] autolock (which the
+          // translator drops) when it starts, so apply the player's choice again.
+          dosProps.setMouseCapture(mouseCapture);
           statusEl.style.display = "none"; // the `hidden` attribute loses to #status's display:grid
           // The game quit: the launcher's `exit` now runs the server's quit
           // program (translate.mjs) instead of stopping the emulator, so the

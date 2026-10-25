@@ -4,6 +4,9 @@ year: 1989
 id: 4446
 status: Boots
 backend: dosbox
+size: 0.26
+memsize: 16
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Game option menu (Begin a new game ...)"

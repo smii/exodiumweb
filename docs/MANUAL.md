@@ -69,6 +69,7 @@ Move the mouse to bring it back.
 |---|---|
 | ▤ **Scanlines** | CRT scanlines on or off, lined up with the game picture. |
 | ⛶ **Fullscreen** | Fullscreen without F11. |
+| 🖱 **Lock mouse** (mouse or trackpad) | The mouse moves the game's own cursor instead of pointing at a spot. Click the game to capture the pointer, **Esc** releases it. Use it when the cursor jumps or drifts; Warcraft II starts with it on. Remembered per game in this browser. |
 | ⌨ **Lock keys** (fullscreen, Chromium browsers) | Sends Esc, Ctrl+W and similar keys to the game instead of the browser. **Hold Esc** to leave fullscreen. |
 | ✕ **Close** | Saves your progress, stops the game and returns to the library. |
 

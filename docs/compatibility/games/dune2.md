@@ -4,6 +4,9 @@ year: 1992
 id: 6650
 status: Boots
 backend: dosbox
+size: 24.95
+memsize: 32
+cycles: max
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Intro plays (Mentat/Emperor scenes); Escape doesn't skip it within 50 s"

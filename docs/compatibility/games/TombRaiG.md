@@ -4,6 +4,9 @@ year: 1998
 id: 4462
 status: Partial
 backend: dosbox
+size: 463.54
+memsize: 63
+cycles: 100000
 tested: 2026-10-10
 note: "Software renderer by default (3dfx path broken)"
 commits: "01ee179"

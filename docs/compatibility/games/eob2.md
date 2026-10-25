@@ -4,6 +4,9 @@ year: 1991
 id: 3318
 status: Playable
 backend: dosbox
+size: 64.29
+memsize: 16
+cycles: 8000
 group: Westwood Studios
 tested: 2026-10-23
 verified: "In game with the party, camp menu open"

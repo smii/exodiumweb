@@ -4,6 +4,9 @@ year: 1997
 id: 5729
 status: Boots
 backend: dosbox
+size: 1016.64
+memsize: 63
+cycles: 100000
 tested: 2026-10-09
 note: "Build cfg `ScreenMode 0`"
 commits: "bea1370"

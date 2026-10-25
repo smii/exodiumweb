@@ -77,6 +77,29 @@ the `cls`: `?cmd=` the launcher's lines one by one, or read the patched
 `run.bat` in the bundle. Silent `imgmount`/`mount` failures are the usual
 cause.
 
+## Warcraft II: minimap view jumps to the top-left (2026-10-25)
+
+Game `2013`, shortcode `WarcrafD`. Clicking certain spots of the minimap
+moved the view to the map's top-left corner.
+
+**Cause:** js-dos without pointer lock sends DOSBox absolute positions,
+which DOSBox scales as `x × max_x` and clamps to the game's mouse range. A
+game that narrows the range (INT 33h fn 7/8, Warcraft II on its minimap)
+gets the range's top-left corner. eXo's DOSBox uses `autolock=true`
+(relative movement); the translator drops `[sdl]`.
+
+**Fix:** a per-game "Lock mouse" default (`MOUSE_CAPTURE_DEFAULTS`) plus a
+🖱 toolbar toggle that calls js-dos `setMouseCapture`. js-dos resets capture
+from the bundle's `autolock` when it starts, so the player applies the
+choice again at `ci-ready`. Details:
+[compatibility/games/WarcrafD.md](compatibility/games/WarcrafD.md).
+
+To check another game whose cursor jumps or drifts, run
+`MOUSE=off|on DRIFT=-60 node test/mouse-probe.mjs <base> <id> <gameDir> 0.5 0.5`
+(through `test/with-server.sh` and `run-detached.sh`). A position stuck at
+the range minimum with `off` and moving with `on` means: add its shortcode
+to `MOUSE_CAPTURE_DEFAULTS`.
+
 ## Reproduce without modifying a player's state
 
 Use a separate `STATE_DIR`, test identity, and unused port. Do not start a

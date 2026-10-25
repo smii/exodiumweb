@@ -4,6 +4,9 @@ year: 1990
 id: 8177
 status: Boots
 backend: dosbox
+size: 1.01
+memsize: 63
+cycles: max
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Copy-protection prompt (word from the manual)"

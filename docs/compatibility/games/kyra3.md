@@ -4,6 +4,9 @@ year: 1994
 id: 7309
 status: Playable
 backend: dosbox
+size: 445.14
+memsize: 63
+cycles: max
 group: Westwood Studios
 tested: 2026-10-23
 verified: "In game: Malcolm at the Castle Dump"

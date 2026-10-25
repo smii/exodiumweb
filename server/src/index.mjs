@@ -217,6 +217,14 @@ const SOFTWARE_DEFAULTS = {
   tombraig: { backend: "dosbox", cmd: "echo C:\\TOMBRAID > TOMBPATH.TXT|cd tombraid|tomb" },
 };
 
+// Games that start with "Lock mouse" on. Without pointer lock js-dos hands
+// DOSBox absolute positions, which DOSBox scales as x * max_x and then clamps
+// to the game's mouse range; a game that narrows that range (Warcraft II while
+// dragging on its minimap) sees the cursor jump to the range's top-left. With
+// the pointer locked, movement is relative, as in eXo's own DOSBox
+// (autolock=true by default). Players can switch it per game in the toolbar.
+const MOUSE_CAPTURE_DEFAULTS = new Set(["warcrafd"]);
+
 /** Everything the player needs to boot one game for this user. */
 function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride, disc) {
   const game = gameById(db, id);
@@ -255,6 +263,7 @@ function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride, disc) {
     bundleUrl: `/api/play/${id}/bundle.jsdos?${new URLSearchParams({ c: confHash, ...(backendOverride ? { backend: backendOverride } : {}), ...(cmdOverride ? { cmd: cmdOverride } : {}), ...(tuneOverride ? { tune: tuneOverride } : {}), ...(disc ? { disc } : {}) })}`,
     confHash,
     shader: settings.glshader ?? null,
+    mouseCapture: MOUSE_CAPTURE_DEFAULTS.has(game.shortcode?.toLowerCase()),
   };
 }
 

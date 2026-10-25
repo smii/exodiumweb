@@ -4,6 +4,9 @@ year: 1993
 id: 1646
 status: Playable
 backend: dosbox
+size: 238.38
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "New game: character selection in front of King Richard"

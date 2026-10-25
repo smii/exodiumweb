@@ -4,6 +4,9 @@ year: 1991
 id: 7338
 status: Boots
 backend: dosbox
+size: 56.46
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Intro (\"Master....\") after the setup questions"

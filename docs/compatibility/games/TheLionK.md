@@ -4,6 +4,9 @@ year: 1994
 id: 8489
 status: Playable
 backend: dosbox
+size: 3.58
+memsize: 16
+cycles: 15000
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Level 1 \"The Pridelands\" starting"

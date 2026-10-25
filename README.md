@@ -1,25 +1,35 @@
 # (Unofficial) ExodiumWeb
 
-## The No-AI Generated Introduction Section
 
-Hi All,
+### Storyline:
 
-As a big fan of the [eXoDOS](https://www.retro-exo.com/exodos.html) community and the [Exodium](https://github.com/tvollstaedt/exodium) launcher, I wanted to bring these projects along on my self-hosted journey. I also wanted to see how I could utilize the capabilities of Claude (Opus 5.5), which ultimately resulted in this project. I honestly didn't expect transforming Exodium into a self-hosted (Cloud Native) service to be this functional so quickly.
+<div style="font-size: 0.88em; border-left: 4px solid #007acc; padding-left: 14px; color: #d1d1d1; margin: 20px 0; max-width: 650px; line-height: 1.5 
 
-Current features:
-*   Many games are working already, though I can't guarantee everything. I'm currently compiling a compatibility list through automated and manual playtesting,
-*   There is a functional UI, including support for save games.
-*   Ingame settings bar ingame to adjust Graphical, HiD, Cycle settings. 
-*  'CRT Overlay'  (Sorry couldn't hold myself ;). It's just an visual layer on top of the picture: no blur etc.
-*   Large games will be entirely downloaded before running. For some (like Command & Conquer), I've added campaign options at launch to minimize the download size.  Downloads are per game removable in the UI.
-*   I've started doing automated testing using Claude, including several approaches to try and fix games on the fly, with the results being pushed back to the compatibility list.
-*   For games that needed fixes, don't worry: your local library remains untouched. The fixes are included directly in the commits.
-*   I did not yet included networking, due to my very limited time.
+Hi All,<br>
+Before you scroll any further, a couple of words that are actually written by me:
 
+As a big fan of the <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> community and the <a href="https://github.com/tvollstaedt/exodium">Exodium</a> launcher, I wanted to bring these projects along on my self-hosted journey. I also wanted to see how I could utilize the capabilities of Claude, which ultimately resulted in this project. I honestly didn't expect transforming Exodium into a self-hosted (Cloud Native) service to be this functional so quickly.
 
-Additionally  I tried to make the whole process from idea -> building as extensivly  which can be found in the docs.  In case this project enables others to contribute, re-use or build an even better platform! Last but not lease fingers crossed that the future brings better DOS support to the browser. 
+I documented the entire journey from idea to execution in the docs. Hopefully, this enables others to contribute, re-use, or build an even better platform! Last but not least, fingers crossed that the future brings better DOS support to the browser. 
 
-A big thanks to @tvollstaedt for his work and suggestions to make this better! And of course, I can't forget the entire eXoDOS community for all their effort!
+<em>A big thanks to @tvollstaedt for his work and to the entire eXoDOS community for their efforts!</em>
+Enjoy!
+<details>
+  <summary><strong>Current features (Click to expand)</strong></summary>
+  <ul style="margin-top: 10px;">
+    <li>Most of the games will work with the js-dos implementation. But bare in mind it has its limitations such as no midi  . Games are working already (compiling a compatibility list through automated/manual playtesting).</li>
+    <li>Functional UI, including support for save games.</li>
+    <li>In-game settings bar to adjust Graphical, HID, and Cycle settings.</li>
+    <li>'CRT Overlay' (Sorry, couldn't hold myself 😉. It's a visual layer on top of the picture: no blur, etc.)</li>
+    <li>Large games download entirely before running. For multi-disc launchers (like C&C), you can pick campaign options to minimize download size. Downloads are removable per game in the UI.</li>
+    <li>Automated testing using Claude to fix games on the fly, with results pushed to the compatibility list.</li>
+    <li>Your local library remains untouched. Fixes are included directly in the commits.</li>
+    <li><em>(Networking is not yet included due to limited time).</em></li>
+  </ul>
+</details>
+<hr style="border: 0; border-top: 1px dashed #1e1d1d; margin: 10px 0;"/>
+
+</div>
 
 
 ## What it is
@@ -41,13 +51,21 @@ Self-hosted, multi-user, nothing to install on the client.
 
 Status: **MVP in progress.** Milestones with screenshots: [docs/progress](docs/progress/README.md).
 
+
+## Known limitations
+ 
+- **No MIDI music.** The js-dos player has its limits; MIDI is one of them.
+- **No networking** or multiplayer yet.
+- **Not every game runs yet.** Check [Tested games](#tested-games) below.
+- **HTTPS or `localhost` only.** The player needs `SharedArrayBuffer`, which browsers only allow on secure origins.
+
 ## Tested games
 
 The headless test plays each game up to a menu or into the game. Every tested game has its own page with the fixes made for it.
 Overview, global fixes and how to add a game: **[docs/compatibility](docs/compatibility/README.md)**.
 
 <!-- generated:tested (node tools/compat-index.mjs) -->
-🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 **34 of 7,666 games tested:** 🟢 17 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported. [All tested games](docs/compatibility/GAMES.md) · [searchable table](docs/compatibility/games.csv)
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟧🟥 **84 of 7,666 games tested:** 🟢 67 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported. [All tested games](docs/compatibility/GAMES.md) · [searchable table](docs/compatibility/games.csv)
 <!-- /generated:tested -->
 
 A game misbehaving? [Open an issue](https://github.com/smii/exodiumweb/issues/new/choose) with the game's name. The app's bug button and **Settings → About** link to the same place.

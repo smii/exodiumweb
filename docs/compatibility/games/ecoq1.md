@@ -4,6 +4,9 @@ year: 1991
 id: 9059
 status: Playable
 backend: dosbox
+size: 350.29
+memsize: 32
+cycles: 9000
 tested: 2026-10-09
 note: "Large-game download, kept in browser storage"
 commits: "1a5bc3c"

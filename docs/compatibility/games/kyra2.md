@@ -4,6 +4,9 @@ year: 1994
 id: 8355
 status: Boots
 backend: dosbox
+size: 126.2
+memsize: 32
+cycles: 25000
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Intro (Zanthia's hand scene)"

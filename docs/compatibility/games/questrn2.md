@@ -4,6 +4,9 @@ year: 1988
 id: 3988
 status: Boots
 backend: dosbox
+size: 0.26
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Main menu (Demo / Create a character ...)"

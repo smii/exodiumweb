@@ -4,6 +4,9 @@ year: 1987
 id: 6313
 status: Playable
 backend: dosbox
+size: 0.05
+memsize: 16
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Blackjack table, betting menu"

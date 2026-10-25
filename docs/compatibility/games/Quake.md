@@ -4,6 +4,9 @@ year: 1996
 id: 2647
 status: Playable
 backend: dosbox
+size: 617.35
+memsize: 63
+cycles: auto
 tested: 2026-10-09
 note: "`svga_s3` → `vesa_nolfb`, memsize 63"
 commits: "a68f12e"

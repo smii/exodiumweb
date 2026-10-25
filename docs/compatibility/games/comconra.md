@@ -4,6 +4,9 @@ year: 1996
 id: 5645
 status: Playable
 backend: dosbox
+size: 2233.22
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 note: "Same as C&C"

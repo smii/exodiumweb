@@ -4,6 +4,9 @@ year: 1997
 id: 8315
 status: Not supported
 backend: dosboxX
+size: 3898.14
+memsize: 63
+cycles: 100000
 group: Westwood Studios
 tested: 2026-10-23
 note: "3.9 GB, four CDs mounted at once"

@@ -4,6 +4,9 @@ year: 1990
 id: 4687
 status: Playable
 backend: dosbox
+size: 1.29
+memsize: 32
+cycles: 3000
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Mech selection screen with mech stats"

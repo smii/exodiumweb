@@ -4,6 +4,9 @@ year: 1990
 id: 7085
 status: Playable
 backend: dosbox
+size: 60.82
+memsize: 63
+cycles: auto
 tested: 2026-10-08
 note: "`IF cond program` launcher lines → `GOTO`"
 commits: "e3fc2bf"

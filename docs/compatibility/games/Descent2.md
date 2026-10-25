@@ -4,6 +4,9 @@ year: 1996
 id: 1991
 status: Boots
 backend: dosbox
+size: 1398.65
+memsize: 63
+cycles: 100000
 tested: 2026-10-10
 note: "menu"
 ---

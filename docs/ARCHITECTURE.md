@@ -21,7 +21,7 @@ Browser ──HTTPS──▶ login proxy (sets Remote-User) ──HTTP──▶ 
 | Web shims | `ui/web-shims/` + alias block in `ui/vite.config.ts` | Replace the 7 Tauri modules the UI imports. `invoke(cmd, args)` → `POST /api/invoke/<cmd>`; `listen()` → `EventSource('/api/events')`; `launch_game` opens the player overlay. Also: history/Back handling (`history.ts`), hover panel (`hovercard.ts`), phone layout and look (`web.css`), Downloads link. |
 | Server | `server/src/index.mjs` | HTTP routes, launch info, bundle building and caching, saves, static files. Node ≥ 22.13 built-ins only (`node:sqlite`, `node:zlib`, `node:http`). |
 | Command table | `server/src/commands.mjs`, `queries.mjs` | Exodium's Tauri commands reimplemented over the user's SQLite DB. Desktop-only features (torrents, seeding, storage, updater, setup wizard) return harmless "nothing to do" values; unknown commands are logged once and return `null`. |
-| Player | `server/public/player.html` | Loads `/api/play/<id>`, starts js-dos (`/vendor/js-dos/`), syncs saves, toolbar (scanlines, keyboard lock, fullscreen, close). |
+| Player | `server/public/player.html` | Loads `/api/play/<id>`, starts js-dos (`/vendor/js-dos/`), syncs saves, toolbar (scanlines, mouse lock, keyboard lock, fullscreen, close). |
 | Downloads | `server/public/downloads.js`, `downloads.html` | Download-once storage for large games (Cache API) and the page that lists/removes them. |
 | js-dos 8.4.1 | `server/vendor/js-dos/` (fetched by `npm run fetch-jsdos`) | The emulator: two backends, `dosbox` and `dosboxX`. |
 | Upstream data | `server/data/`, `server/assets/previews/` (fetched by `npm run fetch-data`) | Exodium's bundled catalogue `exodium.db`, eXo config zips and 75×120 cover thumbnails. |

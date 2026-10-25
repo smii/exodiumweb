@@ -4,6 +4,9 @@ year: 1995
 id: 8170
 status: Playable
 backend: dosbox
+size: 1313.89
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 note: "Launcher CD mount path; one disc per campaign"

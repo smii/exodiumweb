@@ -4,6 +4,9 @@ year: 1995
 id: 2847
 status: Boots
 backend: dosbox
+size: 332.83
+memsize: 16
+cycles: auto
 tested: 2026-10-10
 note: "Large-game download; launcher keys open"
 ---

@@ -46,6 +46,7 @@ Stored per user in the user's DB (`game_config`), applied at launch:
 | Engine | `dosbox` / `dosboxX` forces the js-dos backend. |
 | Cycles | Inserted as `cycles=` at the top of `[cpu]`. |
 | Custom config | Prepended to the translated `dosbox.conf`. |
+| Lock mouse | Toolbar toggle, stored in the browser (`localStorage` `exodiumweb:mouse:<id>`), not in the DB. The default comes from `/api/play/<id>` `mouseCapture`, true for the shortcodes in `MOUSE_CAPTURE_DEFAULTS` (`server/src/index.mjs`). |
 | Shader | Passed to the player as `shader` (not applied by `player.html` at the moment). |
 
 ## Testing hooks (query parameters)

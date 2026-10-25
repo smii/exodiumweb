@@ -4,9 +4,13 @@ year: 1991
 id: 2305
 status: Playable
 backend: dosbox
-tested: 2026-10-09
+size: 0.63
+memsize: 16
+cycles: auto
+tested: 2026-10-25
 note: "All audio at 44,100 Hz"
 commits: "0f5e666"
+group: Apogee / 3D Realms
 ---
 # Commander Keen 5: The Armageddon Machine (1991)
 
@@ -23,3 +27,5 @@ commits: "0f5e666"
 Start screen, gameplay and music (`test/sound-probe.mjs`). The milestone 1
 recording uses this game: [Keen 5 play](../../progress/01-keen5-play.gif).
 Commander Keen 4 (`CKeen4`, id `8754`) was checked the same way.
+
+Retested 2026-10-25 in the Apogee / 3D Realms sweep: title, new game, Shadowlands map, Keen walks.

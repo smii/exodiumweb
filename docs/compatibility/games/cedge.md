@@ -4,6 +4,9 @@ year: 1990
 id: 5190
 status: Playable
 backend: dosbox
+size: 0.64
+memsize: 32
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "In game: \"Your Apartment\" with the text parser"

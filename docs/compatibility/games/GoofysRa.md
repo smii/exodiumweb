@@ -4,6 +4,9 @@ year: 1991
 id: 8229
 status: Playable
 backend: dosbox
+size: 0.19
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Railway scene with Mickey and Goofy"

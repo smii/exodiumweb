@@ -4,6 +4,9 @@ year: 1988
 id: 2383
 status: Playable
 backend: dosbox
+size: 0.17
+memsize: 63
+cycles: auto
 group: Westwood Studios
 tested: 2026-10-23
 verified: "Donald in the living room, letters on screen"
