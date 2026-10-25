@@ -2,7 +2,7 @@
 
 # Tested games
 
-[← Compatibility](README.md) · 223 games · 🟢 100 playable · 🟡 114 boots · 🟠 3 partial · 🔴 6 not supported · [searchable table](games.csv)
+[← Compatibility](README.md) · 231 games · 🟢 101 playable · 🟡 121 boots · 🟠 3 partial · 🔴 6 not supported · [searchable table](games.csv)
 
 [A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [W](#w) · [X](#x) · [Z](#z)
 
@@ -33,6 +33,7 @@
 | [Blake Stone: Planet Strike](games/BlakeStP.md) | 1994 | 🟢 Playable | dosbox | 4.7 MB | 16 MB | 6,000 cycles | — |
 | [Blood](games/Blood.md) | 1997 | 🟡 Boots | dosbox | 1.0 GB | 63 MB | 100,000 cycles | Build cfg `ScreenMode 0` |
 | [Boppin'](games/boppin.md) | 1994 | 🟡 Boots | dosbox | 9.4 MB | 63 MB | 8,500 cycles | — |
+| [Boulder Dash Construction Kit](games/BDashCK.md) | 1987 | 🟡 Boots | dosbox | 40 KB | 4 MB | 500 cycles | — |
 
 ## C
 
@@ -138,6 +139,7 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Jones in the Fast Lane (Enhanced CD-ROM)](games/jonefast.md) | 1992 | 🟡 Boots | dosbox | 328 MB | 16 MB | auto | — |
+| [Jumpman](games/Jumpman.md) | 1984 | 🟡 Boots | dosbox | 60 KB | 16 MB | auto | — |
 | [Jumpman Lives!](games/JumpmanL.md) | 1991 | 🟢 Playable | dosbox | 130 KB | 16 MB | auto | — |
 
 ## K
@@ -229,6 +231,7 @@
 | [Phantasmagoria 2: A Puzzle of Flesh](games/phantas2.md) | 1996 | 🔴 Not supported | dosbox | 4.5 GB | 63 MB | 60,000 cycles | — |
 | [Pharaoh's Tomb](games/PharaohT.md) | 1990 | 🟢 Playable | dosbox | 230 KB | 63 MB | 600 cycles | — |
 | [Phrase Master](games/PhraseMa.md) | 1990 | 🟢 Playable | dosbox | 30 KB | 63 MB | 300 cycles | — |
+| [Pitstop II](games/pitstop2.md) | 1984 | 🟢 Playable | dosbox | 30 KB | 4 MB | 500 cycles | — |
 | [Police Quest 2: The Vengeance](games/PQ2.md) | 1988 | 🟢 Playable | dosbox | 1.7 MB | 16 MB | auto | — |
 | [Police Quest 3: The Kindred](games/PQ3.md) | 1991 | 🟢 Playable | dosbox | 9.1 MB | 16 MB | 10,000 cycles | — |
 | [Police Quest 4: Open Season](games/PQ4.md) | 1993 | 🟡 Boots | dosbox | 911 MB | 32 MB | 35,000 cycles | — |
@@ -287,12 +290,14 @@
 | [Stargunner](games/Stargunn.md) | 1996 | 🟢 Playable | dosbox | 580 MB | 32 MB | 50,000 cycles | — |
 | [StarQuest: Rescue at Rigel](games/starqrr.md) | 1983 | 🟡 Boots | dosbox | 60 KB | 63 MB | 1,000 cycles | — |
 | [StarQuest: Star Warrior](games/SQSW.md) | 1983 | 🟡 Boots | dosbox | 80 KB | 8 MB | 300 cycles | — |
+| [Summer Games II](games/SummerGa.md) | 1986 | 🟡 Boots | dosbox | 140 KB | 63 MB | 300 cycles | — |
 | [Supernova](games/suprnova.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
 
 ## T
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Temple of Apshai Trilogy](games/apshai.md) | 1985 | 🟡 Boots | dosbox | 80 KB | 8 MB | 600 cycles | — |
 | [Temple of Kroz](games/Templeof.md) | 1990 | 🟢 Playable | dosbox | 40 KB | 16 MB | auto | — |
 | [The Adventures of Willy Beamish](games/beamish.md) | 1991 | 🟡 Boots | dosbox | 261 MB | 32 MB | 9,000 cycles | — |
 | [The Beast Within: A Gabriel Knight Mystery](games/GK2.md) | 1995 | 🔴 Not supported | dosbox | 6.4 GB | 32 MB | auto | — |
@@ -310,6 +315,7 @@
 | [The Sierra Network](games/INNBarn.md) | 1991 | 🟡 Boots | dosbox | 14 MB | 32 MB | 7,000 cycles | — |
 | [The Thing](games/thething.md) | 1988 | 🟢 Playable | dosbox | 20 KB | 63 MB | 6,000 cycles | — |
 | [The Thor Trilogy](games/TheThorT.md) | 1990 | 🟢 Playable | dosbox | 180 KB | 16 MB | auto | — |
+| [The World's Greatest Baseball Game](games/wgbball.md) | 1985 | 🟡 Boots | dosbox | 90 KB | 8 MB | 400 cycles | — |
 | [Thexder](games/Thexder.md) | 1987 | 🟢 Playable | dosbox | 230 KB | 16 MB | auto | — |
 | [Tomb Raider Gold](games/TombRaiG.md) | 1998 | 🟠 Partial | dosbox | 464 MB | 63 MB | 100,000 cycles | Software renderer by default (3dfx path broken) |
 | [Torin's Passage](games/torin.md) | 1995 | 🟡 Boots | dosbox | 615 MB | 63 MB | 60,000 cycles | — |
@@ -336,6 +342,8 @@
 | [Wizard of Id's WizType](games/Wizardof.md) | 1984 | 🟡 Boots | dosbox | 30 KB | 16 MB | 300 cycles | — |
 | [Wolfenstein 3D](games/Wolf3D.md) | 1992 | 🟢 Playable | dosbox | 1.3 MB | 16 MB | 15,000 cycles | — |
 | [Word Whiz](games/WordWhiz.md) | 1990 | 🟢 Playable | dosbox | 170 KB | 63 MB | auto | — |
+| [World Games](games/WorldGam.md) | 1986 | 🟡 Boots | dosbox | 150 KB | 63 MB | auto | — |
+| [World Karate Championship](games/WorldKar.md) | 1986 | 🟡 Boots | dosbox | 80 KB | 8 MB | 300 cycles | — |
 
 ## X
 

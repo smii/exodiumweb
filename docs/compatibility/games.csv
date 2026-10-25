@@ -17,6 +17,7 @@ Blake Stone: Aliens of Gold,1993,Playable,dosbox,5.81,16,12000,Apogee / 3D Realm
 Blake Stone: Planet Strike,1994,Playable,dosbox,4.65,16,6000,Apogee / 3D Realms,2026-10-25,,5670,BlakeStP,
 Blood,1997,Boots,dosbox,1016.64,63,100000,,2026-10-09,Build cfg ScreenMode 0,5729,Blood,
 Boppin',1994,Boots,dosbox,9.38,63,8500,Apogee / 3D Realms,2026-10-25,,5930,boppin,
+Boulder Dash Construction Kit,1987,Boots,dosbox,0.04,4,500,"Epyx, Inc.",2026-10-25,,8755,BDashCK,auto review
 Caesar II,1995,Boots,dosbox,87.43,63,auto,Sierra On-Line,2026-10-25,,7066,caesar2,
 Castle of Dr. Brain,1991,Boots,dosbox,109.72,32,9000,Sierra On-Line,2026-10-25,,2664,castleb,
 Circuit's Edge,1990,Playable,dosbox,0.64,32,auto,Westwood Studios,2026-10-23,,5190,cedge,
@@ -82,6 +83,7 @@ Inca (1992),1992,Boots,dosbox,514.61,32,2500,Sierra On-Line,2026-10-25,,3266,inc
 Inca II: Nations of Immortality,1994,Boots,dosbox,615.41,16,auto,Sierra On-Line,2026-10-25,,5549,inca2,
 IndyCar Racing II,1996,Boots,dosbox,156.02,63,max,Sierra On-Line,2026-10-25,,5271,IndyCR2,
 Jones in the Fast Lane (Enhanced CD-ROM),1992,Boots,dosbox,328.26,16,auto,Sierra On-Line,2026-10-25,,5675,jonefast,
+Jumpman,1984,Boots,dosbox,0.06,16,auto,IBM,2026-10-25,,6037,Jumpman,auto review
 Jumpman Lives!,1991,Playable,dosbox,0.13,16,auto,Apogee / 3D Realms,2026-10-25,,6056,JumpmanL,
 King's Quest I: Quest for the Crown (1987),1987,Playable,dosbox,0.27,8,auto,Sierra On-Line,2026-10-25,,8475,KQ1,
 King's Quest I: Quest for the Crown (PCjr),1984,Playable,dosbox,0.59,8,250,Sierra On-Line,2026-10-25,,7629,KQ1pcjr,
@@ -143,6 +145,7 @@ Phantasmagoria,1995,Not supported,dosbox,6120.72,63,30000,Sierra On-Line,2026-10
 Phantasmagoria 2: A Puzzle of Flesh,1996,Not supported,dosbox,4479.75,63,60000,Sierra On-Line,2026-10-25,,1848,phantas2,
 Pharaoh's Tomb,1990,Playable,dosbox,0.23,63,600,Apogee / 3D Realms,2026-10-25,,3719,PharaohT,
 Phrase Master,1990,Playable,dosbox,0.03,63,300,Apogee / 3D Realms,2026-10-25,,8861,PhraseMa,
+Pitstop II,1984,Playable,dosbox,0.03,4,500,"Epyx, Inc.",2026-10-25,,3090,pitstop2,auto
 Police Quest 2: The Vengeance,1988,Playable,dosbox,1.72,16,auto,Sierra On-Line,2026-10-25,,6174,PQ2,
 Police Quest 3: The Kindred,1991,Playable,dosbox,9.14,16,10000,Sierra On-Line,2026-10-25,,5172,PQ3,
 Police Quest 4: Open Season,1993,Boots,dosbox,911.13,32,35000,Sierra On-Line,2026-10-25,,5186,PQ4,
@@ -186,7 +189,9 @@ Space Quest VI: Roger Wilco in the Spinal Frontier,1995,Boots,dosbox,1237.28,63,
 Stargunner,1996,Playable,dosbox,579.98,32,50000,Apogee / 3D Realms,2026-10-25,,8603,Stargunn,
 StarQuest: Rescue at Rigel,1983,Boots,dosbox,0.06,63,1000,"Epyx, Inc.",2026-10-25,,3372,starqrr,auto review
 StarQuest: Star Warrior,1983,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8364,SQSW,auto review
+Summer Games II,1986,Boots,dosbox,0.14,63,300,"Epyx, Inc.",2026-10-25,,2308,SummerGa,auto review
 Supernova,1987,Playable,dosbox,0.14,63,auto,Apogee / 3D Realms,2026-10-25,,3009,suprnova,
+Temple of Apshai Trilogy,1985,Boots,dosbox,0.08,8,600,"Epyx, Inc.",2026-10-25,,6012,apshai,auto review
 Temple of Kroz,1990,Playable,dosbox,0.04,16,auto,Apogee / 3D Realms,2026-10-25,,2509,Templeof,
 The Adventures of Willy Beamish,1991,Boots,dosbox,260.84,32,9000,Sierra On-Line,2026-10-25,,8844,beamish,
 The Beast Within: A Gabriel Knight Mystery,1995,Not supported,dosbox,6446.3,32,auto,Sierra On-Line,2026-10-25,,6321,GK2,
@@ -204,6 +209,7 @@ The Shadow of Yserbius,1993,Boots,dosbox,3.64,63,auto,Sierra On-Line,2026-10-25,
 The Sierra Network,1991,Boots,dosbox,14.02,32,7000,Sierra On-Line,2026-10-25,,7534,INNBarn,
 The Thing,1988,Playable,dosbox,0.02,63,6000,Apogee / 3D Realms,2026-10-25,,1696,thething,
 The Thor Trilogy,1990,Playable,dosbox,0.18,16,auto,Apogee / 3D Realms,2026-10-25,,2177,TheThorT,
+The World's Greatest Baseball Game,1985,Boots,dosbox,0.09,8,400,"Epyx, Inc.",2026-10-25,,8583,wgbball,auto review
 Thexder,1987,Playable,dosbox,0.23,16,auto,Sierra On-Line,2026-10-25,,3427,Thexder,
 Tomb Raider Gold,1998,Partial,dosbox,463.54,63,100000,,2026-10-10,Software renderer by default (3dfx path broken),4462,TombRaiG,
 Torin's Passage,1995,Boots,dosbox,614.94,63,60000,Sierra On-Line,2026-10-25,,2444,torin,
@@ -220,5 +226,7 @@ Winnie the Pooh in the Hundred Acre Wood,1986,Not supported,dosbox,0.14,4,250,Si
 Wizard of Id's WizType,1984,Boots,dosbox,0.03,16,300,Sierra On-Line,2026-10-25,,7011,Wizardof,
 Wolfenstein 3D,1992,Playable,dosbox,1.25,16,15000,Apogee / 3D Realms,2026-10-25,,6417,Wolf3D,
 Word Whiz,1990,Playable,dosbox,0.17,63,auto,Apogee / 3D Realms,2026-10-25,,4882,WordWhiz,
+World Games,1986,Boots,dosbox,0.15,63,auto,"Epyx, Inc.",2026-10-25,,7217,WorldGam,auto review
+World Karate Championship,1986,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8113,WorldKar,auto review
 Xenophage: Alien Bloodsport,1995,Playable,dosbox,76.78,32,45000,Apogee / 3D Realms,2026-10-25,,5507,Xenophag,
 Zeliard,1990,Playable,dosbox,0.57,32,auto,Sierra On-Line,2026-10-25,,4722,zeliard,

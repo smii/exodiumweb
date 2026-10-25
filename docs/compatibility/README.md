@@ -17,16 +17,16 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**223 of 7,666 games tested (2.9 %).** 🟢 100 playable · 🟡 114 boots · 🟠 3 partial · 🔴 6 not supported.
+**231 of 7,666 games tested (3 %).** 🟢 101 playable · 🟡 121 boots · 🟠 3 partial · 🔴 6 not supported.
 
 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 100 | 44.8 % |
-| 🟡 | Boots | 114 | 51.1 % |
+| 🟢 | Playable | 101 | 43.7 % |
+| 🟡 | Boots | 121 | 52.4 % |
 | 🟠 | Partial | 3 | 1.3 % |
-| 🔴 | Not supported | 6 | 2.7 % |
+| 🔴 | Not supported | 6 | 2.6 % |
 
 **Find a game:** [all tested games A–Z](GAMES.md) · [searchable table](games.csv) (filter by title, status, backend) · or search this folder for its title. A game not listed is untested.
 
@@ -35,7 +35,8 @@ named by its eXo shortcode.
 | Group | Tested | 🟢 | 🟡 | 🟠 | 🔴 |
 |---|---:|---:|---:|---:|---:|
 | Apogee / 3D Realms | 52 | 51 | 1 |  |  |
-| Epyx, Inc. | 6 |  | 6 |  |  |
+| Epyx, Inc. | 13 | 1 | 12 |  |  |
+| IBM | 1 |  | 1 |  |  |
 | Sierra On-Line | 133 | 33 | 93 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
 | Other games | 9 | 4 | 4 | 1 |  |
