@@ -17,16 +17,16 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**231 of 7,666 games tested (3 %).** 🟢 101 playable · 🟡 121 boots · 🟠 3 partial · 🔴 6 not supported.
+**298 of 7,666 games tested (3.9 %).** 🟢 129 playable · 🟡 159 boots · 🟠 3 partial · 🔴 7 not supported.
 
 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 101 | 43.7 % |
-| 🟡 | Boots | 121 | 52.4 % |
-| 🟠 | Partial | 3 | 1.3 % |
-| 🔴 | Not supported | 6 | 2.6 % |
+| 🟢 | Playable | 129 | 43.3 % |
+| 🟡 | Boots | 159 | 53.4 % |
+| 🟠 | Partial | 3 | 1 % |
+| 🔴 | Not supported | 7 | 2.3 % |
 
 **Find a game:** [all tested games A–Z](GAMES.md) · [searchable table](games.csv) (filter by title, status, backend) · or search this folder for its title. A game not listed is untested.
 
@@ -34,8 +34,10 @@ named by its eXo shortcode.
 
 | Group | Tested | 🟢 | 🟡 | 🟠 | 🔴 |
 |---|---:|---:|---:|---:|---:|
+| Accolade, Inc. | 64 | 28 | 35 |  | 1 |
 | Apogee / 3D Realms | 52 | 51 | 1 |  |  |
-| Epyx, Inc. | 13 | 1 | 12 |  |  |
+| COMPUTE! Publications, Inc. | 1 |  | 1 |  |  |
+| Epyx, Inc. | 15 | 1 | 14 |  |  |
 | IBM | 1 |  | 1 |  |  |
 | Sierra On-Line | 133 | 33 | 93 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
@@ -45,16 +47,16 @@ named by its eXo shortcode.
 
 | Game | Status | Tested | Note |
 |---|---|---|---|
+| [4th & Inches](games/4thInche.md) (1988) | 🟢 Playable | 2026-10-25 | Answer a at the first prompt |
+| [Ace of Aces](games/AceofAce.md) (1987) | 🟢 Playable | 2026-10-25 | Answer n at the first prompt |
 | [Aces of the Pacific](games/AcesotP.md) (1992) | 🟡 Boots | 2026-10-25 | — |
 | [Aces Over Europe](games/AcesOver.md) (1993) | 🟡 Boots | 2026-10-25 | — |
 | [Alien Carnage](games/AlienCar.md) (1993) | 🟢 Playable | 2026-10-25 | — |
 | [Alien Legacy](games/alienleg.md) (1994) | 🟡 Boots | 2026-10-25 | — |
+| [Altered Destiny](games/ADestiny.md) (1990) | 🟡 Boots | 2026-10-25 | — |
+| [Apollo 18: Mission to the Moon](games/Apollo18.md) (1988) | 🟡 Boots | 2026-10-25 | — |
 | [Arctic Adventure](games/ArcticAd.md) (1991) | 🟢 Playable | 2026-10-25 | — |
-| [Battle Bugs](games/batlbugs.md) (1994) | 🟡 Boots | 2026-10-25 | — |
-| [BC's Quest for Tires](games/BCsQuest.md) (1984) | 🟡 Boots | 2026-10-25 | — |
-| [Beyond the Titanic](games/beytitan.md) (1986) | 🟢 Playable | 2026-10-25 | — |
-| [Bio Menace](games/BioMenac.md) (1993) | 🟢 Playable | 2026-10-25 | — |
-| [Birthright: The Gorgon's Alliance](games/bgorgon.md) (1997) | 🟡 Boots | 2026-10-25 | — |
+| [Bar Games](games/BarGames.md) (1989) | 🟡 Boots | 2026-10-25 | — |
 <!-- /generated:stats -->
 
 ## Status legend

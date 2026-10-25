@@ -1,11 +1,17 @@
 title,year,status,backend,size,memsize,cycles,group,tested,note,id,code,tags
+4th & Inches,1988,Playable,dosbox,0.12,63,1200,"Accolade, Inc.",2026-10-25,Answer a at the first prompt,2921,4thInche,auto
 A Nightmare on Elm Street,1989,Boots,dosbox,0.26,16,auto,Westwood Studios,2026-10-23,,4446,ANightma,
+Ace of Aces,1987,Playable,dosbox,0.13,32,600,"Accolade, Inc.",2026-10-25,Answer n at the first prompt,6132,AceofAce,auto
 Aces of the Pacific,1992,Boots,dosbox,36.35,32,9000,Sierra On-Line,2026-10-25,,6451,AcesotP,
 Aces Over Europe,1993,Boots,dosbox,4.08,32,12000,Sierra On-Line,2026-10-25,,6822,AcesOver,
 Alien Carnage,1993,Playable,dosbox,2.85,16,5000,Apogee / 3D Realms,2026-10-25,,3916,AlienCar,
 Alien Legacy,1994,Boots,dosbox,193.97,63,10000,Sierra On-Line,2026-10-25,,4657,alienleg,
+Altered Destiny,1990,Boots,dosbox,2.02,32,auto,"Accolade, Inc.",2026-10-25,,1790,ADestiny,auto review
+Apollo 18: Mission to the Moon,1988,Boots,dosbox,0.29,63,1200,"Accolade, Inc.",2026-10-25,,2820,Apollo18,auto review
 Arctic Adventure,1991,Playable,dosbox,0.27,16,auto,Apogee / 3D Realms,2026-10-25,,4328,ArcticAd,
+Bar Games,1989,Boots,dosbox,0.51,63,auto,"Accolade, Inc.",2026-10-25,,6156,BarGames,auto review
 Battle Bugs,1994,Boots,dosbox,73.01,63,auto,Sierra On-Line,2026-10-25,,7791,batlbugs,
+Battle Isle 2200,1994,Not supported,dosbox,,63,30000,"Accolade, Inc.",2026-10-25, page.waitForFunction: Timeout 600000ms exceeded.,6293,bisle2,auto broken load-error
 BattleTech: The Crescent Hawk's Inception,1988,Boots,dosbox,0.41,16,auto,Westwood Studios,2026-10-23,,8999,batltech,
 BattleTech: The Crescent Hawk's Revenge,1990,Playable,dosbox,1.29,32,3000,Westwood Studios,2026-10-23,,4687,batltec2,
 BC's Quest for Tires,1984,Boots,dosbox,0.02,8,500,Sierra On-Line,2026-10-25,,8142,BCsQuest,
@@ -16,8 +22,11 @@ BlackJack Academy,1987,Playable,dosbox,0.05,16,auto,Westwood Studios,2026-10-23,
 Blake Stone: Aliens of Gold,1993,Playable,dosbox,5.81,16,12000,Apogee / 3D Realms,2026-10-25,,8222,BlakeStA,
 Blake Stone: Planet Strike,1994,Playable,dosbox,4.65,16,6000,Apogee / 3D Realms,2026-10-25,,5670,BlakeStP,
 Blood,1997,Boots,dosbox,1016.64,63,100000,,2026-10-09,Build cfg ScreenMode 0,5729,Blood,
+Blue Angels: Formation Flight Simulation,1989,Boots,dosbox,0.33,8,auto,"Accolade, Inc.",2026-10-25,,8962,BlueAnge,auto review
 Boppin',1994,Boots,dosbox,9.38,63,8500,Apogee / 3D Realms,2026-10-25,,5930,boppin,
 Boulder Dash Construction Kit,1987,Boots,dosbox,0.04,4,500,"Epyx, Inc.",2026-10-25,,8755,BDashCK,auto review
+Brett Hull Hockey 95,1995,Playable,dosbox,97.75,32,max,"Accolade, Inc.",2026-10-25,,4349,BrettHul,auto
+Bubble Ghost,1988,Boots,dosbox,0.05,63,auto,"Accolade, Inc.",2026-10-25,,6323,bublghst,auto review
 Caesar II,1995,Boots,dosbox,87.43,63,auto,Sierra On-Line,2026-10-25,,7066,caesar2,
 Castle of Dr. Brain,1991,Boots,dosbox,109.72,32,9000,Sierra On-Line,2026-10-25,,2664,castleb,
 Circuit's Edge,1990,Playable,dosbox,0.64,32,auto,Westwood Studios,2026-10-23,,5190,cedge,
@@ -36,9 +45,13 @@ Cosmo's Cosmic Adventure,1992,Playable,dosbox,1.4,16,auto,Apogee / 3D Realms,202
 Crazy Nick's Software Picks,1993,Boots,dosbox,2.52,63,auto,Sierra On-Line,2026-10-25,,5368,crazynik,
 Crossfire,1982,Playable,dosbox,0.02,16,100,Sierra On-Line,2026-10-25,,7470,Crossfir,
 Crystal Caves,1991,Playable,dosbox,0.51,16,auto,Apogee / 3D Realms,2026-10-25,,4267,CrystalC,
+Cyclemania,1994,Boots,dosbox,402.87,63,max,"Accolade, Inc.",2026-10-25,,1713,Cycleman,auto review
 Dark Ages,1991,Playable,dosbox,0.39,16,auto,Apogee / 3D Realms,2026-10-25,,3214,DarkAges,
+Day of the Viper,1990,Boots,dosbox,0.55,16,auto,"Accolade, Inc.",2026-10-25,,3543,dayviper,auto review
 Descent II,1996,Boots,dosbox,1398.65,63,100000,,2026-10-10,menu,1991,Descent2,
+Destroyer,1987,Boots,dosbox,0.1,4,600,"Epyx, Inc.",2026-10-25,,8923,destro87,auto review
 Detroit,1994,Boots,dosbox,19.68,32,auto,Sierra On-Line,2026-10-25,,3717,Detroit,
+Don't Go Alone,1989,Boots,dosbox,0.64,63,auto,"Accolade, Inc.",2026-10-25,,4901,dgalone,auto review
 Donald Duck's Playground,1986,Playable,dosbox,0.15,4,600,Sierra On-Line,2026-10-25,,5423,dondukpl,
 Donald's Alphabet Chase,1988,Playable,dosbox,0.17,63,auto,Westwood Studios,2026-10-23,,2383,DonaldsA,
 DragonStrike,1990,Boots,dosbox,1.01,63,max,Westwood Studios,2026-10-23,,8177,DragonSt,
@@ -54,9 +67,13 @@ Dunjonquest: Temple of Apshai,1982,Boots,dosbox,0.13,4,800,"Epyx, Inc.",2026-10-
 Dunjonquest: Upper Reaches of Apshai,1982,Boots,dosbox,0.12,4,800,"Epyx, Inc.",2026-10-25,,4708,DQApshai,auto review
 EcoQuest I,1991,Playable,dosbox,350.29,32,9000,,2026-10-09,"Large-game download, kept in browser storage",9059,ecoq1,
 EcoQuest II: Lost Secret of the Rainforest,1993,Boots,dosbox,6.87,63,auto,Sierra On-Line,2026-10-25,,7128,ecoq2,
+Elvira II: The Jaws of Cerberus,1991,Boots,dosbox,3.13,16,auto,"Accolade, Inc.",2026-10-25,,8000,elvira2,auto review
+Elvira: Mistress of the Dark,1990,Boots,dosbox,2.1,32,auto,"Accolade, Inc.",2026-10-25,,5070,elvira1,auto review
+Eradicator,1996,Boots,dosbox,482.15,16,50000,"Accolade, Inc.",2026-10-25,,7720,Eradicat,auto review
 Eye of the Beholder,1991,Boots,dosbox,56.46,63,auto,Westwood Studios,2026-10-23,,7338,eob1,
 Eye of the Beholder II: The Legend of Darkmoon,1991,Playable,dosbox,64.29,16,8000,Westwood Studios,2026-10-23,,3318,eob2,
 Fast Attack: High Tech Submarine Warfare,1996,Boots,dosbox,480.26,63,max,Sierra On-Line,2026-10-25,,7280,FastAtta,
+Fast Break,1988,Playable,dosbox,0.15,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,3120,fastbrek,auto
 Fates of Twinion,1993,Boots,dosbox,1.47,63,auto,Sierra On-Line,2026-10-25,,6893,Fatetwin,
 Fire Hawk: Thexder - The Second Contact,1990,Playable,dosbox,2.59,32,auto,Sierra On-Line,2026-10-25,,3204,FireHawk,
 Freddy Pharkas: Frontier Pharmacist,1993,Boots,dosbox,1048.69,32,6000,Sierra On-Line,2026-10-25,,7077,freddy,
@@ -72,9 +89,19 @@ Gobliins 2: The Prince Buffoon,1993,Boots,dosbox,320.4,32,auto,Sierra On-Line,20
 Goblins Quest 3,1994,Boots,dosbox,483.96,32,auto,Sierra On-Line,2026-10-25,,5689,gob3,
 Gold Rush!,1988,Playable,dosbox,1.97,16,auto,Sierra On-Line,2026-10-25,,4624,GoldRush,
 Goofy's Railway Express,1991,Playable,dosbox,0.19,63,auto,Westwood Studios,2026-10-23,,8229,GoofysRa,
+Grand Prix Circuit,1988,Playable,dosbox,0.36,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,8951,GPrixC,auto
+Grand Prix Unlimited,1992,Boots,dosbox,0.87,32,auto,"Accolade, Inc.",2026-10-25,,5064,GPrixU,auto review
+Gunboat,1990,Boots,dosbox,0.47,32,auto,"Accolade, Inc.",2026-10-25,,7492,Gunboat,auto review
+HardBall 4,1994,Playable,dosbox,227.54,16,25000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2088,HBall4,auto
+HardBall 5,1995,Boots,dosbox,125.6,63,max,"Accolade, Inc.",2026-10-25,,8751,HardBall,auto review
+HardBall II,1989,Playable,dosbox,0.59,63,auto,"Accolade, Inc.",2026-10-25,,6111,HBall2,auto
+HardBall III,1992,Boots,dosbox,3.53,32,auto,"Accolade, Inc.",2026-10-25,,6144,HBall3,auto review
+HardBall!,1987,Playable,dosbox,0.21,32,1200,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,4778,Hball,auto
 Heart of China,1991,Boots,dosbox,6.89,32,auto,Sierra On-Line,2026-10-25,,6685,hoc,
+Heat Wave: Offshore Superboat Racing,1990,Boots,dosbox,0.42,63,auto,"Accolade, Inc.",2026-10-25,,7793,heatwave,auto review
 Hillsfar,1989,Boots,dosbox,0.43,63,auto,Westwood Studios,2026-10-23,,5171,hillsfar,
 Hocus Pocus,1994,Playable,dosbox,11.72,32,9000,Apogee / 3D Realms,2026-10-25,,5360,HocusPoc,
+Hoverforce,1991,Playable,dosbox,0.43,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7353,Hoverfor,auto
 Hoyle Classic Card Games,1993,Boots,dosbox,9.25,32,auto,Sierra On-Line,2026-10-25,,6307,hoylec,
 Hoyle Official Book of Games: Volume 1,1989,Boots,dosbox,0.6,32,auto,Sierra On-Line,2026-10-25,,1966,hoylebk1,
 Hoyle Official Book of Games: Volume 2,1990,Boots,dosbox,0.48,32,auto,Sierra On-Line,2026-10-25,,4631,hoylebk2,
@@ -82,6 +109,10 @@ Hoyle Official Book of Games: Volume 3,1991,Boots,dosbox,2.47,16,auto,Sierra On-
 Inca (1992),1992,Boots,dosbox,514.61,32,2500,Sierra On-Line,2026-10-25,,3266,inca1,
 Inca II: Nations of Immortality,1994,Boots,dosbox,615.41,16,auto,Sierra On-Line,2026-10-25,,5549,inca2,
 IndyCar Racing II,1996,Boots,dosbox,156.02,63,max,Sierra On-Line,2026-10-25,,5271,IndyCR2,
+Ishido: The Way of Stones,1990,Boots,dosbox,0.86,63,2000,"Accolade, Inc.",2026-10-25,,7516,ishidows,auto review
+Jack Nicklaus Golf & Course Design: Signature Edition,1992,Boots,dosbox,15.46,63,auto,"Accolade, Inc.",2026-10-25,,7592,JackGCD,auto review
+Jack Nicklaus' Greatest 18 Holes of Major Championship Golf,1988,Playable,dosbox,0.48,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2137,JackG18,auto
+Jack Nicklaus' Unlimited Golf & Course Design,1990,Playable,dosbox,10.64,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5216,JackUGCD,auto
 Jones in the Fast Lane (Enhanced CD-ROM),1992,Boots,dosbox,328.26,16,auto,Sierra On-Line,2026-10-25,,5675,jonefast,
 Jumpman,1984,Boots,dosbox,0.06,16,auto,IBM,2026-10-25,,6037,Jumpman,auto review
 Jumpman Lives!,1991,Playable,dosbox,0.13,16,auto,Apogee / 3D Realms,2026-10-25,,6056,JumpmanL,
@@ -109,23 +140,30 @@ Leisure Suit Larry 7: Love for Sail!,1996,Boots,dosbox,1147.48,32,45000,Sierra O
 Leisure Suit Larry Goes Looking for Love (in Several Wrong Places),1988,Playable,dosbox,1.54,16,auto,Sierra On-Line,2026-10-25,,5477,LSL2,
 Leisure Suit Larry in the Land of the Lounge Lizards,1987,Boots,dosbox,0.29,8,auto,Sierra On-Line,2026-10-25,,3945,LSL1,
 Leisure Suit Larry: In the Land of the Lounge Lizards (SCI Remake),1991,Boots,dosbox,5.45,16,10000,Sierra On-Line,2026-10-25,,8742,LSL1VGA,
+Les Manley In: Lost In L.A.,1991,Playable,dosbox,3.53,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2220,lmanla,auto
+Les Manley In: Search For The King,1990,Playable,dosbox,3.1,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,3932,lmanking,auto
 Lighthouse: The Dark Being,1996,Boots,dosbox,1027,63,max,Sierra On-Line,2026-10-25,,6453,lhouse,
 Lode Runner: The Legend Returns,1994,Boots,dosbox,5.2,16,30000,Sierra On-Line,2026-10-25,,8090,LodeRu94,
 Lords of the Realm II,1996,Boots,dosbox,930.21,63,75000,Sierra On-Line,2026-10-25,,2386,lordorm2,
 Lost Adventures of Kroz,1990,Playable,dosbox,0.1,16,auto,Apogee / 3D Realms,2026-10-25,,8838,LostAdve,
 Lost in Time,1993,Boots,dosbox,821.47,32,20000,Sierra On-Line,2026-10-25,,1961,losttime,
+Lumpies of Lotis IV,1986,Boots,dosbox,0.05,8,1500,"COMPUTE! Publications, Inc.",2026-10-25,,3036,Lotis,auto review
+Macadam Bumper,1987,Playable,dosbox,0.2,63,900,"Accolade, Inc.",2026-10-25,,7076,MacadamB,auto
 Major Stryker,1993,Playable,dosbox,2.59,16,6000,Apogee / 3D Realms,2026-10-25,,3973,MajorStr,
 Manhunter 2: San Francisco,1989,Boots,dosbox,1.16,63,auto,Sierra On-Line,2026-10-25,,5505,MH2,
 Manhunter: New York,1988,Playable,dosbox,1.01,4,auto,Sierra On-Line,2026-10-25,,3274,MH1,
 Master Levels for DOOM II,1995,Boots,dosbox,332.83,16,auto,,2026-10-10,Large-game download; launcher keys open,2847,MasterLe,
 Math Rescue,1992,Playable,dosbox,1.15,63,auto,Apogee / 3D Realms,2026-10-25,,8591,MathResc,
+Mean 18,1986,Boots,dosbox,1.56,63,auto,"Accolade, Inc.",2026-10-25,,4879,Mean18,auto review
 Mega Math,1992,Boots,dosbox,4,63,6000,Sierra On-Line,2026-10-25,,7744,MegaMath,
 Metaltech: Battledrome,1994,Boots,dosbox,69.18,63,75000,Sierra On-Line,2026-10-25,,1893,MetltecB,
 Metaltech: Earthsiege,1994,Boots,dosbox,145.47,63,30000,Sierra On-Line,2026-10-25,,8776,MetltecE,
 Mickey's Runaway Zoo,1991,Playable,dosbox,0.14,63,auto,Westwood Studios,2026-10-23,,3852,MickeysR,
 Mickey's Space Adventure,1986,Boots,dosbox,0.7,4,300,Sierra On-Line,2026-10-25,,1658,mickeysa,
+Mike Ditka Ultimate Football,1991,Playable,dosbox,0.87,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5824,MikeDitk,auto
 Mine Shaft,1983,Playable,dosbox,0.01,8,300,Sierra On-Line,2026-10-25,,2168,MineShaf,
 Mines of Titan,1989,Boots,dosbox,0.39,63,auto,Westwood Studios,2026-10-23,,2394,marssaga,
+Mini-Putt,1987,Playable,dosbox,0.15,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5743,Mini-Put,auto
 Mixed-Up Fairy Tales,1991,Boots,dosbox,6.4,32,9000,Sierra On-Line,2026-10-25,,8083,mufairy,
 Mixed-Up Mother Goose,1987,Boots,dosbox,0.28,8,max,Sierra On-Line,2026-10-25,,8897,mugoose1,
 Mixed-Up Mother Goose Enhanced,1991,Playable,dosbox,0.93,16,auto,Sierra On-Line,2026-10-25,,7604,mugoose2,
@@ -152,6 +190,7 @@ Police Quest 4: Open Season,1993,Boots,dosbox,911.13,32,35000,Sierra On-Line,202
 Police Quest: In Pursuit of the Death Angel,1987,Playable,dosbox,0.41,8,auto,Sierra On-Line,2026-10-25,,2285,PQ1,
 Police Quest: In Pursuit of the Death Angel (SCI Remake),1992,Boots,dosbox,6.47,32,9000,Sierra On-Line,2026-10-25,,2900,PQ1_VGA,
 Police Quest: SWAT,1995,Not supported,dosbox,3752.27,63,60000,Sierra On-Line,2026-10-25,,6877,pqswat,
+Psi-5 Trading Company,1986,Boots,dosbox,0.13,8,900,"Accolade, Inc.",2026-10-25,,1799,Psi-5Tra,auto review
 Puzzle Fun-Pak,1987,Playable,dosbox,0.14,63,400,Apogee / 3D Realms,2026-10-25,,5115,puzzfun,
 Quake,1996,Playable,dosbox,617.35,63,auto,,2026-10-09,"svga_s3 → vesa_nolfb, memsize 63",2647,Quake,
 Quarky & Quaysoo's Turbo Science,1992,Boots,dosbox,8.18,32,6000,Sierra On-Line,2026-10-25,,5692,QuarkyQu,
@@ -161,6 +200,8 @@ Quest For Glory III: Wages of War,1992,Boots,dosbox,14.76,63,9000,Sierra On-Line
 Quest For Glory IV: Shadows of Darkness,1993,Boots,dosbox,1381.48,32,40000,Sierra On-Line,2026-10-25,,6975,QG4CD,
 Quest for Glory: So You Want to Be a Hero,1989,Boots,dosbox,5.19,32,auto,Sierra On-Line,2026-10-25,,3389,QG1OLD,
 Questron II,1988,Boots,dosbox,0.26,63,auto,Westwood Studios,2026-10-23,,3988,questrn2,
+Rack 'Em,1988,Boots,dosbox,0.11,63,auto,"Accolade, Inc.",2026-10-25,,4767,RackEm,auto review
+Rad Warrior,1987,Boots,dosbox,0.04,4,600,"Epyx, Inc.",2026-10-25,,1681,RadWarri,auto review
 Raiders of the Forbidden Mine,1988,Playable,dosbox,0.02,8,600,Apogee / 3D Realms,2026-10-25,,5364,RaiFMine,
 Rama,1996,Boots,dosbox,1523.62,63,10000,Sierra On-Line,2026-10-25,,2163,rama,
 Raptor: Call of the Shadows,1994,Playable,dosbox,19.65,32,30000,Apogee / 3D Realms,2026-10-25,,7510,RaptorCa,
@@ -172,12 +213,14 @@ Rise of the Triad: Wolfenstein 3D Part II,2015,Playable,dosbox,1.04,32,15000,Apo
 Roberta Williams' Mixed-Up Mother Goose,1991,Boots,dosbox,891.53,16,auto,Sierra On-Line,2026-10-25,,5951,mugoose,
 Ruins of Cawdor,1995,Boots,dosbox,1.71,63,auto,Sierra On-Line,2026-10-25,,3975,cawdor,
 Secret Agent,1992,Playable,dosbox,0.56,16,auto,Apogee / 3D Realms,2026-10-25,,5983,SecretAg,
+Serve & Volley,1988,Playable,dosbox,0.1,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7028,ServeVol,auto
 Shadow Warrior,1997,Playable,dosboxX,582.18,63,100000,Apogee / 3D Realms,2026-10-25,vesa_noflb typo; Build cfg; answer Y to the VESA prompt,4806,ShadowWa,
 Sid & Al's Incredible Toons,1993,Boots,dosbox,4.46,63,auto,Sierra On-Line,2026-10-25,,5402,SidAls,
 Sierra Championship Boxing,1985,Boots,dosbox,0.1,4,500,Sierra On-Line,2026-10-25,,6669,SierraCh,
 Sierra's 3-D Helicopter Simulator,1987,Playable,dosbox,0.07,63,auto,Sierra On-Line,2026-10-25,,6583,Sierras3,
 Silpheed,1989,Boots,dosbox,0.93,16,auto,Sierra On-Line,2026-10-25,,7927,Silpheed,
 Slater & Charlie Go Camping,1993,Boots,dosbox,21.24,32,6000,Sierra On-Line,2026-10-25,,1706,SlaterCh,
+Snoopy's Game Club,1992,Boots,dosbox,0.9,63,auto,"Accolade, Inc.",2026-10-25,,8830,SnoopysG,auto review
 Sorcerian,1990,Boots,dosbox,5.66,32,auto,Sierra On-Line,2026-10-25,,4383,sorceria,
 Space Quest I: Roger Wilco in the Sarien Encounter (SCI Remake),1991,Boots,dosbox,9.99,16,auto,Sierra On-Line,2026-10-25,,7087,SQ1VGA,
 Space Quest I: The Sarien Encounter,1986,Playable,dosbox,0.33,8,auto,Sierra On-Line,2026-10-25,,1747,SQ1,
@@ -186,18 +229,34 @@ Space Quest III: The Pirates of Pestulon,1989,Playable,dosbox,3.89,16,auto,Sierr
 Space Quest IV: Roger Wilco and the Time Rippers,1991,Playable,dosbox,277.31,16,auto,Sierra On-Line,2026-10-25,,3014,SQ4,
 Space Quest V: Roger Wilco The Next Mutation,1993,Partial,dosbox,6.79,63,max,Sierra On-Line,2026-10-25,,3029,SQ5,
 Space Quest VI: Roger Wilco in the Spinal Frontier,1995,Boots,dosbox,1237.28,63,max,Sierra On-Line,2026-10-25,,2980,SQ6,
+Speed Racer in The Challenge of Racer X,1993,Boots,dosbox,6.69,63,9000,"Accolade, Inc.",2026-10-25,,8020,SpeedRac,auto review
+Star Control,1990,Playable,dosbox,6.87,32,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7640,StarCon,auto
+Star Control 3,1996,Playable,dosbox,668.37,63,32000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2160,StarCon3,auto
+Star Control II,1992,Boots,dosbox,4.26,63,auto,"Accolade, Inc.",2026-10-25,,4996,StarCon2,auto review
 Stargunner,1996,Playable,dosbox,579.98,32,50000,Apogee / 3D Realms,2026-10-25,,8603,Stargunn,
 StarQuest: Rescue at Rigel,1983,Boots,dosbox,0.06,63,1000,"Epyx, Inc.",2026-10-25,,3372,starqrr,auto review
 StarQuest: Star Warrior,1983,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8364,SQSW,auto review
+Steel Thunder,1989,Boots,dosbox,0.59,63,auto,"Accolade, Inc.",2026-10-25,,7622,SteelThu,auto review
+Stratego,1990,Boots,dosbox,0.47,63,auto,"Accolade, Inc.",2026-10-25,,7378,Stratego,auto review
+Strike Aces,1990,Boots,dosbox,0.72,63,auto,"Accolade, Inc.",2026-10-25,,4297,StrikeAc,auto review
 Summer Games II,1986,Boots,dosbox,0.14,63,300,"Epyx, Inc.",2026-10-25,,2308,SummerGa,auto review
 Supernova,1987,Playable,dosbox,0.14,63,auto,Apogee / 3D Realms,2026-10-25,,3009,suprnova,
 Temple of Apshai Trilogy,1985,Boots,dosbox,0.08,8,600,"Epyx, Inc.",2026-10-25,,6012,apshai,auto review
 Temple of Kroz,1990,Playable,dosbox,0.04,16,auto,Apogee / 3D Realms,2026-10-25,,2509,Templeof,
+Test Drive,1987,Boots,dosbox,0.4,16,auto,"Accolade, Inc.",2026-10-25,,8069,TstDriv,auto review
+Test Drive II: The Collection,1991,Playable,dosbox,1.32,63,auto,"Accolade, Inc.",2026-10-25,,6007,TstDriv2,auto
+Test Drive III: The Passion,1990,Playable,dosbox,0.83,63,6000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5516,TstDriv3,auto
+Test Drive: Off-Road,1997,Boots,dosbox,607.34,32,100000,"Accolade, Inc.",2026-10-25,,4909,TstDrivO,auto review
 The Adventures of Willy Beamish,1991,Boots,dosbox,260.84,32,9000,Sierra On-Line,2026-10-25,,8844,beamish,
 The Beast Within: A Gabriel Knight Mystery,1995,Not supported,dosbox,6446.3,32,auto,Sierra On-Line,2026-10-25,,6321,GK2,
 The Black Cauldron,1986,Playable,dosbox,0.3,63,auto,Sierra On-Line,2026-10-25,,6301,BlakCaul,
+The Cycles: International Grand Prix Racing,1989,Playable,dosbox,0.63,63,auto,"Accolade, Inc.",2026-10-25,,8248,TheCycle,auto
+The Dam Busters,1985,Boots,dosbox,0.03,8,350,"Accolade, Inc.",2026-10-25,,2689,TheDamBu,auto review
 The Even More Incredible Machine,1993,Boots,dosbox,547.26,32,25000,Sierra On-Line,2026-10-25,,2640,TheEvenM,
 The Final Crusade of Kroz,1990,Playable,dosbox,0.04,16,auto,Apogee / 3D Realms,2026-10-25,,3523,TKrozCr,
+The Game of Harmony,1990,Boots,dosbox,0.23,32,auto,"Accolade, Inc.",2026-10-25,,2172,gameharm,auto review
+The Games: Summer Challenge,1992,Boots,dosbox,10.02,63,auto,"Accolade, Inc.",2026-10-25,,5391,TGameSmC,auto review
+The Games: Winter Challenge,1991,Playable,dosbox,9.64,32,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7633,TGameWnC,auto
 The Incredible Machine,1993,Boots,dosbox,0.67,32,25000,Sierra On-Line,2026-10-25,,4330,TIncM1,
 The Incredible Machine 2,1994,Boots,dosbox,574.65,32,30000,Sierra On-Line,2026-10-25,,5416,TIncM2,
 The Island of Dr. Brain,1992,Boots,dosbox,22.87,63,6000,Sierra On-Line,2026-10-25,,3987,ibrain,
@@ -208,9 +267,12 @@ The Lion King,1994,Playable,dosbox,3.58,16,15000,Westwood Studios,2026-10-23,,84
 The Shadow of Yserbius,1993,Boots,dosbox,3.64,63,auto,Sierra On-Line,2026-10-25,,6948,shadyser,
 The Sierra Network,1991,Boots,dosbox,14.02,32,7000,Sierra On-Line,2026-10-25,,7534,INNBarn,
 The Thing,1988,Playable,dosbox,0.02,63,6000,Apogee / 3D Realms,2026-10-25,,1696,thething,
+The Third Courier,1989,Playable,dosbox,0.42,4,1900,"Accolade, Inc.",2026-10-25,,6450,thirdc,auto
 The Thor Trilogy,1990,Playable,dosbox,0.18,16,auto,Apogee / 3D Realms,2026-10-25,,2177,TheThorT,
+The Train: Escape to Normandy,1988,Boots,dosbox,0.15,63,auto,"Accolade, Inc.",2026-10-25,,3162,TheTrain,auto review
 The World's Greatest Baseball Game,1985,Boots,dosbox,0.09,8,400,"Epyx, Inc.",2026-10-25,,8583,wgbball,auto review
 Thexder,1987,Playable,dosbox,0.23,16,auto,Sierra On-Line,2026-10-25,,3427,Thexder,
+TKO,1989,Playable,dosbox,0.14,63,auto,"Accolade, Inc.",2026-10-25,,7348,TKO,auto
 Tomb Raider Gold,1998,Partial,dosbox,463.54,63,100000,,2026-10-10,Software renderer by default (3dfx path broken),4462,TombRaiG,
 Torin's Passage,1995,Boots,dosbox,614.94,63,60000,Sierra On-Line,2026-10-25,,2444,torin,
 Total Meltdown,1996,Playable,dosbox,176.94,63,40000,Sierra On-Line,2026-10-25,,8389,TotalMel,
@@ -219,7 +281,11 @@ Troll's Tale,1984,Boots,dosbox,0.21,16,auto,Sierra On-Line,2026-10-25,,4381,trol
 Ultima II: The Revenge of the Enchantress,1982,Boots,dosbox,0.4,4,10000,Sierra On-Line,2026-10-25,,1817,Ultima2,
 Ultimate Soccer Manager 2,1996,Boots,dosbox,114.09,63,auto,Sierra On-Line,2026-10-25,,4964,UltSocM2,
 Ulysses and the Golden Fleece,1982,Boots,dosbox,0.28,8,300,Sierra On-Line,2026-10-25,,2614,ulygold,
+Unnecessary Roughness,1993,Boots,dosbox,94.34,32,15000,"Accolade, Inc.",2026-10-25,,3806,Unnecess,auto review
+Unnecessary Roughness '95,1994,Playable,dosbox,159.1,63,12000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5897,Unnece95,auto
+Unnecessary Roughness '96,1995,Playable,dosbox,195.95,63,max,"Accolade, Inc.",2026-10-25,Answer n at the first prompt,9167,Unnece96,auto
 Warcraft II: Tides of Darkness,1995,Playable,dosbox,1163.57,63,20000,,2026-10-25,Lock mouse on by default (minimap jumped to top-left),2013,WarcrafD,
+WaxWorks,1992,Boots,dosbox,4.29,63,auto,"Accolade, Inc.",2026-10-25,,8567,waxworks,auto review
 Ween: The Prophecy,1993,Boots,dosbox,6.47,32,auto,Sierra On-Line,2026-10-25,,5836,ween,
 Wing Commander,1990,Playable,dosbox,60.82,63,auto,,2026-10-08,IF cond program launcher lines → GOTO,7085,WC,
 Winnie the Pooh in the Hundred Acre Wood,1986,Not supported,dosbox,0.14,4,250,Sierra On-Line,2026-10-25,,8088,winnie,
@@ -230,3 +296,4 @@ World Games,1986,Boots,dosbox,0.15,63,auto,"Epyx, Inc.",2026-10-25,,7217,WorldGa
 World Karate Championship,1986,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8113,WorldKar,auto review
 Xenophage: Alien Bloodsport,1995,Playable,dosbox,76.78,32,45000,Apogee / 3D Realms,2026-10-25,,5507,Xenophag,
 Zeliard,1990,Playable,dosbox,0.57,32,auto,Sierra On-Line,2026-10-25,,4722,zeliard,
+Zyconix,1992,Playable,dosbox,0.22,63,auto,"Accolade, Inc.",2026-10-25,,7948,Zyconix,auto
