@@ -17,6 +17,8 @@
 //   note: "one-line fix or defect" optional
 //   verified: "what was seen"      optional
 //   commits: "e3fc2bf, 285eae4"    optional
+//   tags: auto broken crash        optional, space-separated; written by ~/exo-sweep (auto = status set by
+//                                  the script, not by a human; broken = a fix is wanted; see games.csv "tags")
 //   ---
 //
 // Writes (never edit these by hand):
@@ -193,7 +195,7 @@ if (tested <= SPLIT_AT) {
 writeFileSync(join(DIR, "GAMES.md"), gamesMd.join("\n").trimEnd() + "\n");
 
 // --- games.csv -------------------------------------------------------------
-const csvCols = ["title", "year", "status", "backend", "size", "memsize", "cycles", "group", "tested", "note", "id", "code"];
+const csvCols = ["title", "year", "status", "backend", "size", "memsize", "cycles", "group", "tested", "note", "id", "code", "tags"];
 const csvCell = (v) => { const s = String(v ?? "").replace(/`/g, ""); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
 writeFileSync(join(DIR, "games.csv"), [csvCols.join(","), ...byTitle.map((g) => csvCols.map((c) => csvCell(g[c])).join(","))].join("\n") + "\n");
 

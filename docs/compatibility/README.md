@@ -17,16 +17,16 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**217 of 7,666 games tested (2.8 %).** 🟢 100 playable · 🟡 108 boots · 🟠 3 partial · 🔴 6 not supported.
+**223 of 7,666 games tested (2.9 %).** 🟢 100 playable · 🟡 114 boots · 🟠 3 partial · 🔴 6 not supported.
 
-🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
+🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 100 | 46.1 % |
-| 🟡 | Boots | 108 | 49.8 % |
-| 🟠 | Partial | 3 | 1.4 % |
-| 🔴 | Not supported | 6 | 2.8 % |
+| 🟢 | Playable | 100 | 44.8 % |
+| 🟡 | Boots | 114 | 51.1 % |
+| 🟠 | Partial | 3 | 1.3 % |
+| 🔴 | Not supported | 6 | 2.7 % |
 
 **Find a game:** [all tested games A–Z](GAMES.md) · [searchable table](games.csv) (filter by title, status, backend) · or search this folder for its title. A game not listed is untested.
 
@@ -35,6 +35,7 @@ named by its eXo shortcode.
 | Group | Tested | 🟢 | 🟡 | 🟠 | 🔴 |
 |---|---:|---:|---:|---:|---:|
 | Apogee / 3D Realms | 52 | 51 | 1 |  |  |
+| Epyx, Inc. | 6 |  | 6 |  |  |
 | Sierra On-Line | 133 | 33 | 93 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
 | Other games | 9 | 4 | 4 | 1 |  |
@@ -130,11 +131,19 @@ summary in the main README) is generated from the pages.
    note: "Launcher CD mount path; one disc per campaign"   # optional, one line
    verified: "GDI + NOD mission 1"                         # optional
    commits: "e3fc2bf"                                      # optional
+   tags: auto broken crash   # optional, space-separated (see below)
    ---
    ```
 
    Then the page body: `# Title (year)`, a back link, **Fixes** (date, fix,
    where), **Verified** (what was seen), open issues.
+   `tags` come from the batch sweep script (`~/exo-sweep`): `auto` = the status
+   was set by the script, not checked by a person (a person's edit removes it);
+   `broken` = a fix is wanted (also `crash`, `blank`, `load-error`, `too-large`);
+   `review` = probably a probe artefact (prompt, quiz), look at it before fixing;
+   `fix-candidate` = a URL override made it better, see the page's Auto-sweep
+   section. Select broken games with `grep -l 'tags:.*broken' games/*.md` or the
+   `tags` column of [games.csv](games.csv).
 2. A fix that helps many games also gets a row in [Global fixes](#global-fixes).
 3. For a new game run `node tools/compat-resources.mjs` first (fills `size`, `memsize`,
    `cycles` from the live pod), then `node tools/compat-index.mjs`. It checks every page's front matter and

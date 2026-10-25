@@ -2,7 +2,7 @@
 
 # Tested games
 
-[← Compatibility](README.md) · 217 games · 🟢 100 playable · 🟡 108 boots · 🟠 3 partial · 🔴 6 not supported · [searchable table](games.csv)
+[← Compatibility](README.md) · 223 games · 🟢 100 playable · 🟡 114 boots · 🟠 3 partial · 🔴 6 not supported · [searchable table](games.csv)
 
 [A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [W](#w) · [X](#x) · [Z](#z)
 
@@ -74,6 +74,9 @@
 | [Duke Nukum: Episode 2 - Mission: Moonbase](games/DukeN12.md) | 1991 | 🟢 Playable | dosbox | 680 KB | 32 MB | auto | — |
 | [Duke Nukum: Episode 3 - Trapped in the Future](games/DukeN13.md) | 1991 | 🟢 Playable | dosbox | 680 KB | 32 MB | auto | — |
 | [Dune II: The Building of a Dynasty](games/dune2.md) | 1992 | 🟡 Boots | dosbox | 25 MB | 32 MB | max | — |
+| [Dunjonquest: Curse of Ra](games/DQCurse.md) | 1982 | 🟡 Boots | dosbox | 130 KB | 4 MB | 800 cycles | — |
+| [Dunjonquest: Temple of Apshai](games/DQTemp.md) | 1982 | 🟡 Boots | dosbox | 130 KB | 4 MB | 800 cycles | — |
+| [Dunjonquest: Upper Reaches of Apshai](games/DQApshai.md) | 1982 | 🟡 Boots | dosbox | 120 KB | 4 MB | 800 cycles | — |
 
 ## E
 
@@ -212,6 +215,7 @@
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Oil Barons (1983)](games/OilBaron.md) | 1983 | 🟡 Boots | dosbox | 340 KB | 63 MB | 900 cycles | — |
 | [Oil's Well (1984)](games/OilsWllP.md) | 1984 | 🟢 Playable | dosbox | 20 KB | 4 MB | 150 cycles | — |
 | [Oil's Well (1990)](games/OilsWell.md) | 1990 | 🟡 Boots | dosbox | 1.2 MB | 32 MB | auto | — |
 
@@ -281,6 +285,8 @@
 | [Space Quest V: Roger Wilco The Next Mutation](games/SQ5.md) | 1993 | 🟠 Partial | dosbox | 6.8 MB | 63 MB | max | — |
 | [Space Quest VI: Roger Wilco in the Spinal Frontier](games/SQ6.md) | 1995 | 🟡 Boots | dosbox | 1.2 GB | 63 MB | max | — |
 | [Stargunner](games/Stargunn.md) | 1996 | 🟢 Playable | dosbox | 580 MB | 32 MB | 50,000 cycles | — |
+| [StarQuest: Rescue at Rigel](games/starqrr.md) | 1983 | 🟡 Boots | dosbox | 60 KB | 63 MB | 1,000 cycles | — |
+| [StarQuest: Star Warrior](games/SQSW.md) | 1983 | 🟡 Boots | dosbox | 80 KB | 8 MB | 300 cycles | — |
 | [Supernova](games/suprnova.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
 
 ## T
