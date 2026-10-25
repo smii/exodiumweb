@@ -18,7 +18,7 @@ verified: "not run"
 
 ## Why
 
-- The zip is 3.9 GB (5.1 GB unpacked). It is just under `MAX_BUNDLE_MB` (4000), so the player still offers the download.
+- The zip is 3.9 GB (5.1 GB unpacked), over `MAX_BUNDLE_MB` (2000 since the 2026-10-25 Sierra sweep; it was 4000), so the player refuses it. A 3.5 GB game fails to allocate its ArrayBuffer even after a complete download ([Police Quest: SWAT](pqswat.md)).
 - The autoexec mounts all four CDs at once (`imgmount d LLGD1.cue … LLGD4.cue`). There is no launcher menu, so the per-campaign disc choice used for [C&C](comcon.md) doesn't apply. The game asks for the discs in turn as the story goes on.
 - js-dos keeps the whole bundle in browser memory. Command & Conquer at 1.3 GB already needed about 9 GB of browser memory while unpacking.
 

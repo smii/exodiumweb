@@ -65,7 +65,7 @@ The headless test plays each game up to a menu or into the game. Every tested ga
 Overview, global fixes and how to add a game: **[docs/compatibility](docs/compatibility/README.md)**.
 
 <!-- generated:tested (node tools/compat-index.mjs) -->
-🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟧🟥 **84 of 7,666 games tested:** 🟢 67 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported. [All tested games](docs/compatibility/GAMES.md) · [searchable table](docs/compatibility/games.csv)
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 **217 of 7,666 games tested:** 🟢 100 playable · 🟡 108 boots · 🟠 3 partial · 🔴 6 not supported. [All tested games](docs/compatibility/GAMES.md) · [searchable table](docs/compatibility/games.csv)
 <!-- /generated:tested -->
 
 A game misbehaving? [Open an issue](https://github.com/smii/exodiumweb/issues/new/choose) with the game's name. The app's bug button and **Settings → About** link to the same place.

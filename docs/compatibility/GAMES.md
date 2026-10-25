@@ -2,26 +2,32 @@
 
 # Tested games
 
-[← Compatibility](README.md) · 84 games · 🟢 67 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported · [searchable table](games.csv)
+[← Compatibility](README.md) · 217 games · 🟢 100 playable · 🟡 108 boots · 🟠 3 partial · 🔴 6 not supported · [searchable table](games.csv)
 
-[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [W](#w) · [X](#x)
+[A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [W](#w) · [X](#x) · [Z](#z)
 
 ## A
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [A Nightmare on Elm Street](games/ANightma.md) | 1989 | 🟡 Boots | dosbox | 260 KB | 16 MB | auto | — |
+| [Aces of the Pacific](games/AcesotP.md) | 1992 | 🟡 Boots | dosbox | 36 MB | 32 MB | 9,000 cycles | — |
+| [Aces Over Europe](games/AcesOver.md) | 1993 | 🟡 Boots | dosbox | 4.1 MB | 32 MB | 12,000 cycles | — |
 | [Alien Carnage](games/AlienCar.md) | 1993 | 🟢 Playable | dosbox | 2.9 MB | 16 MB | 5,000 cycles | — |
+| [Alien Legacy](games/alienleg.md) | 1994 | 🟡 Boots | dosbox | 194 MB | 63 MB | 10,000 cycles | — |
 | [Arctic Adventure](games/ArcticAd.md) | 1991 | 🟢 Playable | dosbox | 270 KB | 16 MB | auto | — |
 
 ## B
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Battle Bugs](games/batlbugs.md) | 1994 | 🟡 Boots | dosbox | 73 MB | 63 MB | auto | — |
 | [BattleTech: The Crescent Hawk's Inception](games/batltech.md) | 1988 | 🟡 Boots | dosbox | 410 KB | 16 MB | auto | — |
 | [BattleTech: The Crescent Hawk's Revenge](games/batltec2.md) | 1990 | 🟢 Playable | dosbox | 1.3 MB | 32 MB | 3,000 cycles | — |
+| [BC's Quest for Tires](games/BCsQuest.md) | 1984 | 🟡 Boots | dosbox | 20 KB | 8 MB | 500 cycles | — |
 | [Beyond the Titanic](games/beytitan.md) | 1986 | 🟢 Playable | dosbox | 100 KB | 63 MB | auto | — |
 | [Bio Menace](games/BioMenac.md) | 1993 | 🟢 Playable | dosbox | 2.3 MB | 16 MB | auto | — |
+| [Birthright: The Gorgon's Alliance](games/bgorgon.md) | 1997 | 🟡 Boots | dosbox | 763 MB | 63 MB | 50,000 cycles | — |
 | [BlackJack Academy](games/bjacad.md) | 1987 | 🟢 Playable | dosbox | 50 KB | 16 MB | auto | — |
 | [Blake Stone: Aliens of Gold](games/BlakeStA.md) | 1993 | 🟢 Playable | dosbox | 5.8 MB | 16 MB | 12,000 cycles | — |
 | [Blake Stone: Planet Strike](games/BlakeStP.md) | 1994 | 🟢 Playable | dosbox | 4.7 MB | 16 MB | 6,000 cycles | — |
@@ -32,7 +38,10 @@
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Caesar II](games/caesar2.md) | 1995 | 🟡 Boots | dosbox | 87 MB | 63 MB | auto | — |
+| [Castle of Dr. Brain](games/castleb.md) | 1991 | 🟡 Boots | dosbox | 110 MB | 32 MB | 9,000 cycles | — |
 | [Circuit's Edge](games/cedge.md) | 1990 | 🟢 Playable | dosbox | 640 KB | 32 MB | auto | — |
+| [Codename: ICEMAN](games/Iceman.md) | 1989 | 🟡 Boots | dosbox | 3.6 MB | 16 MB | auto | — |
 | [Command & Conquer](games/comcon.md) | 1995 | 🟢 Playable | dosbox | 1.3 GB | 63 MB | auto | Launcher CD mount path; one disc per campaign |
 | [Command & Conquer: Red Alert](games/comconra.md) | 1996 | 🟢 Playable | dosbox | 2.2 GB | 63 MB | auto | Same as C&C |
 | [Commander Keen 1: Marooned on Mars](games/CKeen1.md) | 1990 | 🟢 Playable | dosbox | 150 KB | 32 MB | auto | — |
@@ -40,7 +49,12 @@
 | [Commander Keen 3: Keen Must Die!](games/CKeen3.md) | 1990 | 🟢 Playable | dosbox | 140 KB | 32 MB | auto | — |
 | [Commander Keen 4: Secret of the Oracle](games/CKeen4.md) | 1991 | 🟢 Playable | dosbox | 580 KB | 16 MB | auto | — |
 | [Commander Keen 5](games/CKeen5.md) | 1991 | 🟢 Playable | dosbox | 630 KB | 16 MB | auto | All audio at 44,100 Hz |
+| [Conqueror: A.D. 1086](games/conqurAD.md) | 1995 | 🟡 Boots | dosbox | 622 MB | 63 MB | 35,000 cycles | — |
+| [Conquests of Camelot: The Search for the Grail](games/camelot.md) | 1990 | 🟢 Playable | dosbox | 2.8 MB | 16 MB | auto | — |
+| [Conquests of the Longbow: The Legend of Robin Hood](games/longbow.md) | 1991 | 🟡 Boots | dosbox | 12 MB | 32 MB | 9,000 cycles | — |
 | [Cosmo's Cosmic Adventure](games/CosmosCo.md) | 1992 | 🟢 Playable | dosbox | 1.4 MB | 16 MB | auto | — |
+| [Crazy Nick's Software Picks](games/crazynik.md) | 1993 | 🟡 Boots | dosbox | 2.5 MB | 63 MB | auto | — |
+| [Crossfire](games/Crossfir.md) | 1982 | 🟢 Playable | dosbox | 20 KB | 16 MB | 100 cycles | — |
 | [Crystal Caves](games/CrystalC.md) | 1991 | 🟢 Playable | dosbox | 510 KB | 16 MB | auto | — |
 
 ## D
@@ -49,6 +63,8 @@
 |---|---:|---|---|---:|---:|---:|---|
 | [Dark Ages](games/DarkAges.md) | 1991 | 🟢 Playable | dosbox | 390 KB | 16 MB | auto | — |
 | [Descent II](games/Descent2.md) | 1996 | 🟡 Boots | dosbox | 1.4 GB | 63 MB | 100,000 cycles | menu |
+| [Detroit](games/Detroit.md) | 1994 | 🟡 Boots | dosbox | 20 MB | 32 MB | auto | — |
+| [Donald Duck's Playground](games/dondukpl.md) | 1986 | 🟢 Playable | dosbox | 150 KB | 4 MB | 600 cycles | — |
 | [Donald's Alphabet Chase](games/DonaldsA.md) | 1988 | 🟢 Playable | dosbox | 170 KB | 63 MB | auto | — |
 | [DragonStrike](games/DragonSt.md) | 1990 | 🟡 Boots | dosbox | 1.0 MB | 63 MB | max | — |
 | [Duke Nukem 3D](games/Duke3D.md) | 1996 | 🟢 Playable | dosbox | 24 MB | 63 MB | 100,000 cycles | `ScreenMode=0` (320×200) |
@@ -64,6 +80,7 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [EcoQuest I](games/ecoq1.md) | 1991 | 🟢 Playable | dosbox | 350 MB | 32 MB | 9,000 cycles | Large-game download, kept in browser storage |
+| [EcoQuest II: Lost Secret of the Rainforest](games/ecoq2.md) | 1993 | 🟡 Boots | dosbox | 6.9 MB | 63 MB | auto | — |
 | [Eye of the Beholder](games/eob1.md) | 1991 | 🟡 Boots | dosbox | 56 MB | 63 MB | auto | — |
 | [Eye of the Beholder II: The Legend of Darkmoon](games/eob2.md) | 1991 | 🟢 Playable | dosbox | 64 MB | 16 MB | 8,000 cycles | — |
 
@@ -71,67 +88,149 @@
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Fast Attack: High Tech Submarine Warfare](games/FastAtta.md) | 1996 | 🟡 Boots | dosbox | 480 MB | 63 MB | max | — |
+| [Fates of Twinion](games/Fatetwin.md) | 1993 | 🟡 Boots | dosbox | 1.5 MB | 63 MB | auto | — |
+| [Fire Hawk: Thexder - The Second Contact](games/FireHawk.md) | 1990 | 🟢 Playable | dosbox | 2.6 MB | 32 MB | auto | — |
+| [Freddy Pharkas: Frontier Pharmacist](games/freddy.md) | 1993 | 🟡 Boots | dosbox | 1.0 GB | 32 MB | 6,000 cycles | — |
+| [Frogger](games/Frogger.md) | 1983 | 🟢 Playable | dosbox | 20 KB | 32 MB | 300 cycles | — |
+| [Front Page Sports: Baseball '94](games/FPSBas94.md) | 1994 | 🟡 Boots | dosbox | 212 MB | 63 MB | 25,000 cycles | — |
+| [Front Page Sports: Football Pro '95](games/FPSFP95.md) | 1994 | 🟡 Boots | dosbox | 106 MB | 63 MB | 30,000 cycles | — |
+| [Front Page Sports: Football Pro '96 Season](games/FPSFP96.md) | 1995 | 🟡 Boots | dosbox | 417 MB | 63 MB | max | — |
+| [Fun Seeker's Guide to Eastern Madera County](games/funseek.md) | 1991 | 🟡 Boots | dosbox | 130 KB | 63 MB | auto | — |
 | [Furcol](games/Furcol.md) | 1997 | 🟡 Boots | dosboxX | 40 MB | 63 MB | 100,000 cycles | 3dfx renders |
 
 ## G
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Gabriel Knight: Sins of the Fathers](games/gk1.md) | 1993 | 🟡 Boots | dosbox | 796 MB | 32 MB | 40,000 cycles | — |
+| [Gobliiins](games/gob1.md) | 1991 | 🟢 Playable | dosbox | 312 MB | 32 MB | auto | — |
+| [Gobliins 2: The Prince Buffoon](games/gob2.md) | 1993 | 🟡 Boots | dosbox | 320 MB | 32 MB | auto | — |
+| [Goblins Quest 3](games/gob3.md) | 1994 | 🟡 Boots | dosbox | 484 MB | 32 MB | auto | — |
+| [Gold Rush!](games/GoldRush.md) | 1988 | 🟢 Playable | dosbox | 2.0 MB | 16 MB | auto | — |
 | [Goofy's Railway Express](games/GoofysRa.md) | 1991 | 🟢 Playable | dosbox | 190 KB | 63 MB | auto | — |
 
 ## H
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Heart of China](games/hoc.md) | 1991 | 🟡 Boots | dosbox | 6.9 MB | 32 MB | auto | — |
 | [Hillsfar](games/hillsfar.md) | 1989 | 🟡 Boots | dosbox | 430 KB | 63 MB | auto | — |
 | [Hocus Pocus](games/HocusPoc.md) | 1994 | 🟢 Playable | dosbox | 12 MB | 32 MB | 9,000 cycles | — |
+| [Hoyle Classic Card Games](games/hoylec.md) | 1993 | 🟡 Boots | dosbox | 9.3 MB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 1](games/hoylebk1.md) | 1989 | 🟡 Boots | dosbox | 600 KB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 2](games/hoylebk2.md) | 1990 | 🟡 Boots | dosbox | 480 KB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 3](games/hoylebk3.md) | 1991 | 🟡 Boots | dosbox | 2.5 MB | 16 MB | auto | — |
+
+## I
+
+| Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
+|---|---:|---|---|---:|---:|---:|---|
+| [Inca (1992)](games/inca1.md) | 1992 | 🟡 Boots | dosbox | 515 MB | 32 MB | 2,500 cycles | — |
+| [Inca II: Nations of Immortality](games/inca2.md) | 1994 | 🟡 Boots | dosbox | 615 MB | 16 MB | auto | — |
+| [IndyCar Racing II](games/IndyCR2.md) | 1996 | 🟡 Boots | dosbox | 156 MB | 63 MB | max | — |
 
 ## J
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Jones in the Fast Lane (Enhanced CD-ROM)](games/jonefast.md) | 1992 | 🟡 Boots | dosbox | 328 MB | 16 MB | auto | — |
 | [Jumpman Lives!](games/JumpmanL.md) | 1991 | 🟢 Playable | dosbox | 130 KB | 16 MB | auto | — |
 
 ## K
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [King's Quest I: Quest for the Crown (1987)](games/KQ1.md) | 1987 | 🟢 Playable | dosbox | 270 KB | 8 MB | auto | — |
+| [King's Quest I: Quest for the Crown (PCjr)](games/KQ1pcjr.md) | 1984 | 🟢 Playable | dosbox | 590 KB | 8 MB | 250 cycles | — |
+| [King's Quest I: Quest for the Crown (SCI Remake)](games/kq1vga.md) | 1990 | 🟢 Playable | dosbox | 2.0 MB | 16 MB | auto | — |
+| [King's Quest II: Romancing the Throne](games/KQ2.md) | 1987 | 🟢 Playable | dosbox | 330 KB | 8 MB | auto | — |
+| [King's Quest II: Romancing the Throne (PCjr)](games/KQ2pcjr.md) | 1985 | 🟠 Partial | dosbox | 350 KB | 8 MB | 300 cycles | — |
+| [King's Quest III: To Heir is Human](games/KQ3.md) | 1986 | 🟢 Playable | dosbox | 450 KB | 16 MB | auto | — |
+| [King's Quest IV: The Perils of Rosella](games/KQ4.md) | 1988 | 🟢 Playable | dosbox | 13 MB | 16 MB | auto | — |
+| [King's Quest V: Absence Makes the Heart Go Yonder!](games/KQ5.md) | 1990 | 🟢 Playable | dosbox | 157 MB | 63 MB | auto | — |
+| [King's Quest VI: Heir Today, Gone Tomorrow](games/KQ6CD.md) | 1992 | 🟡 Boots | dosbox | 711 MB | 32 MB | 15,000 cycles | — |
+| [King's Quest VII: The Princeless Bride](games/KQ7.md) | 1994 | 🟡 Boots | dosbox | 818 MB | 32 MB | 45,000 cycles | — |
+| [King's Questions](games/kqquest.md) | 1994 | 🟢 Playable | dosbox | 820 KB | 16 MB | 10,000 cycles | — |
 | [Kingdom of Kroz II](games/KingKrz2.md) | 1990 | 🟢 Playable | dosbox | 50 KB | 4 MB | 600 cycles | — |
 
 ## L
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [Laffer Utilities](games/lafferu.md) | 1991 | 🟡 Boots | dosbox | 4.3 MB | 63 MB | auto | — |
 | [Lands of Lore: Guardians of Destiny](games/LLGD.md) | 1997 | 🔴 Not supported | dosboxX | 3.9 GB | 63 MB | 100,000 cycles | 3.9 GB, four CDs mounted at once |
 | [Lands of Lore: The Throne of Chaos](games/LLToC.md) | 1993 | 🟢 Playable | dosbox | 238 MB | 63 MB | auto | — |
+| [Laura Bow 1: The Colonel's Bequest](games/lbow1.md) | 1989 | 🟢 Playable | dosbox | 3.1 MB | 16 MB | auto | — |
+| [Laura Bow 2: The Dagger of Amon Ra](games/amonra.md) | 1992 | 🟡 Boots | dosbox | 313 MB | 16 MB | auto | — |
+| [Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals](games/LSL3.md) | 1989 | 🟡 Boots | dosbox | 2.2 MB | 16 MB | 6,000 cycles | — |
+| [Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work](games/LSL5.md) | 1991 | 🟡 Boots | dosbox | 12 MB | 16 MB | 9,000 cycles | — |
+| [Leisure Suit Larry 6: Shape Up or Slip Out!](games/LSL6CD.md) | 1993 | 🟡 Boots | dosbox | 968 MB | 63 MB | 20,000 cycles | — |
+| [Leisure Suit Larry 7: Love for Sail!](games/LSL7DOS.md) | 1996 | 🟡 Boots | dosbox | 1.1 GB | 32 MB | 45,000 cycles | — |
+| [Leisure Suit Larry Goes Looking for Love (in Several Wrong Places)](games/LSL2.md) | 1988 | 🟢 Playable | dosbox | 1.5 MB | 16 MB | auto | — |
+| [Leisure Suit Larry in the Land of the Lounge Lizards](games/LSL1.md) | 1987 | 🟡 Boots | dosbox | 290 KB | 8 MB | auto | — |
+| [Leisure Suit Larry: In the Land of the Lounge Lizards (SCI Remake)](games/LSL1VGA.md) | 1991 | 🟡 Boots | dosbox | 5.5 MB | 16 MB | 10,000 cycles | — |
+| [Lighthouse: The Dark Being](games/lhouse.md) | 1996 | 🟡 Boots | dosbox | 1.0 GB | 63 MB | max | — |
+| [Lode Runner: The Legend Returns](games/LodeRu94.md) | 1994 | 🟡 Boots | dosbox | 5.2 MB | 16 MB | 30,000 cycles | — |
+| [Lords of the Realm II](games/lordorm2.md) | 1996 | 🟡 Boots | dosbox | 930 MB | 63 MB | 75,000 cycles | — |
 | [Lost Adventures of Kroz](games/LostAdve.md) | 1990 | 🟢 Playable | dosbox | 100 KB | 16 MB | auto | — |
+| [Lost in Time](games/losttime.md) | 1993 | 🟡 Boots | dosbox | 821 MB | 32 MB | 20,000 cycles | — |
 
 ## M
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Major Stryker](games/MajorStr.md) | 1993 | 🟢 Playable | dosbox | 2.6 MB | 16 MB | 6,000 cycles | — |
+| [Manhunter 2: San Francisco](games/MH2.md) | 1989 | 🟡 Boots | dosbox | 1.2 MB | 63 MB | auto | — |
+| [Manhunter: New York](games/MH1.md) | 1988 | 🟢 Playable | dosbox | 1.0 MB | 4 MB | auto | — |
 | [Master Levels for DOOM II](games/MasterLe.md) | 1995 | 🟡 Boots | dosbox | 333 MB | 16 MB | auto | Large-game download; launcher keys open |
 | [Math Rescue](games/MathResc.md) | 1992 | 🟢 Playable | dosbox | 1.1 MB | 63 MB | auto | — |
+| [Mega Math](games/MegaMath.md) | 1992 | 🟡 Boots | dosbox | 4.0 MB | 63 MB | 6,000 cycles | — |
+| [Metaltech: Battledrome](games/MetltecB.md) | 1994 | 🟡 Boots | dosbox | 69 MB | 63 MB | 75,000 cycles | — |
+| [Metaltech: Earthsiege](games/MetltecE.md) | 1994 | 🟡 Boots | dosbox | 145 MB | 63 MB | 30,000 cycles | — |
 | [Mickey's Runaway Zoo](games/MickeysR.md) | 1991 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
+| [Mickey's Space Adventure](games/mickeysa.md) | 1986 | 🟡 Boots | dosbox | 700 KB | 4 MB | 300 cycles | — |
+| [Mine Shaft](games/MineShaf.md) | 1983 | 🟢 Playable | dosbox | 10 KB | 8 MB | 300 cycles | — |
 | [Mines of Titan](games/marssaga.md) | 1989 | 🟡 Boots | dosbox | 390 KB | 63 MB | auto | — |
+| [Mixed-Up Fairy Tales](games/mufairy.md) | 1991 | 🟡 Boots | dosbox | 6.4 MB | 32 MB | 9,000 cycles | — |
+| [Mixed-Up Mother Goose](games/mugoose1.md) | 1987 | 🟡 Boots | dosbox | 280 KB | 8 MB | max | — |
+| [Mixed-Up Mother Goose Enhanced](games/mugoose2.md) | 1991 | 🟢 Playable | dosbox | 930 KB | 16 MB | auto | — |
 | [Monster Bash](games/MonsterB.md) | 1993 | 🟢 Playable | dosbox | 5.6 MB | 16 MB | 9,000 cycles | — |
 | [Monuments of Mars](games/Monument.md) | 1991 | 🟢 Playable | dosbox | 210 KB | 16 MB | auto | — |
+| [Mr. Cool](games/MrCool.md) | 1983 | 🟡 Boots | dosbox | 40 KB | 4 MB | 300 cycles | — |
 | [Mystic Towers](games/mysttow.md) | 1994 | 🟢 Playable | dosbox | 29 MB | 63 MB | auto | — |
 
 ## N
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
+| [NASCAR Racing 2](games/NASCAR2.md) | 1996 | 🟡 Boots | dosboxX | 213 MB | 63 MB | 100,000 cycles | — |
 | [Night Bomber](games/NightBom.md) | 1988 | 🟢 Playable | dosbox | 10 KB | 63 MB | 300 cycles | — |
+| [Nova 9: The Return of Gir Draxon](games/Nova9Ret.md) | 1991 | 🟡 Boots | dosbox | 3.0 MB | 63 MB | 6,000 cycles | — |
+
+## O
+
+| Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
+|---|---:|---|---|---:|---:|---:|---|
+| [Oil's Well (1984)](games/OilsWllP.md) | 1984 | 🟢 Playable | dosbox | 20 KB | 4 MB | 150 cycles | — |
+| [Oil's Well (1990)](games/OilsWell.md) | 1990 | 🟡 Boots | dosbox | 1.2 MB | 32 MB | auto | — |
 
 ## P
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Paganitzu](games/Paganitz.md) | 1991 | 🟢 Playable | dosbox | 1.1 MB | 32 MB | auto | — |
+| [Pepper's Adventures in Time](games/pepper.md) | 1993 | 🟡 Boots | dosbox | 8.9 MB | 32 MB | auto | — |
+| [Phantasmagoria](games/Phantasm.md) | 1995 | 🔴 Not supported | dosbox | 6.1 GB | 63 MB | 30,000 cycles | — |
+| [Phantasmagoria 2: A Puzzle of Flesh](games/phantas2.md) | 1996 | 🔴 Not supported | dosbox | 4.5 GB | 63 MB | 60,000 cycles | — |
 | [Pharaoh's Tomb](games/PharaohT.md) | 1990 | 🟢 Playable | dosbox | 230 KB | 63 MB | 600 cycles | — |
 | [Phrase Master](games/PhraseMa.md) | 1990 | 🟢 Playable | dosbox | 30 KB | 63 MB | 300 cycles | — |
+| [Police Quest 2: The Vengeance](games/PQ2.md) | 1988 | 🟢 Playable | dosbox | 1.7 MB | 16 MB | auto | — |
+| [Police Quest 3: The Kindred](games/PQ3.md) | 1991 | 🟢 Playable | dosbox | 9.1 MB | 16 MB | 10,000 cycles | — |
+| [Police Quest 4: Open Season](games/PQ4.md) | 1993 | 🟡 Boots | dosbox | 911 MB | 32 MB | 35,000 cycles | — |
+| [Police Quest: In Pursuit of the Death Angel](games/PQ1.md) | 1987 | 🟢 Playable | dosbox | 410 KB | 8 MB | auto | — |
+| [Police Quest: In Pursuit of the Death Angel (SCI Remake)](games/PQ1_VGA.md) | 1992 | 🟡 Boots | dosbox | 6.5 MB | 32 MB | 9,000 cycles | — |
+| [Police Quest: SWAT](games/pqswat.md) | 1995 | 🔴 Not supported | dosbox | 3.8 GB | 63 MB | 60,000 cycles | — |
 | [Puzzle Fun-Pak](games/puzzfun.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | 400 cycles | — |
 
 ## Q
@@ -139,6 +238,12 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Quake](games/Quake.md) | 1996 | 🟢 Playable | dosbox | 617 MB | 63 MB | auto | `svga_s3` → `vesa_nolfb`, memsize 63 |
+| [Quarky & Quaysoo's Turbo Science](games/QuarkyQu.md) | 1992 | 🟡 Boots | dosbox | 8.2 MB | 32 MB | 6,000 cycles | — |
+| [Quest for Glory I: So You Want To Be A Hero (SCI Remake)](games/QG1NEW.md) | 1992 | 🟡 Boots | dosbox | 6.8 MB | 32 MB | 9,000 cycles | — |
+| [Quest For Glory II: Trial By Fire](games/QG2.md) | 1990 | 🟡 Boots | dosbox | 4.5 MB | 32 MB | 3,000 cycles | — |
+| [Quest For Glory III: Wages of War](games/QG3E.md) | 1992 | 🟡 Boots | dosbox | 15 MB | 63 MB | 9,000 cycles | — |
+| [Quest For Glory IV: Shadows of Darkness](games/QG4CD.md) | 1993 | 🟡 Boots | dosbox | 1.4 GB | 32 MB | 40,000 cycles | — |
+| [Quest for Glory: So You Want to Be a Hero](games/QG1OLD.md) | 1989 | 🟡 Boots | dosbox | 5.2 MB | 32 MB | auto | — |
 | [Questron II](games/questrn2.md) | 1988 | 🟡 Boots | dosbox | 260 KB | 63 MB | auto | — |
 
 ## R
@@ -146,10 +251,15 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Raiders of the Forbidden Mine](games/RaiFMine.md) | 1988 | 🟢 Playable | dosbox | 20 KB | 8 MB | 600 cycles | — |
+| [Rama](games/rama.md) | 1996 | 🟡 Boots | dosbox | 1.5 GB | 63 MB | 10,000 cycles | — |
 | [Raptor: Call of the Shadows](games/RaptorCa.md) | 1994 | 🟢 Playable | dosbox | 20 MB | 32 MB | 30,000 cycles | — |
 | [Realms of Chaos](games/Realmsof.md) | 1995 | 🟢 Playable | dosbox | 51 MB | 16 MB | 40,000 cycles | — |
+| [Red Baron](games/RedBaron.md) | 1990 | 🟡 Boots | dosbox | 21 MB | 63 MB | 15,000 cycles | — |
+| [Rise of the Dragon](games/rdragon.md) | 1990 | 🟡 Boots | dosbox | 21 MB | 32 MB | auto | — |
 | [Rise of the Triad: Dark War](games/RotTDW.md) | 1995 | 🟢 Playable | dosbox | 71 MB | 32 MB | auto | — |
 | [Rise of the Triad: Wolfenstein 3D Part II](games/WolfROTT.md) | 2015 | 🟢 Playable | dosbox | 1.0 MB | 32 MB | 15,000 cycles | — |
+| [Roberta Williams' Mixed-Up Mother Goose](games/mugoose.md) | 1991 | 🟡 Boots | dosbox | 892 MB | 16 MB | auto | — |
+| [Ruins of Cawdor](games/cawdor.md) | 1995 | 🟡 Boots | dosbox | 1.7 MB | 63 MB | auto | — |
 
 ## S
 
@@ -157,6 +267,19 @@
 |---|---:|---|---|---:|---:|---:|---|
 | [Secret Agent](games/SecretAg.md) | 1992 | 🟢 Playable | dosbox | 560 KB | 16 MB | auto | — |
 | [Shadow Warrior](games/ShadowWa.md) | 1997 | 🟢 Playable | dosboxX | 582 MB | 63 MB | 100,000 cycles | `vesa_noflb` typo; Build cfg; answer Y to the VESA prompt |
+| [Sid & Al's Incredible Toons](games/SidAls.md) | 1993 | 🟡 Boots | dosbox | 4.5 MB | 63 MB | auto | — |
+| [Sierra Championship Boxing](games/SierraCh.md) | 1985 | 🟡 Boots | dosbox | 100 KB | 4 MB | 500 cycles | — |
+| [Sierra's 3-D Helicopter Simulator](games/Sierras3.md) | 1987 | 🟢 Playable | dosbox | 70 KB | 63 MB | auto | — |
+| [Silpheed](games/Silpheed.md) | 1989 | 🟡 Boots | dosbox | 930 KB | 16 MB | auto | — |
+| [Slater & Charlie Go Camping](games/SlaterCh.md) | 1993 | 🟡 Boots | dosbox | 21 MB | 32 MB | 6,000 cycles | — |
+| [Sorcerian](games/sorceria.md) | 1990 | 🟡 Boots | dosbox | 5.7 MB | 32 MB | auto | — |
+| [Space Quest I: Roger Wilco in the Sarien Encounter (SCI Remake)](games/SQ1VGA.md) | 1991 | 🟡 Boots | dosbox | 10.0 MB | 16 MB | auto | — |
+| [Space Quest I: The Sarien Encounter](games/SQ1.md) | 1986 | 🟢 Playable | dosbox | 330 KB | 8 MB | auto | — |
+| [Space Quest II: Vohaul's Revenge](games/SQ2.md) | 1987 | 🟢 Playable | dosbox | 450 KB | 8 MB | auto | — |
+| [Space Quest III: The Pirates of Pestulon](games/SQ3.md) | 1989 | 🟢 Playable | dosbox | 3.9 MB | 16 MB | auto | — |
+| [Space Quest IV: Roger Wilco and the Time Rippers](games/SQ4.md) | 1991 | 🟢 Playable | dosbox | 277 MB | 16 MB | auto | — |
+| [Space Quest V: Roger Wilco The Next Mutation](games/SQ5.md) | 1993 | 🟠 Partial | dosbox | 6.8 MB | 63 MB | max | — |
+| [Space Quest VI: Roger Wilco in the Spinal Frontier](games/SQ6.md) | 1995 | 🟡 Boots | dosbox | 1.2 GB | 63 MB | max | — |
 | [Stargunner](games/Stargunn.md) | 1996 | 🟢 Playable | dosbox | 580 MB | 32 MB | 50,000 cycles | — |
 | [Supernova](games/suprnova.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
 
@@ -165,22 +288,46 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Temple of Kroz](games/Templeof.md) | 1990 | 🟢 Playable | dosbox | 40 KB | 16 MB | auto | — |
+| [The Adventures of Willy Beamish](games/beamish.md) | 1991 | 🟡 Boots | dosbox | 261 MB | 32 MB | 9,000 cycles | — |
+| [The Beast Within: A Gabriel Knight Mystery](games/GK2.md) | 1995 | 🔴 Not supported | dosbox | 6.4 GB | 32 MB | auto | — |
+| [The Black Cauldron](games/BlakCaul.md) | 1986 | 🟢 Playable | dosbox | 300 KB | 63 MB | auto | — |
+| [The Even More Incredible Machine](games/TheEvenM.md) | 1993 | 🟡 Boots | dosbox | 547 MB | 32 MB | 25,000 cycles | — |
 | [The Final Crusade of Kroz](games/TKrozCr.md) | 1990 | 🟢 Playable | dosbox | 40 KB | 16 MB | auto | — |
+| [The Incredible Machine](games/TIncM1.md) | 1993 | 🟡 Boots | dosbox | 670 KB | 32 MB | 25,000 cycles | — |
+| [The Incredible Machine 2](games/TIncM2.md) | 1994 | 🟡 Boots | dosbox | 575 MB | 32 MB | 30,000 cycles | — |
+| [The Island of Dr. Brain](games/ibrain.md) | 1992 | 🟡 Boots | dosbox | 23 MB | 63 MB | 6,000 cycles | — |
 | [The Legend of Kyrandia: Book One](games/kyra1.md) | 1992 | 🟡 Boots | dosbox | 247 MB | 63 MB | 24,000 cycles | — |
 | [The Legend of Kyrandia: Book Three - Malcolm's Revenge](games/kyra3.md) | 1994 | 🟢 Playable | dosbox | 445 MB | 63 MB | max | — |
 | [The Legend of Kyrandia: Book Two - The Hand of Fate](games/kyra2.md) | 1994 | 🟡 Boots | dosbox | 126 MB | 32 MB | 25,000 cycles | — |
 | [The Lion King](games/TheLionK.md) | 1994 | 🟢 Playable | dosbox | 3.6 MB | 16 MB | 15,000 cycles | — |
+| [The Shadow of Yserbius](games/shadyser.md) | 1993 | 🟡 Boots | dosbox | 3.6 MB | 63 MB | auto | — |
+| [The Sierra Network](games/INNBarn.md) | 1991 | 🟡 Boots | dosbox | 14 MB | 32 MB | 7,000 cycles | — |
 | [The Thing](games/thething.md) | 1988 | 🟢 Playable | dosbox | 20 KB | 63 MB | 6,000 cycles | — |
 | [The Thor Trilogy](games/TheThorT.md) | 1990 | 🟢 Playable | dosbox | 180 KB | 16 MB | auto | — |
+| [Thexder](games/Thexder.md) | 1987 | 🟢 Playable | dosbox | 230 KB | 16 MB | auto | — |
 | [Tomb Raider Gold](games/TombRaiG.md) | 1998 | 🟠 Partial | dosbox | 464 MB | 63 MB | 100,000 cycles | Software renderer by default (3dfx path broken) |
+| [Torin's Passage](games/torin.md) | 1995 | 🟡 Boots | dosbox | 615 MB | 63 MB | 60,000 cycles | — |
+| [Total Meltdown](games/TotalMel.md) | 1996 | 🟢 Playable | dosbox | 177 MB | 63 MB | 40,000 cycles | — |
 | [Trek Trivia](games/TrekTriv.md) | 1988 | 🟢 Playable | dosbox | 260 KB | 63 MB | auto | — |
+| [Troll's Tale](games/troltale.md) | 1984 | 🟡 Boots | dosbox | 210 KB | 16 MB | auto | — |
+
+## U
+
+| Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
+|---|---:|---|---|---:|---:|---:|---|
+| [Ultima II: The Revenge of the Enchantress](games/Ultima2.md) | 1982 | 🟡 Boots | dosbox | 400 KB | 4 MB | 10,000 cycles | — |
+| [Ultimate Soccer Manager 2](games/UltSocM2.md) | 1996 | 🟡 Boots | dosbox | 114 MB | 63 MB | auto | — |
+| [Ulysses and the Golden Fleece](games/ulygold.md) | 1982 | 🟡 Boots | dosbox | 280 KB | 8 MB | 300 cycles | — |
 
 ## W
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Warcraft II: Tides of Darkness](games/WarcrafD.md) | 1995 | 🟢 Playable | dosbox | 1.2 GB | 63 MB | 20,000 cycles | Lock mouse on by default (minimap jumped to top-left) |
+| [Ween: The Prophecy](games/ween.md) | 1993 | 🟡 Boots | dosbox | 6.5 MB | 32 MB | auto | — |
 | [Wing Commander](games/WC.md) | 1990 | 🟢 Playable | dosbox | 61 MB | 63 MB | auto | `IF cond program` launcher lines → `GOTO` |
+| [Winnie the Pooh in the Hundred Acre Wood](games/winnie.md) | 1986 | 🔴 Not supported | dosbox | 140 KB | 4 MB | 250 cycles | — |
+| [Wizard of Id's WizType](games/Wizardof.md) | 1984 | 🟡 Boots | dosbox | 30 KB | 16 MB | 300 cycles | — |
 | [Wolfenstein 3D](games/Wolf3D.md) | 1992 | 🟢 Playable | dosbox | 1.3 MB | 16 MB | 15,000 cycles | — |
 | [Word Whiz](games/WordWhiz.md) | 1990 | 🟢 Playable | dosbox | 170 KB | 63 MB | auto | — |
 
@@ -189,3 +336,9 @@
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Xenophage: Alien Bloodsport](games/Xenophag.md) | 1995 | 🟢 Playable | dosbox | 77 MB | 32 MB | 45,000 cycles | — |
+
+## Z
+
+| Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
+|---|---:|---|---|---:|---:|---:|---|
+| [Zeliard](games/zeliard.md) | 1990 | 🟢 Playable | dosbox | 570 KB | 32 MB | auto | — |

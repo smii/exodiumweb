@@ -17,16 +17,16 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**84 of 7,666 games tested (1.1 %).** 🟢 67 playable · 🟡 15 boots · 🟠 1 partial · 🔴 1 not supported.
+**217 of 7,666 games tested (2.8 %).** 🟢 100 playable · 🟡 108 boots · 🟠 3 partial · 🔴 6 not supported.
 
-🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟧🟥 &nbsp;tested games by status
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 67 | 79.8 % |
-| 🟡 | Boots | 15 | 17.9 % |
-| 🟠 | Partial | 1 | 1.2 % |
-| 🔴 | Not supported | 1 | 1.2 % |
+| 🟢 | Playable | 100 | 46.1 % |
+| 🟡 | Boots | 108 | 49.8 % |
+| 🟠 | Partial | 3 | 1.4 % |
+| 🔴 | Not supported | 6 | 2.8 % |
 
 **Find a game:** [all tested games A–Z](GAMES.md) · [searchable table](games.csv) (filter by title, status, backend) · or search this folder for its title. A game not listed is untested.
 
@@ -35,6 +35,7 @@ named by its eXo shortcode.
 | Group | Tested | 🟢 | 🟡 | 🟠 | 🔴 |
 |---|---:|---:|---:|---:|---:|
 | Apogee / 3D Realms | 52 | 51 | 1 |  |  |
+| Sierra On-Line | 133 | 33 | 93 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
 | Other games | 9 | 4 | 4 | 1 |  |
 
@@ -42,16 +43,16 @@ named by its eXo shortcode.
 
 | Game | Status | Tested | Note |
 |---|---|---|---|
+| [Aces of the Pacific](games/AcesotP.md) (1992) | 🟡 Boots | 2026-10-25 | — |
+| [Aces Over Europe](games/AcesOver.md) (1993) | 🟡 Boots | 2026-10-25 | — |
 | [Alien Carnage](games/AlienCar.md) (1993) | 🟢 Playable | 2026-10-25 | — |
+| [Alien Legacy](games/alienleg.md) (1994) | 🟡 Boots | 2026-10-25 | — |
 | [Arctic Adventure](games/ArcticAd.md) (1991) | 🟢 Playable | 2026-10-25 | — |
+| [Battle Bugs](games/batlbugs.md) (1994) | 🟡 Boots | 2026-10-25 | — |
+| [BC's Quest for Tires](games/BCsQuest.md) (1984) | 🟡 Boots | 2026-10-25 | — |
 | [Beyond the Titanic](games/beytitan.md) (1986) | 🟢 Playable | 2026-10-25 | — |
 | [Bio Menace](games/BioMenac.md) (1993) | 🟢 Playable | 2026-10-25 | — |
-| [Blake Stone: Aliens of Gold](games/BlakeStA.md) (1993) | 🟢 Playable | 2026-10-25 | — |
-| [Blake Stone: Planet Strike](games/BlakeStP.md) (1994) | 🟢 Playable | 2026-10-25 | — |
-| [Boppin'](games/boppin.md) (1994) | 🟡 Boots | 2026-10-25 | — |
-| [Commander Keen 1: Marooned on Mars](games/CKeen1.md) (1990) | 🟢 Playable | 2026-10-25 | — |
-| [Commander Keen 2: The Earth Explodes](games/CKeen2.md) (1990) | 🟢 Playable | 2026-10-25 | — |
-| [Commander Keen 3: Keen Must Die!](games/CKeen3.md) (1990) | 🟢 Playable | 2026-10-25 | — |
+| [Birthright: The Gorgon's Alliance](games/bgorgon.md) (1997) | 🟡 Boots | 2026-10-25 | — |
 <!-- /generated:stats -->
 
 ## Status legend
@@ -72,6 +73,7 @@ Fixes that apply to every game. Check these first when a game fails the same way
 |---|---|---|---|
 | Cursor or view jumps to the top-left when a game limits the mouse (RTS minimaps) | Without pointer lock js-dos sends absolute positions; DOSBox scales them to the game's range and clamps them to its top-left | Per-game "Lock mouse" default (relative movement, as eXo's `autolock=true`), toolbar toggle | `index.mjs` (`MOUSE_CAPTURE_DEFAULTS`), `player.html` ([Warcraft II](games/WarcrafD.md)) |
 | Saves gone after quitting a game from its own menu | The launcher's `exit` stopped the emulator before the player could save; Close then timed out | `exit` runs a resident quit program on `X:`; the player sees it, saves, closes | `translate.mjs`, `batpatch.mjs` (`BATPATCH_VERSION` 9), `player.html` |
+| Booter (PCjr) game drops to a DOS prompt or "Invalid drive" instead of booting | The eXo config passes the disk image to `boot` with eXo's Windows path (`.\eXoDOS\…\disk.img`); only `mount`/`imgmount` were rewritten | `boot` arguments get the same host-path rewrite | `translate.mjs`, `batpatch.mjs` (`BATPATCH_VERSION` 10) ([KQ1 PCjr](games/KQ1pcjr.md)) |
 | Black screen with a blinking cursor after a launcher menu | The launcher `imgmount`s a CD with eXo's Windows path (`.\eXoDOS\…`); the mount fails silently and `cls` hides it | Launcher lines get the autoexec path rewrite | `batpatch.mjs`, `BATPATCH_VERSION` 8+ ([C&C](games/comcon.md)) |
 | Browser tab dies loading a multi-CD game | The bundle holds every disc; Chromium needs ~5× the bundle size | Ask for the campaign, bundle only its disc (`?disc=`) | `discs.mjs` ([C&C](games/comcon.md)) |
 | Launcher hangs on `IF … program` | js-dos batch interpreter | `IF cond GOTO` + labels | `batpatch.mjs` ([Wing Commander](games/WC.md)) |
@@ -86,7 +88,7 @@ Fixes that apply to every game. Check these first when a game fails the same way
 
 The [game list](GAMES.md) and [table](games.csv) show what each game asks of the system:
 
-- **Download**: size of the game's zip. js-dos holds a bundle in browser memory several times over while it unpacks (a 1.3 GB bundle was killed at 9.2 GB in the Chromium probe), so plan for roughly 5× this in free RAM on the device. Games over 4 GB are refused.
+- **Download**: size of the game's zip. js-dos holds a bundle in browser memory several times over while it unpacks (a 1.3 GB bundle was killed at 9.2 GB in the Chromium probe), so plan for roughly 5× this in free RAM on the device. Games over 2 GB are refused (`MAX_BUNDLE_MB`): a 3.5 GB game downloads but fails to allocate its ArrayBuffer ([Police Quest: SWAT](games/pqswat.md)).
 - **DOS RAM**: the `memsize` ExodiumWeb gives the emulated PC, capped at 63 MB.
 - **CPU**: the emulated speed from the game's config. A number is a fixed cycles count (capped at 100,000, which the WASM core can't outrun); `auto` and `max` let the emulator choose.
 
