@@ -273,7 +273,7 @@ The Train: Escape to Normandy,1988,Boots,dosbox,0.15,63,auto,"Accolade, Inc.",20
 The World's Greatest Baseball Game,1985,Boots,dosbox,0.09,8,400,"Epyx, Inc.",2026-10-25,,8583,wgbball,auto review
 Thexder,1987,Playable,dosbox,0.23,16,auto,Sierra On-Line,2026-10-25,,3427,Thexder,
 TKO,1989,Playable,dosbox,0.14,63,auto,"Accolade, Inc.",2026-10-25,,7348,TKO,auto
-Tomb Raider Gold,1998,Partial,dosbox,463.54,63,100000,,2026-10-10,Software renderer by default (3dfx path broken),4462,TombRaiG,
+Tomb Raider Gold,1998,Playable,dosboxX,463.54,63,100000,,2026-10-25,3dfx on js-dos 8.5.3 (8.4.1 Voodoo texture cache bug),4462,TombRaiG,
 Torin's Passage,1995,Boots,dosbox,614.94,63,60000,Sierra On-Line,2026-10-25,,2444,torin,
 Total Meltdown,1996,Playable,dosbox,176.94,63,40000,Sierra On-Line,2026-10-25,,8389,TotalMel,
 Trek Trivia,1988,Playable,dosbox,0.26,63,auto,Apogee / 3D Realms,2026-10-25,,7244,TrekTriv,

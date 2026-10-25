@@ -17,15 +17,15 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**298 of 7,666 games tested (3.9 %).** 🟢 129 playable · 🟡 159 boots · 🟠 3 partial · 🔴 7 not supported.
+**298 of 7,666 games tested (3.9 %).** 🟢 130 playable · 🟡 159 boots · 🟠 2 partial · 🔴 7 not supported.
 
 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 129 | 43.3 % |
+| 🟢 | Playable | 130 | 43.6 % |
 | 🟡 | Boots | 159 | 53.4 % |
-| 🟠 | Partial | 3 | 1 % |
+| 🟠 | Partial | 2 | 0.7 % |
 | 🔴 | Not supported | 7 | 2.3 % |
 
 **Find a game:** [all tested games A–Z](GAMES.md) · [searchable table](games.csv) (filter by title, status, backend) · or search this folder for its title. A game not listed is untested.
@@ -41,7 +41,7 @@ named by its eXo shortcode.
 | IBM | 1 |  | 1 |  |  |
 | Sierra On-Line | 133 | 33 | 93 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
-| Other games | 9 | 4 | 4 | 1 |  |
+| Other games | 9 | 5 | 4 |  |  |
 
 ### Recently tested
 
@@ -86,6 +86,7 @@ Fixes that apply to every game. Check these first when a game fails the same way
 | Black screen in SVGA games | `svga_s3` on the dosbox backend | `vesa_nolfb`, memsize ≤ 63 | `translate.mjs` ([Quake](games/Quake.md)) |
 | Black screen in Build-engine games | VESA hi-res modes | cfg `ScreenMode 0` | `batpatch.mjs` ([Duke 3D](games/Duke3D.md)) |
 | Large game re-downloads / download cut off | Single request through Traefik HTTP/2 | 8 MB `Range` pieces, Cache API | `downloads.js` ([EcoQuest](games/ecoq1.md)) |
+| 3dfx games: white/striped FMV, text and walls as flat teal blocks | js-dos 8.4.1's browser Voodoo renderer kept stale textures (js-dos/emulators #440) | 3dfx launches load js-dos 8.5.3 (`vendor/js-dos-3dfx`); other games stay on 8.4.1 | `player.html`, `server/package.json` ([Tomb Raider Gold](games/TombRaiG.md)) |
 | Lag and crackle at very high fixed cycles (3dfx games) | eXo configs above what WASM can emulate | Fixed cycles capped at 100,000 | `translate.mjs` (`80902ee`) |
 
 ## Resources per game

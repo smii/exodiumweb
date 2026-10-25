@@ -2,7 +2,7 @@
 
 # Tested games
 
-[← Compatibility](README.md) · 298 games · 🟢 129 playable · 🟡 159 boots · 🟠 3 partial · 🔴 7 not supported · [searchable table](games.csv)
+[← Compatibility](README.md) · 298 games · 🟢 130 playable · 🟡 159 boots · 🟠 2 partial · 🔴 7 not supported · [searchable table](games.csv)
 
 [0–9](#0-9) · [A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [U](#u) · [W](#w) · [X](#x) · [Z](#z)
 
@@ -384,7 +384,7 @@
 | [The World's Greatest Baseball Game](games/wgbball.md) | 1985 | 🟡 Boots | dosbox | 90 KB | 8 MB | 400 cycles | — |
 | [Thexder](games/Thexder.md) | 1987 | 🟢 Playable | dosbox | 230 KB | 16 MB | auto | — |
 | [TKO](games/TKO.md) | 1989 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
-| [Tomb Raider Gold](games/TombRaiG.md) | 1998 | 🟠 Partial | dosbox | 464 MB | 63 MB | 100,000 cycles | Software renderer by default (3dfx path broken) |
+| [Tomb Raider Gold](games/TombRaiG.md) | 1998 | 🟢 Playable | dosboxX | 464 MB | 63 MB | 100,000 cycles | 3dfx on js-dos 8.5.3 (8.4.1 Voodoo texture cache bug) |
 | [Torin's Passage](games/torin.md) | 1995 | 🟡 Boots | dosbox | 615 MB | 63 MB | 60,000 cycles | — |
 | [Total Meltdown](games/TotalMel.md) | 1996 | 🟢 Playable | dosbox | 177 MB | 63 MB | 40,000 cycles | — |
 | [Trek Trivia](games/TrekTriv.md) | 1988 | 🟢 Playable | dosbox | 260 KB | 63 MB | auto | — |

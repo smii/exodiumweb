@@ -6,6 +6,13 @@ A missing in-game font is not a missing web font. Keep those paths separate.
 
 ## Tomb Raider Gold: white intro and missing text (2026-10-10)
 
+**Resolved 2026-10-25.** The defect was in js-dos 8.4.1 itself: its browser
+Voodoo renderer kept stale textures after the game rewrote texture RAM
+(upstream js-dos/emulators issue #440, which uses this very game; fixed in
+js-dos 8.5.0). No `dosbox.conf` key changes it. 3dfx launches now load js-dos
+8.5.3 (`server/vendor/js-dos-3dfx`, see `player.html`), and the software
+fallback below was removed. Kept for the method:
+
 Game `4462`, shortcode `TombRaiG`, js-dos `8.4.1`, app revision `bea1370`.
 The deployed image matched the source. A clean, isolated browser reproduced
 the white intro and missing menu lettering with launcher option **3**:

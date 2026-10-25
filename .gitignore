@@ -12,7 +12,7 @@ server/assets/previews/
 # per-user state, local dev settings
 server/state/
 server/dev.env
-# vendored js-dos is re-downloadable (npm pack js-dos@8.4.1)
+# vendored js-dos is re-downloadable (npm run fetch-jsdos: 8.4.1, 8.5.3 for 3dfx)
 poc/vendor/
 server/vendor/
 # build + tooling output

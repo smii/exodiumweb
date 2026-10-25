@@ -8,6 +8,6 @@
     "start": "node --disable-warning=ExperimentalWarning src/index.mjs",
     "dev": "node --env-file-if-exists=dev.env --disable-warning=ExperimentalWarning src/index.mjs",
     "fetch-data": "bash scripts/fetch-upstream-data.sh",
-    "fetch-jsdos": "mkdir -p vendor && cd vendor && npm pack js-dos@8.4.1 && mkdir -p js-dos && tar -xzf js-dos-8.4.1.tgz -C js-dos --strip-components=1 && rm js-dos-8.4.1.tgz"
+    "fetch-jsdos": "mkdir -p vendor && cd vendor && npm pack js-dos@8.4.1 && mkdir -p js-dos && tar -xzf js-dos-8.4.1.tgz -C js-dos --strip-components=1 && rm js-dos-8.4.1.tgz && npm pack js-dos@8.5.3 && mkdir -p js-dos-3dfx && tar -xzf js-dos-8.5.3.tgz -C js-dos-3dfx --strip-components=1 && rm js-dos-8.5.3.tgz"
   }
 }

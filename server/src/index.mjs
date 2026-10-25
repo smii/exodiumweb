@@ -213,10 +213,6 @@ function tuneConf(conf, item) {
   return lines.join("\n");
 }
 
-const SOFTWARE_DEFAULTS = {
-  tombraig: { backend: "dosbox", cmd: "echo C:\\TOMBRAID > TOMBPATH.TXT|cd tombraid|tomb" },
-};
-
 // Games that start with "Lock mouse" on. Without pointer lock js-dos hands
 // DOSBox absolute positions, which DOSBox scales as x * max_x and then clamps
 // to the game's mouse range; a game that narrows that range (Warcraft II while
@@ -229,11 +225,6 @@ const MOUSE_CAPTURE_DEFAULTS = new Set(["warcrafd"]);
 function launchInfo(db, id, backendOverride, cmdOverride, tuneOverride, disc) {
   const game = gameById(db, id);
   if (!game) return null;
-  // Tomb Raider Gold: the 3dfx (Voodoo/WebGL) path renders white intros and
-  // coloured-block textures (docs/TROUBLESHOOTING.md). Default to the original
-  // software-rendered game; ?backend= / ?cmd= and the per-game engine setting still win.
-  const sw = SOFTWARE_DEFAULTS[game.shortcode?.toLowerCase()];
-  if (sw && !backendOverride && !cmdOverride && !gameConfig(db, id).backend) { backendOverride = sw.backend; cmdOverride = sw.cmd; }
   const conf = collection.dosboxConf(game.shortcode);
   if (!conf) return { error: `No launch config for ${game.title} in this collection` };
   const settings = gameConfig(db, id);

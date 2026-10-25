@@ -93,6 +93,7 @@ Each of these changes the config hash, so it builds a separate bundle.
 |---|---|---|
 | Exodium catalogue, eXo config zips, cover previews, licence | `server/scripts/fetch-upstream-data.sh [tag]` (`npm run fetch-data`) | `v0.15.2` |
 | js-dos | `npm run fetch-jsdos` (`npm pack js-dos@8.4.1`) | `8.4.1` |
+| js-dos for 3dfx launches | `npm run fetch-jsdos` (`npm pack js-dos@8.5.3` → `vendor/js-dos-3dfx`) | `8.5.3` |
 | UI | `cd ui && npx --yes pnpm@9 build` | Exodium `v0.15.2` frontend |
 
 None of these are committed (see `.gitignore`).

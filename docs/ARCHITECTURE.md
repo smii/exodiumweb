@@ -24,6 +24,7 @@ Browser ──HTTPS──▶ login proxy (sets Remote-User) ──HTTP──▶ 
 | Player | `server/public/player.html` | Loads `/api/play/<id>`, starts js-dos (`/vendor/js-dos/`), syncs saves, toolbar (scanlines, mouse lock, keyboard lock, fullscreen, close). |
 | Downloads | `server/public/downloads.js`, `downloads.html` | Download-once storage for large games (Cache API) and the page that lists/removes them. |
 | js-dos 8.4.1 | `server/vendor/js-dos/` (fetched by `npm run fetch-jsdos`) | The emulator: two backends, `dosbox` and `dosboxX`. |
+| js-dos 8.5.3 | `server/vendor/js-dos-3dfx/` (same script) | Only for 3dfx launches (`dosboxX` + Voodoo): 8.4.1's Voodoo renderer kept stale textures. |
 | Upstream data | `server/data/`, `server/assets/previews/` (fetched by `npm run fetch-data`) | Exodium's bundled catalogue `exodium.db`, eXo config zips and 75×120 cover thumbnails. |
 
 ## Request flow

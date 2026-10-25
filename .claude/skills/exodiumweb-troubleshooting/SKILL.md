@@ -95,6 +95,9 @@ menu text even though some textures rendered; `voodoo_card=software` brought
 the text back with red/blue swapped; option 1 on `backend=dosbox` played
 properly. That shipped as a documented **fallback**, not a 3dfx fix. Headless
 SwiftShader reproduced it too, so it was not a GPU problem.
+The real cause (2026-10-25) was a js-dos 8.4.1 Voodoo texture-cache bug, fixed
+in js-dos 8.5 (now loaded for 3dfx launches only): when no conf key changes a
+rendering defect, check the js-dos changelog and the js-dos/emulators tests.
 Details: `docs/compatibility/games/TombRaiG.md`, `docs/TROUBLESHOOTING.md`.
 
 ## 5. Verify the real outcome and keep data safe

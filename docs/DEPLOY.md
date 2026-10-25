@@ -43,7 +43,7 @@ saves and library.
 ## Build
 
 Prebuilt images are not published; build from the repo root (the Dockerfile
-builds everything: UI with pnpm 9, Exodium catalogue `v0.15.2`, js-dos 8.4.1;
+builds everything: UI with pnpm 9, Exodium catalogue `v0.15.2`, js-dos 8.4.1 (8.5.3 for 3dfx games);
 needs internet at build time only).
 
 ```bash
