@@ -169,9 +169,10 @@ trust applies to every in-cluster caller too.
   are built by streaming zip entries, the 8 MB download pieces and poster
   jobs (max 3 concurrent) are small. Raise the limit if you raise
   `MAX_BUNDLE_MB` and see OOM kills during builds of very large games.
-- **MAX_BUNDLE_MB** (default 4000): games whose source zip is larger are
-  refused with HTTP 413. The real ceiling is the *browser*: js-dos holds the
-  whole bundle in WASM memory (4 GB). Lowering it protects weak clients.
+- **MAX_BUNDLE_MB** (default 2000): games whose source zip is larger are
+  refused with HTTP 413. The real ceiling is the *browser*: js-dos loads the
+  whole bundle as one ArrayBuffer, and a 3.5 GB game fails to allocate it
+  (Police Quest: SWAT). Lowering it protects weak clients.
   **LARGE_BUNDLE_MB** (300) is the threshold above which the player asks
   before downloading and stores the game in the browser.
 - **Disk**: `BUNDLE_CACHE_MB` caps `/cache/bundles` (LRU); posters add

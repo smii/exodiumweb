@@ -19,7 +19,7 @@ services:
       SINGLE_USER: ${SINGLE_USER:-}
       USER_HEADER: ${USER_HEADER:-Remote-User}
       BUNDLE_CACHE_MB: ${BUNDLE_CACHE_MB:-20000}
-      MAX_BUNDLE_MB: ${MAX_BUNDLE_MB:-4000}
+      MAX_BUNDLE_MB: ${MAX_BUNDLE_MB:-2000}
       LARGE_BUNDLE_MB: ${LARGE_BUNDLE_MB:-300}
     volumes:
       - ${EXODOS_PATH:?set EXODOS_PATH in .env to your eXoDOS folder}:/collection:ro

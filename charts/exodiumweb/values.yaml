@@ -47,7 +47,7 @@ persistence:
 
 config:
   bundleCacheMB: 20000
-  maxBundleMB: 4000
+  maxBundleMB: 2000
   largeBundleMB: 300
   logRequests: false
 extraEnv: []

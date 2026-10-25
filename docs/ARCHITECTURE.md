@@ -120,7 +120,8 @@ A js-dos bundle (`.jsdos`) is a zip. For each launch:
    `BUNDLE_CACHE_MB`.
 
 Games whose zip is larger than `MAX_BUNDLE_MB` are refused with `413` and a
-message (js-dos keeps the whole bundle in browser memory, 4 GB WASM ceiling).
+message (js-dos loads the whole bundle as one ArrayBuffer in browser memory;
+a 3.5 GB game fails to allocate it).
 
 ## Downloads (large games)
 

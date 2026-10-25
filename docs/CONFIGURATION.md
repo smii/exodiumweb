@@ -24,7 +24,7 @@ variables (`charts/exodiumweb/values.yaml`).
 | `USER_HEADER` | `Remote-User` | — | Request header naming the user (case-insensitive). Set by the login proxy. Ignored with `SINGLE_USER`. |
 | `SINGLE_USER` | — | — | Single-user mode: every request is this user and `USER_HEADER` is ignored. For one person on localhost or a trusted LAN, with no login proxy. Anyone who reaches the port is this user. |
 | `DEV_USER` | — | — | User when the header is absent. **Development only**: in production it would let anyone in as that user. |
-| `MAX_BUNDLE_MB` | `4000` | — | Refuse games whose source zip is larger (HTTP 413 with a message). Browser/WASM limit. |
+| `MAX_BUNDLE_MB` | `2000` | — | Refuse games whose source zip is larger (HTTP 413 with a message). Browser limit: a 3.5 GB game downloads but fails to allocate its ArrayBuffer. |
 | `LARGE_BUNDLE_MB` | `300` | — | Above this the player asks before downloading and keeps the game in browser storage. |
 | `BUNDLE_CACHE_MB` | `30000` | — | Cap for built bundles in `CACHE_DIR/bundles`; least recently used go first. |
 | `UI_DIST` | `ui/dist` (repo) | `/app/ui/dist` | Built UI to serve. |

@@ -12,7 +12,7 @@
 //   SINGLE_USER          every request is this user, header ignored (no login proxy;
 //                        only for a single-person setup on localhost or a trusted LAN)
 //   DEV_USER             user when the header is absent (development only)
-//   MAX_BUNDLE_MB        refuse games whose zip is larger (default 4000, browser limit)
+//   MAX_BUNDLE_MB        refuse games whose zip is larger (default 2000, browser limit)
 //   LARGE_BUNDLE_MB      above this the player asks before downloading and keeps
 //                        the game in browser storage (default 300)
 //   BUNDLE_CACHE_MB      server-side cap for built bundles, oldest go first (default 30000)
@@ -41,7 +41,7 @@ const env = process.env;
 const PORT = Number(env.PORT ?? 8080);
 const STATE_DIR = env.STATE_DIR ?? join(SERVER, "state");
 const MT32_DIR = env.MT32_DIR ?? null;
-const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 4000);
+const MAX_BUNDLE_MB = Number(env.MAX_BUNDLE_MB ?? 2000);
 const LARGE_BUNDLE_MB = Number(env.LARGE_BUNDLE_MB ?? 300);
 const BUNDLE_CACHE_MB = Number(env.BUNDLE_CACHE_MB ?? 30000);
 const SOCKDRIVE_DIR = join(env.CACHE_DIR ?? join(SERVER, "cache"), "sockdrive");
@@ -285,7 +285,8 @@ async function bundleFor(game, info) {
     bundleBuilds.set(out, (async () => {
       const zip = await collection.gameZip(zipNameFor(game));
       // js-dos loads a whole bundle into browser memory (several copies while
-      // unpacking, 4 GB WASM ceiling); ~9% of eXoDOS is over 300 MB.
+      // unpacking, one ArrayBuffer: a 3.5 GB game fails to allocate it, see
+      // docs/compatibility/games/pqswat.md); ~9% of eXoDOS is over 300 MB.
       const mb = Math.round(statSync(zip).size / 1e6);
       if (mb > MAX_BUNDLE_MB) throw Object.assign(new Error(`${game.title} is ${mb} MB, too large to run in a browser (limit ${MAX_BUNDLE_MB} MB).`), { status: 413 });
       const src = new ZipReader(zip);

@@ -23,7 +23,7 @@
 import { rewriteAutoexecLine } from "./translate.mjs";
 
 // Bump when a rewrite changes, so cached bundles are rebuilt.
-export const BATPATCH_VERSION = 9;
+export const BATPATCH_VERSION = 10;
 
 const IF_LINE = /^(\s*)(@?)if\s+(not\s+)?(errorlevel\s*=?\s*\d+|exist\s+(?:"[^"]*"|\S+)|(?:"[^"]*"|[^\s=]+)?==(?:"[^"]*"|\S+))\s+(\S.*)$/i;
 

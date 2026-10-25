@@ -69,13 +69,14 @@ export const QUIT_COM = Buffer.from([0xfb, 0xf4, 0xeb, 0xfd]);
 export const QUIT_MOUNT = `@mount x ./${QUIT_DIR} >nul`;
 const QUIT_LINE = `X:\\${QUIT_PROGRAM}`;
 
-// mount/imgmount: every argument that looks like a host path gets rewritten.
+// mount/imgmount/boot: every argument that looks like a host path gets
+// rewritten (booter configs pass `.\eXoDOS\<game>\disk.img` to `boot`).
 // `exit` becomes the quit program (above).
 // Also used for launcher batch files (batpatch.mjs), which mount CDs themselves.
 export function rewriteAutoexecLine(line) {
   const q = line.match(/^(\s*)@?exit\s*$/i);
   if (q) return `${q[1]}@${QUIT_LINE}`;
-  const m = line.match(/^(\s*@?)(mount|imgmount)(\s+)(.*)$/i);
+  const m = line.match(/^(\s*@?)(mount|imgmount|boot)(\s+)(.*)$/i);
   if (!m) return line;
   const args = m[4].match(/"[^"]*"|\S+/g) ?? [];
   const out = args.map((a) => (/^"?\.\\|\\eXoDOS\\/i.test(a) ? hostPath(a) : a));
