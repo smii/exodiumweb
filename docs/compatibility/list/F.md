@@ -2,17 +2,17 @@
 
 # Tested games: F
 
-[← All letters](../GAMES.md) · 14 games · 🟢 11 playable · 🟡 3 boots
+[← All letters](../GAMES.md) · 14 games · 🟢 13 playable · 🟡 1 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
-| [Fantasy General](../games/fantgen.md) | 1996 | 🟡 Boots | dosbox | 379 MB | 63 MB | max | Works with ?tune=cpu.core=normal, needs a rule in translate.mjs |
+| [Fantasy General](../games/fantgen.md) | 1996 | 🟢 Playable | dosbox | 379 MB | 63 MB | max | Works with ?tune=cpu.core=normal, needs a rule in translate.mjs |
 | [Fast Attack: High Tech Submarine Warfare](../games/FastAtta.md) | 1996 | 🟢 Playable | dosbox | 480 MB | 63 MB | max | — |
 | [Fast Break](../games/fastbrek.md) | 1988 | 🟢 Playable | dosbox | 150 KB | 63 MB | auto | Answer 3 at the first prompt |
 | [Fates of Twinion](../games/Fatetwin.md) | 1993 | 🟢 Playable | dosbox | 1.5 MB | 63 MB | auto | — |
 | [Fiendish Freddy's Big Top O' Fun](../games/Fiendish.md) | 1989 | 🟢 Playable | dosbox | 770 KB | 16 MB | auto | — |
 | [Fire Hawk: Thexder - The Second Contact](../games/FireHawk.md) | 1990 | 🟢 Playable | dosbox | 2.6 MB | 32 MB | auto | — |
-| [Forbidden Castle](../games/forbcast.md) | 1985 | 🟡 Boots | dosbox | 90 KB | 63 MB | auto | — |
+| [Forbidden Castle](../games/forbcast.md) | 1985 | 🟢 Playable | dosbox | 90 KB | 63 MB | auto | — |
 | [Freddy Pharkas: Frontier Pharmacist](../games/freddy.md) | 1993 | 🟢 Playable | dosbox | 1.0 GB | 32 MB | 6,000 cycles | — |
 | [Frogger](../games/Frogger.md) | 1983 | 🟢 Playable | dosbox | 20 KB | 32 MB | 300 cycles | — |
 | [Front Page Sports: Baseball '94](../games/FPSBas94.md) | 1994 | 🟢 Playable | dosbox | 212 MB | 63 MB | 25,000 cycles | — |

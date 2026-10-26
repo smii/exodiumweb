@@ -2,19 +2,19 @@
 
 # Tested games: D
 
-[← All letters](../GAMES.md) · 27 games · 🟢 14 playable · 🟡 13 boots
+[← All letters](../GAMES.md) · 27 games · 🟢 18 playable · 🟡 9 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [D/Generation](../games/dgener.md) | 1991 | 🟢 Playable | dosbox | 1.3 MB | 63 MB | 9,000 cycles | — |
 | [Dark Ages](../games/DarkAges.md) | 1991 | 🟢 Playable | dosbox | 390 KB | 16 MB | auto | — |
-| [Dark Sun II: Wake of the Ravager](../games/RAVAGER.md) | 1994 | 🟡 Boots | dosbox | 638 MB | 32 MB | 15,000 cycles | — |
+| [Dark Sun II: Wake of the Ravager](../games/RAVAGER.md) | 1994 | 🟢 Playable | dosbox | 638 MB | 32 MB | 15,000 cycles | — |
 | [Day of the Viper](../games/dayviper.md) | 1990 | 🟡 Boots | dosbox | 550 KB | 16 MB | auto | — |
-| [Days of Thunder](../games/DaysofTh.md) | 1990 | 🟡 Boots | dosbox | 470 KB | 32 MB | auto | — |
-| [Defender of the Crown](../games/defcrown.md) | 1987 | 🟡 Boots | dosbox | 1.4 MB | 63 MB | 900 cycles | — |
+| [Days of Thunder](../games/DaysofTh.md) | 1990 | 🟢 Playable | dosbox | 470 KB | 32 MB | auto | — |
+| [Defender of the Crown](../games/defcrown.md) | 1987 | 🟢 Playable | dosbox | 1.4 MB | 63 MB | 900 cycles | — |
 | [Defender of the Crown CD-ROM](../games/dcrowncd.md) | 1987 | 🟢 Playable | dosbox | 193 MB | 16 MB | auto | — |
 | [Deja Vu II: Lost in Las Vegas](../games/DejaVu2.md) | 1990 | 🟢 Playable | dosbox | 880 KB | 63 MB | 1,500 cycles | — |
-| [Deja Vu: A Nightmare Comes True!!](../games/DejaVu.md) | 1985 | 🟡 Boots | dosbox | 300 KB | 8 MB | 1,500 cycles | — |
+| [Deja Vu: A Nightmare Comes True!!](../games/DejaVu.md) | 1985 | 🟢 Playable | dosbox | 300 KB | 8 MB | 1,500 cycles | — |
 | [Descent II](../games/Descent2.md) | 1996 | 🟡 Boots | dosbox | 1.4 GB | 63 MB | 100,000 cycles | menu |
 | [Destroyer](../games/destro87.md) | 1987 | 🟡 Boots | dosbox | 100 KB | 4 MB | 600 cycles | — |
 | [Detroit](../games/Detroit.md) | 1994 | 🟢 Playable | dosbox | 20 MB | 32 MB | auto | — |

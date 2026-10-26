@@ -2,7 +2,7 @@
 
 # Tested games: M
 
-[← All letters](../GAMES.md) · 27 games · 🟢 21 playable · 🟡 6 boots
+[← All letters](../GAMES.md) · 27 games · 🟢 23 playable · 🟡 4 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -11,7 +11,7 @@
 | [Major Stryker](../games/MajorStr.md) | 1993 | 🟢 Playable | dosbox | 2.6 MB | 16 MB | 6,000 cycles | — |
 | [Manhunter 2: San Francisco](../games/MH2.md) | 1989 | 🟢 Playable | dosbox | 1.2 MB | 63 MB | auto | — |
 | [Manhunter: New York](../games/MH1.md) | 1988 | 🟢 Playable | dosbox | 1.0 MB | 4 MB | auto | — |
-| [Mario Teaches Sums](../games/MarioSum.md) | 1994 | 🟡 Boots | dosbox | 346 MB | 16 MB | 9,000 cycles | — |
+| [Mario Teaches Sums](../games/MarioSum.md) | 1994 | 🟢 Playable | dosbox | 346 MB | 16 MB | 9,000 cycles | — |
 | [Master Levels for DOOM II](../games/MasterLe.md) | 1995 | 🟡 Boots | dosbox | 333 MB | 16 MB | auto | Large-game download; launcher keys open |
 | [Math Rescue](../games/MathResc.md) | 1992 | 🟢 Playable | dosbox | 1.1 MB | 63 MB | auto | — |
 | [Mean 18](../games/Mean18.md) | 1986 | 🟡 Boots | dosbox | 1.6 MB | 63 MB | auto | — |
@@ -30,6 +30,6 @@
 | [Mixed-Up Mother Goose Enhanced](../games/mugoose2.md) | 1991 | 🟢 Playable | dosbox | 930 KB | 16 MB | auto | — |
 | [Monster Bash](../games/MonsterB.md) | 1993 | 🟢 Playable | dosbox | 5.6 MB | 16 MB | 9,000 cycles | — |
 | [Monuments of Mars](../games/Monument.md) | 1991 | 🟢 Playable | dosbox | 210 KB | 16 MB | auto | — |
-| [Moonstone: A Hard Days Knight](../games/moonahdk.md) | 1992 | 🟡 Boots | dosbox | 5.5 MB | 63 MB | 2,000 cycles | — |
+| [Moonstone: A Hard Days Knight](../games/moonahdk.md) | 1992 | 🟢 Playable | dosbox | 5.5 MB | 63 MB | 2,000 cycles | — |
 | [Mr. Cool](../games/MrCool.md) | 1983 | 🟢 Playable | dosbox | 40 KB | 4 MB | 300 cycles | — |
 | [Mystic Towers](../games/mysttow.md) | 1994 | 🟢 Playable | dosbox | 29 MB | 63 MB | auto | — |

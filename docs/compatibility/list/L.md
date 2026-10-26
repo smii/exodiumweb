@@ -2,7 +2,7 @@
 
 # Tested games: L
 
-[← All letters](../GAMES.md) · 21 games · 🟢 18 playable · 🟡 2 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 21 games · 🟢 19 playable · 🟡 1 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -22,7 +22,7 @@
 | [Les Manley In: Search For The King](../games/lmanking.md) | 1990 | 🟢 Playable | dosbox | 3.1 MB | 63 MB | auto | Answer 3 at the first prompt |
 | [Lighthouse: The Dark Being](../games/lhouse.md) | 1996 | 🟢 Playable | dosbox | 1.0 GB | 63 MB | max | — |
 | [Lode Runner: The Legend Returns](../games/LodeRu94.md) | 1994 | 🟢 Playable | dosbox | 5.2 MB | 16 MB | 30,000 cycles | — |
-| [Loopz](../games/loopz.md) | 1990 | 🟡 Boots | dosbox | 130 KB | 63 MB | auto | — |
+| [Loopz](../games/loopz.md) | 1990 | 🟢 Playable | dosbox | 130 KB | 63 MB | auto | — |
 | [Lords of the Realm II](../games/lordorm2.md) | 1996 | 🟢 Playable | dosbox | 930 MB | 63 MB | 75,000 cycles | — |
 | [Lost Adventures of Kroz](../games/LostAdve.md) | 1990 | 🟢 Playable | dosbox | 100 KB | 16 MB | auto | — |
 | [Lost in Time](../games/losttime.md) | 1993 | 🟢 Playable | dosbox | 821 MB | 32 MB | 20,000 cycles | — |

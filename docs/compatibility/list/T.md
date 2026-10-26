@@ -2,7 +2,7 @@
 
 # Tested games: T
 
-[← All letters](../GAMES.md) · 47 games · 🟢 29 playable · 🟡 16 boots · 🔴 2 not supported
+[← All letters](../GAMES.md) · 47 games · 🟢 35 playable · 🟡 10 boots · 🔴 2 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -14,25 +14,25 @@
 | [Test Drive III: The Passion](../games/TstDriv3.md) | 1990 | 🟢 Playable | dosbox | 830 KB | 63 MB | 6,000 cycles | Answer 3 at the first prompt |
 | [Test Drive: Off-Road](../games/TstDrivO.md) | 1997 | 🟡 Boots | dosbox | 607 MB | 32 MB | 100,000 cycles | — |
 | [The Adventures of Willy Beamish](../games/beamish.md) | 1991 | 🟢 Playable | dosbox | 261 MB | 32 MB | 9,000 cycles | — |
-| [The American Challenge: A Sailing Simulation](../games/TheAmeri.md) | 1986 | 🟡 Boots | dosbox | 70 KB | 8 MB | 1,200 cycles | — |
+| [The American Challenge: A Sailing Simulation](../games/TheAmeri.md) | 1986 | 🟢 Playable | dosbox | 70 KB | 8 MB | 1,200 cycles | — |
 | [The Beast Within: A Gabriel Knight Mystery](../games/GK2.md) | 1995 | 🔴 Not supported | dosbox | 6.4 GB | 32 MB | auto | — |
 | [The Black Cauldron](../games/BlakCaul.md) | 1986 | 🟢 Playable | dosbox | 300 KB | 63 MB | auto | — |
-| [The Colony](../games/thecolo.md) | 1988 | 🟡 Boots | dosbox | 250 KB | 63 MB | 1,500 cycles | — |
+| [The Colony](../games/thecolo.md) | 1988 | 🟢 Playable | dosbox | 250 KB | 63 MB | 1,500 cycles | — |
 | [The Complete Great Naval Battles: The Final Fury](../games/gnb5dd.md) | 1996 | 🔴 Not supported | dosbox | — | 32 MB | max |  page.waitForFunction: Timeout 240000ms exceeded. |
 | [The Cycles: International Grand Prix Racing](../games/TheCycle.md) | 1989 | 🟢 Playable | dosbox | 630 KB | 63 MB | auto | — |
 | [The Dam Busters](../games/TheDamBu.md) | 1985 | 🟡 Boots | dosbox | 30 KB | 8 MB | 350 cycles | — |
 | [The Even More Incredible Machine](../games/TheEvenM.md) | 1993 | 🟢 Playable | dosbox | 547 MB | 32 MB | 25,000 cycles | — |
 | [The Final Crusade of Kroz](../games/TKrozCr.md) | 1990 | 🟢 Playable | dosbox | 40 KB | 16 MB | auto | — |
-| [The Four Crystals of Trazere](../games/4crysTr.md) | 1992 | 🟡 Boots | dosbox | 970 KB | 32 MB | auto | — |
+| [The Four Crystals of Trazere](../games/4crysTr.md) | 1992 | 🟢 Playable | dosbox | 970 KB | 32 MB | auto | — |
 | [The Game of Harmony](../games/gameharm.md) | 1990 | 🟡 Boots | dosbox | 230 KB | 32 MB | auto | — |
 | [The Games: Summer Challenge](../games/TGameSmC.md) | 1992 | 🟡 Boots | dosbox | 10 MB | 63 MB | auto | — |
 | [The Games: Winter Challenge](../games/TGameWnC.md) | 1991 | 🟢 Playable | dosbox | 9.6 MB | 32 MB | auto | Answer 3 at the first prompt |
-| [The Global Dilemma: Guns or Butter](../games/TheGloba.md) | 1990 | 🟡 Boots | dosbox | 370 KB | 63 MB | auto | — |
+| [The Global Dilemma: Guns or Butter](../games/TheGloba.md) | 1990 | 🟢 Playable | dosbox | 370 KB | 63 MB | auto | — |
 | [The Incredible Machine](../games/TIncM1.md) | 1993 | 🟢 Playable | dosbox | 670 KB | 32 MB | 25,000 cycles | — |
 | [The Incredible Machine 2](../games/TIncM2.md) | 1994 | 🟢 Playable | dosbox | 575 MB | 32 MB | 30,000 cycles | — |
 | [The Island of Dr. Brain](../games/ibrain.md) | 1992 | 🟢 Playable | dosbox | 23 MB | 63 MB | 6,000 cycles | — |
 | [The Keys to Maramon](../games/keysmara.md) | 1990 | 🟢 Playable | dosbox | 330 KB | 63 MB | 1,000 cycles | Answer n at the first prompt |
-| [The King of Chicago](../games/kchicago.md) | 1987 | 🟡 Boots | dosbox | 290 KB | 63 MB | auto | — |
+| [The King of Chicago](../games/kchicago.md) | 1987 | 🟢 Playable | dosbox | 290 KB | 63 MB | auto | — |
 | [The Legend of Kyrandia: Book One](../games/kyra1.md) | 1992 | 🟡 Boots | dosbox | 247 MB | 63 MB | 24,000 cycles | — |
 | [The Legend of Kyrandia: Book Three - Malcolm's Revenge](../games/kyra3.md) | 1994 | 🟢 Playable | dosbox | 445 MB | 63 MB | max | — |
 | [The Legend of Kyrandia: Book Two - The Hand of Fate](../games/kyra2.md) | 1994 | 🟡 Boots | dosbox | 126 MB | 32 MB | 25,000 cycles | — |
@@ -52,4 +52,4 @@
 | [Total Meltdown](../games/TotalMel.md) | 1996 | 🟢 Playable | dosbox | 177 MB | 63 MB | 40,000 cycles | — |
 | [Trek Trivia](../games/TrekTriv.md) | 1988 | 🟢 Playable | dosbox | 260 KB | 63 MB | auto | — |
 | [Troll's Tale](../games/troltale.md) | 1984 | 🟢 Playable | dosbox | 210 KB | 16 MB | auto | — |
-| [Trust and Betrayal: The Legacy of Siboot](../games/tb.md) | 1987 | 🟡 Boots | dosbox | 210 KB | 63 MB | auto | — |
+| [Trust and Betrayal: The Legacy of Siboot](../games/tb.md) | 1987 | 🟢 Playable | dosbox | 210 KB | 63 MB | auto | — |

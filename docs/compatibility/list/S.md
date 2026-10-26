@@ -2,7 +2,7 @@
 
 # Tested games: S
 
-[← All letters](../GAMES.md) · 40 games · 🟢 22 playable · 🟡 17 boots · 🟠 1 partial
+[← All letters](../GAMES.md) · 40 games · 🟢 29 playable · 🟡 10 boots · 🟠 1 partial
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -10,7 +10,7 @@
 | [Secret Agent](../games/SecretAg.md) | 1992 | 🟢 Playable | dosbox | 560 KB | 16 MB | auto | — |
 | [Serve & Volley](../games/ServeVol.md) | 1988 | 🟢 Playable | dosbox | 100 KB | 63 MB | auto | Answer 3 at the first prompt |
 | [Shadow Warrior](../games/ShadowWa.md) | 1997 | 🟢 Playable | dosboxX | 582 MB | 63 MB | 100,000 cycles | `vesa_noflb` typo; Build cfg; answer Y to the VESA prompt |
-| [Shadowgate](../games/SGate.md) | 1987 | 🟡 Boots | dosbox | 380 KB | 8 MB | 1,500 cycles | — |
+| [Shadowgate](../games/SGate.md) | 1987 | 🟢 Playable | dosbox | 380 KB | 8 MB | 1,500 cycles | — |
 | [Sid & Al's Incredible Toons](../games/SidAls.md) | 1993 | 🟢 Playable | dosbox | 4.5 MB | 63 MB | auto | — |
 | [Sierra Championship Boxing](../games/SierraCh.md) | 1985 | 🟢 Playable | dosbox | 100 KB | 4 MB | 500 cycles | — |
 | [Sierra's 3-D Helicopter Simulator](../games/Sierras3.md) | 1987 | 🟢 Playable | dosbox | 70 KB | 63 MB | auto | — |
@@ -29,20 +29,20 @@
 | [Star Control](../games/StarCon.md) | 1990 | 🟢 Playable | dosbox | 6.9 MB | 32 MB | auto | Answer 3 at the first prompt |
 | [Star Control 3](../games/StarCon3.md) | 1996 | 🟢 Playable | dosbox | 668 MB | 63 MB | 32,000 cycles | Answer 3 at the first prompt |
 | [Star Control II](../games/StarCon2.md) | 1992 | 🟡 Boots | dosbox | 4.3 MB | 63 MB | auto | — |
-| [Star Trek V: The Final Frontier](../games/STrekV.md) | 1989 | 🟡 Boots | dosbox | 980 KB | 16 MB | auto | — |
+| [Star Trek V: The Final Frontier](../games/STrekV.md) | 1989 | 🟢 Playable | dosbox | 980 KB | 16 MB | auto | — |
 | [Stargunner](../games/Stargunn.md) | 1996 | 🟢 Playable | dosbox | 580 MB | 32 MB | 50,000 cycles | — |
 | [StarQuest: Rescue at Rigel](../games/starqrr.md) | 1983 | 🟡 Boots | dosbox | 60 KB | 63 MB | 1,000 cycles | — |
 | [StarQuest: Star Warrior](../games/SQSW.md) | 1983 | 🟡 Boots | dosbox | 80 KB | 8 MB | 300 cycles | — |
-| [Steel Panthers](../games/StlPan1.md) | 1995 | 🟡 Boots | dosbox | 336 MB | 63 MB | max | Works with ?tune=cpu.core=normal, needs a rule in translate.mjs |
-| [Steel Panthers II - Modern Battles](../games/StlPan2.md) | 1996 | 🟡 Boots | dosbox | 575 MB | 63 MB | max | — |
+| [Steel Panthers](../games/StlPan1.md) | 1995 | 🟢 Playable | dosbox | 336 MB | 63 MB | max | Works with ?tune=cpu.core=normal, needs a rule in translate.mjs |
+| [Steel Panthers II - Modern Battles](../games/StlPan2.md) | 1996 | 🟢 Playable | dosbox | 575 MB | 63 MB | max | — |
 | [Steel Thunder](../games/SteelThu.md) | 1989 | 🟡 Boots | dosbox | 590 KB | 63 MB | auto | — |
-| [Stephen King: The Mist](../games/themist.md) | 1985 | 🟡 Boots | dosbox | 90 KB | 63 MB | auto | — |
+| [Stephen King: The Mist](../games/themist.md) | 1985 | 🟢 Playable | dosbox | 90 KB | 63 MB | auto | — |
 | [Stratego](../games/Stratego.md) | 1990 | 🟡 Boots | dosbox | 470 KB | 63 MB | auto | — |
 | [Strike Aces](../games/StrikeAc.md) | 1990 | 🟡 Boots | dosbox | 720 KB | 63 MB | auto | — |
 | [Stunts](../games/Stunts.md) | 1990 | 🟢 Playable | dosbox | 1.1 MB | 63 MB | 6,000 cycles | Answer 3 at the first prompt |
-| [Sub Mission](../games/submiss.md) | 1987 | 🟡 Boots | dosbox | 100 KB | 4 MB | auto | — |
+| [Sub Mission](../games/submiss.md) | 1987 | 🟢 Playable | dosbox | 100 KB | 4 MB | auto | — |
 | [Summer Games II](../games/SummerGa.md) | 1986 | 🟡 Boots | dosbox | 140 KB | 63 MB | 300 cycles | — |
 | [Supernova](../games/suprnova.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | auto | — |
 | [Superstar Ice Hockey](../games/SperStaH.md) | 1987 | 🟢 Playable | dosbox | 80 KB | 63 MB | auto | — |
 | [Superstar Indoor Sports](../games/SperStaI.md) | 1987 | 🟢 Playable | dosbox | 130 KB | 63 MB | auto | — |
-| [Superstar Soccer](../games/SStarSoc.md) | 1988 | 🟡 Boots | dosbox | 280 KB | 8 MB | auto | — |
+| [Superstar Soccer](../games/SStarSoc.md) | 1988 | 🟢 Playable | dosbox | 280 KB | 8 MB | auto | — |

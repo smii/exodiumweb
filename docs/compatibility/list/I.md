@@ -2,7 +2,7 @@
 
 # Tested games: I
 
-[← All letters](../GAMES.md) · 9 games · 🟢 6 playable · 🟡 2 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 9 games · 🟢 7 playable · 🟡 1 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -11,7 +11,7 @@
 | [Indiana Jones and the Temple of Doom](../games/IndiJTD.md) | 1988 | 🟢 Playable | dosbox | 160 KB | 16 MB | auto | — |
 | [Indiana Jones in Revenge of the Ancients](../games/indyanci.md) | 1987 | 🔴 Not supported | dosbox | 80 KB | 63 MB | auto | — |
 | [IndyCar Racing II](../games/IndyCR2.md) | 1996 | 🟢 Playable | dosbox | 156 MB | 63 MB | max | — |
-| [Infiltrator](../games/infil1.md) | 1987 | 🟡 Boots | dosbox | 90 KB | 63 MB | auto | — |
+| [Infiltrator](../games/infil1.md) | 1987 | 🟢 Playable | dosbox | 90 KB | 63 MB | auto | — |
 | [Infiltrator II: The Next Day](../games/infil2.md) | 1988 | 🟢 Playable | dosbox | 110 KB | 63 MB | auto | — |
 | [Into the Eagle's Nest](../games/IntotheE.md) | 1987 | 🟢 Playable | dosbox | 70 KB | 16 MB | auto | — |
 | [Ishido: The Way of Stones](../games/ishidows.md) | 1990 | 🟡 Boots | dosbox | 860 KB | 63 MB | 2,000 cycles | — |

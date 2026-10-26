@@ -2,13 +2,13 @@
 
 # Tested games: B
 
-[← All letters](../GAMES.md) · 23 games · 🟢 13 playable · 🟡 9 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 23 games · 🟢 16 playable · 🟡 6 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Bad Street Brawler](../games/BadStree.md) | 1987 | 🟢 Playable | dosbox | 50 KB | 16 MB | auto | — |
-| [Balance of Power](../games/BalaoPow.md) | 1985 | 🟡 Boots | dosbox | 690 KB | 4 MB | 900 cycles | — |
-| [Balance of Power: The 1990 Edition](../games/BoP1990.md) | 1989 | 🟡 Boots | dosbox | 2.1 MB | 8 MB | 12,000 cycles | — |
+| [Balance of Power](../games/BalaoPow.md) | 1985 | 🟢 Playable | dosbox | 690 KB | 4 MB | 900 cycles | — |
+| [Balance of Power: The 1990 Edition](../games/BoP1990.md) | 1989 | 🟢 Playable | dosbox | 2.1 MB | 8 MB | 12,000 cycles | — |
 | [Bar Games](../games/BarGames.md) | 1989 | 🟡 Boots | dosbox | 510 KB | 63 MB | auto | — |
 | [Battle Bugs](../games/batlbugs.md) | 1994 | 🟢 Playable | dosbox | 73 MB | 63 MB | auto | — |
 | [Battle Isle 2200](../games/bisle2.md) | 1994 | 🔴 Not supported | dosbox | — | 63 MB | 30,000 cycles |  page.waitForFunction: Timeout 240000ms exceeded. |
@@ -21,7 +21,7 @@
 | [BlackJack Academy](../games/bjacad.md) | 1987 | 🟢 Playable | dosbox | 50 KB | 16 MB | auto | — |
 | [Blake Stone: Aliens of Gold](../games/BlakeStA.md) | 1993 | 🟢 Playable | dosbox | 5.8 MB | 16 MB | 12,000 cycles | — |
 | [Blake Stone: Planet Strike](../games/BlakeStP.md) | 1994 | 🟢 Playable | dosbox | 4.7 MB | 16 MB | 6,000 cycles | — |
-| [Blockbuster](../games/Blockbus.md) | 1988 | 🟡 Boots | dosbox | 190 KB | 8 MB | auto | — |
+| [Blockbuster](../games/Blockbus.md) | 1988 | 🟢 Playable | dosbox | 190 KB | 8 MB | auto | — |
 | [Blood](../games/Blood.md) | 1997 | 🟢 Playable | dosboxX | 1.0 GB | 63 MB | 100,000 cycles | Launcher option 4 is the 3dfx build (Plasma Pak 3DFX); Build cfg `ScreenMode 0` |
 | [Blue Angels: Formation Flight Simulation](../games/BlueAnge.md) | 1989 | 🟡 Boots | dosbox | 330 KB | 8 MB | auto | — |
 | [Bop'n Wrestle](../games/BopNWres.md) | 1986 | 🟢 Playable | dosbox | 60 KB | 63 MB | auto | — |

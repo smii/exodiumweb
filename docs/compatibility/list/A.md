@@ -2,7 +2,7 @@
 
 # Tested games: A
 
-[← All letters](../GAMES.md) · 14 games · 🟢 7 playable · 🟡 6 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 14 games · 🟢 10 playable · 🟡 3 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -10,13 +10,13 @@
 | [Ace of Aces](../games/AceofAce.md) | 1987 | 🟢 Playable | dosbox | 130 KB | 32 MB | 600 cycles | Answer n at the first prompt |
 | [Aces of the Pacific](../games/AcesotP.md) | 1992 | 🟢 Playable | dosbox | 36 MB | 32 MB | 9,000 cycles | — |
 | [Aces Over Europe](../games/AcesOver.md) | 1993 | 🟢 Playable | dosbox | 4.1 MB | 32 MB | 12,000 cycles | — |
-| [Air Power: Battle in the Skies](../games/AirPower.md) | 1995 | 🟡 Boots | dosbox | 224 MB | 32 MB | 30,000 cycles | — |
+| [Air Power: Battle in the Skies](../games/AirPower.md) | 1995 | 🟢 Playable | dosbox | 224 MB | 32 MB | 30,000 cycles | — |
 | [Alien Carnage](../games/AlienCar.md) | 1993 | 🟢 Playable | dosbox | 2.9 MB | 16 MB | 5,000 cycles | — |
 | [Alien Legacy](../games/alienleg.md) | 1994 | 🟢 Playable | dosbox | 194 MB | 63 MB | 10,000 cycles | — |
 | [Alien Olympics](../games/AlienOly.md) | 1994 | 🟢 Playable | dosbox | 5.1 MB | 63 MB | 15,000 cycles | Answer 3 at the first prompt |
-| [Aliens: A Comic Book Adventure](../games/ALIENS.md) | 1995 | 🟡 Boots | dosbox | 1.2 GB | 16 MB | 60,000 cycles | — |
+| [Aliens: A Comic Book Adventure](../games/ALIENS.md) | 1995 | 🟢 Playable | dosbox | 1.2 GB | 16 MB | 60,000 cycles | — |
 | [Altered Destiny](../games/ADestiny.md) | 1990 | 🟡 Boots | dosbox | 2.0 MB | 32 MB | auto | — |
 | [Angel Devoid: Face of the Enemy](../games/adevoid.md) | 1996 | 🔴 Not supported | dosbox | — | — | — | Over the browser limit (2000 MB) |
 | [Apollo 18: Mission to the Moon](../games/Apollo18.md) | 1988 | 🟡 Boots | dosbox | 290 KB | 63 MB | 1,200 cycles | — |
 | [Arctic Adventure](../games/ArcticAd.md) | 1991 | 🟢 Playable | dosbox | 270 KB | 16 MB | auto | — |
-| [Azrael's Tear](../games/AZRAEL.md) | 1996 | 🟡 Boots | dosbox | 415 MB | 63 MB | 100,000 cycles | Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs |
+| [Azrael's Tear](../games/AZRAEL.md) | 1996 | 🟢 Playable | dosbox | 415 MB | 63 MB | 100,000 cycles | Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs |

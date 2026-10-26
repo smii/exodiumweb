@@ -2,12 +2,12 @@
 
 # Tested games: R
 
-[← All letters](../GAMES.md) · 16 games · 🟢 12 playable · 🟡 3 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 16 games · 🟢 13 playable · 🟡 2 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Rack 'Em](../games/RackEm.md) | 1988 | 🟡 Boots | dosbox | 110 KB | 63 MB | auto | — |
-| [Racter](../games/racter.md) | 1984 | 🟡 Boots | dosbox | 50 KB | 63 MB | auto | — |
+| [Racter](../games/racter.md) | 1984 | 🟢 Playable | dosbox | 50 KB | 63 MB | auto | — |
 | [Rad Warrior](../games/RadWarri.md) | 1987 | 🟡 Boots | dosbox | 40 KB | 4 MB | 600 cycles | — |
 | [Raiders of the Forbidden Mine](../games/RaiFMine.md) | 1988 | 🟢 Playable | dosbox | 20 KB | 8 MB | 600 cycles | — |
 | [Rama](../games/rama.md) | 1996 | 🟢 Playable | dosbox | 1.5 GB | 63 MB | 10,000 cycles | — |

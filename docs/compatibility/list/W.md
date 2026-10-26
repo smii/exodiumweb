@@ -2,7 +2,7 @@
 
 # Tested games: W
 
-[← All letters](../GAMES.md) · 13 games · 🟢 8 playable · 🟡 4 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 13 games · 🟢 9 playable · 🟡 3 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -18,4 +18,4 @@
 | [Word Whiz](../games/WordWhiz.md) | 1990 | 🟢 Playable | dosbox | 170 KB | 63 MB | auto | — |
 | [World Games](../games/WorldGam.md) | 1986 | 🟡 Boots | dosbox | 150 KB | 63 MB | auto | — |
 | [World Karate Championship](../games/WorldKar.md) | 1986 | 🟡 Boots | dosbox | 80 KB | 8 MB | 300 cycles | — |
-| [Worlds of Legend: Son of the Empire](../games/wlsonemp.md) | 1993 | 🟡 Boots | dosbox | 870 KB | 63 MB | auto | — |
+| [Worlds of Legend: Son of the Empire](../games/wlsonemp.md) | 1993 | 🟢 Playable | dosbox | 870 KB | 63 MB | auto | — |

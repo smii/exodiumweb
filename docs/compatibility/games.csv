@@ -1,24 +1,24 @@
 title,year,status,backend,size,memsize,cycles,group,tested,note,id,code,tags
-4-D Boxing,1991,Boots,dosbox,0.51,32,auto,"Mindscape, Inc.",2026-10-25,,2530,4-DBoxin,auto review
-4D Sports Tennis,1990,Boots,dosbox,1.13,32,auto,"Mindscape, Inc.",2026-10-25,,7168,4DSports,auto review
+4-D Boxing,1991,Playable,dosbox,0.51,32,auto,"Mindscape, Inc.",2026-10-26,,2530,4-DBoxin,checked
+4D Sports Tennis,1990,Playable,dosbox,1.13,32,auto,"Mindscape, Inc.",2026-10-26,,7168,4DSports,checked
 4th & Inches,1988,Playable,dosbox,0.12,63,1200,"Accolade, Inc.",2026-10-25,Answer a at the first prompt,2921,4thInche,auto
 A Nightmare on Elm Street,1989,Boots,dosbox,0.26,16,auto,Westwood Studios,2026-10-23,,4446,ANightma,
 Ace of Aces,1987,Playable,dosbox,0.13,32,600,"Accolade, Inc.",2026-10-25,Answer n at the first prompt,6132,AceofAce,auto
 Aces of the Pacific,1992,Playable,dosbox,36.35,32,9000,Sierra On-Line,2026-10-26,,6451,AcesotP,checked
 Aces Over Europe,1993,Playable,dosbox,4.08,32,12000,Sierra On-Line,2026-10-26,,6822,AcesOver,checked
-Air Power: Battle in the Skies,1995,Boots,dosbox,223.76,32,30000,"Mindscape, Inc.",2026-10-25,,8642,AirPower,auto review
+Air Power: Battle in the Skies,1995,Playable,dosbox,223.76,32,30000,"Mindscape, Inc.",2026-10-26,,8642,AirPower,checked
 Alien Carnage,1993,Playable,dosbox,2.85,16,5000,Apogee / 3D Realms,2026-10-25,,3916,AlienCar,
 Alien Legacy,1994,Playable,dosbox,193.97,63,10000,Sierra On-Line,2026-10-26,,4657,alienleg,checked
 Alien Olympics,1994,Playable,dosbox,5.07,63,15000,"Mindscape, Inc.",2026-10-25,Answer 3 at the first prompt,7351,AlienOly,auto
-Aliens: A Comic Book Adventure,1995,Boots,dosbox,1186.05,16,60000,"Mindscape, Inc.",2026-10-25,,2724,ALIENS,auto review
+Aliens: A Comic Book Adventure,1995,Playable,dosbox,1186.05,16,60000,"Mindscape, Inc.",2026-10-26,,2724,ALIENS,checked
 Altered Destiny,1990,Boots,dosbox,2.02,32,auto,"Accolade, Inc.",2026-10-25,,1790,ADestiny,auto review
 Angel Devoid: Face of the Enemy,1996,Not supported,dosbox,,,,"Mindscape, Inc.",2026-10-25,Over the browser limit (2000 MB),1936,adevoid,auto broken too-large
 Apollo 18: Mission to the Moon,1988,Boots,dosbox,0.29,63,1200,"Accolade, Inc.",2026-10-25,,2820,Apollo18,auto review
 Arctic Adventure,1991,Playable,dosbox,0.27,16,auto,Apogee / 3D Realms,2026-10-25,,4328,ArcticAd,
-Azrael's Tear,1996,Boots,dosbox,414.66,63,100000,"Mindscape, Inc.",2026-10-25,"Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs",2612,AZRAEL,auto review fix-candidate
+Azrael's Tear,1996,Playable,dosbox,414.66,63,100000,"Mindscape, Inc.",2026-10-26,"Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs",2612,AZRAEL,fix-candidate checked
 Bad Street Brawler,1987,Playable,dosbox,0.05,16,auto,"Mindscape, Inc.",2026-10-25,,8479,BadStree,auto
-Balance of Power,1985,Boots,dosbox,0.69,4,900,"Mindscape, Inc.",2026-10-25,,3475,BalaoPow,auto review
-Balance of Power: The 1990 Edition,1989,Boots,dosbox,2.06,8,12000,"Mindscape, Inc.",2026-10-25,,7194,BoP1990,auto review
+Balance of Power,1985,Playable,dosbox,0.69,4,900,"Mindscape, Inc.",2026-10-26,,3475,BalaoPow,checked
+Balance of Power: The 1990 Edition,1989,Playable,dosbox,2.06,8,12000,"Mindscape, Inc.",2026-10-26,,7194,BoP1990,checked
 Bar Games,1989,Boots,dosbox,0.51,63,auto,"Accolade, Inc.",2026-10-25,,6156,BarGames,auto review
 Battle Bugs,1994,Playable,dosbox,73.01,63,auto,Sierra On-Line,2026-10-26,,7791,batlbugs,checked
 Battle Isle 2200,1994,Not supported,dosbox,,63,30000,"Accolade, Inc.",2026-10-26, page.waitForFunction: Timeout 240000ms exceeded.,6293,bisle2,auto broken load-error
@@ -31,7 +31,7 @@ Birthright: The Gorgon's Alliance,1997,Playable,dosbox,762.57,63,50000,Sierra On
 BlackJack Academy,1987,Playable,dosbox,0.05,16,auto,Westwood Studios,2026-10-23,,6313,bjacad,
 Blake Stone: Aliens of Gold,1993,Playable,dosbox,5.81,16,12000,Apogee / 3D Realms,2026-10-25,,8222,BlakeStA,
 Blake Stone: Planet Strike,1994,Playable,dosbox,4.65,16,6000,Apogee / 3D Realms,2026-10-25,,5670,BlakeStP,
-Blockbuster,1988,Boots,dosbox,0.19,8,auto,"Mindscape, Inc.",2026-10-25,,5770,Blockbus,auto review
+Blockbuster,1988,Playable,dosbox,0.19,8,auto,"Mindscape, Inc.",2026-10-26,,5770,Blockbus,checked
 Blood,1997,Playable,dosboxX,1016.64,63,100000,,2026-10-25,Launcher option 4 is the 3dfx build (Plasma Pak 3DFX); Build cfg ScreenMode 0,5729,Blood,
 Blue Angels: Formation Flight Simulation,1989,Boots,dosbox,0.33,8,auto,"Accolade, Inc.",2026-10-25,,8962,BlueAnge,auto review
 Bop'n Wrestle,1986,Playable,dosbox,0.06,63,auto,"Mindscape, Inc.",2026-10-25,,4973,BopNWres,auto
@@ -45,7 +45,7 @@ Captive,1992,Not supported,dosbox,0.9,63,auto,"Mindscape, Inc.",2026-10-26,,3393
 Castle of Dr. Brain,1991,Playable,dosbox,109.72,32,9000,Sierra On-Line,2026-10-26,,2664,castleb,checked
 Circuit's Edge,1990,Playable,dosbox,0.64,32,auto,Westwood Studios,2026-10-23,,5190,cedge,
 Codename: ICEMAN,1989,Playable,dosbox,3.63,16,auto,Sierra On-Line,2026-10-26,,4892,Iceman,checked
-Combat Course,1989,Boots,dosbox,0.22,63,auto,"Mindscape, Inc.",2026-10-25,,8451,CombatCo,auto review
+Combat Course,1989,Playable,dosbox,0.22,63,auto,"Mindscape, Inc.",2026-10-26,,8451,CombatCo,checked
 Command & Conquer,1995,Playable,dosbox,1313.89,63,auto,Westwood Studios,2026-10-23,Launcher CD mount path; one disc per campaign,8170,comcon,
 Command & Conquer: Red Alert,1996,Playable,dosbox,2233.22,63,auto,Westwood Studios,2026-10-23,Same as C&C,5645,comconra,
 Commander Blood,1994,Playable,dosbox,501.23,63,max,"Mindscape, Inc.",2026-10-25,,3681,cblood,auto
@@ -57,23 +57,23 @@ Commander Keen 5,1991,Playable,dosbox,0.63,16,auto,Apogee / 3D Realms,2026-10-25
 Conqueror: A.D. 1086,1995,Playable,dosbox,622.33,63,35000,Sierra On-Line,2026-10-26,,6950,conqurAD,checked
 Conquests of Camelot: The Search for the Grail,1990,Playable,dosbox,2.83,16,auto,Sierra On-Line,2026-10-25,,5965,camelot,
 Conquests of the Longbow: The Legend of Robin Hood,1991,Playable,dosbox,12.02,32,9000,Sierra On-Line,2026-10-26,,2725,longbow,checked
-Contraption Zack,1992,Boots,dosbox,2.37,32,auto,"Mindscape, Inc.",2026-10-25,,3032,contzack,auto review
+Contraption Zack,1992,Playable,dosbox,2.37,32,auto,"Mindscape, Inc.",2026-10-26,,3032,contzack,checked
 Cosmo's Cosmic Adventure,1992,Playable,dosbox,1.4,16,auto,Apogee / 3D Realms,2026-10-25,,2326,CosmosCo,
-Counter Action,1997,Boots,dosbox,75.84,63,max,"Mindscape, Inc.",2026-10-25,,5626,countact,auto review
+Counter Action,1997,Playable,dosbox,75.84,63,max,"Mindscape, Inc.",2026-10-26,,5626,countact,checked
 Crazy Nick's Software Picks,1993,Playable,dosbox,2.52,63,auto,Sierra On-Line,2026-10-26,,5368,crazynik,checked
-Crime and Punishment,1984,Boots,dosbox,0.04,63,900,"Mindscape, Inc.",2026-10-25,,8505,CrimPun,auto review
+Crime and Punishment,1984,Playable,dosbox,0.04,63,900,"Mindscape, Inc.",2026-10-26,,8505,CrimPun,checked
 Crossfire,1982,Playable,dosbox,0.02,16,100,Sierra On-Line,2026-10-25,,7470,Crossfir,
 Crystal Caves,1991,Playable,dosbox,0.51,16,auto,Apogee / 3D Realms,2026-10-25,,4267,CrystalC,
 Cyclemania,1994,Boots,dosbox,402.87,63,max,"Accolade, Inc.",2026-10-25,,1713,Cycleman,auto review
 D/Generation,1991,Playable,dosbox,1.34,63,9000,"Mindscape, Inc.",2026-10-25,,4660,dgener,auto
 Dark Ages,1991,Playable,dosbox,0.39,16,auto,Apogee / 3D Realms,2026-10-25,,3214,DarkAges,
-Dark Sun II: Wake of the Ravager,1994,Boots,dosbox,637.59,32,15000,"Mindscape, Inc.",2026-10-25,,5746,RAVAGER,auto review
+Dark Sun II: Wake of the Ravager,1994,Playable,dosbox,637.59,32,15000,"Mindscape, Inc.",2026-10-26,,5746,RAVAGER,checked
 Day of the Viper,1990,Boots,dosbox,0.55,16,auto,"Accolade, Inc.",2026-10-25,,3543,dayviper,auto review
-Days of Thunder,1990,Boots,dosbox,0.47,32,auto,"Mindscape, Inc.",2026-10-25,,5486,DaysofTh,auto review
-Defender of the Crown,1987,Boots,dosbox,1.44,63,900,"Mindscape, Inc.",2026-10-25,,5213,defcrown,auto review
+Days of Thunder,1990,Playable,dosbox,0.47,32,auto,"Mindscape, Inc.",2026-10-26,,5486,DaysofTh,checked
+Defender of the Crown,1987,Playable,dosbox,1.44,63,900,"Mindscape, Inc.",2026-10-26,,5213,defcrown,checked
 Defender of the Crown CD-ROM,1987,Playable,dosbox,193.01,16,auto,"Mindscape, Inc.",2026-10-25,,7699,dcrowncd,auto
 Deja Vu II: Lost in Las Vegas,1990,Playable,dosbox,0.88,63,1500,"Mindscape, Inc.",2026-10-25,,4022,DejaVu2,auto
-Deja Vu: A Nightmare Comes True!!,1985,Boots,dosbox,0.3,8,1500,"Mindscape, Inc.",2026-10-25,,5311,DejaVu,auto review
+Deja Vu: A Nightmare Comes True!!,1985,Playable,dosbox,0.3,8,1500,"Mindscape, Inc.",2026-10-26,,5311,DejaVu,checked
 Descent II,1996,Boots,dosbox,1398.65,63,100000,,2026-10-10,menu,1991,Descent2,
 Destroyer,1987,Boots,dosbox,0.1,4,600,"Epyx, Inc.",2026-10-25,,8923,destro87,auto review
 Detroit,1994,Playable,dosbox,19.68,32,auto,Sierra On-Line,2026-10-26,,3717,Detroit,checked
@@ -99,13 +99,13 @@ Elvira: Mistress of the Dark,1990,Boots,dosbox,2.1,32,auto,"Accolade, Inc.",2026
 Eradicator,1996,Boots,dosbox,482.15,16,50000,"Accolade, Inc.",2026-10-25,,7720,Eradicat,auto review
 Eye of the Beholder,1991,Boots,dosbox,56.46,63,auto,Westwood Studios,2026-10-23,,7338,eob1,
 Eye of the Beholder II: The Legend of Darkmoon,1991,Playable,dosbox,64.29,16,8000,Westwood Studios,2026-10-23,,3318,eob2,
-Fantasy General,1996,Boots,dosbox,379.27,63,max,"Mindscape, Inc.",2026-10-25,"Works with ?tune=cpu.core=normal, needs a rule in translate.mjs",2142,fantgen,auto review fix-candidate
+Fantasy General,1996,Playable,dosbox,379.27,63,max,"Mindscape, Inc.",2026-10-26,"Works with ?tune=cpu.core=normal, needs a rule in translate.mjs",2142,fantgen,fix-candidate checked
 Fast Attack: High Tech Submarine Warfare,1996,Playable,dosbox,480.26,63,max,Sierra On-Line,2026-10-26,,7280,FastAtta,checked
 Fast Break,1988,Playable,dosbox,0.15,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,3120,fastbrek,auto
 Fates of Twinion,1993,Playable,dosbox,1.47,63,auto,Sierra On-Line,2026-10-26,,6893,Fatetwin,checked
 Fiendish Freddy's Big Top O' Fun,1989,Playable,dosbox,0.77,16,auto,"Mindscape, Inc.",2026-10-25,,4143,Fiendish,auto
 Fire Hawk: Thexder - The Second Contact,1990,Playable,dosbox,2.59,32,auto,Sierra On-Line,2026-10-25,,3204,FireHawk,
-Forbidden Castle,1985,Boots,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-25,,3892,forbcast,auto review
+Forbidden Castle,1985,Playable,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,3892,forbcast,checked
 Freddy Pharkas: Frontier Pharmacist,1993,Playable,dosbox,1048.69,32,6000,Sierra On-Line,2026-10-26,,7077,freddy,checked
 Frogger,1983,Playable,dosbox,0.02,32,300,Sierra On-Line,2026-10-25,,5620,Frogger,
 Front Page Sports: Baseball '94,1994,Playable,dosbox,211.81,63,25000,Sierra On-Line,2026-10-26,,5061,FPSBas94,checked
@@ -129,14 +129,14 @@ HardBall 5,1995,Boots,dosbox,125.6,63,max,"Accolade, Inc.",2026-10-25,,8751,Hard
 HardBall II,1989,Playable,dosbox,0.59,63,auto,"Accolade, Inc.",2026-10-25,,6111,HBall2,auto
 HardBall III,1992,Boots,dosbox,3.53,32,auto,"Accolade, Inc.",2026-10-25,,6144,HBall3,auto review
 HardBall!,1987,Playable,dosbox,0.21,32,1200,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,4778,Hball,auto
-Harley-Davidson: The Road to Sturgis,1989,Boots,dosbox,0.54,63,auto,"Mindscape, Inc.",2026-10-25,,8905,Harley-D,auto review
-Harrier Combat Simulator,1987,Boots,dosbox,0.19,63,600,"Mindscape, Inc.",2026-10-25,,6494,harcoms,auto review
+Harley-Davidson: The Road to Sturgis,1989,Boots,dosbox,0.54,63,auto,"Mindscape, Inc.",2026-10-26,,8905,Harley-D,checked
+Harrier Combat Simulator,1987,Playable,dosbox,0.19,63,600,"Mindscape, Inc.",2026-10-26,,6494,harcoms,checked
 Heart of China,1991,Playable,dosbox,6.89,32,auto,Sierra On-Line,2026-10-26,,6685,hoc,checked
 Heat Wave: Offshore Superboat Racing,1990,Boots,dosbox,0.42,63,auto,"Accolade, Inc.",2026-10-25,,7793,heatwave,auto review
 High $take$,1986,Not supported,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,7081,$takes,auto broken blank
 Hillsfar,1989,Boots,dosbox,0.43,63,auto,Westwood Studios,2026-10-23,,5171,hillsfar,
 Hocus Pocus,1994,Playable,dosbox,11.72,32,9000,Apogee / 3D Realms,2026-10-25,,5360,HocusPoc,
-Hostage: Rescue Mission,1989,Boots,dosbox,0.46,32,auto,"Mindscape, Inc.",2026-10-25,,7431,HostageR,auto review
+Hostage: Rescue Mission,1989,Playable,dosbox,0.46,32,auto,"Mindscape, Inc.",2026-10-26,,7431,HostageR,checked
 Hoverforce,1991,Playable,dosbox,0.43,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7353,Hoverfor,auto
 Hoyle Classic Card Games,1993,Playable,dosbox,9.25,32,auto,Sierra On-Line,2026-10-26,,6307,hoylec,checked
 Hoyle Official Book of Games: Volume 1,1989,Playable,dosbox,0.6,32,auto,Sierra On-Line,2026-10-26,,1966,hoylebk1,checked
@@ -147,7 +147,7 @@ Inca II: Nations of Immortality,1994,Playable,dosbox,615.41,16,auto,Sierra On-Li
 Indiana Jones and the Temple of Doom,1988,Playable,dosbox,0.16,16,auto,"Atari, Inc.",2026-10-25,,7069,IndiJTD,auto
 Indiana Jones in Revenge of the Ancients,1987,Not supported,dosbox,0.08,63,auto,"Mindscape, Inc.",2026-10-26,,6730,indyanci,auto broken blank
 IndyCar Racing II,1996,Playable,dosbox,156.02,63,max,Sierra On-Line,2026-10-26,,5271,IndyCR2,checked
-Infiltrator,1987,Boots,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-25,,6146,infil1,auto review
+Infiltrator,1987,Playable,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,6146,infil1,checked
 Infiltrator II: The Next Day,1988,Playable,dosbox,0.11,63,auto,"Mindscape, Inc.",2026-10-25,,3197,infil2,auto
 Into the Eagle's Nest,1987,Playable,dosbox,0.07,16,auto,"Mindscape, Inc.",2026-10-25,,2195,IntotheE,auto
 Ishido: The Way of Stones,1990,Boots,dosbox,0.86,63,2000,"Accolade, Inc.",2026-10-25,,7516,ishidows,auto review
@@ -155,7 +155,7 @@ Jack Nicklaus Golf & Course Design: Signature Edition,1992,Boots,dosbox,15.46,63
 Jack Nicklaus' Greatest 18 Holes of Major Championship Golf,1988,Playable,dosbox,0.48,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2137,JackG18,auto
 Jack Nicklaus' Unlimited Golf & Course Design,1990,Playable,dosbox,10.64,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5216,JackUGCD,auto
 James Bond 007: A View to a Kill,1985,Not supported,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,4979,bondkill,auto broken blank
-James Bond 007: Goldfinger,1986,Boots,dosbox,0.1,63,auto,"Mindscape, Inc.",2026-10-25,,3924,bondgold,auto review
+James Bond 007: Goldfinger,1986,Playable,dosbox,0.1,63,auto,"Mindscape, Inc.",2026-10-26,,3924,bondgold,checked
 Jones in the Fast Lane (Enhanced CD-ROM),1992,Playable,dosbox,328.26,16,auto,Sierra On-Line,2026-10-26,,5675,jonefast,checked
 Jumpman,1984,Boots,dosbox,0.06,16,auto,IBM,2026-10-25,,6037,Jumpman,auto review
 Jumpman Lives!,1991,Playable,dosbox,0.13,16,auto,Apogee / 3D Realms,2026-10-25,,6056,JumpmanL,
@@ -187,7 +187,7 @@ Les Manley In: Lost In L.A.,1991,Playable,dosbox,3.53,63,auto,"Accolade, Inc.",2
 Les Manley In: Search For The King,1990,Playable,dosbox,3.1,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,3932,lmanking,auto
 Lighthouse: The Dark Being,1996,Playable,dosbox,1027,63,max,Sierra On-Line,2026-10-26,,6453,lhouse,checked
 Lode Runner: The Legend Returns,1994,Playable,dosbox,5.2,16,30000,Sierra On-Line,2026-10-26,,8090,LodeRu94,checked
-Loopz,1990,Boots,dosbox,0.13,63,auto,"Mindscape, Inc.",2026-10-25,,8371,loopz,auto review
+Loopz,1990,Playable,dosbox,0.13,63,auto,"Mindscape, Inc.",2026-10-26,,8371,loopz,checked
 Lords of the Realm II,1996,Playable,dosbox,930.21,63,75000,Sierra On-Line,2026-10-26,,2386,lordorm2,checked
 Lost Adventures of Kroz,1990,Playable,dosbox,0.1,16,auto,Apogee / 3D Realms,2026-10-25,,8838,LostAdve,
 Lost in Time,1993,Playable,dosbox,821.47,32,20000,Sierra On-Line,2026-10-26,,1961,losttime,checked
@@ -197,7 +197,7 @@ Major Indoor Soccer League,1989,Boots,dosbox,0.09,16,auto,"Mindscape, Inc.",2026
 Major Stryker,1993,Playable,dosbox,2.59,16,6000,Apogee / 3D Realms,2026-10-25,,3973,MajorStr,
 Manhunter 2: San Francisco,1989,Playable,dosbox,1.16,63,auto,Sierra On-Line,2026-10-26,,5505,MH2,
 Manhunter: New York,1988,Playable,dosbox,1.01,4,auto,Sierra On-Line,2026-10-25,,3274,MH1,
-Mario Teaches Sums,1994,Boots,dosbox,345.94,16,9000,"Mindscape, Inc.",2026-10-25,,3496,MarioSum,auto review
+Mario Teaches Sums,1994,Playable,dosbox,345.94,16,9000,"Mindscape, Inc.",2026-10-26,,3496,MarioSum,checked
 Master Levels for DOOM II,1995,Boots,dosbox,332.83,16,auto,,2026-10-10,Large-game download; launcher keys open,2847,MasterLe,
 Math Rescue,1992,Playable,dosbox,1.15,63,auto,Apogee / 3D Realms,2026-10-25,,8591,MathResc,
 Mean 18,1986,Boots,dosbox,1.56,63,auto,"Accolade, Inc.",2026-10-25,,4879,Mean18,auto review
@@ -216,7 +216,7 @@ Mixed-Up Mother Goose,1987,Playable,dosbox,0.28,8,max,Sierra On-Line,2026-10-26,
 Mixed-Up Mother Goose Enhanced,1991,Playable,dosbox,0.93,16,auto,Sierra On-Line,2026-10-25,,7604,mugoose2,
 Monster Bash,1993,Playable,dosbox,5.64,16,9000,Apogee / 3D Realms,2026-10-25,,4319,MonsterB,
 Monuments of Mars,1991,Playable,dosbox,0.21,16,auto,Apogee / 3D Realms,2026-10-25,,7522,Monument,
-Moonstone: A Hard Days Knight,1992,Boots,dosbox,5.45,63,2000,"Mindscape, Inc.",2026-10-25,,5973,moonahdk,auto review
+Moonstone: A Hard Days Knight,1992,Playable,dosbox,5.45,63,2000,"Mindscape, Inc.",2026-10-26,,5973,moonahdk,checked
 Mr. Cool,1983,Playable,dosbox,0.04,4,300,Sierra On-Line,2026-10-26,,8525,MrCool,checked
 Mystic Towers,1994,Playable,dosbox,28.71,63,auto,Apogee / 3D Realms,2026-10-25,,6675,mysttow,
 NASCAR Racing 2,1996,Boots,dosboxX,213.19,63,100000,Sierra On-Line,2026-10-26,,3431,NASCAR2,checked
@@ -227,7 +227,7 @@ Oil's Well (1984),1984,Playable,dosbox,0.02,4,150,Sierra On-Line,2026-10-25,,518
 Oil's Well (1990),1990,Playable,dosbox,1.22,32,auto,Sierra On-Line,2026-10-26,,8514,OilsWell,checked
 Pac-In-Time,1994,Playable,dosbox,1.49,16,auto,"Mindscape, Inc.",2026-10-25,,2468,Pacin-T,auto
 Paganitzu,1991,Playable,dosbox,1.09,32,auto,Apogee / 3D Realms,2026-10-25,,2373,Paganitz,
-Paperboy,1988,Boots,dosbox,0.08,16,1200,"Mindscape, Inc.",2026-10-25,,2173,Paperboy,auto review
+Paperboy,1988,Playable,dosbox,0.08,16,1200,"Mindscape, Inc.",2026-10-26,,2173,Paperboy,checked
 Paperboy 2,1991,Playable,dosbox,0.21,16,auto,"Mindscape, Inc.",2026-10-25,,5694,Paperbo2,auto
 Pepper's Adventures in Time,1993,Playable,dosbox,8.91,32,auto,Sierra On-Line,2026-10-26,,5025,pepper,checked
 Phantasmagoria,1995,Not supported,dosbox,6120.72,63,30000,Sierra On-Line,2026-10-25,,8044,Phantasm,
@@ -254,7 +254,7 @@ Quest For Glory IV: Shadows of Darkness,1993,Boots,dosbox,1381.48,32,40000,Sierr
 Quest for Glory: So You Want to Be a Hero,1989,Playable,dosbox,5.19,32,auto,Sierra On-Line,2026-10-26,,3389,QG1OLD,checked
 Questron II,1988,Boots,dosbox,0.26,63,auto,Westwood Studios,2026-10-23,,3988,questrn2,
 Rack 'Em,1988,Boots,dosbox,0.11,63,auto,"Accolade, Inc.",2026-10-25,,4767,RackEm,auto review
-Racter,1984,Boots,dosbox,0.05,63,auto,"Mindscape, Inc.",2026-10-25,,4115,racter,auto review
+Racter,1984,Playable,dosbox,0.05,63,auto,"Mindscape, Inc.",2026-10-26,,4115,racter,checked
 Rad Warrior,1987,Boots,dosbox,0.04,4,600,"Epyx, Inc.",2026-10-25,,1681,RadWarri,auto review
 Raiders of the Forbidden Mine,1988,Playable,dosbox,0.02,8,600,Apogee / 3D Realms,2026-10-25,,5364,RaiFMine,
 Rama,1996,Playable,dosbox,1523.62,63,10000,Sierra On-Line,2026-10-26,,2163,rama,checked
@@ -273,7 +273,7 @@ Savage Warriors,1995,Playable,dosbox,571.36,63,34000,"Mindscape, Inc.",2026-10-2
 Secret Agent,1992,Playable,dosbox,0.56,16,auto,Apogee / 3D Realms,2026-10-25,,5983,SecretAg,
 Serve & Volley,1988,Playable,dosbox,0.1,63,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7028,ServeVol,auto
 Shadow Warrior,1997,Playable,dosboxX,582.18,63,100000,Apogee / 3D Realms,2026-10-25,vesa_noflb typo; Build cfg; answer Y to the VESA prompt,4806,ShadowWa,
-Shadowgate,1987,Boots,dosbox,0.38,8,1500,"Mindscape, Inc.",2026-10-25,,6945,SGate,auto review
+Shadowgate,1987,Playable,dosbox,0.38,8,1500,"Mindscape, Inc.",2026-10-26,,6945,SGate,checked
 Sid & Al's Incredible Toons,1993,Playable,dosbox,4.46,63,auto,Sierra On-Line,2026-10-26,,5402,SidAls,checked
 Sierra Championship Boxing,1985,Playable,dosbox,0.1,4,500,Sierra On-Line,2026-10-26,,6669,SierraCh,checked
 Sierra's 3-D Helicopter Simulator,1987,Playable,dosbox,0.07,63,auto,Sierra On-Line,2026-10-25,,6583,Sierras3,
@@ -292,23 +292,23 @@ Speed Racer in The Challenge of Racer X,1993,Boots,dosbox,6.69,63,9000,"Accolade
 Star Control,1990,Playable,dosbox,6.87,32,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7640,StarCon,auto
 Star Control 3,1996,Playable,dosbox,668.37,63,32000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,2160,StarCon3,auto
 Star Control II,1992,Boots,dosbox,4.26,63,auto,"Accolade, Inc.",2026-10-25,,4996,StarCon2,auto review
-Star Trek V: The Final Frontier,1989,Boots,dosbox,0.98,16,auto,"Mindscape, Inc.",2026-10-25,,4399,STrekV,auto review
+Star Trek V: The Final Frontier,1989,Playable,dosbox,0.98,16,auto,"Mindscape, Inc.",2026-10-26,,4399,STrekV,checked
 Stargunner,1996,Playable,dosbox,579.98,32,50000,Apogee / 3D Realms,2026-10-25,,8603,Stargunn,
 StarQuest: Rescue at Rigel,1983,Boots,dosbox,0.06,63,1000,"Epyx, Inc.",2026-10-25,,3372,starqrr,auto review
 StarQuest: Star Warrior,1983,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8364,SQSW,auto review
-Steel Panthers,1995,Boots,dosbox,335.57,63,max,"Mindscape, Inc.",2026-10-25,"Works with ?tune=cpu.core=normal, needs a rule in translate.mjs",5278,StlPan1,auto review fix-candidate
-Steel Panthers II - Modern Battles,1996,Boots,dosbox,575.23,63,max,"Mindscape, Inc.",2026-10-25,,5710,StlPan2,auto review
+Steel Panthers,1995,Playable,dosbox,335.57,63,max,"Mindscape, Inc.",2026-10-26,"Works with ?tune=cpu.core=normal, needs a rule in translate.mjs",5278,StlPan1,fix-candidate checked
+Steel Panthers II - Modern Battles,1996,Playable,dosbox,575.23,63,max,"Mindscape, Inc.",2026-10-26,,5710,StlPan2,checked
 Steel Thunder,1989,Boots,dosbox,0.59,63,auto,"Accolade, Inc.",2026-10-25,,7622,SteelThu,auto review
-Stephen King: The Mist,1985,Boots,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-25,,1774,themist,auto review
+Stephen King: The Mist,1985,Playable,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,1774,themist,checked
 Stratego,1990,Boots,dosbox,0.47,63,auto,"Accolade, Inc.",2026-10-25,,7378,Stratego,auto review
 Strike Aces,1990,Boots,dosbox,0.72,63,auto,"Accolade, Inc.",2026-10-25,,4297,StrikeAc,auto review
 Stunts,1990,Playable,dosbox,1.05,63,6000,"Mindscape, Inc.",2026-10-25,Answer 3 at the first prompt,7172,Stunts,auto
-Sub Mission,1987,Boots,dosbox,0.1,4,auto,"Mindscape, Inc.",2026-10-25,,4783,submiss,auto review
+Sub Mission,1987,Playable,dosbox,0.1,4,auto,"Mindscape, Inc.",2026-10-26,,4783,submiss,checked
 Summer Games II,1986,Boots,dosbox,0.14,63,300,"Epyx, Inc.",2026-10-25,,2308,SummerGa,auto review
 Supernova,1987,Playable,dosbox,0.14,63,auto,Apogee / 3D Realms,2026-10-25,,3009,suprnova,
 Superstar Ice Hockey,1987,Playable,dosbox,0.08,63,auto,"Mindscape, Inc.",2026-10-25,,1691,SperStaH,auto
 Superstar Indoor Sports,1987,Playable,dosbox,0.13,63,auto,"Mindscape, Inc.",2026-10-25,,1825,SperStaI,auto
-Superstar Soccer,1988,Boots,dosbox,0.28,8,auto,"Mindscape, Inc.",2026-10-25,,6579,SStarSoc,auto review
+Superstar Soccer,1988,Playable,dosbox,0.28,8,auto,"Mindscape, Inc.",2026-10-26,,6579,SStarSoc,checked
 Temple of Apshai Trilogy,1985,Boots,dosbox,0.08,8,600,"Epyx, Inc.",2026-10-25,,6012,apshai,auto review
 Temple of Kroz,1990,Playable,dosbox,0.04,16,auto,Apogee / 3D Realms,2026-10-25,,2509,Templeof,
 Terran Envoy,1990,Playable,dosbox,0.39,63,auto,"Mindscape, Inc.",2026-10-25,,7267,TerranEn,auto
@@ -317,25 +317,25 @@ Test Drive II: The Collection,1991,Playable,dosbox,1.32,63,auto,"Accolade, Inc."
 Test Drive III: The Passion,1990,Playable,dosbox,0.83,63,6000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5516,TstDriv3,auto
 Test Drive: Off-Road,1997,Boots,dosbox,607.34,32,100000,"Accolade, Inc.",2026-10-25,,4909,TstDrivO,auto review
 The Adventures of Willy Beamish,1991,Playable,dosbox,260.84,32,9000,Sierra On-Line,2026-10-26,,8844,beamish,checked
-The American Challenge: A Sailing Simulation,1986,Boots,dosbox,0.07,8,1200,"Mindscape, Inc.",2026-10-25,,4772,TheAmeri,auto review
+The American Challenge: A Sailing Simulation,1986,Playable,dosbox,0.07,8,1200,"Mindscape, Inc.",2026-10-26,,4772,TheAmeri,checked
 The Beast Within: A Gabriel Knight Mystery,1995,Not supported,dosbox,6446.3,32,auto,Sierra On-Line,2026-10-25,,6321,GK2,
 The Black Cauldron,1986,Playable,dosbox,0.3,63,auto,Sierra On-Line,2026-10-25,,6301,BlakCaul,
-The Colony,1988,Boots,dosbox,0.25,63,1500,"Mindscape, Inc.",2026-10-25,,6829,thecolo,auto review
+The Colony,1988,Playable,dosbox,0.25,63,1500,"Mindscape, Inc.",2026-10-26,,6829,thecolo,checked
 The Complete Great Naval Battles: The Final Fury,1996,Not supported,dosbox,,32,max,"Mindscape, Inc.",2026-10-26, page.waitForFunction: Timeout 240000ms exceeded.,5156,gnb5dd,auto broken load-error
 The Cycles: International Grand Prix Racing,1989,Playable,dosbox,0.63,63,auto,"Accolade, Inc.",2026-10-25,,8248,TheCycle,auto
 The Dam Busters,1985,Boots,dosbox,0.03,8,350,"Accolade, Inc.",2026-10-25,,2689,TheDamBu,auto review
 The Even More Incredible Machine,1993,Playable,dosbox,547.26,32,25000,Sierra On-Line,2026-10-26,,2640,TheEvenM,checked
 The Final Crusade of Kroz,1990,Playable,dosbox,0.04,16,auto,Apogee / 3D Realms,2026-10-25,,3523,TKrozCr,
-The Four Crystals of Trazere,1992,Boots,dosbox,0.97,32,auto,"Mindscape, Inc.",2026-10-25,,3728,4crysTr,auto review
+The Four Crystals of Trazere,1992,Playable,dosbox,0.97,32,auto,"Mindscape, Inc.",2026-10-26,,3728,4crysTr,checked
 The Game of Harmony,1990,Boots,dosbox,0.23,32,auto,"Accolade, Inc.",2026-10-25,,2172,gameharm,auto review
 The Games: Summer Challenge,1992,Boots,dosbox,10.02,63,auto,"Accolade, Inc.",2026-10-25,,5391,TGameSmC,auto review
 The Games: Winter Challenge,1991,Playable,dosbox,9.64,32,auto,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,7633,TGameWnC,auto
-The Global Dilemma: Guns or Butter,1990,Boots,dosbox,0.37,63,auto,"Mindscape, Inc.",2026-10-25,,2632,TheGloba,auto review
+The Global Dilemma: Guns or Butter,1990,Playable,dosbox,0.37,63,auto,"Mindscape, Inc.",2026-10-26,,2632,TheGloba,checked
 The Incredible Machine,1993,Playable,dosbox,0.67,32,25000,Sierra On-Line,2026-10-26,,4330,TIncM1,checked
 The Incredible Machine 2,1994,Playable,dosbox,574.65,32,30000,Sierra On-Line,2026-10-26,,5416,TIncM2,checked
 The Island of Dr. Brain,1992,Playable,dosbox,22.87,63,6000,Sierra On-Line,2026-10-26,,3987,ibrain,checked
 The Keys to Maramon,1990,Playable,dosbox,0.33,63,1000,"Mindscape, Inc.",2026-10-25,Answer n at the first prompt,5769,keysmara,auto
-The King of Chicago,1987,Boots,dosbox,0.29,63,auto,"Mindscape, Inc.",2026-10-25,,4777,kchicago,auto review
+The King of Chicago,1987,Playable,dosbox,0.29,63,auto,"Mindscape, Inc.",2026-10-26,,4777,kchicago,checked
 The Legend of Kyrandia: Book One,1992,Boots,dosbox,247.36,63,24000,Westwood Studios,2026-10-23,,9023,kyra1,
 The Legend of Kyrandia: Book Three - Malcolm's Revenge,1994,Playable,dosbox,445.14,63,max,Westwood Studios,2026-10-23,,7309,kyra3,
 The Legend of Kyrandia: Book Two - The Hand of Fate,1994,Boots,dosbox,126.2,32,25000,Westwood Studios,2026-10-23,,8355,kyra2,
@@ -355,16 +355,16 @@ Torin's Passage,1995,Playable,dosbox,614.94,63,60000,Sierra On-Line,2026-10-26,,
 Total Meltdown,1996,Playable,dosbox,176.94,63,40000,Sierra On-Line,2026-10-25,,8389,TotalMel,
 Trek Trivia,1988,Playable,dosbox,0.26,63,auto,Apogee / 3D Realms,2026-10-25,,7244,TrekTriv,
 Troll's Tale,1984,Playable,dosbox,0.21,16,auto,Sierra On-Line,2026-10-26,,4381,troltale,checked
-Trust and Betrayal: The Legacy of Siboot,1987,Boots,dosbox,0.21,63,auto,"Mindscape, Inc.",2026-10-25,,2352,tb,auto review
+Trust and Betrayal: The Legacy of Siboot,1987,Playable,dosbox,0.21,63,auto,"Mindscape, Inc.",2026-10-26,,2352,tb,checked
 Ultima II: The Revenge of the Enchantress,1982,Playable,dosbox,0.4,4,10000,Sierra On-Line,2026-10-26,,1817,Ultima2,checked
 Ultimate Soccer Manager 2,1996,Playable,dosbox,114.09,63,auto,Sierra On-Line,2026-10-26,,4964,UltSocM2,checked
 Ulysses and the Golden Fleece,1982,Playable,dosbox,0.28,8,300,Sierra On-Line,2026-10-26,,2614,ulygold,checked
-Uninvited,1986,Boots,dosbox,0.36,8,1500,"Mindscape, Inc.",2026-10-25,,9036,Uninvite,auto review
+Uninvited,1986,Playable,dosbox,0.36,8,1500,"Mindscape, Inc.",2026-10-26,,9036,Uninvite,checked
 Unnecessary Roughness,1993,Boots,dosbox,94.34,32,15000,"Accolade, Inc.",2026-10-25,,3806,Unnecess,auto review
 Unnecessary Roughness '95,1994,Playable,dosbox,159.1,63,12000,"Accolade, Inc.",2026-10-25,Answer 3 at the first prompt,5897,Unnece95,auto
 Unnecessary Roughness '96,1995,Playable,dosbox,195.95,63,max,"Accolade, Inc.",2026-10-25,Answer n at the first prompt,9167,Unnece96,auto
 Uridium,1988,Playable,dosbox,0.06,32,auto,"Mindscape, Inc.",2026-10-25,,3741,Uridium,auto
-USS Ticonderoga: Life and Death on the High Seas,1995,Boots,dosbox,407.82,63,35000,"Mindscape, Inc.",2026-10-25,"Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs",6464,USSTicon,auto review fix-candidate
+USS Ticonderoga: Life and Death on the High Seas,1995,Playable,dosbox,407.82,63,35000,"Mindscape, Inc.",2026-10-26,"Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs",6464,USSTicon,fix-candidate checked
 Visions of Aftermath: The Boomtown,1988,Playable,dosbox,0.68,63,auto,"Mindscape, Inc.",2026-10-25,,3321,visionaf,auto
 Voodoo Island,1985,Not supported,dosbox,0.09,63,auto,"Mindscape, Inc.",2026-10-26,,7321,voodoois,auto broken blank
 Warcraft II: Tides of Darkness,1995,Playable,dosbox,1163.57,63,20000,,2026-10-25,Lock mouse on by default (minimap jumped to top-left),2013,WarcrafD,
@@ -379,7 +379,7 @@ Wolfenstein 3D,1992,Playable,dosbox,1.25,16,15000,Apogee / 3D Realms,2026-10-25,
 Word Whiz,1990,Playable,dosbox,0.17,63,auto,Apogee / 3D Realms,2026-10-25,,4882,WordWhiz,
 World Games,1986,Boots,dosbox,0.15,63,auto,"Epyx, Inc.",2026-10-25,,7217,WorldGam,auto review
 World Karate Championship,1986,Boots,dosbox,0.08,8,300,"Epyx, Inc.",2026-10-25,,8113,WorldKar,auto review
-Worlds of Legend: Son of the Empire,1993,Boots,dosbox,0.87,63,auto,"Mindscape, Inc.",2026-10-25,,4914,wlsonemp,auto review
+Worlds of Legend: Son of the Empire,1993,Playable,dosbox,0.87,63,auto,"Mindscape, Inc.",2026-10-26,,4914,wlsonemp,checked
 Xenophage: Alien Bloodsport,1995,Playable,dosbox,76.78,32,45000,Apogee / 3D Realms,2026-10-25,,5507,Xenophag,
 Zeliard,1990,Playable,dosbox,0.57,32,auto,Sierra On-Line,2026-10-25,,4722,zeliard,
 Zyconix,1992,Playable,dosbox,0.22,63,auto,"Accolade, Inc.",2026-10-25,,7948,Zyconix,auto

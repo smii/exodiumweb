@@ -2,15 +2,15 @@
 title: "Contraption Zack"
 year: 1992
 id: 3032
-status: Boots
+status: Playable
 backend: dosbox
 size: 2.37
 memsize: 32
 cycles: auto
 group: Mindscape, Inc.
-tested: 2026-10-25
-verified: "A picture is shown but didn't change with input (menu, prompt or waiting for a key) (automatic probe, 2026-10-25)"
-tags: auto review
+tested: 2026-10-26
+verified: "Launcher answered with 1 (SoundBlaster); the Contraption Zack intro cartoon plays. (looked at by Claude, 2026-10-26)"
+tags: checked
 ---
 # Contraption Zack (1992)
 
@@ -29,3 +29,9 @@ A picture is shown but didn't change with input (menu, prompt or waiting for a k
 | key:y | TEXTONLY | 80 |
 
 Probe steps: `3:6,WAIT:20,Enter:4,Escape:4,Enter:4,Space:4,Enter:6,click:8,Enter:5,hold@ArrowRight@1500:2,hold@ArrowDown@1000:2,hold@ArrowLeft@800:2`
+
+## Interactive check (2026-10-26, rtm)
+
+Launcher answered with 1 (SoundBlaster); the Contraption Zack intro cartoon plays.
+
+**How to start:** press 1 at the launcher menu

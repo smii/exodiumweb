@@ -2,15 +2,15 @@
 title: "Counter Action"
 year: 1997
 id: 5626
-status: Boots
+status: Playable
 backend: dosbox
 size: 75.84
 memsize: 63
 cycles: max
 group: Mindscape, Inc.
-tested: 2026-10-25
-verified: "A picture is shown but didn't change with input (menu, prompt or waiting for a key) (automatic probe, 2026-10-25)"
-tags: auto review
+tested: 2026-10-26
+verified: "Starts directly; the Counter Action main menu (New Game / Load Game / Exit) shows. (looked at by Claude, 2026-10-26)"
+tags: checked
 ---
 # Counter Action (1997)
 
@@ -29,3 +29,9 @@ A picture is shown but didn't change with input (menu, prompt or waiting for a k
 | key:y | STATIC | 87 |
 
 Probe steps: `WAIT:20,Enter:4,Escape:4,Enter:4,Space:4,Enter:6,click:8,Enter:5,hold@ArrowRight@1500:2,hold@ArrowDown@1000:2,hold@ArrowLeft@800:2`
+
+## Interactive check (2026-10-26, w0rk)
+
+Starts directly; the Counter Action main menu (New Game / Load Game / Exit) shows.
+
+**How to start:** starts directly

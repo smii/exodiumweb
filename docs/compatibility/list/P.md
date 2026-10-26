@@ -2,13 +2,13 @@
 
 # Tested games: P
 
-[← All letters](../GAMES.md) · 19 games · 🟢 13 playable · 🟡 3 boots · 🔴 3 not supported
+[← All letters](../GAMES.md) · 19 games · 🟢 14 playable · 🟡 2 boots · 🔴 3 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Pac-In-Time](../games/Pacin-T.md) | 1994 | 🟢 Playable | dosbox | 1.5 MB | 16 MB | auto | — |
 | [Paganitzu](../games/Paganitz.md) | 1991 | 🟢 Playable | dosbox | 1.1 MB | 32 MB | auto | — |
-| [Paperboy](../games/Paperboy.md) | 1988 | 🟡 Boots | dosbox | 80 KB | 16 MB | 1,200 cycles | — |
+| [Paperboy](../games/Paperboy.md) | 1988 | 🟢 Playable | dosbox | 80 KB | 16 MB | 1,200 cycles | — |
 | [Paperboy 2](../games/Paperbo2.md) | 1991 | 🟢 Playable | dosbox | 210 KB | 16 MB | auto | — |
 | [Pepper's Adventures in Time](../games/pepper.md) | 1993 | 🟢 Playable | dosbox | 8.9 MB | 32 MB | auto | — |
 | [Phantasmagoria](../games/Phantasm.md) | 1995 | 🔴 Not supported | dosbox | 6.1 GB | 63 MB | 30,000 cycles | — |

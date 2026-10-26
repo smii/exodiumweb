@@ -17,14 +17,14 @@ named by its eXo shortcode.
 ## At a glance
 
 <!-- generated:stats (node tools/compat-index.mjs) -->
-**384 of 7,666 games tested (5 %).** 🟢 253 playable · 🟡 114 boots · 🟠 2 partial · 🔴 15 not supported.
+**384 of 7,666 games tested (5 %).** 🟢 296 playable · 🟡 71 boots · 🟠 2 partial · 🔴 15 not supported.
 
-🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟨🟨🟧🟥 &nbsp;tested games by status
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟨🟨🟧🟥 &nbsp;tested games by status
 
 | | Status | Games | Share of tested |
 |---|---|---:|---:|
-| 🟢 | Playable | 253 | 65.9 % |
-| 🟡 | Boots | 114 | 29.7 % |
+| 🟢 | Playable | 296 | 77.1 % |
+| 🟡 | Boots | 71 | 18.5 % |
 | 🟠 | Partial | 2 | 0.5 % |
 | 🔴 | Not supported | 15 | 3.9 % |
 
@@ -40,7 +40,7 @@ named by its eXo shortcode.
 | COMPUTE! Publications, Inc. | 1 |  | 1 |  |  |
 | Epyx, Inc. | 15 | 1 | 14 |  |  |
 | IBM | 1 |  | 1 |  |  |
-| Mindscape, Inc. | 85 | 31 | 46 |  | 8 |
+| Mindscape, Inc. | 85 | 74 | 3 |  | 8 |
 | Sierra On-Line | 133 | 123 | 3 | 2 | 5 |
 | Westwood Studios | 23 | 12 | 10 |  | 1 |
 | Other games | 9 | 6 | 3 |  |  |
@@ -49,16 +49,16 @@ named by its eXo shortcode.
 
 | Game | Status | Tested | Note |
 |---|---|---|---|
+| [4-D Boxing](games/4-DBoxin.md) (1991) | 🟢 Playable | 2026-10-26 | — |
+| [4D Sports Tennis](games/4DSports.md) (1990) | 🟢 Playable | 2026-10-26 | — |
 | [Aces of the Pacific](games/AcesotP.md) (1992) | 🟢 Playable | 2026-10-26 | — |
 | [Aces Over Europe](games/AcesOver.md) (1993) | 🟢 Playable | 2026-10-26 | — |
+| [Air Power: Battle in the Skies](games/AirPower.md) (1995) | 🟢 Playable | 2026-10-26 | — |
 | [Alien Legacy](games/alienleg.md) (1994) | 🟢 Playable | 2026-10-26 | — |
-| [Battle Bugs](games/batlbugs.md) (1994) | 🟢 Playable | 2026-10-26 | — |
-| [Battle Isle 2200](games/bisle2.md) (1994) | 🔴 Not supported | 2026-10-26 |  page.waitForFunction: Timeout 240000ms exceeded. |
-| [BC's Quest for Tires](games/BCsQuest.md) (1984) | 🟢 Playable | 2026-10-26 | — |
-| [Birthright: The Gorgon's Alliance](games/bgorgon.md) (1997) | 🟢 Playable | 2026-10-26 | — |
-| [Caesar II](games/caesar2.md) (1995) | 🟢 Playable | 2026-10-26 | — |
-| [Captive](games/captiver.md) (1992) | 🔴 Not supported | 2026-10-26 | — |
-| [Castle of Dr. Brain](games/castleb.md) (1991) | 🟢 Playable | 2026-10-26 | — |
+| [Aliens: A Comic Book Adventure](games/ALIENS.md) (1995) | 🟢 Playable | 2026-10-26 | — |
+| [Azrael's Tear](games/AZRAEL.md) (1996) | 🟢 Playable | 2026-10-26 | Works with ?tune=cpu.cputype=386, needs a rule in translate.mjs |
+| [Balance of Power](games/BalaoPow.md) (1985) | 🟢 Playable | 2026-10-26 | — |
+| [Balance of Power: The 1990 Edition](games/BoP1990.md) (1989) | 🟢 Playable | 2026-10-26 | — |
 <!-- /generated:stats -->
 
 ## Status legend

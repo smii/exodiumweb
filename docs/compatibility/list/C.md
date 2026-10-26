@@ -2,7 +2,7 @@
 
 # Tested games: C
 
-[← All letters](../GAMES.md) · 26 games · 🟢 20 playable · 🟡 5 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 26 games · 🟢 24 playable · 🟡 1 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -12,7 +12,7 @@
 | [Castle of Dr. Brain](../games/castleb.md) | 1991 | 🟢 Playable | dosbox | 110 MB | 32 MB | 9,000 cycles | — |
 | [Circuit's Edge](../games/cedge.md) | 1990 | 🟢 Playable | dosbox | 640 KB | 32 MB | auto | — |
 | [Codename: ICEMAN](../games/Iceman.md) | 1989 | 🟢 Playable | dosbox | 3.6 MB | 16 MB | auto | — |
-| [Combat Course](../games/CombatCo.md) | 1989 | 🟡 Boots | dosbox | 220 KB | 63 MB | auto | — |
+| [Combat Course](../games/CombatCo.md) | 1989 | 🟢 Playable | dosbox | 220 KB | 63 MB | auto | — |
 | [Command & Conquer](../games/comcon.md) | 1995 | 🟢 Playable | dosbox | 1.3 GB | 63 MB | auto | Launcher CD mount path; one disc per campaign |
 | [Command & Conquer: Red Alert](../games/comconra.md) | 1996 | 🟢 Playable | dosbox | 2.2 GB | 63 MB | auto | Same as C&C |
 | [Commander Blood](../games/cblood.md) | 1994 | 🟢 Playable | dosbox | 501 MB | 63 MB | max | — |
@@ -24,11 +24,11 @@
 | [Conqueror: A.D. 1086](../games/conqurAD.md) | 1995 | 🟢 Playable | dosbox | 622 MB | 63 MB | 35,000 cycles | — |
 | [Conquests of Camelot: The Search for the Grail](../games/camelot.md) | 1990 | 🟢 Playable | dosbox | 2.8 MB | 16 MB | auto | — |
 | [Conquests of the Longbow: The Legend of Robin Hood](../games/longbow.md) | 1991 | 🟢 Playable | dosbox | 12 MB | 32 MB | 9,000 cycles | — |
-| [Contraption Zack](../games/contzack.md) | 1992 | 🟡 Boots | dosbox | 2.4 MB | 32 MB | auto | — |
+| [Contraption Zack](../games/contzack.md) | 1992 | 🟢 Playable | dosbox | 2.4 MB | 32 MB | auto | — |
 | [Cosmo's Cosmic Adventure](../games/CosmosCo.md) | 1992 | 🟢 Playable | dosbox | 1.4 MB | 16 MB | auto | — |
-| [Counter Action](../games/countact.md) | 1997 | 🟡 Boots | dosbox | 76 MB | 63 MB | max | — |
+| [Counter Action](../games/countact.md) | 1997 | 🟢 Playable | dosbox | 76 MB | 63 MB | max | — |
 | [Crazy Nick's Software Picks](../games/crazynik.md) | 1993 | 🟢 Playable | dosbox | 2.5 MB | 63 MB | auto | — |
-| [Crime and Punishment](../games/CrimPun.md) | 1984 | 🟡 Boots | dosbox | 40 KB | 63 MB | 900 cycles | — |
+| [Crime and Punishment](../games/CrimPun.md) | 1984 | 🟢 Playable | dosbox | 40 KB | 63 MB | 900 cycles | — |
 | [Crossfire](../games/Crossfir.md) | 1982 | 🟢 Playable | dosbox | 20 KB | 16 MB | 100 cycles | — |
 | [Crystal Caves](../games/CrystalC.md) | 1991 | 🟢 Playable | dosbox | 510 KB | 16 MB | auto | — |
 | [Cyclemania](../games/Cycleman.md) | 1994 | 🟡 Boots | dosbox | 403 MB | 63 MB | max | — |
