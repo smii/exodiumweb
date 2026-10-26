@@ -12,7 +12,8 @@ Before you scroll any further, a couple of words that are actually written by me
 <br>
 Exodiumweb delivers a self-hosted web interface to play all of your DOS games in the browser which is from origin  <a href="https://github.com/tvollstaedt/exodium">Exodium</a>  desktop launcher for your <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> library
 
-But why building a self-hosted application
+<b>But why building a self-hosted application></b>
+<br>
 As a big fan of the <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> community and the <a href="https://github.com/tvollstaedt/exodium">Exodium</a> launcher, I wanted to have something that I don't need to install or to run from my desktop but from the browser and have it available anywhere I am. 
 
 Please check out the docs and looking forward to see contributions, re-use, building a better platform or simply enjoyment for yourself!
