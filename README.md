@@ -4,13 +4,18 @@
 ### Storyline:
 
 <div style="font-size: 0.88em; border-left: 4px solid #007acc; padding-left: 14px; color: #d1d1d1; margin: 20px 0; max-width: 650px; line-height: 1.5 
-
-Hi All,<br>
+Hi all
+<br>
 Before you scroll any further, a couple of words that are actually written by me:
 
-As a big fan of the <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> community and the <a href="https://github.com/tvollstaedt/exodium">Exodium</a> launcher, I wanted to bring these projects along on my self-hosted journey. I also wanted to see how I could utilize the capabilities of Claude, which ultimately resulted in this project. I honestly didn't expect transforming Exodium into a self-hosted (Cloud Native) service to be this functional so quickly.
+<b>What is ExodiumWeb?</b>
+<br>
+Exodiumweb delivers a self-hosted web interface to play all of your DOS games in the browser which is from origin  <a href="https://github.com/tvollstaedt/exodium">Exodium</a>  desktop launcher for your <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> library
 
-I documented the entire journey from idea to execution in the docs. Hopefully, this enables others to contribute, re-use, or build an even better platform! Last but not least, fingers crossed that the future brings better DOS support to the browser. 
+But why building a self-hosted application
+As a big fan of the <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> community and the <a href="https://github.com/tvollstaedt/exodium">Exodium</a> launcher, I wanted to have something that I don't need to install or to run from my desktop but from the browser and have it available anywhere I am. 
+
+Please check out the docs and looking forward to see contributions, re-use, building a better platform or simply enjoyment for yourself!
 
 <em>A big thanks to @tvollstaedt for his work and to the entire eXoDOS community for their efforts!</em>
 Enjoy!
