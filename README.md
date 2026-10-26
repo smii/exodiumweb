@@ -10,7 +10,7 @@ Before you scroll any further, a couple of words that are actually written by me
 
 <b>What is ExodiumWeb?</b>
 <br>
-Exodiumweb delivers a self-hosted web interface to play all of your DOS games in the browser which is from origin  <a href="https://github.com/tvollstaedt/exodium">Exodium</a>  desktop launcher for your <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> library
+Exodiumweb delivers a self-hosted web interface based on  <a href="https://github.com/tvollstaedt/exodium">Exodium</a>  desktop launcher for your <a href="https://www.retro-exo.com/exodos.html">eXoDOS</a> library. Currently webinterface is functional and currentely all games will go through a testing cycle to see if theyt are working on JS-Dos whifch is webbased version of Dosbox but with limited features. 
 
 <b>But why building a self-hosted application></b>
 <br>
@@ -79,7 +79,7 @@ A game misbehaving? [Open an issue](https://github.com/smii/exodiumweb/issues/ne
 ## Quick start
 
 You need your own **eXoDOS 6.04 collection**: the folder that holds `eXo/` and `Content/`. None of it ships with this repo or the image.
-The browser must reach the app over **HTTPS or `localhost`**, because the player needs `SharedArrayBuffer`.
+The browser must reach the app over **HTTPS or `localhost`** due to functionality constrains ( `SharedArrayBuffer` requiires one of the both.
 
 ```bash
 docker build -t exodiumweb .
