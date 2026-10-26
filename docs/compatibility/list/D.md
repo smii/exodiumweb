@@ -2,7 +2,7 @@
 
 # Tested games: D
 
-[← All letters](../GAMES.md) · 27 games · 🟢 13 playable · 🟡 14 boots
+[← All letters](../GAMES.md) · 27 games · 🟢 14 playable · 🟡 13 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -17,7 +17,7 @@
 | [Deja Vu: A Nightmare Comes True!!](../games/DejaVu.md) | 1985 | 🟡 Boots | dosbox | 300 KB | 8 MB | 1,500 cycles | — |
 | [Descent II](../games/Descent2.md) | 1996 | 🟡 Boots | dosbox | 1.4 GB | 63 MB | 100,000 cycles | menu |
 | [Destroyer](../games/destro87.md) | 1987 | 🟡 Boots | dosbox | 100 KB | 4 MB | 600 cycles | — |
-| [Detroit](../games/Detroit.md) | 1994 | 🟡 Boots | dosbox | 20 MB | 32 MB | auto | — |
+| [Detroit](../games/Detroit.md) | 1994 | 🟢 Playable | dosbox | 20 MB | 32 MB | auto | — |
 | [Don't Go Alone](../games/dgalone.md) | 1989 | 🟡 Boots | dosbox | 640 KB | 63 MB | auto | — |
 | [Donald Duck's Playground](../games/dondukpl.md) | 1986 | 🟢 Playable | dosbox | 150 KB | 4 MB | 600 cycles | — |
 | [Donald's Alphabet Chase](../games/DonaldsA.md) | 1988 | 🟢 Playable | dosbox | 170 KB | 63 MB | auto | — |

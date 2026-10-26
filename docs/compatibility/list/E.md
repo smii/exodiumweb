@@ -2,12 +2,12 @@
 
 # Tested games: E
 
-[← All letters](../GAMES.md) · 7 games · 🟢 2 playable · 🟡 5 boots
+[← All letters](../GAMES.md) · 7 games · 🟢 3 playable · 🟡 4 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [EcoQuest I](../games/ecoq1.md) | 1991 | 🟢 Playable | dosbox | 350 MB | 32 MB | 9,000 cycles | Large-game download, kept in browser storage |
-| [EcoQuest II: Lost Secret of the Rainforest](../games/ecoq2.md) | 1993 | 🟡 Boots | dosbox | 6.9 MB | 63 MB | auto | — |
+| [EcoQuest II: Lost Secret of the Rainforest](../games/ecoq2.md) | 1993 | 🟢 Playable | dosbox | 6.9 MB | 63 MB | auto | — |
 | [Elvira II: The Jaws of Cerberus](../games/elvira2.md) | 1991 | 🟡 Boots | dosbox | 3.1 MB | 16 MB | auto | — |
 | [Elvira: Mistress of the Dark](../games/elvira1.md) | 1990 | 🟡 Boots | dosbox | 2.1 MB | 32 MB | auto | — |
 | [Eradicator](../games/Eradicat.md) | 1996 | 🟡 Boots | dosbox | 482 MB | 16 MB | 50,000 cycles | — |

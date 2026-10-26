@@ -2,17 +2,17 @@
 
 # Tested games: A
 
-[← All letters](../GAMES.md) · 14 games · 🟢 4 playable · 🟡 9 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 14 games · 🟢 7 playable · 🟡 6 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [A Nightmare on Elm Street](../games/ANightma.md) | 1989 | 🟡 Boots | dosbox | 260 KB | 16 MB | auto | — |
 | [Ace of Aces](../games/AceofAce.md) | 1987 | 🟢 Playable | dosbox | 130 KB | 32 MB | 600 cycles | Answer n at the first prompt |
-| [Aces of the Pacific](../games/AcesotP.md) | 1992 | 🟡 Boots | dosbox | 36 MB | 32 MB | 9,000 cycles | — |
-| [Aces Over Europe](../games/AcesOver.md) | 1993 | 🟡 Boots | dosbox | 4.1 MB | 32 MB | 12,000 cycles | — |
+| [Aces of the Pacific](../games/AcesotP.md) | 1992 | 🟢 Playable | dosbox | 36 MB | 32 MB | 9,000 cycles | — |
+| [Aces Over Europe](../games/AcesOver.md) | 1993 | 🟢 Playable | dosbox | 4.1 MB | 32 MB | 12,000 cycles | — |
 | [Air Power: Battle in the Skies](../games/AirPower.md) | 1995 | 🟡 Boots | dosbox | 224 MB | 32 MB | 30,000 cycles | — |
 | [Alien Carnage](../games/AlienCar.md) | 1993 | 🟢 Playable | dosbox | 2.9 MB | 16 MB | 5,000 cycles | — |
-| [Alien Legacy](../games/alienleg.md) | 1994 | 🟡 Boots | dosbox | 194 MB | 63 MB | 10,000 cycles | — |
+| [Alien Legacy](../games/alienleg.md) | 1994 | 🟢 Playable | dosbox | 194 MB | 63 MB | 10,000 cycles | — |
 | [Alien Olympics](../games/AlienOly.md) | 1994 | 🟢 Playable | dosbox | 5.1 MB | 63 MB | 15,000 cycles | Answer 3 at the first prompt |
 | [Aliens: A Comic Book Adventure](../games/ALIENS.md) | 1995 | 🟡 Boots | dosbox | 1.2 GB | 16 MB | 60,000 cycles | — |
 | [Altered Destiny](../games/ADestiny.md) | 1990 | 🟡 Boots | dosbox | 2.0 MB | 32 MB | auto | — |

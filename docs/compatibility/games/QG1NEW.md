@@ -2,14 +2,15 @@
 title: "Quest for Glory I: So You Want To Be A Hero (SCI Remake)"
 year: 1992
 id: 7094
-status: Boots
+status: Playable
 backend: dosbox
 size: 6.79
 memsize: 32
 cycles: 9000
 group: Sierra On-Line
-tested: 2026-10-25
-verified: "Settings prompt (n), Sierra logo"
+tested: 2026-10-26
+verified: "Options prompt answers (N keeps SoundBlaster); the credits screen shows. (looked at by Claude, 2026-10-26)"
+tags: checked
 ---
 # Quest for Glory I: So You Want To Be A Hero (SCI Remake) (1992)
 
@@ -26,3 +27,9 @@ Probe steps: `1:6,1:6,1:6,n:6,WAIT:20,Enter:5,Space:5,click:8,Enter:6,WAIT:10,ho
 ## Notes
 
 Answer `n` at eXo's "change these options? [Y/N]" prompt.
+
+## Interactive check (2026-10-26, rtm)
+
+Options prompt answers (N keeps SoundBlaster); the credits screen shows.
+
+**How to start:** press N at the options prompt

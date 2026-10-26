@@ -2,14 +2,15 @@
 title: "Leisure Suit Larry: In the Land of the Lounge Lizards (SCI Remake)"
 year: 1991
 id: 8742
-status: Boots
+status: Playable
 backend: dosbox
 size: 5.45
 memsize: 16
 cycles: 10000
 group: Sierra On-Line
-tested: 2026-10-25
-verified: "Title, age quiz dialog"
+tested: 2026-10-26
+verified: "Launcher menu answers; option 1 starts the game and the title animation plays. (looked at by Claude, 2026-10-26)"
+tags: checked
 ---
 # Leisure Suit Larry: In the Land of the Lounge Lizards (SCI Remake) (1991)
 
@@ -22,3 +23,9 @@ No game-specific fix needed (Sierra sweep, 2026-10-25).
 Title, age quiz dialog.
 
 Probe steps: `1:6,WAIT:25,click:6,WAIT:10,click:6`
+
+## Interactive check (2026-10-26, rtm)
+
+Launcher menu answers; option 1 starts the game and the title animation plays.
+
+**How to start:** press 1 at the launcher menu

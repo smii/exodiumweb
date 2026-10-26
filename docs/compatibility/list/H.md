@@ -2,7 +2,7 @@
 
 # Tested games: H
 
-[← All letters](../GAMES.md) · 18 games · 🟢 5 playable · 🟡 12 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 18 games · 🟢 10 playable · 🟡 7 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -13,14 +13,14 @@
 | [HardBall!](../games/Hball.md) | 1987 | 🟢 Playable | dosbox | 210 KB | 32 MB | 1,200 cycles | Answer 3 at the first prompt |
 | [Harley-Davidson: The Road to Sturgis](../games/Harley-D.md) | 1989 | 🟡 Boots | dosbox | 540 KB | 63 MB | auto | — |
 | [Harrier Combat Simulator](../games/harcoms.md) | 1987 | 🟡 Boots | dosbox | 190 KB | 63 MB | 600 cycles | — |
-| [Heart of China](../games/hoc.md) | 1991 | 🟡 Boots | dosbox | 6.9 MB | 32 MB | auto | — |
+| [Heart of China](../games/hoc.md) | 1991 | 🟢 Playable | dosbox | 6.9 MB | 32 MB | auto | — |
 | [Heat Wave: Offshore Superboat Racing](../games/heatwave.md) | 1990 | 🟡 Boots | dosbox | 420 KB | 63 MB | auto | — |
 | [High $take$](../games/$takes.md) | 1986 | 🔴 Not supported | dosbox | 90 KB | 63 MB | auto | — |
 | [Hillsfar](../games/hillsfar.md) | 1989 | 🟡 Boots | dosbox | 430 KB | 63 MB | auto | — |
 | [Hocus Pocus](../games/HocusPoc.md) | 1994 | 🟢 Playable | dosbox | 12 MB | 32 MB | 9,000 cycles | — |
 | [Hostage: Rescue Mission](../games/HostageR.md) | 1989 | 🟡 Boots | dosbox | 460 KB | 32 MB | auto | — |
 | [Hoverforce](../games/Hoverfor.md) | 1991 | 🟢 Playable | dosbox | 430 KB | 63 MB | auto | Answer 3 at the first prompt |
-| [Hoyle Classic Card Games](../games/hoylec.md) | 1993 | 🟡 Boots | dosbox | 9.3 MB | 32 MB | auto | — |
-| [Hoyle Official Book of Games: Volume 1](../games/hoylebk1.md) | 1989 | 🟡 Boots | dosbox | 600 KB | 32 MB | auto | — |
-| [Hoyle Official Book of Games: Volume 2](../games/hoylebk2.md) | 1990 | 🟡 Boots | dosbox | 480 KB | 32 MB | auto | — |
-| [Hoyle Official Book of Games: Volume 3](../games/hoylebk3.md) | 1991 | 🟡 Boots | dosbox | 2.5 MB | 16 MB | auto | — |
+| [Hoyle Classic Card Games](../games/hoylec.md) | 1993 | 🟢 Playable | dosbox | 9.3 MB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 1](../games/hoylebk1.md) | 1989 | 🟢 Playable | dosbox | 600 KB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 2](../games/hoylebk2.md) | 1990 | 🟢 Playable | dosbox | 480 KB | 32 MB | auto | — |
+| [Hoyle Official Book of Games: Volume 3](../games/hoylebk3.md) | 1991 | 🟢 Playable | dosbox | 2.5 MB | 16 MB | auto | — |

@@ -2,7 +2,7 @@
 
 # Tested games: J
 
-[← All letters](../GAMES.md) · 8 games · 🟢 3 playable · 🟡 4 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 8 games · 🟢 4 playable · 🟡 3 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -11,6 +11,6 @@
 | [Jack Nicklaus' Unlimited Golf & Course Design](../games/JackUGCD.md) | 1990 | 🟢 Playable | dosbox | 11 MB | 63 MB | auto | Answer 3 at the first prompt |
 | [James Bond 007: A View to a Kill](../games/bondkill.md) | 1985 | 🔴 Not supported | dosbox | 90 KB | 63 MB | auto | — |
 | [James Bond 007: Goldfinger](../games/bondgold.md) | 1986 | 🟡 Boots | dosbox | 100 KB | 63 MB | auto | — |
-| [Jones in the Fast Lane (Enhanced CD-ROM)](../games/jonefast.md) | 1992 | 🟡 Boots | dosbox | 328 MB | 16 MB | auto | — |
+| [Jones in the Fast Lane (Enhanced CD-ROM)](../games/jonefast.md) | 1992 | 🟢 Playable | dosbox | 328 MB | 16 MB | auto | — |
 | [Jumpman](../games/Jumpman.md) | 1984 | 🟡 Boots | dosbox | 60 KB | 16 MB | auto | — |
 | [Jumpman Lives!](../games/JumpmanL.md) | 1991 | 🟢 Playable | dosbox | 130 KB | 16 MB | auto | — |

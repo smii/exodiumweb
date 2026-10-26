@@ -2,10 +2,10 @@
 
 # Tested games: N
 
-[← All letters](../GAMES.md) · 3 games · 🟢 1 playable · 🟡 2 boots
+[← All letters](../GAMES.md) · 3 games · 🟢 2 playable · 🟡 1 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [NASCAR Racing 2](../games/NASCAR2.md) | 1996 | 🟡 Boots | dosboxX | 213 MB | 63 MB | 100,000 cycles | — |
 | [Night Bomber](../games/NightBom.md) | 1988 | 🟢 Playable | dosbox | 10 KB | 63 MB | 300 cycles | — |
-| [Nova 9: The Return of Gir Draxon](../games/Nova9Ret.md) | 1991 | 🟡 Boots | dosbox | 3.0 MB | 63 MB | 6,000 cycles | — |
+| [Nova 9: The Return of Gir Draxon](../games/Nova9Ret.md) | 1991 | 🟢 Playable | dosbox | 3.0 MB | 63 MB | 6,000 cycles | — |

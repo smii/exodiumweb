@@ -2,15 +2,15 @@
 
 # Tested games: I
 
-[← All letters](../GAMES.md) · 9 games · 🟢 3 playable · 🟡 5 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 9 games · 🟢 6 playable · 🟡 2 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
-| [Inca (1992)](../games/inca1.md) | 1992 | 🟡 Boots | dosbox | 515 MB | 32 MB | 2,500 cycles | — |
-| [Inca II: Nations of Immortality](../games/inca2.md) | 1994 | 🟡 Boots | dosbox | 615 MB | 16 MB | auto | — |
+| [Inca (1992)](../games/inca1.md) | 1992 | 🟢 Playable | dosbox | 515 MB | 32 MB | 2,500 cycles | — |
+| [Inca II: Nations of Immortality](../games/inca2.md) | 1994 | 🟢 Playable | dosbox | 615 MB | 16 MB | auto | — |
 | [Indiana Jones and the Temple of Doom](../games/IndiJTD.md) | 1988 | 🟢 Playable | dosbox | 160 KB | 16 MB | auto | — |
 | [Indiana Jones in Revenge of the Ancients](../games/indyanci.md) | 1987 | 🔴 Not supported | dosbox | 80 KB | 63 MB | auto | — |
-| [IndyCar Racing II](../games/IndyCR2.md) | 1996 | 🟡 Boots | dosbox | 156 MB | 63 MB | max | — |
+| [IndyCar Racing II](../games/IndyCR2.md) | 1996 | 🟢 Playable | dosbox | 156 MB | 63 MB | max | — |
 | [Infiltrator](../games/infil1.md) | 1987 | 🟡 Boots | dosbox | 90 KB | 63 MB | auto | — |
 | [Infiltrator II: The Next Day](../games/infil2.md) | 1988 | 🟢 Playable | dosbox | 110 KB | 63 MB | auto | — |
 | [Into the Eagle's Nest](../games/IntotheE.md) | 1987 | 🟢 Playable | dosbox | 70 KB | 16 MB | auto | — |

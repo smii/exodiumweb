@@ -2,33 +2,33 @@
 
 # Tested games
 
-[← Compatibility](README.md) · 384 games · 🟢 162 playable · 🟡 204 boots · 🟠 2 partial · 🔴 16 not supported · [searchable table](games.csv)
+[← Compatibility](README.md) · 384 games · 🟢 253 playable · 🟡 114 boots · 🟠 2 partial · 🔴 15 not supported · [searchable table](games.csv)
 
 | Letter | Games | Status |
 |---|---:|---|
 | [0–9](list/0-9.md) | 3 | 🟢 1 playable · 🟡 2 boots |
-| [A](list/A.md) | 14 | 🟢 4 playable · 🟡 9 boots · 🔴 1 not supported |
-| [B](list/B.md) | 23 | 🟢 10 playable · 🟡 12 boots · 🔴 1 not supported |
-| [C](list/C.md) | 26 | 🟢 14 playable · 🟡 11 boots · 🔴 1 not supported |
-| [D](list/D.md) | 27 | 🟢 13 playable · 🟡 14 boots |
-| [E](list/E.md) | 7 | 🟢 2 playable · 🟡 5 boots |
-| [F](list/F.md) | 14 | 🟢 4 playable · 🟡 10 boots |
-| [G](list/G.md) | 11 | 🟢 6 playable · 🟡 5 boots |
-| [H](list/H.md) | 18 | 🟢 5 playable · 🟡 12 boots · 🔴 1 not supported |
-| [I](list/I.md) | 9 | 🟢 3 playable · 🟡 5 boots · 🔴 1 not supported |
-| [J](list/J.md) | 8 | 🟢 3 playable · 🟡 4 boots · 🔴 1 not supported |
-| [K](list/K.md) | 12 | 🟢 9 playable · 🟡 2 boots · 🟠 1 partial |
-| [L](list/L.md) | 21 | 🟢 6 playable · 🟡 14 boots · 🔴 1 not supported |
-| [M](list/M.md) | 27 | 🟢 13 playable · 🟡 14 boots |
-| [N](list/N.md) | 3 | 🟢 1 playable · 🟡 2 boots |
-| [O](list/O.md) | 3 | 🟢 1 playable · 🟡 2 boots |
-| [P](list/P.md) | 19 | 🟢 9 playable · 🟡 6 boots · 🔴 4 not supported |
-| [Q](list/Q.md) | 9 | 🟢 2 playable · 🟡 7 boots |
-| [R](list/R.md) | 16 | 🟢 7 playable · 🟡 8 boots · 🔴 1 not supported |
-| [S](list/S.md) | 40 | 🟢 16 playable · 🟡 23 boots · 🟠 1 partial |
-| [T](list/T.md) | 47 | 🟢 20 playable · 🟡 25 boots · 🔴 2 not supported |
-| [U](list/U.md) | 9 | 🟢 3 playable · 🟡 6 boots |
+| [A](list/A.md) | 14 | 🟢 7 playable · 🟡 6 boots · 🔴 1 not supported |
+| [B](list/B.md) | 23 | 🟢 13 playable · 🟡 9 boots · 🔴 1 not supported |
+| [C](list/C.md) | 26 | 🟢 20 playable · 🟡 5 boots · 🔴 1 not supported |
+| [D](list/D.md) | 27 | 🟢 14 playable · 🟡 13 boots |
+| [E](list/E.md) | 7 | 🟢 3 playable · 🟡 4 boots |
+| [F](list/F.md) | 14 | 🟢 11 playable · 🟡 3 boots |
+| [G](list/G.md) | 11 | 🟢 9 playable · 🟡 2 boots |
+| [H](list/H.md) | 18 | 🟢 10 playable · 🟡 7 boots · 🔴 1 not supported |
+| [I](list/I.md) | 9 | 🟢 6 playable · 🟡 2 boots · 🔴 1 not supported |
+| [J](list/J.md) | 8 | 🟢 4 playable · 🟡 3 boots · 🔴 1 not supported |
+| [K](list/K.md) | 12 | 🟢 11 playable · 🟠 1 partial |
+| [L](list/L.md) | 21 | 🟢 18 playable · 🟡 2 boots · 🔴 1 not supported |
+| [M](list/M.md) | 27 | 🟢 21 playable · 🟡 6 boots |
+| [N](list/N.md) | 3 | 🟢 2 playable · 🟡 1 boots |
+| [O](list/O.md) | 3 | 🟢 2 playable · 🟡 1 boots |
+| [P](list/P.md) | 19 | 🟢 13 playable · 🟡 3 boots · 🔴 3 not supported |
+| [Q](list/Q.md) | 9 | 🟢 7 playable · 🟡 2 boots |
+| [R](list/R.md) | 16 | 🟢 12 playable · 🟡 3 boots · 🔴 1 not supported |
+| [S](list/S.md) | 40 | 🟢 22 playable · 🟡 17 boots · 🟠 1 partial |
+| [T](list/T.md) | 47 | 🟢 29 playable · 🟡 16 boots · 🔴 2 not supported |
+| [U](list/U.md) | 9 | 🟢 6 playable · 🟡 3 boots |
 | [V](list/V.md) | 2 | 🟢 1 playable · 🔴 1 not supported |
-| [W](list/W.md) | 13 | 🟢 6 playable · 🟡 6 boots · 🔴 1 not supported |
+| [W](list/W.md) | 13 | 🟢 8 playable · 🟡 4 boots · 🔴 1 not supported |
 | [X](list/X.md) | 1 | 🟢 1 playable |
 | [Z](list/Z.md) | 2 | 🟢 2 playable |

@@ -2,16 +2,16 @@
 
 # Tested games: G
 
-[← All letters](../GAMES.md) · 11 games · 🟢 6 playable · 🟡 5 boots
+[← All letters](../GAMES.md) · 11 games · 🟢 9 playable · 🟡 2 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
-| [Gabriel Knight: Sins of the Fathers](../games/gk1.md) | 1993 | 🟡 Boots | dosbox | 796 MB | 32 MB | 40,000 cycles | — |
+| [Gabriel Knight: Sins of the Fathers](../games/gk1.md) | 1993 | 🟢 Playable | dosbox | 796 MB | 32 MB | 40,000 cycles | — |
 | [Gauntlet](../games/Gauntlet.md) | 1988 | 🟢 Playable | dosbox | 110 KB | 16 MB | auto | — |
 | [Gauntlet II](../games/Gauntle2.md) | 1989 | 🟢 Playable | dosbox | 260 KB | 32 MB | auto | — |
 | [Gobliiins](../games/gob1.md) | 1991 | 🟢 Playable | dosbox | 312 MB | 32 MB | auto | — |
-| [Gobliins 2: The Prince Buffoon](../games/gob2.md) | 1993 | 🟡 Boots | dosbox | 320 MB | 32 MB | auto | — |
-| [Goblins Quest 3](../games/gob3.md) | 1994 | 🟡 Boots | dosbox | 484 MB | 32 MB | auto | — |
+| [Gobliins 2: The Prince Buffoon](../games/gob2.md) | 1993 | 🟢 Playable | dosbox | 320 MB | 32 MB | auto | — |
+| [Goblins Quest 3](../games/gob3.md) | 1994 | 🟢 Playable | dosbox | 484 MB | 32 MB | auto | — |
 | [Gold Rush!](../games/GoldRush.md) | 1988 | 🟢 Playable | dosbox | 2.0 MB | 16 MB | auto | — |
 | [Goofy's Railway Express](../games/GoofysRa.md) | 1991 | 🟢 Playable | dosbox | 190 KB | 63 MB | auto | — |
 | [Grand Prix Circuit](../games/GPrixC.md) | 1988 | 🟢 Playable | dosbox | 360 KB | 63 MB | auto | Answer 3 at the first prompt |

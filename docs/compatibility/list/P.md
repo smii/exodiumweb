@@ -2,15 +2,15 @@
 
 # Tested games: P
 
-[← All letters](../GAMES.md) · 19 games · 🟢 9 playable · 🟡 6 boots · 🔴 4 not supported
+[← All letters](../GAMES.md) · 19 games · 🟢 13 playable · 🟡 3 boots · 🔴 3 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
-| [Pac-In-Time](../games/Pacin-T.md) | 1994 | 🔴 Not supported | dosbox | 1.5 MB | 16 MB | auto | — |
+| [Pac-In-Time](../games/Pacin-T.md) | 1994 | 🟢 Playable | dosbox | 1.5 MB | 16 MB | auto | — |
 | [Paganitzu](../games/Paganitz.md) | 1991 | 🟢 Playable | dosbox | 1.1 MB | 32 MB | auto | — |
 | [Paperboy](../games/Paperboy.md) | 1988 | 🟡 Boots | dosbox | 80 KB | 16 MB | 1,200 cycles | — |
 | [Paperboy 2](../games/Paperbo2.md) | 1991 | 🟢 Playable | dosbox | 210 KB | 16 MB | auto | — |
-| [Pepper's Adventures in Time](../games/pepper.md) | 1993 | 🟡 Boots | dosbox | 8.9 MB | 32 MB | auto | — |
+| [Pepper's Adventures in Time](../games/pepper.md) | 1993 | 🟢 Playable | dosbox | 8.9 MB | 32 MB | auto | — |
 | [Phantasmagoria](../games/Phantasm.md) | 1995 | 🔴 Not supported | dosbox | 6.1 GB | 63 MB | 30,000 cycles | — |
 | [Phantasmagoria 2: A Puzzle of Flesh](../games/phantas2.md) | 1996 | 🔴 Not supported | dosbox | 4.5 GB | 63 MB | 60,000 cycles | — |
 | [Pharaoh's Tomb](../games/PharaohT.md) | 1990 | 🟢 Playable | dosbox | 230 KB | 63 MB | 600 cycles | — |
@@ -19,9 +19,9 @@
 | [Pole Position II](../games/PolePos2.md) | 1989 | 🟡 Boots | dosbox | 100 KB | 63 MB | auto | — |
 | [Police Quest 2: The Vengeance](../games/PQ2.md) | 1988 | 🟢 Playable | dosbox | 1.7 MB | 16 MB | auto | — |
 | [Police Quest 3: The Kindred](../games/PQ3.md) | 1991 | 🟢 Playable | dosbox | 9.1 MB | 16 MB | 10,000 cycles | — |
-| [Police Quest 4: Open Season](../games/PQ4.md) | 1993 | 🟡 Boots | dosbox | 911 MB | 32 MB | 35,000 cycles | — |
+| [Police Quest 4: Open Season](../games/PQ4.md) | 1993 | 🟢 Playable | dosbox | 911 MB | 32 MB | 35,000 cycles | — |
 | [Police Quest: In Pursuit of the Death Angel](../games/PQ1.md) | 1987 | 🟢 Playable | dosbox | 410 KB | 8 MB | auto | — |
-| [Police Quest: In Pursuit of the Death Angel (SCI Remake)](../games/PQ1_VGA.md) | 1992 | 🟡 Boots | dosbox | 6.5 MB | 32 MB | 9,000 cycles | — |
+| [Police Quest: In Pursuit of the Death Angel (SCI Remake)](../games/PQ1_VGA.md) | 1992 | 🟢 Playable | dosbox | 6.5 MB | 32 MB | 9,000 cycles | — |
 | [Police Quest: SWAT](../games/pqswat.md) | 1995 | 🔴 Not supported | dosbox | 3.8 GB | 63 MB | 60,000 cycles | — |
 | [Psi-5 Trading Company](../games/Psi-5Tra.md) | 1986 | 🟡 Boots | dosbox | 130 KB | 8 MB | 900 cycles | — |
 | [Puzzle Fun-Pak](../games/puzzfun.md) | 1987 | 🟢 Playable | dosbox | 140 KB | 63 MB | 400 cycles | — |

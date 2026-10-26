@@ -2,7 +2,7 @@
 
 # Tested games: B
 
-[← All letters](../GAMES.md) · 23 games · 🟢 10 playable · 🟡 12 boots · 🔴 1 not supported
+[← All letters](../GAMES.md) · 23 games · 🟢 13 playable · 🟡 9 boots · 🔴 1 not supported
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -10,14 +10,14 @@
 | [Balance of Power](../games/BalaoPow.md) | 1985 | 🟡 Boots | dosbox | 690 KB | 4 MB | 900 cycles | — |
 | [Balance of Power: The 1990 Edition](../games/BoP1990.md) | 1989 | 🟡 Boots | dosbox | 2.1 MB | 8 MB | 12,000 cycles | — |
 | [Bar Games](../games/BarGames.md) | 1989 | 🟡 Boots | dosbox | 510 KB | 63 MB | auto | — |
-| [Battle Bugs](../games/batlbugs.md) | 1994 | 🟡 Boots | dosbox | 73 MB | 63 MB | auto | — |
-| [Battle Isle 2200](../games/bisle2.md) | 1994 | 🔴 Not supported | dosbox | — | 63 MB | 30,000 cycles |  page.waitForFunction: Timeout 600000ms exceeded. |
+| [Battle Bugs](../games/batlbugs.md) | 1994 | 🟢 Playable | dosbox | 73 MB | 63 MB | auto | — |
+| [Battle Isle 2200](../games/bisle2.md) | 1994 | 🔴 Not supported | dosbox | — | 63 MB | 30,000 cycles |  page.waitForFunction: Timeout 240000ms exceeded. |
 | [BattleTech: The Crescent Hawk's Inception](../games/batltech.md) | 1988 | 🟡 Boots | dosbox | 410 KB | 16 MB | auto | — |
 | [BattleTech: The Crescent Hawk's Revenge](../games/batltec2.md) | 1990 | 🟢 Playable | dosbox | 1.3 MB | 32 MB | 3,000 cycles | — |
-| [BC's Quest for Tires](../games/BCsQuest.md) | 1984 | 🟡 Boots | dosbox | 20 KB | 8 MB | 500 cycles | — |
+| [BC's Quest for Tires](../games/BCsQuest.md) | 1984 | 🟢 Playable | dosbox | 20 KB | 8 MB | 500 cycles | — |
 | [Beyond the Titanic](../games/beytitan.md) | 1986 | 🟢 Playable | dosbox | 100 KB | 63 MB | auto | — |
 | [Bio Menace](../games/BioMenac.md) | 1993 | 🟢 Playable | dosbox | 2.3 MB | 16 MB | auto | — |
-| [Birthright: The Gorgon's Alliance](../games/bgorgon.md) | 1997 | 🟡 Boots | dosbox | 763 MB | 63 MB | 50,000 cycles | — |
+| [Birthright: The Gorgon's Alliance](../games/bgorgon.md) | 1997 | 🟢 Playable | dosbox | 763 MB | 63 MB | 50,000 cycles | — |
 | [BlackJack Academy](../games/bjacad.md) | 1987 | 🟢 Playable | dosbox | 50 KB | 16 MB | auto | — |
 | [Blake Stone: Aliens of Gold](../games/BlakeStA.md) | 1993 | 🟢 Playable | dosbox | 5.8 MB | 16 MB | 12,000 cycles | — |
 | [Blake Stone: Planet Strike](../games/BlakeStP.md) | 1994 | 🟢 Playable | dosbox | 4.7 MB | 16 MB | 6,000 cycles | — |

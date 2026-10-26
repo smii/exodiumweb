@@ -2,7 +2,7 @@
 
 # Tested games: K
 
-[← All letters](../GAMES.md) · 12 games · 🟢 9 playable · 🟡 2 boots · 🟠 1 partial
+[← All letters](../GAMES.md) · 12 games · 🟢 11 playable · 🟠 1 partial
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
@@ -14,7 +14,7 @@
 | [King's Quest III: To Heir is Human](../games/KQ3.md) | 1986 | 🟢 Playable | dosbox | 450 KB | 16 MB | auto | — |
 | [King's Quest IV: The Perils of Rosella](../games/KQ4.md) | 1988 | 🟢 Playable | dosbox | 13 MB | 16 MB | auto | — |
 | [King's Quest V: Absence Makes the Heart Go Yonder!](../games/KQ5.md) | 1990 | 🟢 Playable | dosbox | 157 MB | 63 MB | auto | — |
-| [King's Quest VI: Heir Today, Gone Tomorrow](../games/KQ6CD.md) | 1992 | 🟡 Boots | dosbox | 711 MB | 32 MB | 15,000 cycles | — |
-| [King's Quest VII: The Princeless Bride](../games/KQ7.md) | 1994 | 🟡 Boots | dosbox | 818 MB | 32 MB | 45,000 cycles | — |
+| [King's Quest VI: Heir Today, Gone Tomorrow](../games/KQ6CD.md) | 1992 | 🟢 Playable | dosbox | 711 MB | 32 MB | 15,000 cycles | — |
+| [King's Quest VII: The Princeless Bride](../games/KQ7.md) | 1994 | 🟢 Playable | dosbox | 818 MB | 32 MB | 45,000 cycles | — |
 | [King's Questions](../games/kqquest.md) | 1994 | 🟢 Playable | dosbox | 820 KB | 16 MB | 10,000 cycles | — |
 | [Kingdom of Kroz II](../games/KingKrz2.md) | 1990 | 🟢 Playable | dosbox | 50 KB | 4 MB | 600 cycles | — |

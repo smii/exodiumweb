@@ -2,10 +2,10 @@
 
 # Tested games: O
 
-[← All letters](../GAMES.md) · 3 games · 🟢 1 playable · 🟡 2 boots
+[← All letters](../GAMES.md) · 3 games · 🟢 2 playable · 🟡 1 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
 | [Oil Barons (1983)](../games/OilBaron.md) | 1983 | 🟡 Boots | dosbox | 340 KB | 63 MB | 900 cycles | — |
 | [Oil's Well (1984)](../games/OilsWllP.md) | 1984 | 🟢 Playable | dosbox | 20 KB | 4 MB | 150 cycles | — |
-| [Oil's Well (1990)](../games/OilsWell.md) | 1990 | 🟡 Boots | dosbox | 1.2 MB | 32 MB | auto | — |
+| [Oil's Well (1990)](../games/OilsWell.md) | 1990 | 🟢 Playable | dosbox | 1.2 MB | 32 MB | auto | — |

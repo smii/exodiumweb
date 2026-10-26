@@ -2,13 +2,13 @@
 
 # Tested games: U
 
-[← All letters](../GAMES.md) · 9 games · 🟢 3 playable · 🟡 6 boots
+[← All letters](../GAMES.md) · 9 games · 🟢 6 playable · 🟡 3 boots
 
 | Game | Year | Status | Backend | Download | DOS RAM | CPU | Note |
 |---|---:|---|---|---:|---:|---:|---|
-| [Ultima II: The Revenge of the Enchantress](../games/Ultima2.md) | 1982 | 🟡 Boots | dosbox | 400 KB | 4 MB | 10,000 cycles | — |
-| [Ultimate Soccer Manager 2](../games/UltSocM2.md) | 1996 | 🟡 Boots | dosbox | 114 MB | 63 MB | auto | — |
-| [Ulysses and the Golden Fleece](../games/ulygold.md) | 1982 | 🟡 Boots | dosbox | 280 KB | 8 MB | 300 cycles | — |
+| [Ultima II: The Revenge of the Enchantress](../games/Ultima2.md) | 1982 | 🟢 Playable | dosbox | 400 KB | 4 MB | 10,000 cycles | — |
+| [Ultimate Soccer Manager 2](../games/UltSocM2.md) | 1996 | 🟢 Playable | dosbox | 114 MB | 63 MB | auto | — |
+| [Ulysses and the Golden Fleece](../games/ulygold.md) | 1982 | 🟢 Playable | dosbox | 280 KB | 8 MB | 300 cycles | — |
 | [Uninvited](../games/Uninvite.md) | 1986 | 🟡 Boots | dosbox | 360 KB | 8 MB | 1,500 cycles | — |
 | [Unnecessary Roughness](../games/Unnecess.md) | 1993 | 🟡 Boots | dosbox | 94 MB | 32 MB | 15,000 cycles | — |
 | [Unnecessary Roughness '95](../games/Unnece95.md) | 1994 | 🟢 Playable | dosbox | 159 MB | 63 MB | 12,000 cycles | Answer 3 at the first prompt |
